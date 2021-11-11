@@ -1,221 +1,113 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Algorithms by DasGupta, Part 7" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Algorithms by DasGupta, Part 7">
 <meta property="og:description" content="Chapter 10: Quntized Algorithms There is a catch ofcourse: this algorithm needs a quantum computer to execute.
 Qubits, superposition and measurment Such a superposition is the basic unit of encoded information in quantum computers. It is called a qubit.
-This linear superposition is however private to the electron. For us to get a glimpse of the electron&rsquo;s state, we must make a measurment, and when we do get a single bit of information, 0 or 1." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms7/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2017-09-14T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Algorithms by DasGupta, Part 7"/>
-<meta name="twitter:description" content="Chapter 10: Quntized Algorithms There is a catch ofcourse: this algorithm needs a quantum computer to execute.
+This linear superposition is however private to the electron. For us to get a glimpse of the electron&rsquo;s state, we must make a measurment, and when we do get a single bit of information, 0 or 1.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms7/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2017-09-14T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Algorithms by DasGupta, Part 7">
+<meta name=twitter:description content="Chapter 10: Quntized Algorithms There is a catch ofcourse: this algorithm needs a quantum computer to execute.
 Qubits, superposition and measurment Such a superposition is the basic unit of encoded information in quantum computers. It is called a qubit.
-This linear superposition is however private to the electron. For us to get a glimpse of the electron&rsquo;s state, we must make a measurment, and when we do get a single bit of information, 0 or 1."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms7/">
-
-    <title>
-      
-        Algorithms by DasGupta, Part 7 | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+This linear superposition is however private to the electron. For us to get a glimpse of the electron&rsquo;s state, we must make a measurment, and when we do get a single bit of information, 0 or 1.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms7/>
+<title>
+Algorithms by DasGupta, Part 7 | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/">Algorithms by Das Gupta</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Algorithms by DasGupta, Part 7</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/>Algorithms by Das Gupta</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Algorithms by DasGupta, Part 7</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-dasgupta/algorithms7/">Algorithms by DasGupta, Part 7</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/algorithms-dasgupta/algorithms7/>Algorithms by DasGupta, Part 7</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-09-14">Sep 14, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-09-14>Sep 14, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#chapter-10-quntized-algorithms">Chapter 10: Quntized Algorithms</a>
-      <ul>
-        <li><a href="#qubits-superposition-and-measurment"><strong>Qubits, superposition and measurment</strong></a></li>
-        <li><a href="#the-plan"><strong>The plan</strong></a></li>
-        <li><a href="#the-quantum-fourier-transform"><strong>The Quantum Fourier Transform</strong></a></li>
-        <li><a href="#periodicity"><strong>Periodicity</strong></a></li>
-        <li><a href="#quantum-circuits"><strong>Quantum Circuits</strong></a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#chapter-10-quntized-algorithms>Chapter 10: Quntized Algorithms</a>
+<ul>
+<li><a href=#qubits-superposition-and-measurment><strong>Qubits, superposition and measurment</strong></a></li>
+<li><a href=#the-plan><strong>The plan</strong></a></li>
+<li><a href=#the-quantum-fourier-transform><strong>The Quantum Fourier Transform</strong></a></li>
+<li><a href=#periodicity><strong>Periodicity</strong></a></li>
+<li><a href=#quantum-circuits><strong>Quantum Circuits</strong></a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="chapter-10-quntized-algorithms">Chapter 10: Quntized Algorithms</h2>
+<h2 id=chapter-10-quntized-algorithms>Chapter 10: Quntized Algorithms</h2>
 <p><em>There is a catch ofcourse: this algorithm needs a <strong>quantum computer</strong> to execute.</em></p>
-<h3 id="qubits-superposition-and-measurment"><strong>Qubits, superposition and measurment</strong></h3>
-<p><img src="../../../../images/algdg/10_quant1.png" alt="alt"></p>
+<h3 id=qubits-superposition-and-measurment><strong>Qubits, superposition and measurment</strong></h3>
+<p><img src=../../../../images/algdg/10_quant1.png alt=alt></p>
 <p>Such a superposition is the basic unit of encoded information in quantum computers. It is called a <em>qubit</em>.</p>
-<p>This linear superposition is however private  to the electron. For us to get a glimpse of the electron&rsquo;s state, we must make a <em>measurment</em>, and when we do get a single bit of information, 0 or 1.</p>
-<p><img src="../../../../images/algdg/10_quant2.png" alt="alt"></p>
+<p>This linear superposition is however private to the electron. For us to get a glimpse of the electron&rsquo;s state, we must make a <em>measurment</em>, and when we do get a single bit of information, 0 or 1.</p>
+<p><img src=../../../../images/algdg/10_quant2.png alt=alt></p>
 <p>How do we encode $n$ bits of information? We could choose $k=2^n$ levels of the hydrogen atom. But a more promising option is to use $n$ qubits.</p>
-<p><img src="../../../../images/algdg/10_quant3.png" alt="alt"><br>
-<img src="../../../../images/algdg/10_quant4.png" alt="alt"></p>
+<p><img src=../../../../images/algdg/10_quant3.png alt=alt><br>
+<img src=../../../../images/algdg/10_quant4.png alt=alt></p>
 <p>In this phenomenon lies the basic motivation for quantum computation. After all, if Nature is so extravagant at the quantum level, why should we base our computers on classical physics? Why not tap into this massive amount of effort being expended at the quantum level?</p>
-<p>But there is a fundamental problem: this exponentially large linear superposition is the private world of the electrons. Measuring the system only reveals $n$ bits of information. As before, the probability that the outcome is a particular 500-bit string $x$ is $|\alpha_x|^2$. And the new state after measurement is just $|x&gt;$.</p>
-<h3 id="the-plan"><strong>The plan</strong></h3>
+<p>But there is a fundamental problem: this exponentially large linear superposition is the private world of the electrons. Measuring the system only reveals $n$ bits of information. As before, the probability that the outcome is a particular 500-bit string $x$ is $|\alpha_x|^2$. And the new state after measurement is just $|x>$.</p>
+<h3 id=the-plan><strong>The plan</strong></h3>
 <p>The input to a quantum algorithm consists of $n$ classical bits, and the output also consists of $n$ classical bits. It is while the quantum system is not being watched that the quantum effects take over and we have the benefit of <em>Nature</em> working exponentially hard on our behalf.<br>
-If the input is an $n$-bit string $x$, then the quantum computer takes as input $n$ qubits in state $|x&gt;$. Then a series of quantum operations are performed, by the end of which the state of the $n$ qubits has been transformed to some superposition $\su_y\alpha_y|y&gt;$. Finally, a measurement is made, and the output is the n-bit string y with probability $|\alpha_y|^2$. Observe that this output is <em>random</em>. But this is not a problem, as we have seen before with randomized algorithms such as the one for primality testing. As long as $y$ corresponds to the right answer with high enough probability, we can repeat the whole process a few times to make the chance of failure miniscule.</p>
+If the input is an $n$-bit string $x$, then the quantum computer takes as input $n$ qubits in state $|x>$. Then a series of quantum operations are performed, by the end of which the state of the $n$ qubits has been transformed to some superposition $\su_y\alpha_y|y>$. Finally, a measurement is made, and the output is the n-bit string y with probability $|\alpha_y|^2$. Observe that this output is <em>random</em>. But this is not a problem, as we have seen before with randomized algorithms such as the one for primality testing. As long as $y$ corresponds to the right answer with high enough probability, we can repeat the whole process a few times to make the chance of failure miniscule.</p>
 <p>Noe let us look more closely at the quantum part of the algorithm. Some of the key quantum operations(which we will soon discuss) can be thought os as looking for certain kinds of <em>patterns</em> in a superposition of states. Because of this, it is helpful to think of the algorithm as having two stages. In the first stage, the $n$ classical bits of the input are <em>&ldquo;unpacked&rdquo;</em> into an exponentially large superposition, which is expressly set up as to have an underlying pattern or regularity that, if detected, would solve the task at hand. The second stage then consists of a suitable set of quantum operations, followed by a measurement, which reveals the hidden pattern.</p>
 <p>The algorithm to factor a large integer $N$ can be viewed as a sequence of reductions:</p>
 <ul>
@@ -224,204 +116,118 @@ If the input is an $n$-bit string $x$, then the quantum computer takes as input 
 <li>The order of an integer is precisely the period of a particular <em>periodic superposition</em>.</li>
 <li>Finally, periods of superposition can be found by the <em>quantum FFT</em>.</li>
 </ul>
-<h3 id="the-quantum-fourier-transform"><strong>The Quantum Fourier Transform</strong></h3>
+<h3 id=the-quantum-fourier-transform><strong>The Quantum Fourier Transform</strong></h3>
 <p>The FFT,<br>
-<img src="../../../../images/algdg/10_quant5.png" alt="alt"></p>
+<img src=../../../../images/algdg/10_quant5.png alt=alt></p>
 <p>where $\omega$ is a complex $M$th root of unity(the extra factor of $\sqrt{M}$ has the effect of ensuring that is the $|\alpha_i|^2$ add up to 1, then so do the $|\beta_i|^2$). Although the proceeding equation suggests an $O(M^2)$ algorithm, the classical <em>FFT</em> is able to perform this calculation in just $O(M\log{M})$ steps, and it is this speedup that has the profound effect of making digital signal processing practically feasible. We will now see that quantum computers can implement the FFT <em>exponentially</em> faster, in $O(\log^2M)$ time!</p>
 <p>But waut, how can any algorithm take time less than $M$, the length of the input? The point is that we can encode the input in a superposition of just $m = \log{M}$ qubits; after all, this superposition of $2m$ amplitude values.</p>
 <p>Starting from this input superposition $\alpha$ , the <em>quantum Fourier transform(QFT)</em> manipulates it appropriately in $m = \log M$ stages. At each stage the superposition evolves so that it
 encodes the intermediate results at the same stage of the classical FFT (whose circuit, with $m = \log M$ stages, is reproduced from Chapter 2). This can be achieved with m quantum operations per stage. Ultimately, after m such stages and $m^2 = log^2 M$ elementary operations, we obtain the superposition $\beta$ that corresponds to
 the desired output of the QFT.</p>
 <p>So far we have only considered the good news about the QFT: its amazing speed. Now it is time to read the fine print. The classical FFT algorithm actually <em>outputs</em> the M complex
-numbers $\beta_0,&hellip; , \beta_{M-1}$. In contrast, the QFT only prepares a superposition $\beta = P_{M_{j=0 −1} \beta_j}$. And, as we saw earlier, these amplitudes are part of the *“private world”* of this quantum
+numbers $\beta_0,&mldr; , \beta_{M-1}$. In contrast, the QFT only prepares a superposition $\beta = P_{M_{j=0 −1} \beta_j}$. And, as we saw earlier, these amplitudes are part of the *“private world”* of this quantum
 system.<br>
 Thus the only way to get our hands on this result is by measuring it! And measuring the state of the system only yields $m = \log M$ classical bits: specifically, the output is index $j$ with probability $|\beta_j|^2$.<br>
 So, instead of QFT, it would be more accurate to call this algorithm *quantum Fourier sampling*. Moreover, even though we have confined our attention to the case $M = 2m$ in this
 section, the algorithm can be implemented for arbitrary values of M, and can be summarized as follows:</p>
-<p><img src="../../../../images/algdg/10_quant6.png" alt="alt"></p>
+<p><img src=../../../../images/algdg/10_quant6.png alt=alt></p>
 <p>Quantum Fourier sampling is basically a quick way of getting a very rough idea about the output of the classical FFT, just detecting one of the larger components of the answer vector.<br>
 In fact, we don’t even see the value of that component—we only see its index. How can we use such meager information? In which applications of the FFT is just the index of the large components enough? This is what we explore next.</p>
-<h3 id="periodicity"><strong>Periodicity</strong></h3>
-<p>Suppose that the input to the QFT, $\alpha = (\alpha_0, \alpha_1,&hellip; , \alpha_{M−1})$, is such that $\alpha_i = \alpha_j$ whenever $i \equiv j \pmod k$, where $k$ is a particular integer that divides $M$. That is, the array $\alpha$ consists of $M/k$ repetitions of some sequence $(\alpha_0, \alpha_1,&hellip;, \alpha_{k−1})$ of length k. Moreover, suppose that exactly one of the $k$ numbers $\alpha_0,&hellip; , \alpha_{k−1}$ is nonzero, say $\alpha_j$. Then we say that $\alpha$ is *periodic with period $k$ and offset $j$*.</p>
-<p><img src="../../../../images/algdg/10_quant7.png" alt="alt"></p>
+<h3 id=periodicity><strong>Periodicity</strong></h3>
+<p>Suppose that the input to the QFT, $\alpha = (\alpha_0, \alpha_1,&mldr; , \alpha_{M−1})$, is such that $\alpha_i = \alpha_j$ whenever $i \equiv j \pmod k$, where $k$ is a particular integer that divides $M$. That is, the array $\alpha$ consists of $M/k$ repetitions of some sequence $(\alpha_0, \alpha_1,&mldr;, \alpha_{k−1})$ of length k. Moreover, suppose that exactly one of the $k$ numbers $\alpha_0,&mldr; , \alpha_{k−1}$ is nonzero, say $\alpha_j$. Then we say that $\alpha$ is *periodic with period $k$ and offset $j$*.</p>
+<p><img src=../../../../images/algdg/10_quant7.png alt=alt></p>
 <p>It turns out that if the input vector is periodic, we can use quantum Fourier sampling to compute its period! This is based on the following fact, proved in the next lines:</p>
 <p>Suppose the input to quantum Fourier sampling is periodic with period $k$, for some $k$ that divides $M$. Then the output will be a multiple of $M/k$, and it is equally likely to be any of the $k$ multiples of $M/k$.</p>
 <p>Now a little thought tells us that by repeating the sampling a few times (repeatedly preparing the periodic superposition and doing Fourier sampling), and then taking the greatest common divisor of all the indices returned, we will with very high probability get the number $M/k$ — and from it the period $k$ of the input!</p>
-<p><img src="../../../../images/algdg/10_quant8.png" alt="alt"></p>
-<h3 id="quantum-circuits"><strong>Quantum Circuits</strong></h3>
+<p><img src=../../../../images/algdg/10_quant8.png alt=alt></p>
+<h3 id=quantum-circuits><strong>Quantum Circuits</strong></h3>
 <p>So quantum computers can carry out a Fourier transform exponentially faster than classical computers. But what do these computers actually look like? What is a quantum circuit made up of, and exactly how does it compute Fourier transforms so quickly?</p>
 <p><strong>Elementary quantum gates</strong></p>
 <p>An elementary quantum operation is analogous to an elementary gate like the <code>AND</code> or <code>NOT</code>
 gate in a classical circuit. It operates upon either a single qubit or two qubits. One of the most
 important examples is the <em>Hadamard gate</em>, denoted by $H$, which operates on a single qubit.</p>
-<p><img src="../../../../images/algdg/10_quant9.png" alt="alt"></p>
-<p>Notice that in either case, measuring the resulting qubit yields $0$ with probability $1/2$ and $1$ with probability $1/2$. But what happens if the input to the Hadamard gate is an arbitrary superposition $\alpha_0 |0&gt; + \alpha_1 |1&gt;$ ? The answer, dictated by the linearity of quantum physics, is the superposition $\alpha_0H( 0 ) + \alpha_1H( 1 ) = \alpha_0\sqrt2 \alpha_1 |0&gt; + \alpha_0\sqrt{−2} \alpha_1 |1&gt;$ . And so, if we apply the Hadamard gate to the output of a Hadamard gate, it restores the qubit to its original state!</p>
+<p><img src=../../../../images/algdg/10_quant9.png alt=alt></p>
+<p>Notice that in either case, measuring the resulting qubit yields $0$ with probability $1/2$ and $1$ with probability $1/2$. But what happens if the input to the Hadamard gate is an arbitrary superposition $\alpha_0 |0> + \alpha_1 |1>$ ? The answer, dictated by the linearity of quantum physics, is the superposition $\alpha_0H( 0 ) + \alpha_1H( 1 ) = \alpha_0\sqrt2 \alpha_1 |0> + \alpha_0\sqrt{−2} \alpha_1 |1>$ . And so, if we apply the Hadamard gate to the output of a Hadamard gate, it restores the qubit to its original state!</p>
 <p>Another basic gate is the <em>controlled-NOT</em>, or <em>CNOT</em>. It operates upon two qubits, with the first acting as a control qubit and the second as the target qubit. The <em>CNOT</em> gate flips the second bit if and only if the first qubit is a 1. Thus CNOT( 00 ) = 00 and CNOT( 10 ) = 11 :</p>
-<p><img src="../../../../images/algdg/10_quant10.png" alt="alt"></p>
+<p><img src=../../../../images/algdg/10_quant10.png alt=alt></p>
 <p>Yet another basic gate, the controlled phase gate, is described below in the subsection describing the quantum circuit for the QFT.</p>
 <p>Now let us consider the following question: Suppose we have a quantum state on n qubits, $\alpha = P_x\in{0,1}_n \alpha_x x$ . How many of these $2n$ amplitudes change if we apply the Hadamard gate to only the first qubit? The surprising answer is—all of them! The new superposition becomes $\beta = P_x\in{0,1}_n \beta_x x$ , where $\beta_0y = \alpha_0y\sqrt{2} + \alpha_1y and \beta_1y = \alpha_0y\sqrt{−2}\alpha_1y$ . Looking at the results more closely, the quantum operation on the first qubit deals with each $n − 1$ bit suffix $y$ separately. Thus the pair of amplitudes $\alpha_0y$ and $\alpha_1y$ are transformed into $(\alpha_0y + \alpha_1y)/\sqrt2$ and $(\alpha_0y −\alpha_1y)/\sqrt2$. This is exactly the feature that will give us an exponential speedup in the quantum Fourier transform.</p>
 <p><strong>Two basic types of quantum circuits</strong></p>
 <p>A quantum circuit takes some number n of qubits as input, and outputs the same number of qubits. In the diagram these n qubits are carried by the n wires going from left to right. The quantum circuit consists of the application of a sequence of elementary quantum gates (of the kind described above) to single qubits and pairs of qubits. At a high level, there are two basic functionalities of quantum circuits that we use in the design of quantum algorithms:</p>
 <p><strong>Quantum Fourier Transform</strong> These quantum circuits take as input n qubits in some state $\alpha$ and output the state $\alpha$ resulting from applying the QFT to $\alpha$.
 <strong>Classical Functions</strong> Consider a function f with n input bits and m output bits, and suppose we have a classical circuit that outputs f(x). Then there is a quantum circuit that, on input consisting of an n-bit string x padded with m 0’s, outputs x and f(x):</p>
-<p><img src="../../../../images/algdg/10_quant11.png" alt="alt"></p>
+<p><img src=../../../../images/algdg/10_quant11.png alt=alt></p>
 <p>Understanding quantum circuits at this high level is sufficient to follow the rest of this chapter. The next subsection on quantum circuits for the QFT can therefore be safely skipped by anyone not wanting to delve into these details.</p>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-dasgupta/algorithms2/">Algorithms by DasGupta, Part 2</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/>The Algorithms Design Manual, Set and String Problems</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/>The Algorithms Design Manual, Computational Geometry</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/>The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/>The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-dasgupta/algorithms2/>Algorithms by DasGupta, Part 2</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

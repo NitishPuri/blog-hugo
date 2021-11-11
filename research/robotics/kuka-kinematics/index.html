@@ -1,223 +1,115 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Inverse Kinematics on Kuka Arm using ROS and Python" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Inverse Kinematics on Kuka Arm using ROS and Python">
 <meta property="og:description" content="Picking and placing objects is something that we as humans take for granted. That&rsquo;s not the case for our mechanical(and electronic) friends. They have to
- Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&rsquo;t always go very well for us either).  One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/research/robotics/kuka-kinematics/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="research" />
-
-<meta property="article:modified_time" content="2017-09-28T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Inverse Kinematics on Kuka Arm using ROS and Python"/>
-<meta name="twitter:description" content="Picking and placing objects is something that we as humans take for granted. That&rsquo;s not the case for our mechanical(and electronic) friends. They have to
- Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&rsquo;t always go very well for us either).  One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/research/robotics/kuka-kinematics/">
-
-    <title>
-      
-        Inverse Kinematics on Kuka Arm using ROS and Python | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+ Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&rsquo;t always go very well for us either).  One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/research/robotics/kuka-kinematics/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="research">
+<meta property="article:modified_time" content="2017-09-28T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Inverse Kinematics on Kuka Arm using ROS and Python">
+<meta name=twitter:description content="Picking and placing objects is something that we as humans take for granted. That&rsquo;s not the case for our mechanical(and electronic) friends. They have to
+ Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&rsquo;t always go very well for us either).  One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/research/robotics/kuka-kinematics/>
+<title>
+Inverse Kinematics on Kuka Arm using ROS and Python | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/">Researches</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/robotics/">Robotics</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Inverse Kinematics on Kuka Arm using ROS and Python</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/research/>Researches</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/research/robotics/>Robotics</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Inverse Kinematics on Kuka Arm using ROS and Python</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../research/robotics/kuka-kinematics/">Inverse Kinematics on Kuka Arm using ROS and Python</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../blog-hugo/research/robotics/kuka-kinematics/>Inverse Kinematics on Kuka Arm using ROS and Python</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-09-28">Sep 28, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-09-28>Sep 28, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/udacity>udacity</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/kuka>kuka</a>
 </div>
-
-
-    
 <div class="blog-post-categories text-secondary">
-    <strong>Categories:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
-    
+<strong>Categories:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/notes>notes</a>
 </div>
-
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#denavithartenberg-analysis">Denavit–Hartenberg Analysis</a></li>
-        <li><a href="#now-the-ik-part">Now the IK part.</a></li>
-        <li><a href="#next-steps">Next Steps</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#denavithartenberg-analysis>Denavit–Hartenberg Analysis</a></li>
+<li><a href=#now-the-ik-part>Now the IK part.</a></li>
+<li><a href=#next-steps>Next Steps</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <p>Picking and placing objects is something that we as humans take for granted. That&rsquo;s not the case for our mechanical(and electronic) friends. They have to</p>
+<p>Picking and placing objects is something that we as humans take for granted. That&rsquo;s not the case for our mechanical(and electronic) friends. They have to</p>
 <ol>
 <li>Calculate an optimal collision-free path from the source to target location.</li>
 <li>Perform inverse kinematics to control the joints on your arm.</li>
 <li>Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&rsquo;t always go very well for us either).</li>
 </ol>
 <p>One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to <strong>pick</strong> and <strong>place</strong> an object.</p>
-<p><img src="../../../images/kuka/kuka1.jpg" alt="alt"></p>
+<p><img src=../../../images/kuka/kuka1.jpg alt=alt></p>
 <p>I was given a trajectory that the arm should follow to reach the object, pick up and drop it at a given location. My job was to perform <em>inverse kinematic analysis</em> to calculate the joint positions that will move the gripper along the requested path.</p>
 <p>Enter math.</p>
-<p><img src="../../../images/kuka/annotated_image.jpg" alt="alt">
+<p><img src=../../../images/kuka/annotated_image.jpg alt=alt>
 <strong>Fig. 1</strong> : Shows the link frames(coordinate systems) choosen according to Modified DH convention discussed next. $O_i$ is the origin for link $i$ frame, and $X_i$, $Z_i$ are the $X$ and $Z$ axis correspondingly, and $Z$ represents the axis of rotation(translation in case of prismatic joints). Since we are using a right handed coordinate system, $Y_i$ can be calculated accordingly.</p>
 <p>Here is a diagram of the gripper showing the degrees of freedom that the arm has, along with their reference frames. Computing through these transformations can become complex and tedious really fast. So, we use a convention.</p>
-<h3 id="denavithartenberg-analysis">Denavit–Hartenberg Analysis</h3>
-<p>The <a href="https://en.wikipedia.org/wiki/Denavit%E2%80%93Hartenberg_parameters">Denavit–Hartenberg(DH)</a>
+<h3 id=denavithartenberg-analysis>Denavit–Hartenberg Analysis</h3>
+<p>The <a href=https://en.wikipedia.org/wiki/Denavit%E2%80%93Hartenberg_parameters>Denavit–Hartenberg(DH)</a>
 convention is a commonly used system for selecting the <code>frames of reference</code> in robotics applications. They are particularly designed to cut out the number of free parameters required to specify the whole system. Here is an illustration,</p>
-<p><img src="../../../images/kuka/dh-convention.jpg" alt="alt">
+<p><img src=../../../images/kuka/dh-convention.jpg alt=alt>
 <strong>Fig. 2 :</strong> Modified DH convention axes assignment and parameters.</p>
 <p>Here,</p>
 <ul>
@@ -230,13 +122,13 @@ convention is a commonly used system for selecting the <code>frames of reference
 <p>$$ T_{i-1}^{i} = R(x{i-1},, \alpha_{i-1}) \cdot T(x_{i-1}, a_{i-1}) \cdot R(z_i, \theta_i) \cdot T(z_i, d_i)$$</p>
 <p>Which, when expanded analytically, turns out to be,</p>
 <p>$$\begin{eqnarray} T_{i-1}^{i} = \begin{bmatrix}
-cos(\theta_i) &amp; -sin(\theta_i) &amp; 0 &amp; a_{i-1} \\<br>
-sin(\theta_i)cos(\alpha{i-1}) &amp; cos(\theta_i)cos(\alpha{i-1}) &amp; -sin(\alpha{i-1}) &amp; -sin(\alpha{i-1})d_i \\<br>
-sin(\theta_i)sin(\alpha{i-1}) &amp; cos(\theta_i)sin(\alpha{i-1}) &amp; cos(\alpha{i-1}) &amp; cos(\alpha{i-1})d_i \\<br>
-0 &amp; 0 &amp; 0 &amp; 1
+cos(\theta_i) & -sin(\theta_i) & 0 & a_{i-1} \\<br>
+sin(\theta_i)cos(\alpha{i-1}) & cos(\theta_i)cos(\alpha{i-1}) & -sin(\alpha{i-1}) & -sin(\alpha{i-1})d_i \\<br>
+sin(\theta_i)sin(\alpha{i-1}) & cos(\theta_i)sin(\alpha{i-1}) & cos(\alpha{i-1}) & cos(\alpha{i-1})d_i \\<br>
+0 & 0 & 0 & 1
 \end{bmatrix} \end{eqnarray}$$</p>
 <p>Now, we can apply this convention to our robotic arm and find out all the required parameters for further analysis. Here are the model specifications and final DH-parameters,
-<img src="../../../images/kuka/urdf_annotation.jpg" alt="alt"></p>
+<img src=../../../images/kuka/urdf_annotation.jpg alt=alt></p>
 <table>
 <thead>
 <tr>
@@ -299,38 +191,38 @@ sin(\theta_i)sin(\alpha{i-1}) &amp; cos(\theta_i)sin(\alpha{i-1}) &amp; cos(\alp
 </tr>
 </tbody>
 </table>
-<p>Referring back to the transformation equation (1), transformation between two links can be defined separately, we use <a href="http://www.sympy.org/en/index.html">sympy</a> for symbolic computation, simplification and substitution.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Create transformation matrix between two links</span>
-<span style="color:#75715e"># according to Modified DH convention with given parameters</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">createMatrix</span>(alpha, a, q, d):
-    mat <span style="color:#f92672">=</span>  Matrix([[            cos(q),           <span style="color:#f92672">-</span>sin(q),           <span style="color:#ae81ff">0</span>,             a],
-                   [ sin(q)<span style="color:#f92672">*</span>cos(alpha), cos(q)<span style="color:#f92672">*</span>cos(alpha), <span style="color:#f92672">-</span>sin(alpha), <span style="color:#f92672">-</span>sin(alpha)<span style="color:#f92672">*</span>d],
-                   [ sin(q)<span style="color:#f92672">*</span>sin(alpha), cos(q)<span style="color:#f92672">*</span>sin(alpha),  cos(alpha),  cos(alpha)<span style="color:#f92672">*</span>d],
-                   [                 <span style="color:#ae81ff">0</span>,                 <span style="color:#ae81ff">0</span>,           <span style="color:#ae81ff">0</span>,             <span style="color:#ae81ff">1</span>]])
+<p>Referring back to the transformation equation (1), transformation between two links can be defined separately, we use <a href=http://www.sympy.org/en/index.html>sympy</a> for symbolic computation, simplification and substitution.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># Create transformation matrix between two links</span>
+<span style=color:#75715e># according to Modified DH convention with given parameters</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>createMatrix</span>(alpha, a, q, d):
+    mat <span style=color:#f92672>=</span>  Matrix([[            cos(q),           <span style=color:#f92672>-</span>sin(q),           <span style=color:#ae81ff>0</span>,             a],
+                   [ sin(q)<span style=color:#f92672>*</span>cos(alpha), cos(q)<span style=color:#f92672>*</span>cos(alpha), <span style=color:#f92672>-</span>sin(alpha), <span style=color:#f92672>-</span>sin(alpha)<span style=color:#f92672>*</span>d],
+                   [ sin(q)<span style=color:#f92672>*</span>sin(alpha), cos(q)<span style=color:#f92672>*</span>sin(alpha),  cos(alpha),  cos(alpha)<span style=color:#f92672>*</span>d],
+                   [                 <span style=color:#ae81ff>0</span>,                 <span style=color:#ae81ff>0</span>,           <span style=color:#ae81ff>0</span>,             <span style=color:#ae81ff>1</span>]])
 
-    <span style="color:#66d9ef">return</span> mat
+    <span style=color:#66d9ef>return</span> mat
 </code></pre></div><p>Also, total homogenous transform between <em>base_link</em> and <em>gripper_link</em> can be computed as,</p>
 <p>$$T_0^G = T_0^1<em>T_1^2</em>T_2^3<em>T_3^4</em>T_4^5<em>T_5^6</em>T_6^G$$</p>
 <p>And, finally, the same total transform can also be computed given the <em>gripper_link</em> position and orientation w.r.t. <em>base_link</em>.Given,</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pg_0  <span style="color:#f92672">=</span> [px, py, pz] <span style="color:#75715e"># End effector position.</span>
-p_quat <span style="color:#f92672">=</span> [qx, qy, qz, qw] <span style="color:#75715e"># End effector orientation as a quaternion.</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>pg_0  <span style=color:#f92672>=</span> [px, py, pz] <span style=color:#75715e># End effector position.</span>
+p_quat <span style=color:#f92672>=</span> [qx, qy, qz, qw] <span style=color:#75715e># End effector orientation as a quaternion.</span>
 
-<span style="color:#75715e"># R0_g = end-effector(gripper) rotation transformation(4X4)</span>
-R0_g <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>transformations<span style="color:#f92672">.</span>quaternion_matrix(p_quat)
-D0_g <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>transformations<span style="color:#f92672">.</span>translation_matrix(pg_0)
+<span style=color:#75715e># R0_g = end-effector(gripper) rotation transformation(4X4)</span>
+R0_g <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>transformations<span style=color:#f92672>.</span>quaternion_matrix(p_quat)
+D0_g <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>transformations<span style=color:#f92672>.</span>translation_matrix(pg_0)
 
-T_total <span style="color:#f92672">=</span> R0_g<span style="color:#f92672">*</span>D0_g
+T_total <span style=color:#f92672>=</span> R0_g<span style=color:#f92672>*</span>D0_g
 </code></pre></div><p>Now, the total transform computed previously, $T_0^G$ is <em>gripper_link</em> transform specified in DH convention(<em>yellow</em>). However, the transform calculated from <em>gripper_link</em> position and orientation is in URDF frame(<em>green</em>). These are shown in the following image,
-<img src="../../../images/kuka/total-transform-corretion.jpg" alt="total-transform-corretion"></p>
-<p>So, we need to correct <code>T0_G</code> transform  by rotating by <code>pi</code> along <code>Z</code>, and then by <code>-pi/2</code> along <code>Y</code>. Thus,
+<img src=../../../images/kuka/total-transform-corretion.jpg alt=total-transform-corretion></p>
+<p>So, we need to correct <code>T0_G</code> transform by rotating by <code>pi</code> along <code>Z</code>, and then by <code>-pi/2</code> along <code>Y</code>. Thus,
 <code>T_total = T0_G*rot_z(pi)*rot_y(-pi/2)</code></p>
-<h3 id="now-the-ik-part">Now the IK part.</h3>
-<p>The  last three joints <code>q4, q5, q6</code> don&rsquo;t affect the position of Wrist Center(<code>O5</code>), hereby referred to as <code>WC</code> position.(this can be confirmed by running the Forward kinematics demo.) This is very convenient for us in decoupling the IK problem into a position and orientation problem where we can first compute the position of the <code>WC</code>(which gives us the first three joint angles <code>q1, q2, q3</code>) and orientation of the wrist , which gives us the last three joints <code>q4, q5, q6</code>. Detailed explanation follows,</p>
+<h3 id=now-the-ik-part>Now the IK part.</h3>
+<p>The last three joints <code>q4, q5, q6</code> don&rsquo;t affect the position of Wrist Center(<code>O5</code>), hereby referred to as <code>WC</code> position.(this can be confirmed by running the Forward kinematics demo.) This is very convenient for us in decoupling the IK problem into a position and orientation problem where we can first compute the position of the <code>WC</code>(which gives us the first three joint angles <code>q1, q2, q3</code>) and orientation of the wrist , which gives us the last three joints <code>q4, q5, q6</code>. Detailed explanation follows,</p>
 <ul>
 <li>Given End effector position and orientation, we calculate the the wrist center as follows,</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># rwc_0 = wrist-center position w.r.t. base_link(O_0)</span>
-rwc_0 <span style="color:#f92672">=</span> pg_0 <span style="color:#f92672">-</span> (d_g<span style="color:#f92672">*</span>(R0_g<span style="color:#f92672">*</span>z_g))
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># rwc_0 = wrist-center position w.r.t. base_link(O_0)</span>
+rwc_0 <span style=color:#f92672>=</span> pg_0 <span style=color:#f92672>-</span> (d_g<span style=color:#f92672>*</span>(R0_g<span style=color:#f92672>*</span>z_g))
 </code></pre></div><p>Where,
 <code>pg_0</code> = End effector position received.
 <code>p_quat</code> = End effector orientation received as quaternion.
@@ -340,7 +232,7 @@ rwc_0 <span style="color:#f92672">=</span> pg_0 <span style="color:#f92672">-</s
 <p>So, the above equation displaces <code>pg_0</code> by <code>-d_g</code> in the z direction.</p>
 <ul>
 <li>Calculate <code>q1</code> given <code>WC</code>.
-<img src="../../../images/kuka/theta1.png" alt="Theta 1">
+<img src=../../../images/kuka/theta1.png alt="Theta 1">
 <strong>Fig. 7 :</strong> Oblique view of the arm, when <code>q1 != 0</code>, all other angles are assumed zero.</li>
 </ul>
 <p>From the above image, <code>q1</code> can be calculated by projecting <code>WC</code> on <code>X0-Y0</code> plane and calculating angular displacement from <code>X0</code>. i.e.</p>
@@ -348,90 +240,90 @@ rwc_0 <span style="color:#f92672">=</span> pg_0 <span style="color:#f92672">-</s
 </code></pre><ul>
 <li>Calculate <code>O2</code> position according to calculated <code>q1</code>.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># position of O2 w.r.t. base_link in zero configuration, i.e. when q1 = 0</span>
-pO2_0 <span style="color:#f92672">=</span> Matrix([[s[a1]], [<span style="color:#ae81ff">0</span>], [s[d1]]])
-<span style="color:#75715e"># Rotate pO2_0 w.r.t. Z by theta1</span>
-pO2_0 <span style="color:#f92672">=</span> rot_z(theta1)<span style="color:#f92672">*</span> pO2_0
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># position of O2 w.r.t. base_link in zero configuration, i.e. when q1 = 0</span>
+pO2_0 <span style=color:#f92672>=</span> Matrix([[s[a1]], [<span style=color:#ae81ff>0</span>], [s[d1]]])
+<span style=color:#75715e># Rotate pO2_0 w.r.t. Z by theta1</span>
+pO2_0 <span style=color:#f92672>=</span> rot_z(theta1)<span style=color:#f92672>*</span> pO2_0
 </code></pre></div><ul>
 <li>Consider <code>triangle(O2, O3, WC)</code>.
 <em>Note :</em> Points <code>O0</code>, <code>O1</code>, <code>O2</code>, <code>O3</code> and <code>O5/WC</code> now lie in the same plane, defined by rotatingplane <code>X0Z0</code> about <code>Z0</code>.
-<img src="../../../images/kuka/theta23.png" alt="theta23">
+<img src=../../../images/kuka/theta23.png alt=theta23>
 <strong>Fig. 8 :</strong> Schematic of arm in the plane containing triangle <code>O2</code>, <code>O3</code>, <code>WC</code>. Various angles required dimensions are also shown.</li>
 </ul>
 <p>In the figure, position <code>O2</code>, <code>WC</code> are known and length <code>A</code>, <code>B</code> and <code>C</code> are known.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># O2 , WC are known</span>
-<span style="color:#75715e"># O3 = unknown</span>
-<span style="color:#75715e"># Distance between O2 and O3 = a2(in figure 1)</span>
-A <span style="color:#f92672">=</span> s[a2]
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># O2 , WC are known</span>
+<span style=color:#75715e># O3 = unknown</span>
+<span style=color:#75715e># Distance between O2 and O3 = a2(in figure 1)</span>
+A <span style=color:#f92672>=</span> s[a2]
 
-<span style="color:#75715e"># Distance between O2 and O5/WC</span>
-pO2towc_0 <span style="color:#f92672">=</span> rwc_0 <span style="color:#f92672">-</span> pO2_0
-B <span style="color:#f92672">=</span> pO2towc_0<span style="color:#f92672">.</span>norm()
+<span style=color:#75715e># Distance between O2 and O5/WC</span>
+pO2towc_0 <span style=color:#f92672>=</span> rwc_0 <span style=color:#f92672>-</span> pO2_0
+B <span style=color:#f92672>=</span> pO2towc_0<span style=color:#f92672>.</span>norm()
 
-<span style="color:#75715e"># Distance between O3 and O5/WC = (d4^2 + a3^2) in figure 1</span>
-C <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sqrt(s[d4]<span style="color:#f92672">*</span>s[d4] <span style="color:#f92672">+</span> s[a3]<span style="color:#f92672">*</span>s[a3])
+<span style=color:#75715e># Distance between O3 and O5/WC = (d4^2 + a3^2) in figure 1</span>
+C <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>sqrt(s[d4]<span style=color:#f92672>*</span>s[d4] <span style=color:#f92672>+</span> s[a3]<span style=color:#f92672>*</span>s[a3])
 
-<span style="color:#75715e"># Offset angle between the Y3 axis line(O3, O5), -q31 in figure</span>
-beta_prime <span style="color:#f92672">=</span> atan2(s[a3], s[d4])   <span style="color:#75715e"># From Fig. 1</span>
+<span style=color:#75715e># Offset angle between the Y3 axis line(O3, O5), -q31 in figure</span>
+beta_prime <span style=color:#f92672>=</span> atan2(s[a3], s[d4])   <span style=color:#75715e># From Fig. 1</span>
 </code></pre></div><p>Now, we can apply <em>Law of cosines</em> in $\Delta(O_2, O_3, O_5)$.</p>
 <pre><code>In any triangle(A, B, C)
 c.c = a.a + b.b - 2.a.b.cos(alpha),
 where alpha = angle(BAC) and `.` represents multiplication
 </code></pre><p>So,</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># applying cosine rule `C^2 = A^2 + B^2 -2ABcos(gamma)`</span>
-<span style="color:#75715e"># angle(O3, O2, O5), q21 in figure.</span>
-gamma <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arccos(float((A<span style="color:#f92672">*</span>A <span style="color:#f92672">+</span> B<span style="color:#f92672">*</span>B <span style="color:#f92672">-</span> C<span style="color:#f92672">*</span>C)<span style="color:#f92672">/</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>A<span style="color:#f92672">*</span>B)))
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># applying cosine rule `C^2 = A^2 + B^2 -2ABcos(gamma)`</span>
+<span style=color:#75715e># angle(O3, O2, O5), q21 in figure.</span>
+gamma <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>arccos(float((A<span style=color:#f92672>*</span>A <span style=color:#f92672>+</span> B<span style=color:#f92672>*</span>B <span style=color:#f92672>-</span> C<span style=color:#f92672>*</span>C)<span style=color:#f92672>/</span>(<span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>A<span style=color:#f92672>*</span>B)))
 
-<span style="color:#75715e"># angle(O2, O3, O5), q32 in figure</span>
-beta <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arccos(float((A<span style="color:#f92672">*</span>A <span style="color:#f92672">+</span> C<span style="color:#f92672">*</span>C <span style="color:#f92672">-</span> B<span style="color:#f92672">*</span>B)<span style="color:#f92672">/</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>A<span style="color:#f92672">*</span>C)))
+<span style=color:#75715e># angle(O2, O3, O5), q32 in figure</span>
+beta <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>arccos(float((A<span style=color:#f92672>*</span>A <span style=color:#f92672>+</span> C<span style=color:#f92672>*</span>C <span style=color:#f92672>-</span> B<span style=color:#f92672>*</span>B)<span style=color:#f92672>/</span>(<span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>A<span style=color:#f92672>*</span>C)))
 </code></pre></div><ul>
 <li>Find <code>theta2</code>
 Next, we need to compute <code>theta2</code>, which can be thought of as the angle between <code>link 2</code> direction i.e. <code>dir(O2, O3)</code> and <code>X2</code>. Also, <code>dir(O2, O3)</code> can be calculated by rotating <code>dir(O2, WC)</code> by <code>-gamma</code> along <code>Z2</code>.
 We can get <code>X2</code> and <code>Z2</code> by substituting <code>q1=theta1</code> (calculated above) in <code>T0_2</code> and multiplying the result by X(1, 0, 0) and Z(0, 0, 1) respectively. <em>Note :</em> <code>T0_2 = T0_1*T1_2</code>.
 So,</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># z_2prime is the Z2 axis when q1 = theta1, this does not depend upon q2</span>
-z_2prime <span style="color:#f92672">=</span> T0_2<span style="color:#f92672">.</span>subs({q1:theta1})<span style="color:#f92672">.</span>dot([[<span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">0</span>]])
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># z_2prime is the Z2 axis when q1 = theta1, this does not depend upon q2</span>
+z_2prime <span style=color:#f92672>=</span> T0_2<span style=color:#f92672>.</span>subs({q1:theta1})<span style=color:#f92672>.</span>dot([[<span style=color:#ae81ff>0</span>], [<span style=color:#ae81ff>0</span>], [<span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>]])
 
-<span style="color:#75715e"># Rotate pO2towc_0 by gamma along z_2prime</span>
-z2_rotation <span style="color:#f92672">=</span>  tf<span style="color:#f92672">.</span>transformations<span style="color:#f92672">.</span>rotation_matrix(<span style="color:#f92672">-</span>gamma, z_2prime)
-<span style="color:#75715e"># quaternion_about_axis(gamma, z_2prime[0:3])</span>
-<span style="color:#75715e"># tf.transformations.quaternion_from_matrix(z2_rotation)</span>
-a_dir <span style="color:#f92672">=</span> z2_rotation <span style="color:#f92672">*</span> pO2towc_0
-a_dir <span style="color:#f92672">=</span> a_dir<span style="color:#f92672">.</span>normalized()
+<span style=color:#75715e># Rotate pO2towc_0 by gamma along z_2prime</span>
+z2_rotation <span style=color:#f92672>=</span>  tf<span style=color:#f92672>.</span>transformations<span style=color:#f92672>.</span>rotation_matrix(<span style=color:#f92672>-</span>gamma, z_2prime)
+<span style=color:#75715e># quaternion_about_axis(gamma, z_2prime[0:3])</span>
+<span style=color:#75715e># tf.transformations.quaternion_from_matrix(z2_rotation)</span>
+a_dir <span style=color:#f92672>=</span> z2_rotation <span style=color:#f92672>*</span> pO2towc_0
+a_dir <span style=color:#f92672>=</span> a_dir<span style=color:#f92672>.</span>normalized()
 
-<span style="color:#75715e"># Compute theta2</span>
-X2_prime <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>T0_2<span style="color:#f92672">.</span>subs({q1:theta1, q2:<span style="color:#ae81ff">0</span>})<span style="color:#f92672">.</span>dot([[<span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>]])
-theta2 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arccos(float(np<span style="color:#f92672">.</span>dot(X2_prime, a_dir[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">4</span>]) ))
+<span style=color:#75715e># Compute theta2</span>
+X2_prime <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>T0_2<span style=color:#f92672>.</span>subs({q1:theta1, q2:<span style=color:#ae81ff>0</span>})<span style=color:#f92672>.</span>dot([[<span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>], [<span style=color:#ae81ff>0</span>], [<span style=color:#ae81ff>0</span>]])
+theta2 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>arccos(float(np<span style=color:#f92672>.</span>dot(X2_prime, a_dir[<span style=color:#ae81ff>0</span>:<span style=color:#ae81ff>4</span>]) ))
 </code></pre></div><ul>
 <li>Find <code>theta3</code>
 <code>theta3</code> is simply the deviation of <code>angle(O2, O3, WC)</code> from <code>pi/2 - q31</code>.i.e.
 <code>theta3 = (pi/2 - q31) - q32</code>, But <code>q31 = -beta_prime</code> and <code>q32 = beta</code>, So,</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">theta3 <span style="color:#f92672">=</span> (pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> beta_prime) <span style="color:#f92672">-</span> beta
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>theta3 <span style=color:#f92672>=</span> (pi<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> beta_prime) <span style=color:#f92672>-</span> beta
 </code></pre></div><ul>
 <li>Now, we need to calculate <code>q4, q5, q6</code>. For this we calculate the rotation matrix <code>R3_6</code> from our total transform and calculated angles <em>numerically</em>(from end effector position/rotation) and <em>symbolically</em>(from DH parameters). We then compare the two representations to calculate plausible values of the last three joint angles. So,</li>
 </ul>
 <p><strong>Symbolically :</strong> Just combine the symbollic transformations for individual links from link 3 to 6.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Extract the rotation component of the matrix,cos that&#39;s what we want</span>
-<span style="color:#f92672">&gt;&gt;&gt;</span> R3_6_sym <span style="color:#f92672">=</span> (T3_4<span style="color:#f92672">*</span>T4_5<span style="color:#f92672">*</span>T5_6)[:<span style="color:#ae81ff">3</span>,:<span style="color:#ae81ff">3</span>]
-[[<span style="color:#f92672">-</span>s4s6 <span style="color:#f92672">+</span>c4c5c6,<span style="color:#f92672">-</span>s4c6 <span style="color:#f92672">-</span>s6c4c5,<span style="color:#f92672">-</span>s5c4],
- [         s5c6,        <span style="color:#f92672">-</span>s5s6,   c5],
- [<span style="color:#f92672">-</span>s4c5c6 <span style="color:#f92672">-</span>s6c4, s4s6c5 <span style="color:#f92672">-</span>c4c6, s4s5]]
-<span style="color:#75715e"># Where, s = sin, c =cos, 4,5,6 = q4,q5,q6</span>
-<span style="color:#75715e"># So that, -s5c6 = -sin(q5)cos(q6)</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># Extract the rotation component of the matrix,cos that&#39;s what we want</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> R3_6_sym <span style=color:#f92672>=</span> (T3_4<span style=color:#f92672>*</span>T4_5<span style=color:#f92672>*</span>T5_6)[:<span style=color:#ae81ff>3</span>,:<span style=color:#ae81ff>3</span>]
+[[<span style=color:#f92672>-</span>s4s6 <span style=color:#f92672>+</span>c4c5c6,<span style=color:#f92672>-</span>s4c6 <span style=color:#f92672>-</span>s6c4c5,<span style=color:#f92672>-</span>s5c4],
+ [         s5c6,        <span style=color:#f92672>-</span>s5s6,   c5],
+ [<span style=color:#f92672>-</span>s4c5c6 <span style=color:#f92672>-</span>s6c4, s4s6c5 <span style=color:#f92672>-</span>c4c6, s4s5]]
+<span style=color:#75715e># Where, s = sin, c =cos, 4,5,6 = q4,q5,q6</span>
+<span style=color:#75715e># So that, -s5c6 = -sin(q5)cos(q6)</span>
 </code></pre></div><p><strong>Numerically :</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Calculate R3_6</span>
-R0_g(corrected) <span style="color:#f92672">=</span> R0_6<span style="color:#f92672">*</span>R_corr
-<span style="color:#75715e"># Where</span>
-R_corr <span style="color:#f92672">=</span> rot_z(pi)<span style="color:#f92672">*</span>rot_y(<span style="color:#f92672">-</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
-<span style="color:#75715e"># So</span>
-R0_g <span style="color:#f92672">=</span> R0_3<span style="color:#f92672">*</span>R3_6<span style="color:#f92672">*</span>R_corr
-R0_3<span style="color:#f92672">.</span>T<span style="color:#f92672">*</span>R0_g<span style="color:#f92672">*</span>R_corr<span style="color:#f92672">.</span>T <span style="color:#f92672">=</span> R3_6
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># Calculate R3_6</span>
+R0_g(corrected) <span style=color:#f92672>=</span> R0_6<span style=color:#f92672>*</span>R_corr
+<span style=color:#75715e># Where</span>
+R_corr <span style=color:#f92672>=</span> rot_z(pi)<span style=color:#f92672>*</span>rot_y(<span style=color:#f92672>-</span>pi<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)
+<span style=color:#75715e># So</span>
+R0_g <span style=color:#f92672>=</span> R0_3<span style=color:#f92672>*</span>R3_6<span style=color:#f92672>*</span>R_corr
+R0_3<span style=color:#f92672>.</span>T<span style=color:#f92672>*</span>R0_g<span style=color:#f92672>*</span>R_corr<span style=color:#f92672>.</span>T <span style=color:#f92672>=</span> R3_6
 
-<span style="color:#75715e"># And,</span>
-R0_3 <span style="color:#f92672">=</span> T0_3[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>]   <span style="color:#75715e"># Extract the rotation matrix</span>
-R3_6 <span style="color:#f92672">=</span> R0_3<span style="color:#f92672">.</span>transpose()<span style="color:#f92672">*</span> Matrix(R0_g)<span style="color:#f92672">*</span>self<span style="color:#f92672">.</span>R_corr<span style="color:#f92672">.</span>transpose()
+<span style=color:#75715e># And,</span>
+R0_3 <span style=color:#f92672>=</span> T0_3[<span style=color:#ae81ff>0</span>:<span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>0</span>:<span style=color:#ae81ff>3</span>]   <span style=color:#75715e># Extract the rotation matrix</span>
+R3_6 <span style=color:#f92672>=</span> R0_3<span style=color:#f92672>.</span>transpose()<span style=color:#f92672>*</span> Matrix(R0_g)<span style=color:#f92672>*</span>self<span style=color:#f92672>.</span>R_corr<span style=color:#f92672>.</span>transpose()
 </code></pre></div><p>Finally we can evaluate this Matrix numerically by substituting <code>q1, q2 and q3</code> calculated above</p>
 <pre><code>R3_6 = R3_6.subs({q1: theta1, q2:theta2, q3: theta3})
 </code></pre><p>Now, we need to select suitable terms from the matrix to compute <code>q4, q5, q6</code>.
@@ -447,176 +339,89 @@ We just follow the strategy of selecting the simplest terms to give to <code>ata
 <p>This completes the Inverse Kinematic Analysis of the Kuka arm.</p>
 <p><em>Computing Errors :</em></p>
 <p>Since all these computations are done numerically, they are bound to accumulate error, here is a plot showing the error in positions generated by the results of IK during a sample trajectory.
-<img src="../../../images/kuka/errors2.png" alt="alt"></p>
+<img src=../../../images/kuka/errors2.png alt=alt></p>
 <p>Such low error values show the stability of the computed trajectory using the analysis discussed above.
-All of the code and more explanations can be found at my <a href="https://github.com/NitishPuri/RoboND-Kinematics-Project">github repository</a>.</p>
+All of the code and more explanations can be found at my <a href=https://github.com/NitishPuri/RoboND-Kinematics-Project>github repository</a>.</p>
 <p>Here is <em>badly edited</em> video of the <em>awesome</em> robot in action.
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/-LHU5dD4I-s" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<iframe src=https://www.youtube.com/embed/-LHU5dD4I-s style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
 </div>
 </p>
-<h3 id="next-steps">Next Steps</h3>
+<h3 id=next-steps>Next Steps</h3>
 <ul>
 <li>This was a really good learning experience as well as a refresher for me. I got very familiar to the <em>ROS</em> and <em>RViz</em> interface, played with <em>Gazebo</em> and reinforced my knowledge of <em>kinematics</em>. And I got to introduced <em>sympy</em>, which now I absolutely love for its simplicity and power.</li>
-<li>That said and done, its time to apply this experience on an actual robotic arm. So stay tuned for that&hellip;!!!</li>
+<li>That said and done, its time to apply this experience on an actual robotic arm. So stay tuned for that&mldr;!!!</li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../research/robotics/rsend-term2/">Robotics Engineer Nanodegree :: Term 2</a></li>
-        
-            <li><a href="../../../research/robotics/biorobots/">Biologically Inspired Robots</a></li>
-        
-            <li><a href="../../../research/robotics/mobile-robots/">Mobile Robots</a></li>
-        
-            <li><a href="../../../research/robotics/research-robotics/">Robotics Research</a></li>
-        
-            <li><a href="../../../research/robotics/soft-robots/">Soft Robotics</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../blog-hugo/research/robotics/rsend-term2/>Robotics Engineer Nanodegree :: Term 2</a></li>
+<li><a href=../../../blog-hugo/research/robotics/biorobots/>Biologically Inspired Robots</a></li>
+<li><a href=../../../blog-hugo/research/robotics/mobile-robots/>Mobile Robots</a></li>
+<li><a href=../../../blog-hugo/research/robotics/research-robotics/>Robotics Research</a></li>
+<li><a href=../../../blog-hugo/research/robotics/soft-robots/>Soft Robotics</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

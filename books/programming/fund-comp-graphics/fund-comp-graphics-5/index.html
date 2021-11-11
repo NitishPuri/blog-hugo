@@ -1,425 +1,230 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 5" />
-<meta property="og:description" content="Illustrations RGB Color Cube Barycentric Interpolation Shading Models Total Internal Reflection Depth of Field and Caustics Complex Models using Blob Tree Vertex Shading Fragment Shading The Visible Spectrum HSV Colorspace What effect is this? Desaturation Color Transfer Atmospheric Effects A Comparison Motion Blur Ray Tracing Subsurface Scattering Photon Mapping Caustics using Photon Tracing Modelling " />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-5/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 5"/>
-<meta name="twitter:description" content="Illustrations RGB Color Cube Barycentric Interpolation Shading Models Total Internal Reflection Depth of Field and Caustics Complex Models using Blob Tree Vertex Shading Fragment Shading The Visible Spectrum HSV Colorspace What effect is this? Desaturation Color Transfer Atmospheric Effects A Comparison Motion Blur Ray Tracing Subsurface Scattering Photon Mapping Caustics using Photon Tracing Modelling "/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-5/">
-
-    <title>
-      
-        Fundamentals of Computer Graphics, Peter Shirley, Part 5 | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 5">
+<meta property="og:description" content="Illustrations RGB Color Cube Barycentric Interpolation Shading Models Total Internal Reflection Depth of Field and Caustics Complex Models using Blob Tree Vertex Shading Fragment Shading The Visible Spectrum HSV Colorspace What effect is this? Desaturation Color Transfer Atmospheric Effects A Comparison Motion Blur Ray Tracing Subsurface Scattering Photon Mapping Caustics using Photon Tracing Modelling ">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-5/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Fundamentals of Computer Graphics, Peter Shirley, Part 5">
+<meta name=twitter:description content="Illustrations RGB Color Cube Barycentric Interpolation Shading Models Total Internal Reflection Depth of Field and Caustics Complex Models using Blob Tree Vertex Shading Fragment Shading The Visible Spectrum HSV Colorspace What effect is this? Desaturation Color Transfer Atmospheric Effects A Comparison Motion Blur Ray Tracing Subsurface Scattering Photon Mapping Caustics using Photon Tracing Modelling ">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-5/>
+<title>
+Fundamentals of Computer Graphics, Peter Shirley, Part 5 | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/">Fundamentals of Computer Graphics, Peter Shirley</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Fundamentals of Computer Graphics, Peter Shirley, Part 5</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/>Fundamentals of Computer Graphics, Peter Shirley</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Fundamentals of Computer Graphics, Peter Shirley, Part 5</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-5/">Fundamentals of Computer Graphics, Peter Shirley, Part 5</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-5/>Fundamentals of Computer Graphics, Peter Shirley, Part 5</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-08-17">Aug 17, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-08-17>Aug 17, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#illustrations">Illustrations</a>
-      <ul>
-        <li><a href="#rgb-color-cube">RGB Color Cube</a></li>
-        <li><a href="#barycentric-interpolation">Barycentric Interpolation</a></li>
-        <li><a href="#shading-models">Shading Models</a></li>
-        <li><a href="#total-internal-reflection">Total Internal Reflection</a></li>
-        <li><a href="#depth-of-field-and-caustics">Depth of Field and Caustics</a></li>
-        <li><a href="#complex-models-using-blob-tree">Complex Models using Blob Tree</a></li>
-        <li><a href="#vertex-shading">Vertex Shading</a></li>
-        <li><a href="#fragment-shading">Fragment Shading</a></li>
-        <li><a href="#the-visible-spectrum">The Visible Spectrum</a></li>
-        <li><a href="#hsv-colorspace">HSV Colorspace</a></li>
-        <li><a href="#what-effect-is-this">What effect is this?</a></li>
-        <li><a href="#desaturation">Desaturation</a></li>
-        <li><a href="#color-transfer">Color Transfer</a></li>
-        <li><a href="#atmospheric-effects">Atmospheric Effects</a></li>
-        <li><a href="#a-comparison">A Comparison</a></li>
-        <li><a href="#motion-blur">Motion Blur</a></li>
-        <li><a href="#ray-tracing">Ray Tracing</a></li>
-        <li><a href="#subsurface-scattering">Subsurface Scattering</a></li>
-        <li><a href="#photon-mapping">Photon Mapping</a></li>
-        <li><a href="#caustics-using-photon-tracing">Caustics using Photon Tracing</a></li>
-        <li><a href="#modelling">Modelling</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#illustrations>Illustrations</a>
+<ul>
+<li><a href=#rgb-color-cube>RGB Color Cube</a></li>
+<li><a href=#barycentric-interpolation>Barycentric Interpolation</a></li>
+<li><a href=#shading-models>Shading Models</a></li>
+<li><a href=#total-internal-reflection>Total Internal Reflection</a></li>
+<li><a href=#depth-of-field-and-caustics>Depth of Field and Caustics</a></li>
+<li><a href=#complex-models-using-blob-tree>Complex Models using Blob Tree</a></li>
+<li><a href=#vertex-shading>Vertex Shading</a></li>
+<li><a href=#fragment-shading>Fragment Shading</a></li>
+<li><a href=#the-visible-spectrum>The Visible Spectrum</a></li>
+<li><a href=#hsv-colorspace>HSV Colorspace</a></li>
+<li><a href=#what-effect-is-this>What effect is this?</a></li>
+<li><a href=#desaturation>Desaturation</a></li>
+<li><a href=#color-transfer>Color Transfer</a></li>
+<li><a href=#atmospheric-effects>Atmospheric Effects</a></li>
+<li><a href=#a-comparison>A Comparison</a></li>
+<li><a href=#motion-blur>Motion Blur</a></li>
+<li><a href=#ray-tracing>Ray Tracing</a></li>
+<li><a href=#subsurface-scattering>Subsurface Scattering</a></li>
+<li><a href=#photon-mapping>Photon Mapping</a></li>
+<li><a href=#caustics-using-photon-tracing>Caustics using Photon Tracing</a></li>
+<li><a href=#modelling>Modelling</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="illustrations">Illustrations</h2>
-<h3 id="rgb-color-cube">RGB Color Cube</h3>
-<p><img src="../../../../images/fundcg/IL_1.jpg" alt="alt"></p>
-<h3 id="barycentric-interpolation">Barycentric Interpolation</h3>
-<p><img src="../../../../images/fundcg/IL_2.jpg" alt="alt"></p>
-<h3 id="shading-models">Shading Models</h3>
-<p><img src="../../../../images/fundcg/IL_3.jpg" alt="alt"></p>
-<h3 id="total-internal-reflection">Total Internal Reflection</h3>
-<p><img src="../../../../images/fundcg/IL_4.jpg" alt="alt"></p>
-<h3 id="depth-of-field-and-caustics">Depth of Field and Caustics</h3>
-<p><img src="../../../../images/fundcg/IL_5.jpg" alt="alt"></p>
-<h3 id="complex-models-using-blob-tree">Complex Models using Blob Tree</h3>
-<p><img src="../../../../images/fundcg/IL_6.jpg" alt="alt">  <br>
-<img src="../../../../images/fundcg/IL_7.jpg" alt="alt"></p>
-<h3 id="vertex-shading">Vertex Shading</h3>
-<p><img src="../../../../images/fundcg/IL_8.jpg" alt="alt"></p>
-<h3 id="fragment-shading">Fragment Shading</h3>
-<p><img src="../../../../images/fundcg/IL_9.jpg" alt="alt"></p>
-<h3 id="the-visible-spectrum">The Visible Spectrum</h3>
-<p><img src="../../../../images/fundcg/IL_10.png" alt="alt"></p>
-<h3 id="hsv-colorspace">HSV Colorspace</h3>
-<p><img src="../../../../images/fundcg/IL_11.png" alt="alt">  <br>
-<img src="../../../../images/fundcg/IL_12.png" alt="alt"></p>
-<h3 id="what-effect-is-this">What effect is this?</h3>
-<p><img src="../../../../images/fundcg/IL_13.jpg" alt="alt"></p>
-<h3 id="desaturation">Desaturation</h3>
-<p><img src="../../../../images/fundcg/IL_14.jpg" alt="alt"></p>
-<h3 id="color-transfer">Color Transfer</h3>
-<p><img src="../../../../images/fundcg/IL_15.jpg" alt="alt">  <br>
-<img src="../../../../images/fundcg/IL_16.jpg" alt="alt">  <br>
-<img src="../../../../images/fundcg/IL_17.jpg" alt="alt">  <br>
-<img src="../../../../images/fundcg/IL_18.jpg" alt="alt">  <br>
-<img src="../../../../images/fundcg/IL_19.png" alt="alt"></p>
-<h3 id="atmospheric-effects">Atmospheric Effects</h3>
-<p><img src="../../../../images/fundcg/IL_20.jpg" alt="alt"></p>
-<h3 id="a-comparison">A Comparison</h3>
-<p><img src="../../../../images/fundcg/IL_21.jpg" alt="alt"></p>
-<h3 id="motion-blur">Motion Blur</h3>
-<p><img src="../../../../images/fundcg/IL_22.jpg" alt="alt"></p>
-<h3 id="ray-tracing">Ray Tracing</h3>
-<p><img src="../../../../images/fundcg/IL_23.jpg" alt="alt"></p>
-<h3 id="subsurface-scattering">Subsurface Scattering</h3>
-<p><img src="../../../../images/fundcg/IL_24.jpg" alt="alt"></p>
-<h3 id="photon-mapping">Photon Mapping</h3>
-<p><img src="../../../../images/fundcg/IL_25.jpg" alt="alt"></p>
-<h3 id="caustics-using-photon-tracing">Caustics using Photon Tracing</h3>
-<p><img src="../../../../images/fundcg/IL_26.jpg" alt="alt"></p>
-<h3 id="modelling">Modelling</h3>
-<p><img src="../../../../images/fundcg/IL_27.jpg" alt="alt"></p>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-1/">Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-2/">Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-3/">Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-4/">Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-6/">Fundamentals of Computer Graphics, Peter Shirley, Part 6</a></li>
-        
-    </ul>
-
+<h2 id=illustrations>Illustrations</h2>
+<h3 id=rgb-color-cube>RGB Color Cube</h3>
+<p><img src=../../../../images/fundcg/IL_1.jpg alt=alt></p>
+<h3 id=barycentric-interpolation>Barycentric Interpolation</h3>
+<p><img src=../../../../images/fundcg/IL_2.jpg alt=alt></p>
+<h3 id=shading-models>Shading Models</h3>
+<p><img src=../../../../images/fundcg/IL_3.jpg alt=alt></p>
+<h3 id=total-internal-reflection>Total Internal Reflection</h3>
+<p><img src=../../../../images/fundcg/IL_4.jpg alt=alt></p>
+<h3 id=depth-of-field-and-caustics>Depth of Field and Caustics</h3>
+<p><img src=../../../../images/fundcg/IL_5.jpg alt=alt></p>
+<h3 id=complex-models-using-blob-tree>Complex Models using Blob Tree</h3>
+<p><img src=../../../../images/fundcg/IL_6.jpg alt=alt> <br>
+<img src=../../../../images/fundcg/IL_7.jpg alt=alt></p>
+<h3 id=vertex-shading>Vertex Shading</h3>
+<p><img src=../../../../images/fundcg/IL_8.jpg alt=alt></p>
+<h3 id=fragment-shading>Fragment Shading</h3>
+<p><img src=../../../../images/fundcg/IL_9.jpg alt=alt></p>
+<h3 id=the-visible-spectrum>The Visible Spectrum</h3>
+<p><img src=../../../../images/fundcg/IL_10.png alt=alt></p>
+<h3 id=hsv-colorspace>HSV Colorspace</h3>
+<p><img src=../../../../images/fundcg/IL_11.png alt=alt> <br>
+<img src=../../../../images/fundcg/IL_12.png alt=alt></p>
+<h3 id=what-effect-is-this>What effect is this?</h3>
+<p><img src=../../../../images/fundcg/IL_13.jpg alt=alt></p>
+<h3 id=desaturation>Desaturation</h3>
+<p><img src=../../../../images/fundcg/IL_14.jpg alt=alt></p>
+<h3 id=color-transfer>Color Transfer</h3>
+<p><img src=../../../../images/fundcg/IL_15.jpg alt=alt> <br>
+<img src=../../../../images/fundcg/IL_16.jpg alt=alt> <br>
+<img src=../../../../images/fundcg/IL_17.jpg alt=alt> <br>
+<img src=../../../../images/fundcg/IL_18.jpg alt=alt> <br>
+<img src=../../../../images/fundcg/IL_19.png alt=alt></p>
+<h3 id=atmospheric-effects>Atmospheric Effects</h3>
+<p><img src=../../../../images/fundcg/IL_20.jpg alt=alt></p>
+<h3 id=a-comparison>A Comparison</h3>
+<p><img src=../../../../images/fundcg/IL_21.jpg alt=alt></p>
+<h3 id=motion-blur>Motion Blur</h3>
+<p><img src=../../../../images/fundcg/IL_22.jpg alt=alt></p>
+<h3 id=ray-tracing>Ray Tracing</h3>
+<p><img src=../../../../images/fundcg/IL_23.jpg alt=alt></p>
+<h3 id=subsurface-scattering>Subsurface Scattering</h3>
+<p><img src=../../../../images/fundcg/IL_24.jpg alt=alt></p>
+<h3 id=photon-mapping>Photon Mapping</h3>
+<p><img src=../../../../images/fundcg/IL_25.jpg alt=alt></p>
+<h3 id=caustics-using-photon-tracing>Caustics using Photon Tracing</h3>
+<p><img src=../../../../images/fundcg/IL_26.jpg alt=alt></p>
+<h3 id=modelling>Modelling</h3>
+<p><img src=../../../../images/fundcg/IL_27.jpg alt=alt></p>
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-1/>Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-2/>Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-3/>Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-4/>Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-6/>Fundamentals of Computer Graphics, Peter Shirley, Part 6</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

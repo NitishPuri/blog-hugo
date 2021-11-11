@@ -1,190 +1,100 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Robotics Engineer Nanodegree :: Term 2" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Robotics Engineer Nanodegree :: Term 2">
 <meta property="og:description" content="Starting the term 2 of Udacity Robotics Software Engineer Nanodegree today. Will be updating this page with micro breifs of topics and projects for the term.
 This term focuses on localisation and mapping problems based on probabilistic and deep reinforcement learning models deployed on embedded hardware(NVIDIA Jetson Tx2).
-High Level Topics  Probabilistic Robotics. Introduction to Jetson Robotic System Deployment. Localization. Mapping and SLAM RL Basics Path Planning and RL Navigation." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/research/robotics/rsend-term2/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="research" />
-
-<meta property="article:modified_time" content="2018-03-28T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Robotics Engineer Nanodegree :: Term 2"/>
-<meta name="twitter:description" content="Starting the term 2 of Udacity Robotics Software Engineer Nanodegree today. Will be updating this page with micro breifs of topics and projects for the term.
+High Level Topics  Probabilistic Robotics. Introduction to Jetson Robotic System Deployment. Localization. Mapping and SLAM RL Basics Path Planning and RL Navigation.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/research/robotics/rsend-term2/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="research">
+<meta property="article:modified_time" content="2018-03-28T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Robotics Engineer Nanodegree :: Term 2">
+<meta name=twitter:description content="Starting the term 2 of Udacity Robotics Software Engineer Nanodegree today. Will be updating this page with micro breifs of topics and projects for the term.
 This term focuses on localisation and mapping problems based on probabilistic and deep reinforcement learning models deployed on embedded hardware(NVIDIA Jetson Tx2).
-High Level Topics  Probabilistic Robotics. Introduction to Jetson Robotic System Deployment. Localization. Mapping and SLAM RL Basics Path Planning and RL Navigation."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/research/robotics/rsend-term2/">
-
-    <title>
-      
-        Robotics Engineer Nanodegree :: Term 2 | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+High Level Topics  Probabilistic Robotics. Introduction to Jetson Robotic System Deployment. Localization. Mapping and SLAM RL Basics Path Planning and RL Navigation.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/research/robotics/rsend-term2/>
+<title>
+Robotics Engineer Nanodegree :: Term 2 | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../blog-hugo/css/style.css rel=stylesheet>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/">Researches</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/robotics/">Robotics</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Robotics Engineer Nanodegree :: Term 2</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/research/>Researches</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/research/robotics/>Robotics</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Robotics Engineer Nanodegree :: Term 2</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../research/robotics/rsend-term2/">Robotics Engineer Nanodegree :: Term 2</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../blog-hugo/research/robotics/rsend-term2/>Robotics Engineer Nanodegree :: Term 2</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2018-03-28">Mar 28, 2018</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2018-03-28>Mar 28, 2018</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/udacity>udacity</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/projects>projects</a>
 </div>
-
-
-    
 <div class="blog-post-categories text-secondary">
-    <strong>Categories:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
-    
+<strong>Categories:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/notes>notes</a>
 </div>
-
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#high-level-topics">High Level Topics</a></li>
-    <li><a href="#the-jetson-tx2">The Jetson TX2</a></li>
-    <li><a href="#interacting-with-the-hardware">Interacting with the Hardware</a></li>
-    <li><a href="#robotics-sensor-options">Robotics Sensor Options</a></li>
-    <li><a href="#robotic-inference">Robotic Inference</a></li>
-    <li><a href="#localization">Localization</a></li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#high-level-topics>High Level Topics</a></li>
+<li><a href=#the-jetson-tx2>The Jetson TX2</a></li>
+<li><a href=#interacting-with-the-hardware>Interacting with the Hardware</a></li>
+<li><a href=#robotics-sensor-options>Robotics Sensor Options</a></li>
+<li><a href=#robotic-inference>Robotic Inference</a></li>
+<li><a href=#localization>Localization</a></li>
+</ul>
 </nav>
-    
-    <p>Starting the term 2 of Udacity Robotics Software Engineer Nanodegree today. 
+<p>Starting the term 2 of Udacity Robotics Software Engineer Nanodegree today.
 Will be updating this page with micro breifs of topics and projects for the term.</p>
 <p>This term focuses on localisation and mapping problems based on probabilistic and deep reinforcement learning models deployed on embedded hardware(NVIDIA Jetson Tx2).</p>
-<h2 id="high-level-topics">High Level Topics</h2>
+<h2 id=high-level-topics>High Level Topics</h2>
 <ul>
 <li>Probabilistic Robotics.</li>
 <li>Introduction to Jetson</li>
@@ -194,15 +104,15 @@ Will be updating this page with micro breifs of topics and projects for the term
 <li>RL Basics</li>
 <li>Path Planning and RL Navigation.</li>
 </ul>
-<h2 id="the-jetson-tx2">The Jetson TX2</h2>
+<h2 id=the-jetson-tx2>The Jetson TX2</h2>
 <ul>
 <li>What&rsquo;s in the box.</li>
 </ul>
-<h2 id="interacting-with-the-hardware">Interacting with the Hardware</h2>
+<h2 id=interacting-with-the-hardware>Interacting with the Hardware</h2>
 <ul>
 <li>Breadboard and basic electronic circuits.</li>
 </ul>
-<h2 id="robotics-sensor-options">Robotics Sensor Options</h2>
+<h2 id=robotics-sensor-options>Robotics Sensor Options</h2>
 <ul>
 <li>Cameras</li>
 <li>IMU : Magnetometers, Accelerometers, Gyroscopes.</li>
@@ -219,13 +129,13 @@ Will be updating this page with micro breifs of topics and projects for the term
 </ul>
 </li>
 </ul>
-<h2 id="robotic-inference">Robotic Inference</h2>
+<h2 id=robotic-inference>Robotic Inference</h2>
 <ul>
 <li>Introduction to DIGITS environment</li>
 <li>Basic image classification over multiple catagories.</li>
 <li>Collect your own data and train a model for image classification.</li>
 </ul>
-<h2 id="localization">Localization</h2>
+<h2 id=localization>Localization</h2>
 <ul>
 <li>Algorithms
 <ul>
@@ -236,168 +146,82 @@ Will be updating this page with micro breifs of topics and projects for the term
 </ul>
 </li>
 </ul>
-<h1 id="kalman-filters">Kalman Filters</h1>
+<h1 id=kalman-filters>Kalman Filters</h1>
 <ul>
 <li>Robot Uncertainity : Actuation and Measurment</li>
 <li>Sensor Fusion</li>
 <li></li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../research/robotics/kuka-kinematics/">Inverse Kinematics on Kuka Arm using ROS and Python</a></li>
-        
-            <li><a href="../../../research/robotics/biorobots/">Biologically Inspired Robots</a></li>
-        
-            <li><a href="../../../research/robotics/mobile-robots/">Mobile Robots</a></li>
-        
-            <li><a href="../../../research/robotics/research-robotics/">Robotics Research</a></li>
-        
-            <li><a href="../../../research/robotics/soft-robots/">Soft Robotics</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../blog-hugo/research/robotics/kuka-kinematics/>Inverse Kinematics on Kuka Arm using ROS and Python</a></li>
+<li><a href=../../../blog-hugo/research/robotics/biorobots/>Biologically Inspired Robots</a></li>
+<li><a href=../../../blog-hugo/research/robotics/mobile-robots/>Mobile Robots</a></li>
+<li><a href=../../../blog-hugo/research/robotics/research-robotics/>Robotics Research</a></li>
+<li><a href=../../../blog-hugo/research/robotics/soft-robots/>Soft Robotics</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

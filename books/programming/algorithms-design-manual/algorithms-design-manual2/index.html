@@ -1,214 +1,104 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="The Algorithms Design Manual, Data structures" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="The Algorithms Design Manual, Data structures">
 <meta property="og:description" content="Data Structures Dictionaries Input Description : A set of $n$ records, each identified by one or more fields.
 Problem description : Build and maintain a data structure to efficiently locate, insert, and delete the record associated with any query key $q$.
- It is more important to avoid using a bad data structure than to identify the single best option available. Questions to ask:  How many items will you have in your data structure?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2017-10-02T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="The Algorithms Design Manual, Data structures"/>
-<meta name="twitter:description" content="Data Structures Dictionaries Input Description : A set of $n$ records, each identified by one or more fields.
+ It is more important to avoid using a bad data structure than to identify the single best option available. Questions to ask:  How many items will you have in your data structure?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual2/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2017-10-02T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="The Algorithms Design Manual, Data structures">
+<meta name=twitter:description content="Data Structures Dictionaries Input Description : A set of $n$ records, each identified by one or more fields.
 Problem description : Build and maintain a data structure to efficiently locate, insert, and delete the record associated with any query key $q$.
- It is more important to avoid using a bad data structure than to identify the single best option available. Questions to ask:  How many items will you have in your data structure?"/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/">
-
-    <title>
-      
-        The Algorithms Design Manual, Data structures | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+ It is more important to avoid using a bad data structure than to identify the single best option available. Questions to ask:  How many items will you have in your data structure?">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual2/>
+<title>
+The Algorithms Design Manual, Data structures | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/">Algorithms Design Manual</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  The Algorithms Design Manual, Data structures</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/>Algorithms Design Manual</a> </li>
+<li class="breadcrumb-item active" aria-current=page> The Algorithms Design Manual, Data structures</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual2/">The Algorithms Design Manual, Data structures</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual2/>The Algorithms Design Manual, Data structures</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-10-02">Oct 2, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-10-02>Oct 2, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#data-structures">Data Structures</a>
-      <ul>
-        <li><a href="#dictionaries">Dictionaries</a></li>
-        <li><a href="#priority-queues">Priority Queues</a></li>
-        <li><a href="#suffix-trees-and-arrays">Suffix Trees and Arrays</a></li>
-        <li><a href="#graph-data-structures">Graph Data Structures</a></li>
-        <li><a href="#set-data-structures">Set data structures</a></li>
-        <li><a href="#kd-trees">Kd-Trees</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#data-structures>Data Structures</a>
+<ul>
+<li><a href=#dictionaries>Dictionaries</a></li>
+<li><a href=#priority-queues>Priority Queues</a></li>
+<li><a href=#suffix-trees-and-arrays>Suffix Trees and Arrays</a></li>
+<li><a href=#graph-data-structures>Graph Data Structures</a></li>
+<li><a href=#set-data-structures>Set data structures</a></li>
+<li><a href=#kd-trees>Kd-Trees</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="data-structures">Data Structures</h2>
-<h3 id="dictionaries">Dictionaries</h3>
-<p><img src="../../../../images/algdm/12_dict1.png" alt="alt"></p>
+<h2 id=data-structures>Data Structures</h2>
+<h3 id=dictionaries>Dictionaries</h3>
+<p><img src=../../../../images/algdm/12_dict1.png alt=alt></p>
 <p><strong>Input Description :</strong> A set of $n$ records, each identified by one or more fields.<br>
 <strong>Problem description :</strong> Build and maintain a data structure to efficiently locate, insert, and delete the record associated with any query key $q$.</p>
 <ul>
@@ -229,7 +119,7 @@ Blog - Nitish Puri
 <ul>
 <li>How do I deal with collisions? Open addressing or bucketing?</li>
 <li>How big should the table be? At least as big as $m$, the number of items you expect to put in the table, it better be <em>prime</em>.</li>
-<li>What hash functions should I choose?  For strings, <br>
+<li>What hash functions should I choose? For strings, <br>
 $$H(S,j) = \sum_{i=0}^{m-1}\alpha^{m-(i+1)}\times char(s_{i+j})\mod{m}$$
 $\alpha$ is the size of the alphabet, $char(x)$ maps a character to its ASCII code.
 This can be computer efficiently as,<br>
@@ -260,7 +150,7 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 </li>
 <li><strong>Implementations</strong>
 <ul>
-<li><a href="http://www.cplusplus.com/reference/map/map/">C++ : <code>std::map</code></a>
+<li><a href=http://www.cplusplus.com/reference/map/map/>C++ : <code>std::map</code></a>
 <ul>
 <li>Implemented as <em>Binary Search Tree</em>.</li>
 </ul>
@@ -273,10 +163,10 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 <li>Java Collections and Data Structures Library in Java</li>
 </ul>
 </li>
-<li><em>Related :</em> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#sorting">Sorting</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#searching">searching</a></li>
+<li><em>Related :</em> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/#sorting>Sorting</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/#searching>searching</a></li>
 </ul>
-<h3 id="priority-queues">Priority Queues</h3>
-<p><img src="../../../../images/algdm/12_pqueue1.png" alt="alt"></p>
+<h3 id=priority-queues>Priority Queues</h3>
+<p><img src=../../../../images/algdm/12_pqueue1.png alt=alt></p>
 <p><strong>Input description:</strong> A set of records with numerically or otherwise totally-ordered keys.<br>
 <strong>Problem description:</strong> Build and maintain a data structure for providing quick access to the smallest or largest key in the set.</p>
 <ul>
@@ -312,7 +202,7 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 </li>
 <li><strong>Implementations</strong>
 <ul>
-<li><a href="http://www.cplusplus.com/reference/queue/priority_queue/">C++ STL <code>std::priority_queue</code></a>
+<li><a href=http://www.cplusplus.com/reference/queue/priority_queue/>C++ STL <code>std::priority_queue</code></a>
 <ul>
 <li>Uses a <code>std::vector</code> or <code>std::dequeue</code>.</li>
 </ul>
@@ -325,10 +215,10 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 <li>Java Collections : <code>java.util.PriorityQueue</code></li>
 </ul>
 </li>
-<li><em>Related :</em> <a href="#dictionaries">Dictionaries</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#sorting">sorting</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path">shortest path</a>.</li>
+<li><em>Related :</em> <a href=#dictionaries>Dictionaries</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/#sorting>sorting</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path>shortest path</a>.</li>
 </ul>
-<h3 id="suffix-trees-and-arrays">Suffix Trees and Arrays</h3>
-<p><img src="../../../../images/algdm/12_suffix1.png" alt="alt"></p>
+<h3 id=suffix-trees-and-arrays>Suffix Trees and Arrays</h3>
+<p><img src=../../../../images/algdm/12_suffix1.png alt=alt></p>
 <p><strong>Input description:</strong> A reference string $S$.<br>
 <strong>Problem description:</strong> Build a data structure to quickly find all places where an arbitrary query string $q$ occurs in $S$.</p>
 <ul>
@@ -346,7 +236,7 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 <li><strong>Implementations</strong>
 <ul>
 <li>C implementation by <em>Schurmann and Stoye</em>.</li>
-<li>Many C/C++ implementations in <a href="http://pizzachili.di.unipi.it/"><em>Pizza&amp;Chili</em> corpus</a></li>
+<li>Many C/C++ implementations in <a href=http://pizzachili.di.unipi.it/><em>Pizza&Chili</em> corpus</a></li>
 <li>Java
 <ul>
 <li><code>BioJava::SuffixTree</code></li>
@@ -354,11 +244,11 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 </li>
 </ul>
 </li>
-<li><em>Related :</em> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#string-matching">String Matching</a>
-, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#text-compression">Text Compression</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#longest-common-substringsubsequence">Longest Common Substring</a></li>
+<li><em>Related :</em> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/#string-matching>String Matching</a>
+, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/#text-compression>Text Compression</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/#longest-common-substringsubsequence>Longest Common Substring</a></li>
 </ul>
-<h3 id="graph-data-structures">Graph Data Structures</h3>
-<p><img src="../../../../images/algdm/12_graph1.png" alt="alt"></p>
+<h3 id=graph-data-structures>Graph Data Structures</h3>
+<p><img src=../../../../images/algdm/12_graph1.png alt=alt></p>
 <p><strong>Input description:</strong> A graph $G$.<br>
 <strong>Problem description:</strong> Represent the graph $G$ using a flexible, efficient data structure.</p>
 <ul>
@@ -381,10 +271,10 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 <li>Stanford Graphbase</li>
 </ul>
 </li>
-<li><em>Related :</em> <a href="#set-data-structures">Set data structures</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#graph-partition">graph partition</a></li>
+<li><em>Related :</em> <a href=#set-data-structures>Set data structures</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/#graph-partition>graph partition</a></li>
 </ul>
-<h3 id="set-data-structures">Set data structures</h3>
-<p><img src="../../../../images/algdm/12_set1.png" alt="alt"></p>
+<h3 id=set-data-structures>Set data structures</h3>
+<p><img src=../../../../images/algdm/12_set1.png alt=alt></p>
 <p><strong>Input description:</strong> A universe of items $U = {u_1, \ldots , u_n}$ on which is defined a collection of subsets $S = {S_1, \ldots , S_m}$.<br>
 <strong>Problem description:</strong> Represent each subset so as to efficiently $(1)$ test whether $u_i \in S_j$, $(2)$ compute the union or intersection of $S_i$ and $S_j$, and $(3)$ insert or delete members of $S$.</p>
 <ul>
@@ -415,10 +305,10 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 <li>Java Collections <code>HashSet</code> and <code>TreeSet</code></li>
 </ul>
 </li>
-<li><em>Related :</em> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#generating-subsets">Generating subsets</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#generating-partitions">generating partitions</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#set-cover">set cover</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#minimum-spanning-tree">minimum spanning tree</a>.</li>
+<li><em>Related :</em> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/#generating-subsets>Generating subsets</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/#generating-partitions>generating partitions</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/#set-cover>set cover</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#minimum-spanning-tree>minimum spanning tree</a>.</li>
 </ul>
-<h3 id="kd-trees">Kd-Trees</h3>
-<p><img src="../../../../images/algdm/12_kdtree1.png" alt="alt"></p>
+<h3 id=kd-trees>Kd-Trees</h3>
+<p><img src=../../../../images/algdm/12_kdtree1.png alt=alt></p>
 <p><strong>Input description:</strong> A set $S$ of $n$ points or more complicated geometric objects in $k$ dimensions.<br>
 <strong>Problem description:</strong> Construct a tree that partitions space by half-planes such that each object is contained in its own box-shaped region.</p>
 <ul>
@@ -443,168 +333,82 @@ In the end, make sure that the distribution is as *uniform* as possible.</li>
 <li>Effective upto say <code>20</code> dimensions.</li>
 <li><strong>Implementations</strong>
 <ul>
-<li><a href="https://arxiv.org/abs/physics/0408067">KDTREE2 : C++ and Fortran</a></li>
-<li><a href="http://www.terralib.org/">Terralib : C++</a></li>
+<li><a href=https://arxiv.org/abs/physics/0408067>KDTREE2 : C++ and Fortran</a></li>
+<li><a href=http://www.terralib.org/>Terralib : C++</a></li>
 </ul>
 </li>
-<li><em>Related :</em> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/#nearest-neighbor-search">Nearest-neighbor search</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/#point-location">point location</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/#range-search">range search</a>.</li>
+<li><em>Related :</em> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/#nearest-neighbor-search>Nearest-neighbor search</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/#point-location>point location</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/#range-search>range search</a>.</li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual1/">The Algorithms Design Manual</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/>The Algorithms Design Manual, Set and String Problems</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/>The Algorithms Design Manual, Computational Geometry</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/>The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/>The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual1/>The Algorithms Design Manual</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

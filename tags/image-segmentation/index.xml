@@ -1,34 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>image-segmentation on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/tags/image-segmentation/</link>
-    <description>Recent content in image-segmentation on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.myproductionurl.com/tags/image-segmentation/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Object Detection and Image Segmentation</title>
-      <link>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-1/</guid>
-      <description>Image Segmentation Image segmentation review Source
- A review of segmentation at qure.ai  Rich feature hierarchies for accurate object detection and semantic segmentation Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik : Oct 2014
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>image-segmentation on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/tags/image-segmentation/</link><description>Recent content in image-segmentation on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://nitishpuri.github.io/blog-hugo/tags/image-segmentation/index.xml" rel="self" type="application/rss+xml"/><item><title>Object Detection and Image Segmentation</title><link>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/detect-segment-1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/detect-segment-1/</guid><description>Image Segmentation Image segmentation review Source
+A review of segmentation at qure.ai Rich feature hierarchies for accurate object detection and semantic segmentation Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik : Oct 2014
 Source
- Introduces R-CNN, Regions with CNN. Bridging the gap between image classification and object detection.  Object detection with R-CNN Region proposals. Uses selective search. Propose a bunch of boxes in the image and see if any of them actually correspond to an object.</description>
-    </item>
-    
-    <item>
-      <title>Object Detection and Image Segmentation, Part 2</title>
-      <link>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-2/</guid>
-      <description>Image Segmentation SSD: Single Shot MultiBox Detector Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu, Alexander C. Berg : Dec 2016
+Introduces R-CNN, Regions with CNN. Bridging the gap between image classification and object detection. Object detection with R-CNN Region proposals. Uses selective search. Propose a bunch of boxes in the image and see if any of them actually correspond to an object.</description></item><item><title>Object Detection and Image Segmentation, Part 2</title><link>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/detect-segment-2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/detect-segment-2/</guid><description>Image Segmentation SSD: Single Shot MultiBox Detector Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu, Alexander C. Berg : Dec 2016
 Source
 Code
- Accurate approaches for image segmentation and object detection are available, like Faster R-CNN, but they are too slow for real time applications. Eliminates bounding box proposals and the subsequent pixel or feature resampling stage. Improvements include using a small convolutional filter to predict object categories and offsets in bounding box locations, using separate predictors (filters) for different aspect ratio detections, and applying these filters to multiple feature maps from the later stages of a network in order to perform detection at multiple scales.</description>
-    </item>
-    
-  </channel>
-</rss>
+Accurate approaches for image segmentation and object detection are available, like Faster R-CNN, but they are too slow for real time applications. Eliminates bounding box proposals and the subsequent pixel or feature resampling stage. Improvements include using a small convolutional filter to predict object categories and offsets in bounding box locations, using separate predictors (filters) for different aspect ratio detections, and applying these filters to multiple feature maps from the later stages of a network in order to perform detection at multiple scales.</description></item></channel></rss>

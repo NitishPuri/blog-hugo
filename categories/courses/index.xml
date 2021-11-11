@@ -1,30 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>courses on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/categories/courses/</link>
-    <description>Recent content in courses on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.myproductionurl.com/categories/courses/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Introduction To Philosophy</title>
-      <link>https://www.myproductionurl.com/books/philosophy/introduction-to-philosophy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/philosophy/introduction-to-philosophy/</guid>
-      <description>These are just some bullet notes from the Coursera course Introduction to philosophy
- What Is Philosophy Working out the best way to thinking about things. The philosophical question. Philosophy: Difficult, Important and Everywhere Is it &amp;lsquo;Fundamental&amp;rsquo;?  No,.. Yes,..?   Is it &amp;lsquo;Important&amp;rsquo;?  No,.. Yes,.?   How Do We Do It? Arguments to your questions Do we have free will? Is there a right way to think about things?</description>
-    </item>
-    
-    <item>
-      <title>Learning how to Learn</title>
-      <link>https://www.myproductionurl.com/books/philosophy/learning-to-learn/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/philosophy/learning-to-learn/</guid>
-      <description>These are just some bullet notes from the Coursera course Introduction to philosophy
- What is learning  Focused and Diffuse modes of thinking Procrastination Memory Importance of Sleep   Chunking  Recall Illusions of Competence Acetylcholine : focused learning Dopamine : motivation serotonin Overlearning, Choking, Eenstellung, Interleaving Illusions of Competence Deliberate learning Transfer and Library of Chunks   Procrastination  procrastination and memory Zombie Mode: Habits  The Cue, Routine, Reward and Belief   Process VS Product   Memory  Long term memory the power of repetition Using your visual and spatial memory systems Meaningful groups and Memory Palace   Learning  Keep learning Create metaphors and analogy Don&amp;rsquo;t Panic No need to envy!</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>courses on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/categories/courses/</link><description>Recent content in courses on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://nitishpuri.github.io/blog-hugo/categories/courses/index.xml" rel="self" type="application/rss+xml"/><item><title>Introduction To Philosophy</title><link>https://nitishpuri.github.io/blog-hugo/books/philosophy/introduction-to-philosophy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/philosophy/introduction-to-philosophy/</guid><description>These are just some bullet notes from the Coursera course Introduction to philosophy
+What Is Philosophy Working out the best way to thinking about things. The philosophical question. Philosophy: Difficult, Important and Everywhere Is it &amp;lsquo;Fundamental&amp;rsquo;? No,.. Yes,..? Is it &amp;lsquo;Important&amp;rsquo;? No,.. Yes,.? How Do We Do It? Arguments to your questions Do we have free will? Is there a right way to think about things?</description></item><item><title>Learning how to Learn</title><link>https://nitishpuri.github.io/blog-hugo/books/philosophy/learning-to-learn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/philosophy/learning-to-learn/</guid><description>These are just some bullet notes from the Coursera course Introduction to philosophy
+What is learning Focused and Diffuse modes of thinking Procrastination Memory Importance of Sleep Chunking Recall Illusions of Competence Acetylcholine : focused learning Dopamine : motivation serotonin Overlearning, Choking, Eenstellung, Interleaving Illusions of Competence Deliberate learning Transfer and Library of Chunks Procrastination procrastination and memory Zombie Mode: Habits The Cue, Routine, Reward and Belief Process VS Product Memory Long term memory the power of repetition Using your visual and spatial memory systems Meaningful groups and Memory Palace Learning Keep learning Create metaphors and analogy Don&amp;rsquo;t Panic No need to envy!</description></item></channel></rss>

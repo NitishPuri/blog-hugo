@@ -1,220 +1,111 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="The Algorithms Design Manual, Graph Problems(Hard Problems)" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="The Algorithms Design Manual, Graph Problems(Hard Problems)">
 <meta property="og:description" content="Graph Problems : Hard Problems Dealing with NP-completeness.
 Clique Input description: A graph $G = (V,E)$. Problem description: What is the largest $S \subset V$ such that for all $x, y \in S,, (x, y) \in E$?
- Finding the maximum clique is NP-complete, as hard as it gets. And, provably hard to approximate to withing the factor of $n^{1/2-\epsilon}$. What can we do about it?  Will a maximal clique suffice?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-<meta property="article:published_time" content="2017-10-06T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-11-11T14:50:16+05:30" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="The Algorithms Design Manual, Graph Problems(Hard Problems)"/>
-<meta name="twitter:description" content="Graph Problems : Hard Problems Dealing with NP-completeness.
+ Finding the maximum clique is NP-complete, as hard as it gets. And, provably hard to approximate to withing the factor of $n^{1/2-\epsilon}$. What can we do about it?  Will a maximal clique suffice?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:published_time" content="2017-10-06T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-11-11T14:50:16+05:30">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="The Algorithms Design Manual, Graph Problems(Hard Problems)">
+<meta name=twitter:description content="Graph Problems : Hard Problems Dealing with NP-completeness.
 Clique Input description: A graph $G = (V,E)$. Problem description: What is the largest $S \subset V$ such that for all $x, y \in S,, (x, y) \in E$?
- Finding the maximum clique is NP-complete, as hard as it gets. And, provably hard to approximate to withing the factor of $n^{1/2-\epsilon}$. What can we do about it?  Will a maximal clique suffice?"/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/">
-
-    <title>
-      
-        The Algorithms Design Manual, Graph Problems(Hard Problems) | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+ Finding the maximum clique is NP-complete, as hard as it gets. And, provably hard to approximate to withing the factor of $n^{1/2-\epsilon}$. What can we do about it?  Will a maximal clique suffice?">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/>
+<title>
+The Algorithms Design Manual, Graph Problems(Hard Problems) | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/">Algorithms Design Manual</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  The Algorithms Design Manual, Graph Problems(Hard Problems)</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/>Algorithms Design Manual</a> </li>
+<li class="breadcrumb-item active" aria-current=page> The Algorithms Design Manual, Graph Problems(Hard Problems)</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/>The Algorithms Design Manual, Graph Problems(Hard Problems)</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-10-06">Oct 6, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-10-06>Oct 6, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#graph-problems--hard-problems">Graph Problems : Hard Problems</a>
-      <ul>
-        <li><a href="#clique">Clique</a></li>
-        <li><a href="#independent-set">Independent Set</a></li>
-        <li><a href="#vertex-cover">Vertex Cover</a></li>
-        <li><a href="#travelling-salesman-problem">Travelling Salesman Problem</a></li>
-        <li><a href="#hamiltonian-cycle">Hamiltonian Cycle</a></li>
-        <li><a href="#graph-partition">Graph Partition</a></li>
-        <li><a href="#vertex-coloring">Vertex Coloring</a></li>
-        <li><a href="#edge-coloring">Edge Coloring</a></li>
-        <li><a href="#graph-isomorphism">Graph Isomorphism</a></li>
-        <li><a href="#steiner-tree">Steiner Tree</a></li>
-        <li><a href="#feedback-edgevertex-set">Feedback Edge/Vertex Set</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#graph-problems--hard-problems>Graph Problems : Hard Problems</a>
+<ul>
+<li><a href=#clique>Clique</a></li>
+<li><a href=#independent-set>Independent Set</a></li>
+<li><a href=#vertex-cover>Vertex Cover</a></li>
+<li><a href=#travelling-salesman-problem>Travelling Salesman Problem</a></li>
+<li><a href=#hamiltonian-cycle>Hamiltonian Cycle</a></li>
+<li><a href=#graph-partition>Graph Partition</a></li>
+<li><a href=#vertex-coloring>Vertex Coloring</a></li>
+<li><a href=#edge-coloring>Edge Coloring</a></li>
+<li><a href=#graph-isomorphism>Graph Isomorphism</a></li>
+<li><a href=#steiner-tree>Steiner Tree</a></li>
+<li><a href=#feedback-edgevertex-set>Feedback Edge/Vertex Set</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="graph-problems--hard-problems">Graph Problems : Hard Problems</h2>
+<h2 id=graph-problems--hard-problems>Graph Problems : Hard Problems</h2>
 <p>Dealing with NP-completeness.</p>
-<h3 id="clique">Clique</h3>
-<p><img src="../../../../images/algdm/16_clique.png" alt="alt"></p>
+<h3 id=clique>Clique</h3>
+<p><img src=../../../../images/algdm/16_clique.png alt=alt></p>
 <p><strong>Input description:</strong> A graph $G = (V,E)$. <br>
 <strong>Problem description:</strong> What is the largest $S \subset V$ such that for all $x, y \in S,, (x, y) \in E$?</p>
 <ul>
@@ -230,10 +121,10 @@ Blog - Nitish Puri
 <li>For an exact solution, use an exhaustive search with backtracking and pruning.</li>
 <li>For an efficient solution, use randomized techniques such as simulated annealing.</li>
 <li><strong>Implementations</strong> : <code>Cliquer</code> for C.</li>
-<li><em>Related</em> : <a href="#independent-set">Independent set</a>, <a href="#vertex-cover">vertex cover</a>.</li>
+<li><em>Related</em> : <a href=#independent-set>Independent set</a>, <a href=#vertex-cover>vertex cover</a>.</li>
 </ul>
-<h3 id="independent-set">Independent Set</h3>
-<p><img src="../../../../images/algdm/16_indset.png" alt="alt"></p>
+<h3 id=independent-set>Independent Set</h3>
+<p><img src=../../../../images/algdm/16_indset.png alt=alt></p>
 <p><strong>Input description:</strong> A graph $G = (V,E)$.<br>
 <strong>Problem description:</strong> What is the largest subset $S$ of vertices of $V$ such that for
 each edge $(x,y) \in E$, either $x \notin E$ or $y \notin E$?</p>
@@ -242,10 +133,10 @@ each edge $(x,y) \in E$, either $x \notin E$ or $y \notin E$?</p>
 <li>Closely related to <em>clique</em>(on complement graph $G'$) and <em>vertex coloring</em>(each color class defines an independent set)</li>
 <li>Randomized algorithms work well.</li>
 <li>Simple linear time algorithms are available for trees.</li>
-<li><em>Related</em> : <a href="#clique">Clique</a>, <a href="#vertex-coloring">vertex coloring</a>, <a href="#vertex-cover">vertex cover</a>.</li>
+<li><em>Related</em> : <a href=#clique>Clique</a>, <a href=#vertex-coloring>vertex coloring</a>, <a href=#vertex-cover>vertex cover</a>.</li>
 </ul>
-<h3 id="vertex-cover">Vertex Cover</h3>
-<p><img src="../../../../images/algdm/16_vcover.png" alt="alt"></p>
+<h3 id=vertex-cover>Vertex Cover</h3>
+<p><img src=../../../../images/algdm/16_vcover.png alt=alt></p>
 <p><strong>Input description:</strong> A graph $G = (V,E)$. <br>
 <strong>Problem description:</strong> What is the smallest subset of $S \subset V$ such that each edge
 $(x, y) \in E$ contains at least one vertex of $S$?</p>
@@ -253,10 +144,10 @@ $(x, y) \in E$ contains at least one vertex of $S$?</p>
 <li>Special case of <em>set cover</em> and relatively lightweight.</li>
 <li>Closely related to <em>independent set</em> : if $S$ is the vertex cover, $V-S$ must be an independent set.</li>
 <li>Simple heuristics perform well.</li>
-<li><em>Related</em> : <a href="#independent-set">Independent set</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#set-cover">set cover</a></li>
+<li><em>Related</em> : <a href=#independent-set>Independent set</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/#set-cover>set cover</a></li>
 </ul>
-<h3 id="travelling-salesman-problem">Travelling Salesman Problem</h3>
-<p><img src="../../../../images/algdm/16_tsp.png" alt="alt"></p>
+<h3 id=travelling-salesman-problem>Travelling Salesman Problem</h3>
+<p><img src=../../../../images/algdm/16_tsp.png alt=alt></p>
 <p><strong>Input description:</strong> A weighted graph $G$. <br>
 <strong>Problem description:</strong> Find the cycle of minimum cost, visiting each vertex of $G$
 exactly once.</p>
@@ -280,10 +171,10 @@ exactly once.</p>
 </ul>
 </li>
 <li><strong>Implementations</strong> : Concorde</li>
-<li><em>Related</em> : <a href="#hamiltonian-cycle">Hamiltonian cycle</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#minimum-spanning-tree">minimum spanning tree</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/#convex-hull">convex hull</a></li>
+<li><em>Related</em> : <a href=#hamiltonian-cycle>Hamiltonian cycle</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#minimum-spanning-tree>minimum spanning tree</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/#convex-hull>convex hull</a></li>
 </ul>
-<h3 id="hamiltonian-cycle">Hamiltonian Cycle</h3>
-<p><img src="../../../../images/algdm/16_hamcyc.png" alt="alt"></p>
+<h3 id=hamiltonian-cycle>Hamiltonian Cycle</h3>
+<p><img src=../../../../images/algdm/16_hamcyc.png alt=alt></p>
 <p><strong>Input description:</strong> A graph $G = (V,E)$. <br>
 <strong>Problem description:</strong> Find a tour of the vertices using only edges from $G$, such
 that each vertex is visited exactly once.</p>
@@ -298,10 +189,10 @@ that each vertex is visited exactly once.</p>
 </ul>
 </li>
 <li>Backtracking with pruning is the only possible <em>correct</em> solution.</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#eulerian-cyclechinese-postman">Eulerian cycle</a>, <a href="#travelling-salesman-problem">travelling salesman</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#eulerian-cyclechinese-postman>Eulerian cycle</a>, <a href=#travelling-salesman-problem>travelling salesman</a></li>
 </ul>
-<h3 id="graph-partition">Graph Partition</h3>
-<p><img src="../../../../images/algdm/16_gpart.png" alt="alt"></p>
+<h3 id=graph-partition>Graph Partition</h3>
+<p><img src=../../../../images/algdm/16_gpart.png alt=alt></p>
 <p><strong>Input description:</strong> A (weighted) graph $G = (V,E)$ and integers $k$ and $m$.<br>
 <strong>Problem description:</strong> Partition the vertices into $m$ roughly equal-sized subsets
 such that the total edge cost spanning the subsets is at most $k$.</p>
@@ -316,10 +207,10 @@ such that the total edge cost spanning the subsets is at most $k$.</p>
 </ul>
 </li>
 <li>Heuristics with randomization, particularly simulated annealing are almost certain to produce good results. Apply recursively for more than two partitions.</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#edge-and-vertex-connectivity">Edge/vertex connectivity</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#network-flow">network flow</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#edge-and-vertex-connectivity>Edge/vertex connectivity</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#network-flow>network flow</a></li>
 </ul>
-<h3 id="vertex-coloring">Vertex Coloring</h3>
-<p><img src="../../../../images/algdm/16_vcolor.png" alt="alt"></p>
+<h3 id=vertex-coloring>Vertex Coloring</h3>
+<p><img src=../../../../images/algdm/16_vcolor.png alt=alt></p>
 <p><strong>Input description:</strong> A graph $G = (V,E)$. <br>
 <strong>Problem description:</strong> Color the vertices of $V$ using the minimum number of
 colors such that $i$ and $j$ have different colors for all $(i,j) \in E$.</p>
@@ -335,22 +226,22 @@ colors such that $i$ and $j$ have different colors for all $(i,j) \in E$.</p>
 </li>
 <li>Heuristics using incremental methods work very well.</li>
 <li>Simulated annealing is likely to be even more effective.</li>
-<li><em>Related</em> : <a href="#indpendent-set">Independent set</a>, <a href="#edge-coloring">edge coloring</a></li>
+<li><em>Related</em> : <a href=#indpendent-set>Independent set</a>, <a href=#edge-coloring>edge coloring</a></li>
 </ul>
-<h3 id="edge-coloring">Edge Coloring</h3>
-<p><img src="../../../../images/algdm/16_ecolor.png" alt="alt"></p>
+<h3 id=edge-coloring>Edge Coloring</h3>
+<p><img src=../../../../images/algdm/16_ecolor.png alt=alt></p>
 <p><strong>Input description:</strong> A graph $G = (V,E)$.
 <strong>Problem description:</strong> What is the smallest set of colors needed to color the edges
 of $G$ such that no two same-color edges share a common vertex?</p>
 <ul>
 <li>The National Football League solves such an edge-coloring problem each season to make up its schedule.</li>
-<li>The minimum number of colors needed to edge color a graph is called its 
+<li>The minimum number of colors needed to edge color a graph is called its
 <em>edge-chromatic number</em> or <em>chromatic index</em>.</li>
-<li><em>Related</em> : <a href="#vertex-coloring">Vertex coloring</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#job-scheduling">scheduling</a></li>
+<li><em>Related</em> : <a href=#vertex-coloring>Vertex coloring</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/#job-scheduling>scheduling</a></li>
 </ul>
-<h3 id="graph-isomorphism">Graph Isomorphism</h3>
-<p><img src="../../../../images/algdm/16_giso.png" alt="alt"></p>
-<p><strong>Input description:</strong> Two graphs, $G$ and $H$.  <br>
+<h3 id=graph-isomorphism>Graph Isomorphism</h3>
+<p><img src=../../../../images/algdm/16_giso.png alt=alt></p>
+<p><strong>Input description:</strong> Two graphs, $G$ and $H$. <br>
 <strong>Problem description:</strong> Find a (or all) mapping $f$ from the vertices of $G$ to the
 vertices of $H$ such that $G$ and $H$ are identical; i.e. , $(x,y)$ is an edge of $G$ iff
 $(f(x),f(y))$ is an edge of $H$.</p>
@@ -375,15 +266,15 @@ $(f(x),f(y))$ is an edge of $H$.</p>
 </ul>
 </li>
 <li><strong>Implementations</strong> : Nauty (C), VFLib, GraphGrep, LEDA.</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path">Shortest path</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#string-matching">string matching</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path>Shortest path</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/#string-matching>string matching</a></li>
 </ul>
-<h3 id="steiner-tree">Steiner Tree</h3>
-<p><img src="../../../../images/algdm/16_steiner.png" alt="alt"></p>
+<h3 id=steiner-tree>Steiner Tree</h3>
+<p><img src=../../../../images/algdm/16_steiner.png alt=alt></p>
 <p><strong>Input description:</strong> A graph $G = (V,E)$. A subset of vertices $T \in V$ .<br>
 <strong>Problem description:</strong> Find the smallest tree connecting all the vertices of $T$.</p>
 <ul>
 <li>The Steiner tree problem is distinguished from the minimum spanning tree
-(MST) problem in that we are permitted to construct or select intermediate connection 
+(MST) problem in that we are permitted to construct or select intermediate connection
 points to reduce the cost of the tree.</li>
 <li>Steiner tree construction include,
 <ul>
@@ -396,15 +287,15 @@ points to reduce the cost of the tree.</li>
 </li>
 <li>Find an MST and improve it.</li>
 <li>Alternatively, start with shortest path for two terminals, for the remaining terminals, find the shortest path to intermediate vertices on the path and add this path to the tree.</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#minimum-spanning-tree">Minimum spanning trees</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path">shortest path</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#minimum-spanning-tree>Minimum spanning trees</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path>shortest path</a></li>
 </ul>
-<h3 id="feedback-edgevertex-set">Feedback Edge/Vertex Set</h3>
-<p><img src="../../../../images/algdm/16_feedback.png" alt="alt"></p>
+<h3 id=feedback-edgevertex-set>Feedback Edge/Vertex Set</h3>
+<p><img src=../../../../images/algdm/16_feedback.png alt=alt></p>
 <p><strong>Input description:</strong> A (directed) graph $G = (V,E)$. <br>
 <strong>Problem description:</strong> What is the smallest set of edges $E'$ or vertices $V'$ whose
 deletion leaves an acyclic graph?</p>
 <ul>
-<li>Feedback set problems arise because many things are easier to do 
+<li>Feedback set problems arise because many things are easier to do
 on directed acyclic graphs (DAGs) than general digraphs.</li>
 <li>For a scheduling problem, if there are cyclic constraints,</li>
 <li>In the <em>feedback edge</em> (or arc) set problem, we drop individual precedence constraints.</li>
@@ -420,164 +311,78 @@ on directed acyclic graphs (DAGs) than general digraphs.</li>
 </ul>
 </li>
 <li><strong>Implementation</strong> : GRASP, GOBLIN , Stanford GraphBase.</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/#bandwidth-reduction">Bandwidth Reduction</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#topological-sort">topological sorting</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#job-scheduling">scheduling</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual3/#bandwidth-reduction>Bandwidth Reduction</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#topological-sort>topological sorting</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/#job-scheduling>scheduling</a></li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual1/">The Algorithms Design Manual</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual4/">The Algorithms Design Manual, Combinatorial Problems</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual2/">The Algorithms Design Manual, Data structures</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual3/">The Algorithms Design Manual, Numerical Problems</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/>The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual1/>The Algorithms Design Manual</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/>The Algorithms Design Manual, Combinatorial Problems</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual2/>The Algorithms Design Manual, Data structures</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual3/>The Algorithms Design Manual, Numerical Problems</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

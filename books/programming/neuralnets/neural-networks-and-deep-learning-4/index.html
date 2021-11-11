@@ -1,490 +1,296 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="A visual proof that neural networks can compute any function, Micheal Nelson" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="A visual proof that neural networks can compute any function, Micheal Nelson">
 <meta property="og:description" content="Notes for the book.
 Source code for the book.
 Chapter 4: A visual proof that neural networks can compute any function One of the most striking facts about neural networks is that they can compute any function at all.
 That is, suppose someone hands you some complicated, wiggly function, $f(x)$:
-No matter what the function, there is guaranteed to be a neural network so that for every possible input, $x$, the value $f(x)$ (or some close approximation) is output from the network." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-4/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2017-11-23T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="A visual proof that neural networks can compute any function, Micheal Nelson"/>
-<meta name="twitter:description" content="Notes for the book.
+No matter what the function, there is guaranteed to be a neural network so that for every possible input, $x$, the value $f(x)$ (or some close approximation) is output from the network.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-4/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2017-11-23T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="A visual proof that neural networks can compute any function, Micheal Nelson">
+<meta name=twitter:description content="Notes for the book.
 Source code for the book.
 Chapter 4: A visual proof that neural networks can compute any function One of the most striking facts about neural networks is that they can compute any function at all.
 That is, suppose someone hands you some complicated, wiggly function, $f(x)$:
-No matter what the function, there is guaranteed to be a neural network so that for every possible input, $x$, the value $f(x)$ (or some close approximation) is output from the network."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-4/">
-
-    <title>
-      
-        A visual proof that neural networks can compute any function, Micheal Nelson | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+No matter what the function, there is guaranteed to be a neural network so that for every possible input, $x$, the value $f(x)$ (or some close approximation) is output from the network.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-4/>
+<title>
+A visual proof that neural networks can compute any function, Micheal Nelson | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/neuralnets/">Neural Networks and Deep Learning, Micheal Nelson</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  A visual proof that neural networks can compute any function, Micheal Nelson</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/>Neural Networks and Deep Learning, Micheal Nelson</a> </li>
+<li class="breadcrumb-item active" aria-current=page> A visual proof that neural networks can compute any function, Micheal Nelson</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-4/">A visual proof that neural networks can compute any function, Micheal Nelson</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-4/>A visual proof that neural networks can compute any function, Micheal Nelson</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-11-23">Nov 23, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-11-23>Nov 23, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#chapter-4-a-visual-proof-that-neural-networks-can-compute-any-function"><strong>Chapter 4: A visual proof that neural networks can compute any function</strong></a>
-      <ul>
-        <li><a href="#two-caveats">Two Caveats</a></li>
-        <li><a href="#universality-with-one-input-and-one-output">Universality with one input and one output</a></li>
-        <li><a href="#many-input-variables">Many input variables</a></li>
-        <li><a href="#extension-beyond-sigmoid-neurons">Extension beyond sigmoid neurons</a></li>
-        <li><a href="#fixing-up-the-step-function">Fixing up the step function</a></li>
-        <li><a href="#conclusion">Conclusion</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#chapter-4-a-visual-proof-that-neural-networks-can-compute-any-function><strong>Chapter 4: A visual proof that neural networks can compute any function</strong></a>
+<ul>
+<li><a href=#two-caveats>Two Caveats</a></li>
+<li><a href=#universality-with-one-input-and-one-output>Universality with one input and one output</a></li>
+<li><a href=#many-input-variables>Many input variables</a></li>
+<li><a href=#extension-beyond-sigmoid-neurons>Extension beyond sigmoid neurons</a></li>
+<li><a href=#fixing-up-the-step-function>Fixing up the step function</a></li>
+<li><a href=#conclusion>Conclusion</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <p>Notes for the <a href="http://neuralnetworksanddeeplearning.com/index.html">book</a>.<br>
-<a href="https://github.com/mnielsen/neural-networks-and-deep-learning">Source code</a> for the book.</p>
-<h2 id="chapter-4-a-visual-proof-that-neural-networks-can-compute-any-function"><strong>Chapter 4: A visual proof that neural networks can compute any function</strong></h2>
+<p>Notes for the <a href=http://neuralnetworksanddeeplearning.com/index.html>book</a>.<br>
+<a href=https://github.com/mnielsen/neural-networks-and-deep-learning>Source code</a> for the book.</p>
+<h2 id=chapter-4-a-visual-proof-that-neural-networks-can-compute-any-function><strong>Chapter 4: A visual proof that neural networks can compute any function</strong></h2>
 <p>One of the most striking facts about neural networks is that they can compute any function at all.<br>
 That is, suppose someone hands you some complicated, wiggly function, $f(x)$:<br>
-<img src="../../../../images/nnfordl/4_fun1.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun1.png alt=alt></p>
 <p>No matter what the function, there is guaranteed to be a neural network so that for every possible input, $x$, the value $f(x)$ (or some close approximation) is output from the network.<br>
 This result holds even if the function has many inputs,<br>
-<img src="../../../../images/nnfordl/4_fun2.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun2.png alt=alt></p>
 <p>This result tells us that neural networks have a kind of universality. No matter what function we want to compute, we know that there is a neural network which can do the job.</p>
 <p>What&rsquo;s more, this universality theorem holds even if we restrict our networks to have just a single layer intermediate between the input and the output neurons - a so-called single hidden layer. So even very simple network architectures can be extremely powerful.</p>
 <p>However, the proofs for the universality of neural networks is not widely understood and the explanations are quite technical. Here we attempt to simplify the underlying intuition.</p>
 <p>Any process that we can do or imagine can be thought of as a function computation. Universality means that neural networks can do all these things, and many more.</p>
 <p>So, we know neural networks can compute things, but to find those networks we need learning algorithms!!</p>
-<h3 id="two-caveats">Two Caveats</h3>
+<h3 id=two-caveats>Two Caveats</h3>
 <p>to the statement &ldquo;a neural network can compute any function&rdquo;.</p>
 <ul>
 <li>Firstly, This does not mean that the network can <em>exactly</em> compute any function. We can get an <em>approximation</em> that is as good as we want by increasing the number of hidden neurons.</li>
 <li>Second, the class of functions that can be approximated in this way are the <em>continous</em> functions. However, the network can still compute a <em>continous</em> approximation of the underlying <em>discontinous</em> function.</li>
 </ul>
-<h3 id="universality-with-one-input-and-one-output">Universality with one input and one output</h3>
+<h3 id=universality-with-one-input-and-one-output>Universality with one input and one output</h3>
 <p>It turns out that this is the core of the problem of universality. Once we&rsquo;ve understood this special case it&rsquo;s actually pretty easy to extend to functions with many inputs and many outputs.</p>
 <p>Here is an output of a single hidden neuron, <br>
-<img src="../../../../images/nnfordl/4_fun3.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun3.png alt=alt></p>
 <p>Now, this single neuron can be treated as a step function with given parameters.<br>
-<img src="../../../../images/nnfordl/4_fun4.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun4.png alt=alt></p>
 <p>Working with this would actually be easier than a general sigmoid function.</p>
 <p>With a little bit of work, we can see that the value at which the step occurs is <em>proportional</em> to $b$ and <em>inversely proportional</em> to $w$.<br>
 In fact, the step is at position $s = -b/w$.
-<img src="../../../../images/nnfordl/4_fun5.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun5.png alt=alt></p>
 <p>Now, it will greatly simplify our lives if we describe the hidden neuron by a single parameter $s = -b/w$.<br>
-<img src="../../../../images/nnfordl/4_fun6.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun6.png alt=alt></p>
 <p>Up to now we&rsquo;ve been focusing on the output from just the top hidden neuron. Let&rsquo;s take a look at the behavior of the entire network. In particular, we&rsquo;ll suppose the hidden neurons are computing step functions parameterized by step points $s_1$ (top neuron) and $s_2$ (bottom neuron). And they&rsquo;ll have respective output weights $w_1$ and $w_2$.<br>
-<img src="../../../../images/nnfordl/4_fun7.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun7.png alt=alt></p>
 <p>$weighted,output = w_1a_1 + w_2a_2, $ where $a$s are the <em>activations</em>.</p>
 <p>Finally, let&rsquo;s on playing with the values, we can get a <em>bump</em> function, which starts at $s_1$, ends at $s_2$.<br>
-<img src="../../../../images/nnfordl/4_fun8.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun8.png alt=alt></p>
 <p>You&rsquo;ll notice, by the way, that we&rsquo;re using our neurons in a way that can be thought of not just in graphical terms, but in more conventional programming terms, as a kind of if-then-else statement, e.g.:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> input <span style="color:#f92672">&gt;=</span> step point:
-        add <span style="color:#ae81ff">1</span> to the weighted output
-    <span style="color:#66d9ef">else</span>:
-        add <span style="color:#ae81ff">0</span> to the weighted output
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>if</span> input <span style=color:#f92672>&gt;=</span> step point:
+        add <span style=color:#ae81ff>1</span> to the weighted output
+    <span style=color:#66d9ef>else</span>:
+        add <span style=color:#ae81ff>0</span> to the weighted output
 </code></pre></div><p>Furthur, we can use our <em>bump-making</em> trick to get two bumps, by gluing together pairs of hidden neurons together,<br>
-<img src="../../../../images/nnfordl/4_fun9.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun9.png alt=alt></p>
 <p>More, generally, we can have $N$ peaks/bumps by using $N$ pairs of hidden neurons.
-<img src="../../../../images/nnfordl/4_fun10.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun10.png alt=alt></p>
 <p>You may be able to see now where this is going, we are now <em>designing</em> a function by choosing various height values for the intervals.</p>
 <p>Going back to the function we saw earlier,<br>
-<img src="../../../../images/nnfordl/4_fun1.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun1.png alt=alt></p>
 <p>is actually,<br>
 $$\begin{align}f(x) = 0.2 + 0.4x^2+0.3x\sin(15x) + 0.05\cos(50x)\end{align}$$</p>
 <p>That&rsquo;s obviously not a trivial function,</p>
 <p>n our networks above we&rsquo;ve been analyzing the weighted combination $\sum_j w_ja_j$ output from the hidden neurons. We now know how to get a lot of control over this quantity. But, as I noted earlier, this quantity is not what&rsquo;s output from the network. What&rsquo;s output from the network is $\sigma(\sum_j w_j a_j + b)$ where $b$ is the bias on the output neuron. Is there some way we can achieve control over the actual output from the network?</p>
 <p>The solution is to design a neural network whose hidden layer has a weighted output given by $\sigma_{−1}\circ,f(x)$, where $\sigma^{-1}$ is just the inverse of the $\sigma$ function. That is, we want the weighted output from the hidden layer to be:<br>
-<img src="../../../../images/nnfordl/4_fun11.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun11.png alt=alt></p>
 <p>If we can compute this function, the output from the network would be a good approximation for $f(x)$.</p>
 <p>With some work, we can get this, minimizing the <em>average deviation</em> between the goal and the network output. <br>
-<img src="../../../../images/nnfordl/4_fun12.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun12.png alt=alt></p>
 <p>This is only a coarse approximation, but we can do much better simply by increasing the number of hidden neurons, allowing more bumps.</p>
-<p>And, it is possible to convert all the data we found into standard parameterization  used for neural networks.</p>
+<p>And, it is possible to convert all the data we found into standard parameterization used for neural networks.</p>
 <p>What&rsquo;s more, there was nothing special about our original goal function $f(x) = 0.2 + 0.4x^2+0.3x\sin(15x) + 0.05\cos(50x)$.
 We could have used the same procedure for any continuos function from $[0, 1]$ to $[0, 1]$.</p>
-<h3 id="many-input-variables">Many input variables</h3>
+<h3 id=many-input-variables>Many input variables</h3>
 <p>We&rsquo;ll start by considering what happens when we have two inputs to a neuron:</p>
-<p><img src="../../../../images/nnfordl/4_fun13_1.png" alt="alt"> 
-<img src="../../../../images/nnfordl/4_fun13.png" alt="alt"></p>
+<p><img src=../../../../images/nnfordl/4_fun13_1.png alt=alt>
+<img src=../../../../images/nnfordl/4_fun13.png alt=alt></p>
 <p>As we can see, with $w_2 = 0$, the input $y$ makes no difference to the output. It&rsquo;s as though there was only one input $x$.</p>
 <p>Now, if you can recall, we are going to create steps,<br>
-<img src="../../../../images/nnfordl/4_fun14_1.png" alt="alt"> 
-<img src="../../../../images/nnfordl/4_fun14.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun14_1.png alt=alt>
+<img src=../../../../images/nnfordl/4_fun14.png alt=alt></p>
 <p>Changing to a simpler parameter, <br>
-<img src="../../../../images/nnfordl/4_fun15_1.png" alt="alt"> 
-<img src="../../../../images/nnfordl/4_fun15.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun15_1.png alt=alt>
+<img src=../../../../images/nnfordl/4_fun15.png alt=alt></p>
 <p>Ofcourse, it is possible to create this step in the $y$ direction,<br>
-<img src="../../../../images/nnfordl/4_fun16_1.png" alt="alt"> 
-<img src="../../../../images/nnfordl/4_fun16.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun16_1.png alt=alt>
+<img src=../../../../images/nnfordl/4_fun16.png alt=alt></p>
 <p>Now we are going to create a 3D bump function,<br>
-<img src="../../../../images/nnfordl/4_fun17.png" alt="alt"> 
-<img src="../../../../images/nnfordl/4_fun17_1.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun17.png alt=alt>
+<img src=../../../../images/nnfordl/4_fun17_1.png alt=alt></p>
 <p>And, the same can be made in $y$ direction,<br>
-<img src="../../../../images/nnfordl/4_fun18.png" alt="alt"> 
-<img src="../../../../images/nnfordl/4_fun18_1.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun18.png alt=alt>
+<img src=../../../../images/nnfordl/4_fun18_1.png alt=alt></p>
 <p>Let&rsquo;s see what happens when we combine the above functions, <br>
-<img src="../../../../images/nnfordl/4_fun19.png" alt="alt"> 
-<img src="../../../../images/nnfordl/4_fun19_1.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun19.png alt=alt>
+<img src=../../../../images/nnfordl/4_fun19_1.png alt=alt></p>
 <p>This can be tuned to create a <em>tower</em> function,<br>
-<img src="../../../../images/nnfordl/4_fun20_1.png" alt="alt"> 
-<img src="../../../../images/nnfordl/4_fun20.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun20_1.png alt=alt>
+<img src=../../../../images/nnfordl/4_fun20.png alt=alt></p>
 <p>And the <em>towers</em> can be combined to form,<br>
-<img src="../../../../images/nnfordl/4_fun21.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun21.png alt=alt></p>
 <p>This, can be expressed as ,</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"> <span style="color:#66d9ef">if</span> combined output <span style="color:#f92672">from</span> hidden neurons <span style="color:#f92672">&gt;=</span> threshold:
-        output <span style="color:#ae81ff">1</span>
-    <span style="color:#66d9ef">else</span>:
-        output <span style="color:#ae81ff">0</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python> <span style=color:#66d9ef>if</span> combined output <span style=color:#f92672>from</span> hidden neurons <span style=color:#f92672>&gt;=</span> threshold:
+        output <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>else</span>:
+        output <span style=color:#ae81ff>0</span>
 </code></pre></div><p>The same approach can be extended to higher dimensions(networks with more input variables).</p>
-<p>Okay, so we now know how to use neural networks to approximate a real-valued function of many variables. What about vector-valued functions $f(x_1, &hellip; ,x_m) \in R^n$? Of course, such a function can be regarded as just $n$ separate real-valued functions, $f_1(x_1, &hellip; ,x_m),f_2(x_1,&hellip;,x_m)$, and so on. So we create a network approximating $f_1$, another network for $f_2$, and so on. And then we simply glue all the networks together. So that&rsquo;s also easy to cope with.</p>
-<h3 id="extension-beyond-sigmoid-neurons">Extension beyond sigmoid neurons</h3>
-<p>We&rsquo;ve proved that networks made up of sigmoid neurons can compute any function. Recall that in a sigmoid neuron the inputs $x_1,x_2,&hellip;$ result in the output $\sigma (\sum_j w_j x_j + b)$, where $w_j$ are the weights, $b$ is the bias, and $\sigma$ is the sigmoid function:</p>
-<p><img src="../../../../images/nnfordl/4_fun22.png" alt="alt"></p>
+<p>Okay, so we now know how to use neural networks to approximate a real-valued function of many variables. What about vector-valued functions $f(x_1, &mldr; ,x_m) \in R^n$? Of course, such a function can be regarded as just $n$ separate real-valued functions, $f_1(x_1, &mldr; ,x_m),f_2(x_1,&mldr;,x_m)$, and so on. So we create a network approximating $f_1$, another network for $f_2$, and so on. And then we simply glue all the networks together. So that&rsquo;s also easy to cope with.</p>
+<h3 id=extension-beyond-sigmoid-neurons>Extension beyond sigmoid neurons</h3>
+<p>We&rsquo;ve proved that networks made up of sigmoid neurons can compute any function. Recall that in a sigmoid neuron the inputs $x_1,x_2,&mldr;$ result in the output $\sigma (\sum_j w_j x_j + b)$, where $w_j$ are the weights, $b$ is the bias, and $\sigma$ is the sigmoid function:</p>
+<p><img src=../../../../images/nnfordl/4_fun22.png alt=alt></p>
 <p>What if we consider a different type of neuron, one using some other activation function $s(x)$:<br>
-<img src="../../../../images/nnfordl/4_fun23.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun23.png alt=alt></p>
 <p>This can still produce a step function given appropriate weights,<br>
-<img src="../../../../images/nnfordl/4_fun24.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun24.png alt=alt></p>
 <p>So, what properties does $s(z)$ need to assume that this works. We need to assume that $s(z)$ is well-defined as $z \to -\infty$ and $z \to \infty$. These two limits are the two values taken on by our step function. We also need to assume that these two limits are different from one another. If they weren&rsquo;t, there would be no step, simple a flat graph!</p>
-<h3 id="fixing-up-the-step-function">Fixing up the step function</h3>
-<p>Upto this point, we have made some pretty good approximations of the function, but it is only an approximation. 
+<h3 id=fixing-up-the-step-function>Fixing up the step function</h3>
+<p>Upto this point, we have made some pretty good approximations of the function, but it is only an approximation.
 There would be a narrow window of failure.</p>
-<p><img src="../../../../images/nnfordl/4_fun25.png" alt="alt"></p>
+<p><img src=../../../../images/nnfordl/4_fun25.png alt=alt></p>
 <p>Now, these are not terrible failures, we can make the weights of input neurons big enough to make this window smaller.</p>
-<p>Again, let&rsquo;s assume we want to approximate a function $f$. We would try to design pur network so that the 
+<p>Again, let&rsquo;s assume we want to approximate a function $f$. We would try to design pur network so that the
 weighted output from our hidden layer of neurons is $\sigma^{-1} \circ f(x)$: <br>
-<img src="../../../../images/nnfordl/4_fun26.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun26.png alt=alt></p>
 <p>Using the technique described earlier, we would use hidden neurons to produce a sequence of bumps like this :<br>
-<img src="../../../../images/nnfordl/4_fun27.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun27.png alt=alt></p>
 <p>Now, suppose we build another set of hidden neurons to compute the approximation of $\sigma^{-1} \circ f(x)$, but with the bases of the bumps <em>shifted</em> by half the width of the bump:
-<img src="../../../../images/nnfordl/4_fun28.png" alt="alt"></p>
+<img src=../../../../images/nnfordl/4_fun28.png alt=alt></p>
 <p>Now, if we combine the two approximations, the overall approximation will still have windows of failure, but these windows would be still smaller. Further, the approximation will be 2 times better in those windows.</p>
 <p>We can do even better by combining a large number of overlapping approximations.</p>
-<h3 id="conclusion">Conclusion</h3>
+<h3 id=conclusion>Conclusion</h3>
 <p>The above discussion and proof of universality is certainly very crude, however it provides a good intuition.</p>
-<p>So, this takes off the table the question of whether any particular function is computable using a neural network. 
+<p>So, this takes off the table the question of whether any particular function is computable using a neural network.
 The answer is always <em>yes</em>. The right question to ask is, what&rsquo;s a <em>good</em> way to compute the function.</p>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a></li>
-        
-            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-2/">How the backpropogation algorithm works, Micheal Nelson</a></li>
-        
-            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-3/">Improving the way neural networks learn, Micheal Nelson</a></li>
-        
-            <li><a href="../../../../research/machine-intelligence/nn-for-cv-1/">Neural Networks for Computer Vision</a></li>
-        
-            <li><a href="../../../../research/machine-intelligence/research-ml/">Research Notes:: Deep Learning</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a></li>
+<li><a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-2/>How the backpropogation algorithm works, Micheal Nelson</a></li>
+<li><a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-3/>Improving the way neural networks learn, Micheal Nelson</a></li>
+<li><a href=../../../../blog-hugo/research/machine-intelligence/nn-for-cv-1/>Neural Networks for Computer Vision</a></li>
+<li><a href=../../../../blog-hugo/research/machine-intelligence/research-ml/>Research Notes:: Deep Learning</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

@@ -1,97 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Algorithms Design Manual on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/</link>
-    <description>Recent content in Algorithms Design Manual on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The Algorithms Design Manual, Set and String Problems</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/</link>
-      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/</guid>
-      <description>Set and String Problems Set Cover Input description: A collection of subsets $S = {S_1, \ldots , S_m}$ of the universal set $U = {1, \ldots , n}$.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithms Design Manual on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/</link><description>Recent content in Algorithms Design Manual on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/index.xml" rel="self" type="application/rss+xml"/><item><title>The Algorithms Design Manual, Set and String Problems</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/</link><pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/</guid><description>Set and String Problems Set Cover Input description: A collection of subsets $S = {S_1, \ldots , S_m}$ of the universal set $U = {1, \ldots , n}$.
 Problem description: What is the smallest subset $T$ of $S$ whose union equals the universal set—i.e. , $ \cup_{i=1}^{|T|} T_i = U$?
- Several variations of set problem,  Are you allowed to cover elements more than once? Distinction between set cover and set packing.</description>
-    </item>
-    
-    <item>
-      <title>The Algorithms Design Manual, Computational Geometry</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/</link>
-      <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/</guid>
-      <description>Computational Geometry Robust Geometric Primitives Input description: A point $p$ and line segment $l$, or two line segments $l_1$, $l_2$.
+Several variations of set problem, Are you allowed to cover elements more than once? Distinction between set cover and set packing.</description></item><item><title>The Algorithms Design Manual, Computational Geometry</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/</link><pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/</guid><description>Computational Geometry Robust Geometric Primitives Input description: A point $p$ and line segment $l$, or two line segments $l_1$, $l_2$.
 Problem description: Does $p$ lie over, under, or on $l$? Does $l_1$ intersect $l_2$?
- Even simple operations like line(segment) intersection can have many different cases including numerical stability and geometric degeneracy issues. Three primary approaches for dealing with degeneracy,  Ignore it : Most common and recommended approach. Fake it : Random data perturbation so that it becomes non-degenerate.</description>
-    </item>
-    
-    <item>
-      <title>The Algorithms Design Manual, Graph Problems(Hard Problems)</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/</link>
-      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/</guid>
-      <description>Graph Problems : Hard Problems Dealing with NP-completeness.
+Even simple operations like line(segment) intersection can have many different cases including numerical stability and geometric degeneracy issues. Three primary approaches for dealing with degeneracy, Ignore it : Most common and recommended approach. Fake it : Random data perturbation so that it becomes non-degenerate.</description></item><item><title>The Algorithms Design Manual, Graph Problems(Hard Problems)</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/</link><pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/</guid><description>Graph Problems : Hard Problems Dealing with NP-completeness.
 Clique Input description: A graph $G = (V,E)$. Problem description: What is the largest $S \subset V$ such that for all $x, y \in S,, (x, y) \in E$?
- Finding the maximum clique is NP-complete, as hard as it gets. And, provably hard to approximate to withing the factor of $n^{1/2-\epsilon}$. What can we do about it?  Will a maximal clique suffice?</description>
-    </item>
-    
-    <item>
-      <title>The Algorithms Design Manual, Graph Problems(Polynomial-Time)</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/</link>
-      <pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/</guid>
-      <description>Graph Problems : Polynomial-Time Connected Components Input description: A directed or undirected graph $G$.
+Finding the maximum clique is NP-complete, as hard as it gets. And, provably hard to approximate to withing the factor of $n^{1/2-\epsilon}$. What can we do about it? Will a maximal clique suffice?</description></item><item><title>The Algorithms Design Manual, Graph Problems(Polynomial-Time)</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/</link><pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/</guid><description>Graph Problems : Polynomial-Time Connected Components Input description: A directed or undirected graph $G$.
 Problem description: Identify the different pieces or components of $G$, where vertices $x$ and $y$ are members of different components if no path exists from $x$ to $y$ in $G$.
- Associated problems  Identify natural clusters in a set of items. Also used as a preprocessing step to test whether a graph is connected.   Other notions of connectivity, What if my graph is connected?</description>
-    </item>
-    
-    <item>
-      <title>The Algorithms Design Manual, Combinatorial Problems</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/</link>
-      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/</guid>
-      <description>Combinatorial Problems Check out Numerical Recipes
+Associated problems Identify natural clusters in a set of items. Also used as a preprocessing step to test whether a graph is connected. Other notions of connectivity, What if my graph is connected?</description></item><item><title>The Algorithms Design Manual, Combinatorial Problems</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/</link><pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/</guid><description>Combinatorial Problems Check out Numerical Recipes
 Whats different?
- Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written.  Sorting Input description: A set of $n$ items. Problem description: Arrange the items in increasing (or decreasing) order.
- The most fundamental algorithmic problem in computer science.</description>
-    </item>
-    
-    <item>
-      <title>The Algorithms Design Manual, Numerical Problems</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/</link>
-      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/</guid>
-      <description>Numerical Problems Check out Numerical Recipes
+Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written. Sorting Input description: A set of $n$ items. Problem description: Arrange the items in increasing (or decreasing) order.
+The most fundamental algorithmic problem in computer science.</description></item><item><title>The Algorithms Design Manual, Numerical Problems</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual3/</link><pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual3/</guid><description>Numerical Problems Check out Numerical Recipes
 Whats different?
- Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written.  Solving Linear Equations Input description: An $m \times n$ matrix $A$ and an $m \times 1$ vector $b$, together representing $m$ linear equations on $n$ variables.</description>
-    </item>
-    
-    <item>
-      <title>The Algorithms Design Manual, Data structures</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/</link>
-      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/</guid>
-      <description>Data Structures Dictionaries Input Description : A set of $n$ records, each identified by one or more fields.
+Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written. Solving Linear Equations Input description: An $m \times n$ matrix $A$ and an $m \times 1$ vector $b$, together representing $m$ linear equations on $n$ variables.</description></item><item><title>The Algorithms Design Manual, Data structures</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual2/</link><pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual2/</guid><description>Data Structures Dictionaries Input Description : A set of $n$ records, each identified by one or more fields.
 Problem description : Build and maintain a data structure to efficiently locate, insert, and delete the record associated with any query key $q$.
- It is more important to avoid using a bad data structure than to identify the single best option available. Questions to ask:  How many items will you have in your data structure?</description>
-    </item>
-    
-    <item>
-      <title>The Algorithms Design Manual</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual1/</link>
-      <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual1/</guid>
-      <description>How to design algorithms? Using &amp;lsquo;The right stuff&amp;rsquo;.,..  Do I really understand the problem?  What exactly does the input consist of? What exactly are the desired results or outputs? Can I construct an input example small enough to solve by hand? What happens when I try to solve it? How important is it to my application that i always find the optimal answer? Can I settle for something close to the optimal answer?</description>
-    </item>
-    
-  </channel>
-</rss>
+It is more important to avoid using a bad data structure than to identify the single best option available. Questions to ask: How many items will you have in your data structure?</description></item><item><title>The Algorithms Design Manual</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual1/</link><pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual1/</guid><description>How to design algorithms? Using &amp;lsquo;The right stuff&amp;rsquo;.,.. Do I really understand the problem? What exactly does the input consist of? What exactly are the desired results or outputs? Can I construct an input example small enough to solve by hand? What happens when I try to solve it? How important is it to my application that i always find the optimal answer? Can I settle for something close to the optimal answer?</description></item></channel></rss>

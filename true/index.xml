@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>True on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/true/</link>
-    <description>Recent content in True on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.myproductionurl.com/true/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>True on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/true/</link><description>Recent content in True on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://nitishpuri.github.io/blog-hugo/true/index.xml" rel="self" type="application/rss+xml"/></channel></rss>

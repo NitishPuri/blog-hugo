@@ -1,100 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Algorithms by Das Gupta on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/</link>
-    <description>Recent content in Algorithms by Das Gupta on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Algorithms by DasGupta, Part 7</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms7/</link>
-      <pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms7/</guid>
-      <description>Chapter 10: Quntized Algorithms There is a catch ofcourse: this algorithm needs a quantum computer to execute.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithms by Das Gupta on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/</link><description>Recent content in Algorithms by Das Gupta on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/index.xml" rel="self" type="application/rss+xml"/><item><title>Algorithms by DasGupta, Part 7</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms7/</link><pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms7/</guid><description>Chapter 10: Quntized Algorithms There is a catch ofcourse: this algorithm needs a quantum computer to execute.
 Qubits, superposition and measurment Such a superposition is the basic unit of encoded information in quantum computers. It is called a qubit.
-This linear superposition is however private to the electron. For us to get a glimpse of the electron&amp;rsquo;s state, we must make a measurment, and when we do get a single bit of information, 0 or 1.</description>
-    </item>
-    
-    <item>
-      <title>Algorithms by DasGupta, Part 6</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms6/</link>
-      <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms6/</guid>
-      <description>Chapter 8: NP-Complete problems Search problems A set of problems that can not be solved in time better than an exhaustive search.
+This linear superposition is however private to the electron. For us to get a glimpse of the electron&amp;rsquo;s state, we must make a measurment, and when we do get a single bit of information, 0 or 1.</description></item><item><title>Algorithms by DasGupta, Part 6</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms6/</link><pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms6/</guid><description>Chapter 8: NP-Complete problems Search problems A set of problems that can not be solved in time better than an exhaustive search.
 Satisfiability SAT, is a problem of great practical importance, applications ranging from chip testing to computer design to image analysis and software engineering.
 It is also a canonical hard problem.
 Consider this Boolean formula in conjugative normal form,
-$$(x \lor y \lor z)(x \lor \bar y)(y \lor \bar z)(z \lor \bar x)(\bar x \lor \bar y \lor \bar z)$$</description>
-    </item>
-    
-    <item>
-      <title>Algorithms by DasGupta, Part 5</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms5/</link>
-      <pubDate>Sat, 09 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms5/</guid>
-      <description>Chapter 7: Linear Programming and reductions Linear programming describes a broad class of optimization tasks in which both the constraints and the optimization criterion are linear functions. It turns out an enormous number of problems can be expressed in this way.
+$$(x \lor y \lor z)(x \lor \bar y)(y \lor \bar z)(z \lor \bar x)(\bar x \lor \bar y \lor \bar z)$$</description></item><item><title>Algorithms by DasGupta, Part 5</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms5/</link><pubDate>Sat, 09 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms5/</guid><description>Chapter 7: Linear Programming and reductions Linear programming describes a broad class of optimization tasks in which both the constraints and the optimization criterion are linear functions. It turns out an enormous number of problems can be expressed in this way.
 An introduction to linear programming Eample : Profit maximization
 We represent the situation be a linear program as follows,
 Objective function :
 $$max; x_1 + 6x_2$$
 Constraints :
-$$x_1 \leq 200 \ x_2 \leq 300 \ x_1 + x_2 \leq 400 \ x_1, x_2 \geq 0$$</description>
-    </item>
-    
-    <item>
-      <title>Algorithms by DasGupta, Part 3</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms3/</link>
-      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms3/</guid>
-      <description>Chapter 3: Decomposition of Graphs Why Graphs The range of problems that can be solved by representing your problem in Graphs.
+$$x_1 \leq 200 \ x_2 \leq 300 \ x_1 + x_2 \leq 400 \ x_1, x_2 \geq 0$$</description></item><item><title>Algorithms by DasGupta, Part 3</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms3/</link><pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms3/</guid><description>Chapter 3: Decomposition of Graphs Why Graphs The range of problems that can be solved by representing your problem in Graphs.
 Graph representations,
 Adjacency Matrix
 $$ a_{ij} = \begin{cases} 1 \text{ if there is an edge from } v_i \text{ to } v_j \ 0 \text{ otherwise} \end{cases}$$
 Or, *Adjacency List*,
-$|V|$ linked lists, one per vertex. The list for *u* holds the names of vertices to which *u*, has an outgoing edge.</description>
-    </item>
-    
-    <item>
-      <title>Algorithms by DasGupta, Part 4</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms4/</link>
-      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms4/</guid>
-      <description>Chapter 5: Greedy Algorithms !Thinking Ahead.
+$|V|$ linked lists, one per vertex. The list for *u* holds the names of vertices to which *u*, has an outgoing edge.</description></item><item><title>Algorithms by DasGupta, Part 4</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms4/</link><pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms4/</guid><description>Chapter 5: Greedy Algorithms !Thinking Ahead.
 Minimum spanning trees Property 1 Removing a cycle edge cannot disconnect a graph.
 The tree with minimum total weight is then known as minimum spanning tree.
 Formally,
 Input : An undirected graph $G = (V, E)$; edge weights $w_e$.
-Output : *A tree $T = (V, E&#39;)$, with $E&#39; \subseteq E$, that minimizes $weight(T) = \sum_{e \in E&#39;}w_e$.*
+Output : *A tree $T = (V, E')$, with $E' \subseteq E$, that minimizes $weight(T) = \sum_{e \in E'}w_e$.*
 A greedy approach Kruskal&amp;rsquo;s algorithm
-Repeatedly add the next lightest edge that doesn&amp;rsquo;t produce a cycle.</description>
-    </item>
-    
-    <item>
-      <title>Algorithms by DasGupta, Part 2</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms2/</link>
-      <pubDate>Sat, 19 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms2/</guid>
-      <description>Chapter 2: Divide-and-Conquer Algorithms The divide and conquer strategy solves a problem by
- Breaking it into sub-problems that are themselves smaller instances of the same type of problem. Recursively solving these problems. Appropriately combining their results.  Multiplication For multiplying two n-bit integers x and y.
+Repeatedly add the next lightest edge that doesn&amp;rsquo;t produce a cycle.</description></item><item><title>Algorithms by DasGupta, Part 2</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms2/</link><pubDate>Sat, 19 Aug 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms2/</guid><description>Chapter 2: Divide-and-Conquer Algorithms The divide and conquer strategy solves a problem by
+Breaking it into sub-problems that are themselves smaller instances of the same type of problem. Recursively solving these problems. Appropriately combining their results. Multiplication For multiplying two n-bit integers x and y.
 $x = \bbox[5px, border:2px solid black]{ x_L } \quad \bbox[5px, border:2px solid black]{ x_R } = 2^{n/2}x_L + x_R$
-$y = \bbox[5px, border:2px solid black]{ y_L } \quad \bbox[5px, border:2px solid black]{ y_R } = 2^{n/2}y_L + y_R$</description>
-    </item>
-    
-    <item>
-      <title>Algorithms by DasGupta, Part1</title>
-      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms1/</link>
-      <pubDate>Sat, 19 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms1/</guid>
-      <description>Chapter 0: Prologue  Books and algorithms  Ideas that changed the world. Widespread use of decimal system.   Enter Fibonacci  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...., Also, $F_n = F_{n-1} + F_{n-2}$ And, $F_n ≈ 2^{0.694n}$ A naive implementation , with no caching of values.., fib1  Runtime &amp;ndash;&amp;gt; $T(n) &amp;gt;= F_n$, exponential in n   Can We Do Better,&amp;hellip;.? A Polynomial algorithm&amp;hellip;, fib2  A loop based algorithm that remembers previous values in an array.</description>
-    </item>
-    
-  </channel>
-</rss>
+$y = \bbox[5px, border:2px solid black]{ y_L } \quad \bbox[5px, border:2px solid black]{ y_R } = 2^{n/2}y_L + y_R$</description></item><item><title>Algorithms by DasGupta, Part1</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms1/</link><pubDate>Sat, 19 Aug 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms1/</guid><description>Chapter 0: Prologue Books and algorithms Ideas that changed the world. Widespread use of decimal system. Enter Fibonacci 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...., Also, $F_n = F_{n-1} + F_{n-2}$ And, $F_n ≈ 2^{0.694n}$ A naive implementation , with no caching of values.., fib1 Runtime &amp;ndash;&amp;gt; $T(n) &amp;gt;= F_n$, exponential in n Can We Do Better,&amp;hellip;.? A Polynomial algorithm&amp;hellip;, fib2 A loop based algorithm that remembers previous values in an array.</description></item></channel></rss>

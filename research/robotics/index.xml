@@ -1,75 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Robotics on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/research/robotics/</link>
-    <description>Recent content in Robotics on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.myproductionurl.com/research/robotics/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Robotics Engineer Nanodegree :: Term 2</title>
-      <link>https://www.myproductionurl.com/research/robotics/rsend-term2/</link>
-      <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/robotics/rsend-term2/</guid>
-      <description>Starting the term 2 of Udacity Robotics Software Engineer Nanodegree today. Will be updating this page with micro breifs of topics and projects for the term.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Robotics on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/research/robotics/</link><description>Recent content in Robotics on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://nitishpuri.github.io/blog-hugo/research/robotics/index.xml" rel="self" type="application/rss+xml"/><item><title>Robotics Engineer Nanodegree :: Term 2</title><link>https://nitishpuri.github.io/blog-hugo/research/robotics/rsend-term2/</link><pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/robotics/rsend-term2/</guid><description>Starting the term 2 of Udacity Robotics Software Engineer Nanodegree today. Will be updating this page with micro breifs of topics and projects for the term.
 This term focuses on localisation and mapping problems based on probabilistic and deep reinforcement learning models deployed on embedded hardware(NVIDIA Jetson Tx2).
-High Level Topics  Probabilistic Robotics. Introduction to Jetson Robotic System Deployment. Localization. Mapping and SLAM RL Basics Path Planning and RL Navigation.</description>
-    </item>
-    
-    <item>
-      <title>Mobile Robots</title>
-      <link>https://www.myproductionurl.com/research/robotics/mobile-robots/</link>
-      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/robotics/mobile-robots/</guid>
-      <description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+High Level Topics Probabilistic Robotics. Introduction to Jetson Robotic System Deployment. Localization. Mapping and SLAM RL Basics Path Planning and RL Navigation.</description></item><item><title>Mobile Robots</title><link>https://nitishpuri.github.io/blog-hugo/research/robotics/mobile-robots/</link><pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/robotics/mobile-robots/</guid><description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
 Kinematics tf: The Transform Library Tully Foote
 Open Source Robotics Foundation
- The need for tf : to provide a standard way to keep track of coordinate frames and transform data within the entire system to a component user without requiring knowledge of all the coordinate frames. Broadcaster and Listner modules. Closely related to scene graphs.</description>
-    </item>
-    
-    <item>
-      <title>Inverse Kinematics on Kuka Arm using ROS and Python</title>
-      <link>https://www.myproductionurl.com/research/robotics/kuka-kinematics/</link>
-      <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/robotics/kuka-kinematics/</guid>
-      <description>Picking and placing objects is something that we as humans take for granted. That&amp;rsquo;s not the case for our mechanical(and electronic) friends. They have to
- Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&amp;rsquo;t always go very well for us either).  One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object.</description>
-    </item>
-    
-    <item>
-      <title>Soft Robotics</title>
-      <link>https://www.myproductionurl.com/research/robotics/soft-robots/</link>
-      <pubDate>Sun, 17 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/robotics/soft-robots/</guid>
-      <description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+The need for tf : to provide a standard way to keep track of coordinate frames and transform data within the entire system to a component user without requiring knowledge of all the coordinate frames. Broadcaster and Listner modules. Closely related to scene graphs.</description></item><item><title>Inverse Kinematics on Kuka Arm using ROS and Python</title><link>https://nitishpuri.github.io/blog-hugo/research/robotics/kuka-kinematics/</link><pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/robotics/kuka-kinematics/</guid><description>Picking and placing objects is something that we as humans take for granted. That&amp;rsquo;s not the case for our mechanical(and electronic) friends. They have to
+Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&amp;rsquo;t always go very well for us either). One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object.</description></item><item><title>Soft Robotics</title><link>https://nitishpuri.github.io/blog-hugo/research/robotics/soft-robots/</link><pubDate>Sun, 17 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/robotics/soft-robots/</guid><description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
 Soft Robotics Soft Robotics: A Perspective—Current Trends and Prospects for the Future Carmel Majidi : 2013
 Source
- Soft robots are primarily composed of easily deformable matter such as fluids, gels, and elastomers that match the elastic and rheological properties of biological tissue and organs. Like an octopus squeezing through a narrow opening or a caterpillar rolling through uneven terrain, a soft robot must adapt its shape and locomotion strategy for a broad range of tasks, obstacles, and environmental conditions.</description>
-    </item>
-    
-    <item>
-      <title>Biologically Inspired Robots</title>
-      <link>https://www.myproductionurl.com/research/robotics/biorobots/</link>
-      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/robotics/biorobots/</guid>
-      <description>Bio Robots OpenRatSLAM : an open source brain-based SLAM system Feb 2013
+Soft robots are primarily composed of easily deformable matter such as fluids, gels, and elastomers that match the elastic and rheological properties of biological tissue and organs. Like an octopus squeezing through a narrow opening or a caterpillar rolling through uneven terrain, a soft robot must adapt its shape and locomotion strategy for a broad range of tasks, obstacles, and environmental conditions.</description></item><item><title>Biologically Inspired Robots</title><link>https://nitishpuri.github.io/blog-hugo/research/robotics/biorobots/</link><pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/robotics/biorobots/</guid><description>Bio Robots OpenRatSLAM : an open source brain-based SLAM system Feb 2013
 Source
- RatSLAM, OpenRatSLAM, SLAM, Navigation, Mapping, Brain-based, Appearance-based, ROS, Open-source, Hippocampus RatSLAM is a navigation system based on the neural processes underlying navigation in the rodent brain, capable of operating with low resolution monocular image data. This paper describes OpenRatSLAM, an open source version of RatSLAM with bindings to ROS SLAM(Simultaneous Localization and Mapping) , at the core based on SIFT or SURF features.</description>
-    </item>
-    
-    <item>
-      <title>Robotics Research</title>
-      <link>https://www.myproductionurl.com/research/robotics/research-robotics/</link>
-      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/robotics/research-robotics/</guid>
-      <description>Biologically Inspired Robots  Biologically Inspired Robots  OpenRatSLAM : an open source brain-based SLAM system Biologically Inspired Approaches to Robotics The First Takeoff of a Biologically Inspired At-Scale Robotic Insect Towards Dynamic Trot Gait Locomotion—Design, Control, and Experiments with Cheetah-cub, a Compliant Quadruped Robot Gait Pattern Generation and Stabilization for Humanoid Robot Based on Coupled Oscillators    Mobile Robots, Robot Grasping and Swarm Robotics  Kinematics  tf: The Transform Library Solving Kinematics Problems of a 6-DOF Robot Manipulator   Robot Grasping  Robotic Grasping and Contact: A Review Universal Robotic Gripper Based on the Jamming of Granular Material Dex-Net 2.</description>
-    </item>
-    
-  </channel>
-</rss>
+RatSLAM, OpenRatSLAM, SLAM, Navigation, Mapping, Brain-based, Appearance-based, ROS, Open-source, Hippocampus RatSLAM is a navigation system based on the neural processes underlying navigation in the rodent brain, capable of operating with low resolution monocular image data. This paper describes OpenRatSLAM, an open source version of RatSLAM with bindings to ROS SLAM(Simultaneous Localization and Mapping) , at the core based on SIFT or SURF features.</description></item><item><title>Robotics Research</title><link>https://nitishpuri.github.io/blog-hugo/research/robotics/research-robotics/</link><pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/robotics/research-robotics/</guid><description>Biologically Inspired Robots Biologically Inspired Robots OpenRatSLAM : an open source brain-based SLAM system Biologically Inspired Approaches to Robotics The First Takeoff of a Biologically Inspired At-Scale Robotic Insect Towards Dynamic Trot Gait Locomotion—Design, Control, and Experiments with Cheetah-cub, a Compliant Quadruped Robot Gait Pattern Generation and Stabilization for Humanoid Robot Based on Coupled Oscillators Mobile Robots, Robot Grasping and Swarm Robotics Kinematics tf: The Transform Library Solving Kinematics Problems of a 6-DOF Robot Manipulator Robot Grasping Robotic Grasping and Contact: A Review Universal Robotic Gripper Based on the Jamming of Granular Material Dex-Net 2.</description></item></channel></rss>

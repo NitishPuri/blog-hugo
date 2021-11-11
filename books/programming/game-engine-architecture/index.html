@@ -1,222 +1,117 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Game Engine Architecture" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Game Engine Architecture">
 <meta property="og:description" content="Based on : Game Engine Architecture by Jason Gregory
 All the technology that goes in making a AAA game!!!!
-Foundations Introduction  Industry overview Structure of a Typical Game Team  Engineers Artists Game Designers Producers Other Staff Publishers and Studios   What is a Game??  Video Games as Soft Real-Time Simulations   What is a Game Engine??  Engine Differences across Genres  First-Person Shooter(Quake, Unreal Tournament, Half Life) Platformers and Other Third-Person Games(Gears of War, Dead Space, Red Dead Redemption, Uncharted) Fighting Games(Soul Calliber, Tekken, Fight Night) Racing Games(NFS, Gran Turismo, Mario kart) Real Time Strategy(Warcraft, Starcraft, Command and Conquer, Age of Empires) Massively Multiplayer Online Games(World of Warcraft, Destiny) Player Authored Content(Mods)(Minecraft) Other Games(sports, RPG, puzzle games, social sims, text based!" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/game-engine-architecture/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2018-01-10T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Game Engine Architecture"/>
-<meta name="twitter:description" content="Based on : Game Engine Architecture by Jason Gregory
+Foundations Introduction  Industry overview Structure of a Typical Game Team  Engineers Artists Game Designers Producers Other Staff Publishers and Studios   What is a Game??  Video Games as Soft Real-Time Simulations   What is a Game Engine??  Engine Differences across Genres  First-Person Shooter(Quake, Unreal Tournament, Half Life) Platformers and Other Third-Person Games(Gears of War, Dead Space, Red Dead Redemption, Uncharted) Fighting Games(Soul Calliber, Tekken, Fight Night) Racing Games(NFS, Gran Turismo, Mario kart) Real Time Strategy(Warcraft, Starcraft, Command and Conquer, Age of Empires) Massively Multiplayer Online Games(World of Warcraft, Destiny) Player Authored Content(Mods)(Minecraft) Other Games(sports, RPG, puzzle games, social sims, text based!">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/game-engine-architecture/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2018-01-10T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Game Engine Architecture">
+<meta name=twitter:description content="Based on : Game Engine Architecture by Jason Gregory
 All the technology that goes in making a AAA game!!!!
-Foundations Introduction  Industry overview Structure of a Typical Game Team  Engineers Artists Game Designers Producers Other Staff Publishers and Studios   What is a Game??  Video Games as Soft Real-Time Simulations   What is a Game Engine??  Engine Differences across Genres  First-Person Shooter(Quake, Unreal Tournament, Half Life) Platformers and Other Third-Person Games(Gears of War, Dead Space, Red Dead Redemption, Uncharted) Fighting Games(Soul Calliber, Tekken, Fight Night) Racing Games(NFS, Gran Turismo, Mario kart) Real Time Strategy(Warcraft, Starcraft, Command and Conquer, Age of Empires) Massively Multiplayer Online Games(World of Warcraft, Destiny) Player Authored Content(Mods)(Minecraft) Other Games(sports, RPG, puzzle games, social sims, text based!"/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/game-engine-architecture/">
-
-    <title>
-      
-        Game Engine Architecture | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+Foundations Introduction  Industry overview Structure of a Typical Game Team  Engineers Artists Game Designers Producers Other Staff Publishers and Studios   What is a Game??  Video Games as Soft Real-Time Simulations   What is a Game Engine??  Engine Differences across Genres  First-Person Shooter(Quake, Unreal Tournament, Half Life) Platformers and Other Third-Person Games(Gears of War, Dead Space, Red Dead Redemption, Uncharted) Fighting Games(Soul Calliber, Tekken, Fight Night) Racing Games(NFS, Gran Turismo, Mario kart) Real Time Strategy(Warcraft, Starcraft, Command and Conquer, Age of Empires) Massively Multiplayer Online Games(World of Warcraft, Destiny) Player Authored Content(Mods)(Minecraft) Other Games(sports, RPG, puzzle games, social sims, text based!">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/game-engine-architecture/>
+<title>
+Game Engine Architecture | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Game Engine Architecture</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Game Engine Architecture</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2018-01-10">Jan 10, 2018</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2018-01-10>Jan 10, 2018</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/architecture>architecture</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#foundations">Foundations</a>
-      <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#tools-of-the-trade">Tools of the Trade</a></li>
-        <li><a href="#fundamentals-of-software-engineering-for-games">Fundamentals of Software Engineering for Games</a></li>
-        <li><a href="#3d-math-for-games">3D Math for Games</a></li>
-      </ul>
-    </li>
-    <li><a href="#low-level-engine-systems">Low Level Engine Systems</a>
-      <ul>
-        <li><a href="#engine-support-systems">Engine Support Systems</a></li>
-        <li><a href="#resources-and-the-file-system">Resources and the File System</a></li>
-        <li><a href="#the-game-loop-and-real-time-simulation">The Game Loop and Real-Time Simulation</a></li>
-        <li><a href="#human-interface-devices-hid">Human Interface Devices (HID)</a></li>
-        <li><a href="#tools-for-debugging-and-development">Tools for Debugging and Development</a></li>
-      </ul>
-    </li>
-    <li><a href="#graphics-motion-and-sound">Graphics, Motion and Sound</a>
-      <ul>
-        <li><a href="#the-rendering-engine">The Rendering Engine</a></li>
-        <li><a href="#animation-systems">Animation Systems</a></li>
-        <li><a href="#collision-and-rigid-body-dynamics">Collision and Rigid Body Dynamics</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#foundations>Foundations</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#tools-of-the-trade>Tools of the Trade</a></li>
+<li><a href=#fundamentals-of-software-engineering-for-games>Fundamentals of Software Engineering for Games</a></li>
+<li><a href=#3d-math-for-games>3D Math for Games</a></li>
+</ul>
+</li>
+<li><a href=#low-level-engine-systems>Low Level Engine Systems</a>
+<ul>
+<li><a href=#engine-support-systems>Engine Support Systems</a></li>
+<li><a href=#resources-and-the-file-system>Resources and the File System</a></li>
+<li><a href=#the-game-loop-and-real-time-simulation>The Game Loop and Real-Time Simulation</a></li>
+<li><a href=#human-interface-devices-hid>Human Interface Devices (HID)</a></li>
+<li><a href=#tools-for-debugging-and-development>Tools for Debugging and Development</a></li>
+</ul>
+</li>
+<li><a href=#graphics-motion-and-sound>Graphics, Motion and Sound</a>
+<ul>
+<li><a href=#the-rendering-engine>The Rendering Engine</a></li>
+<li><a href=#animation-systems>Animation Systems</a></li>
+<li><a href=#collision-and-rigid-body-dynamics>Collision and Rigid Body Dynamics</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <p>Based on : Game Engine Architecture by Jason Gregory</p>
+<p>Based on : Game Engine Architecture by Jason Gregory</p>
 <p><strong>All the technology that goes in making a AAA game!!!!</strong></p>
-<h2 id="foundations">Foundations</h2>
-<h3 id="introduction">Introduction</h3>
+<h2 id=foundations>Foundations</h2>
+<h3 id=introduction>Introduction</h3>
 <ul>
 <li>Industry overview</li>
 <li>Structure of a Typical Game Team
@@ -283,14 +178,14 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<h3 id="tools-of-the-trade">Tools of the Trade</h3>
+<h3 id=tools-of-the-trade>Tools of the Trade</h3>
 <ul>
 <li>Version Control</li>
 <li>Visual Studio / IDE</li>
 <li>Profiling Tools</li>
 <li>Memory Leak and Corruption Detection</li>
 </ul>
-<h3 id="fundamentals-of-software-engineering-for-games">Fundamentals of Software Engineering for Games</h3>
+<h3 id=fundamentals-of-software-engineering-for-games>Fundamentals of Software Engineering for Games</h3>
 <ul>
 <li>C++ Review and Best Practices</li>
 <li>Data, Code and Memory</li>
@@ -301,7 +196,7 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<h3 id="3d-math-for-games">3D Math for Games</h3>
+<h3 id=3d-math-for-games>3D Math for Games</h3>
 <ul>
 <li>Solving 3D Problems in 2D</li>
 <li>Points and Vectors
@@ -346,8 +241,8 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<h2 id="low-level-engine-systems">Low Level Engine Systems</h2>
-<h3 id="engine-support-systems">Engine Support Systems</h3>
+<h2 id=low-level-engine-systems>Low Level Engine Systems</h2>
+<h3 id=engine-support-systems>Engine Support Systems</h3>
 <ul>
 <li>Subsystem Start-Up and Shut-Down
 <ul>
@@ -397,7 +292,7 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<h3 id="resources-and-the-file-system">Resources and the File System</h3>
+<h3 id=resources-and-the-file-system>Resources and the File System</h3>
 <ul>
 <li>File System
 <ul>
@@ -444,11 +339,11 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<h3 id="the-game-loop-and-real-time-simulation">The Game Loop and Real-Time Simulation</h3>
+<h3 id=the-game-loop-and-real-time-simulation>The Game Loop and Real-Time Simulation</h3>
 <ul>
 <li>The Rendering Loop</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>quit) { 
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#66d9ef>while</span>(<span style=color:#f92672>!</span>quit) { 
     updateCamera(); 
     updateSceneElements();
     renderScene();
@@ -463,22 +358,22 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>() <span style="color:#75715e">// Pong 
-</span><span style="color:#75715e"></span>{
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() <span style=color:#75715e>// Pong 
+</span><span style=color:#75715e></span>{
     initGame();
-    <span style="color:#66d9ef">while</span>(true) {   <span style="color:#75715e">// game loop
-</span><span style="color:#75715e"></span>        readHumanInterfaceDevices();
-        <span style="color:#66d9ef">if</span>(quitButtonPressed) {
-            <span style="color:#66d9ef">break</span>;  <span style="color:#75715e">// break out of the game loop
-</span><span style="color:#75715e"></span>        }
+    <span style=color:#66d9ef>while</span>(true) {   <span style=color:#75715e>// game loop
+</span><span style=color:#75715e></span>        readHumanInterfaceDevices();
+        <span style=color:#66d9ef>if</span>(quitButtonPressed) {
+            <span style=color:#66d9ef>break</span>;  <span style=color:#75715e>// break out of the game loop
+</span><span style=color:#75715e></span>        }
         movePaddles();
         moveBall();
         collideAndBounceBall();
-        <span style="color:#66d9ef">if</span>(ballImpactSide(LEFT_PLAYER)) {
+        <span style=color:#66d9ef>if</span>(ballImpactSide(LEFT_PLAYER)) {
             incrementScore(RIGHT_PLAYER);
             resetBall();
         }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(ballImpactSide(RIGHT_PLAYER)) {
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(ballImpactSide(RIGHT_PLAYER)) {
             incrementScore(LEFT_PLAYER);
             resetBall();
         }
@@ -495,8 +390,8 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">// The Framework!!
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span>(true) {
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#75715e>// The Framework!!
+</span><span style=color:#75715e></span><span style=color:#66d9ef>while</span>(true) {
     foreach(frameListener) {
         frameListener.frameStarted();
     }
@@ -506,24 +401,24 @@ Blog - Nitish Puri
     }
     finalizeSceneAndSwapBuffers();
 }
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">// A frame listener implementation
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameFrameListener</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> FrameListener 
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#75715e>// A frame listener implementation
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>GameFrameListener</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> FrameListener 
 {
-<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> frameStarted() {
-        <span style="color:#75715e">// Things that must happen before rendering
-</span><span style="color:#75715e"></span>        pollInputDevices();
+<span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+    <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> frameStarted() {
+        <span style=color:#75715e>// Things that must happen before rendering
+</span><span style=color:#75715e></span>        pollInputDevices();
         updatePlayerControls();
         updateDynamics();
         resolveCollisions();
         updateCamera();
-        <span style="color:#75715e">// etc.
-</span><span style="color:#75715e"></span>    }
-    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">frameEnded</span>() {
-        <span style="color:#75715e">// Things to do after scene rendering
-</span><span style="color:#75715e"></span>        drawHud();
-        <span style="color:#75715e">// etc.
-</span><span style="color:#75715e"></span>    }
+        <span style=color:#75715e>// etc.
+</span><span style=color:#75715e></span>    }
+    <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>frameEnded</span>() {
+        <span style=color:#75715e>// Things to do after scene rendering
+</span><span style=color:#75715e></span>        drawHud();
+        <span style=color:#75715e>// etc.
+</span><span style=color:#75715e></span>    }
 }
 </code></pre></div><ul>
 <li>Abstract Timelines
@@ -583,7 +478,7 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<h3 id="human-interface-devices-hid">Human Interface Devices (HID)</h3>
+<h3 id=human-interface-devices-hid>Human Interface Devices (HID)</h3>
 <ul>
 <li>Types of Human Interface Devices</li>
 <li>Interfacing with HID
@@ -632,7 +527,7 @@ Blog - Nitish Puri
 </li>
 <li>Human Interface Devices in Practice</li>
 </ul>
-<h3 id="tools-for-debugging-and-development">Tools for Debugging and Development</h3>
+<h3 id=tools-for-debugging-and-development>Tools for Debugging and Development</h3>
 <ul>
 <li>Logging and Tracing
 <ul>
@@ -670,8 +565,8 @@ Blog - Nitish Puri
 </li>
 <li>In-Game Memory Stats and Leak Detection</li>
 </ul>
-<h2 id="graphics-motion-and-sound">Graphics, Motion and Sound</h2>
-<h3 id="the-rendering-engine">The Rendering Engine</h3>
+<h2 id=graphics-motion-and-sound>Graphics, Motion and Sound</h2>
+<h3 id=the-rendering-engine>The Rendering Engine</h3>
 <ul>
 <li>Foundations of Depth Buffered Triangle Rasterization
 <ul>
@@ -754,7 +649,7 @@ Blog - Nitish Puri
 </li>
 <li>The GPU Pipeline(<em>gpu</em>)
 <ul>
-<li><strong>Vertex Shader</strong> - Transform and light  individual vertices from modelspace to clip space. Now has access to texture data as well.</li>
+<li><strong>Vertex Shader</strong> - Transform and light individual vertices from modelspace to clip space. Now has access to texture data as well.</li>
 <li><strong>Geometry Shader</strong> - Optional stage that can add/remove/modify primitives.</li>
 <li><strong>Stream Output</strong> - Permits to stream data at this point back into the pipeline for effects like hair simulation.</li>
 <li><strong>Clipping</strong> - Fixed function stage that chops the primitives to the frustum. User defined clip planes can be added.</li>
@@ -820,7 +715,7 @@ Blog - Nitish Puri
 <li>Shadow maps and Shadow Volumes</li>
 </ul>
 </li>
-<li>Ambient Occlusion &ndash; Static for objects, precomputed and stored  in textures.</li>
+<li>Ambient Occlusion &ndash; Static for objects, precomputed and stored in textures.</li>
 <li>Reflections</li>
 <li>Subsurface Scattering</li>
 <li>Precomputed Radiance Transfer</li>
@@ -865,7 +760,7 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<h3 id="animation-systems">Animation Systems</h3>
+<h3 id=animation-systems>Animation Systems</h3>
 <ul>
 <li>Types of Character Animation
 <ul>
@@ -975,8 +870,8 @@ Blog - Nitish Puri
 <li>Global pose generation</li>
 <li>Post-processing</li>
 <li>Recalculation of global poses</li>
-<li>Matrix palette generation &ndash;&gt; Input to the rendering engine.
-<img src="../../../images/gamearch/anim-pipe1.png" alt="0_fib"></li>
+<li>Matrix palette generation &ndash;> Input to the rendering engine.
+<img src=../../../images/gamearch/anim-pipe1.png alt=0_fib></li>
 <li>Data Structures
 <ul>
 <li>Shared Resource Data
@@ -1037,7 +932,7 @@ Blog - Nitish Puri
 </li>
 <li>Animation Controllers</li>
 </ul>
-<h3 id="collision-and-rigid-body-dynamics">Collision and Rigid Body Dynamics</h3>
+<h3 id=collision-and-rigid-body-dynamics>Collision and Rigid Body Dynamics</h3>
 <ul>
 <li>Do you want Physics in your Game?
 <ul>
@@ -1060,162 +955,76 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../books/programming/fund-comp-graphics/fund-comp-graphics-1/">Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
-        
-            <li><a href="../../../books/programming/fund-comp-graphics/fund-comp-graphics-2/">Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
-        
-            <li><a href="../../../books/programming/fund-comp-graphics/fund-comp-graphics-3/">Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
-        
-            <li><a href="../../../books/programming/fund-comp-graphics/fund-comp-graphics-4/">Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
-        
-            <li><a href="../../../books/programming/fund-comp-graphics/fund-comp-graphics-5/">Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-1/>Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
+<li><a href=../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-2/>Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
+<li><a href=../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-3/>Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
+<li><a href=../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-4/>Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
+<li><a href=../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-5/>Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

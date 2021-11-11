@@ -1,220 +1,112 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Algorithms by DasGupta, Part 6" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Algorithms by DasGupta, Part 6">
 <meta property="og:description" content="Chapter 8: NP-Complete problems Search problems A set of problems that can not be solved in time better than an exhaustive search.
 Satisfiability SAT, is a problem of great practical importance, applications ranging from chip testing to computer design to image analysis and software engineering.
 It is also a canonical hard problem.
 Consider this Boolean formula in conjugative normal form,
-$$(x \lor y \lor z)(x \lor \bar y)(y \lor \bar z)(z \lor \bar x)(\bar x \lor \bar y \lor \bar z)$$" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms6/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2017-09-11T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Algorithms by DasGupta, Part 6"/>
-<meta name="twitter:description" content="Chapter 8: NP-Complete problems Search problems A set of problems that can not be solved in time better than an exhaustive search.
+$$(x \lor y \lor z)(x \lor \bar y)(y \lor \bar z)(z \lor \bar x)(\bar x \lor \bar y \lor \bar z)$$">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms6/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2017-09-11T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Algorithms by DasGupta, Part 6">
+<meta name=twitter:description content="Chapter 8: NP-Complete problems Search problems A set of problems that can not be solved in time better than an exhaustive search.
 Satisfiability SAT, is a problem of great practical importance, applications ranging from chip testing to computer design to image analysis and software engineering.
 It is also a canonical hard problem.
 Consider this Boolean formula in conjugative normal form,
-$$(x \lor y \lor z)(x \lor \bar y)(y \lor \bar z)(z \lor \bar x)(\bar x \lor \bar y \lor \bar z)$$"/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms6/">
-
-    <title>
-      
-        Algorithms by DasGupta, Part 6 | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+$$(x \lor y \lor z)(x \lor \bar y)(y \lor \bar z)(z \lor \bar x)(\bar x \lor \bar y \lor \bar z)$$">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/algorithms6/>
+<title>
+Algorithms by DasGupta, Part 6 | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/">Algorithms by Das Gupta</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Algorithms by DasGupta, Part 6</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-dasgupta/>Algorithms by Das Gupta</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Algorithms by DasGupta, Part 6</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-dasgupta/algorithms6/">Algorithms by DasGupta, Part 6</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/algorithms-dasgupta/algorithms6/>Algorithms by DasGupta, Part 6</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-09-11">Sep 11, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-09-11>Sep 11, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#chapter-8-np-complete-problems">Chapter 8: NP-Complete problems</a>
-      <ul>
-        <li><a href="#search-problems"><strong>Search problems</strong></a></li>
-        <li><a href="#np-complete-problems"><strong>NP-complete problems</strong></a></li>
-        <li><a href="#the-reductions"><strong>The Reductions</strong></a></li>
-      </ul>
-    </li>
-    <li><a href="#chapter-9-coping-with-np-completeness"><strong>Chapter 9: Coping with NP completeness</strong></a>
-      <ul>
-        <li><a href="#intelligent-exhaustive-search"><strong>Intelligent Exhaustive Search</strong></a></li>
-        <li><a href="#branch-and-bound"><strong>Branch and Bound</strong></a></li>
-        <li><a href="#approximation-algorithms"><strong>Approximation algorithms</strong></a></li>
-        <li><a href="#local-search-heuristics"><strong>Local Search Heuristics</strong></a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#chapter-8-np-complete-problems>Chapter 8: NP-Complete problems</a>
+<ul>
+<li><a href=#search-problems><strong>Search problems</strong></a></li>
+<li><a href=#np-complete-problems><strong>NP-complete problems</strong></a></li>
+<li><a href=#the-reductions><strong>The Reductions</strong></a></li>
+</ul>
+</li>
+<li><a href=#chapter-9-coping-with-np-completeness><strong>Chapter 9: Coping with NP completeness</strong></a>
+<ul>
+<li><a href=#intelligent-exhaustive-search><strong>Intelligent Exhaustive Search</strong></a></li>
+<li><a href=#branch-and-bound><strong>Branch and Bound</strong></a></li>
+<li><a href=#approximation-algorithms><strong>Approximation algorithms</strong></a></li>
+<li><a href=#local-search-heuristics><strong>Local Search Heuristics</strong></a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="chapter-8-np-complete-problems">Chapter 8: NP-Complete problems</h2>
-<h3 id="search-problems"><strong>Search problems</strong></h3>
+<h2 id=chapter-8-np-complete-problems>Chapter 8: NP-Complete problems</h2>
+<h3 id=search-problems><strong>Search problems</strong></h3>
 <p>A set of problems that can not be solved in time better than an exhaustive search.</p>
-<h4 id="satisfiability"><strong>Satisfiability</strong></h4>
+<h4 id=satisfiability><strong>Satisfiability</strong></h4>
 <p><em>SAT</em>, is a problem of great practical importance, applications ranging from chip testing to computer design to image analysis and software engineering.<br>
 It is also a canonical hard problem.<br>
 Consider this <em>Boolean formula in conjugative normal form</em>,<br>
@@ -222,18 +114,18 @@ $$(x \lor y \lor z)(x \lor \bar y)(y \lor \bar z)(z \lor \bar x)(\bar x \lor \ba
 <p>It is a collection of <em>clauses</em>, each consisting of several <em>literals</em>, A satisfying <em>truth assignment</em> is an assignment of <em>false</em> or <em>true</em> to each variable, so that every clause is <em>true</em>.</p>
 <p><code>SAT</code>: Given a Boolean formula in CNF, either find a satisfying truth value, or report that none exist.<br>
 In the above example, no solution exists.But how we decide this in general. The number of possibilities is exponential.</p>
-<p>A search problem is specified by  an algorithm $\mathcal C$ that takes two inputs, $I$ and a proposed solution $S$, and runs in  time polynomial in $|I|$. We say $S$ is a solution to $I$ if and only if $\mathcal C(I,S) = true$.</p>
+<p>A search problem is specified by an algorithm $\mathcal C$ that takes two inputs, $I$ and a proposed solution $S$, and runs in time polynomial in $|I|$. We say $S$ is a solution to $I$ if and only if $\mathcal C(I,S) = true$.</p>
 <p><strong>Horn formula</strong>. If all clauses contain at most one positive literal, then the Boolean formula is called a Horn formula, and a satisfying truth assignment can be found by the greedy algorithm in Section 5.3.<br>
 Alternatively, if all clauses have only two literals, then graph theory comes into play, and SAT can be solved in linear time by finding the strongly connected components of a particular graph constructed from the instance.</p>
-<h4 id="the-traveling-salesman-problem"><strong>The traveling salesman problem</strong></h4>
-<p>In TSP we are given $n$ vertices $1,&hellip;n$ and all $n(n-1)/2$ distance between them, as well as budget $b$.<br>
+<h4 id=the-traveling-salesman-problem><strong>The traveling salesman problem</strong></h4>
+<p>In TSP we are given $n$ vertices $1,&mldr;n$ and all $n(n-1)/2$ distance between them, as well as budget $b$.<br>
 We are asked to find a <em>tour</em>, a cycle that passes through every vertex exactly once, of total cost b or less, or to report that no such tour exists.<br>
-That is we seek a permutation of the vertices such that  when they are toured in this order, the total distance covered is at most b:<br>
-$$d_{\tau(1),\tau(2)} + d_{\tau(2),\tau(3)} &hellip; d_{\tau(n),\tau(1)} \leq b$$</p>
+That is we seek a permutation of the vertices such that when they are toured in this order, the total distance covered is at most b:<br>
+$$d_{\tau(1),\tau(2)} + d_{\tau(2),\tau(3)} &mldr; d_{\tau(n),\tau(1)} \leq b$$</p>
 <p>We have defined TSP as a <em>search problem</em>, when in reality it is an <em>optimization problem</em>, in which the shortest path is sought.<br>
 The reason is, the framework for search problems encompasses optimization problems like TSP in addition to true search problems like SAT.<br>
 This does not change its difficulty at all, because the two versions reduce to one another.</p>
-<h4 id="euler-and-rudrata"><strong>Euler and Rudrata</strong></h4>
+<h4 id=euler-and-rudrata><strong>Euler and Rudrata</strong></h4>
 <p>When can a graph be drawn without lifting the pencil from the paper?<br>
 If and only if</p>
 <ul>
@@ -243,65 +135,65 @@ If and only if</p>
 <p><strong>EULER PATH</strong>: Given a graph, find a path that contains each edge exactly once, It follows from Euler&rsquo;s observation, and a little more thinking, that this search problem can be solved in polynomial time.<br>
 <strong>RUDRATA CYCLE</strong>: Given a graph, find a cycle that visits each vertex exactly once - or report that no such cycle exists.</p>
 <p>Euler&rsquo;s problem can be solved in polynomial time, however for Rudrata&rsquo;s problem no polynomial solution is known.</p>
-<h4 id="cuts-and-bisections"><strong>Cuts and bisections</strong></h4>
+<h4 id=cuts-and-bisections><strong>Cuts and bisections</strong></h4>
 <p>A <em>cut</em> is a set of edges whose removal leaves a graph disconnected.<br>
 <strong>MINIMUM CUT</strong>: Given a graph and a budget $b$, find a cut with at most $b$ edges.<br>
 This generally leaves just a singleton vertex on one side.</p>
-<p><strong>BALANCED CUT</strong>: Given a graph with $n$ vertices and a budget $b$, partition the vertices into two sets $S$ and $T$ such that $|S|, |T|&gt;n/3$ and such that there are at most b edges between $S$ and $T$.<br>
+<p><strong>BALANCED CUT</strong>: Given a graph with $n$ vertices and a budget $b$, partition the vertices into two sets $S$ and $T$ such that $|S|, |T|>n/3$ and such that there are at most b edges between $S$ and $T$.<br>
 Another hard problem.</p>
 <p>Very important application: <em>clustering</em>.</p>
-<h4 id="integer-linear-programming"><strong>Integer Linear Programming</strong></h4>
+<h4 id=integer-linear-programming><strong>Integer Linear Programming</strong></h4>
 <p><em>ILP</em>: Given $A$ and $b$, find a nonnegative integer vector $\mathbf x$ satisfying the inequalities $Ax &lt;= b$, or report that none exists.</p>
 <p>Special case,<br>
 <em>ZERO-ONE EQUATIONS</em><br>
 Find a vector $\mathbb x$ of $0$&rsquo;s and $1$&rsquo;s satisfying $\mathbb{Ax = 1}$, where $\mathbb A$ is an $m \times n$ matrix with 0-1 entries and $\mathbb 1$ is the m-vector of all 1&rsquo;s.</p>
-<h4 id="three-dimensional-matching"><strong>Three-dimensional matching</strong></h4>
+<h4 id=three-dimensional-matching><strong>Three-dimensional matching</strong></h4>
 <p><em>BIPARTITE MATCHING</em>: Given a bipartite graph with $n$ nodes on each side, find a set of $n$ disjoint edges, or decide that no such exists.</p>
 <p><em>3D MATCHING</em>: In this new setting there are 3 different sets and the compatibilities among them are specified by a triplet. <br>
 We want to find n disjoint triplets.</p>
-<h4 id="independent-set-vertex-cover-and-clique"><strong>Independent set, vertex cover and clique</strong></h4>
+<h4 id=independent-set-vertex-cover-and-clique><strong>Independent set, vertex cover and clique</strong></h4>
 <p><em>INDEPENDENT SET</em>: Given a graph and an integer $g$, aim is to find $g$ vertices that are independent, that is no two of which have an edge between them.</p>
 <p><em>VERTEX COVER</em>, Given a graph and a budget $b$, the idea is to find $b$ vertices that cover(touch) every edge.</p>
 <p><em>CLIQUE</em>, given a graph and a goal $g$, find a set of $g$ vertices such that all possible edges between them are present.</p>
-<h4 id="longest-path"><strong>Longest Path</strong></h4>
+<h4 id=longest-path><strong>Longest Path</strong></h4>
 <p><em>LONGEST PATH(TAXICAB RIP-OFF)</em> : Given a graph $G$ with non-negative edge weights and two distinguished vertexes $s$ and $t$, along with a goal $g$. We are asked to find a path from $s$ to $t$ with total weight at least $g$. To avoid trivial solutions we require that the path be simple, i.e. containing no repeated vertices.</p>
-<h4 id="knapsack-and-subset-sum"><strong>Knapsack and subset sum</strong></h4>
-<p><em>KNAPSACK</em> : we are given integer weights $w_1,&hellip;. w_n$ and integer values $v_1,&hellip; v_n$ for $n$ items. We are also given a capacity $W$ and a goal $g$ . We seek a set of items whose total weight is at most $W$ and whose total value is at least $g$. If no such set exists, we should say no.</p>
+<h4 id=knapsack-and-subset-sum><strong>Knapsack and subset sum</strong></h4>
+<p><em>KNAPSACK</em> : we are given integer weights $w_1,&mldr;. w_n$ and integer values $v_1,&mldr; v_n$ for $n$ items. We are also given a capacity $W$ and a goal $g$ . We seek a set of items whose total weight is at most $W$ and whose total value is at least $g$. If no such set exists, we should say no.</p>
 <p><em>SUBSET SUM</em>, Find a subset of a given set of integers that add up yo exactly $W$.</p>
-<h3 id="np-complete-problems"><strong>NP-complete problems</strong></h3>
+<h3 id=np-complete-problems><strong>NP-complete problems</strong></h3>
 <p><strong>Hard problems, easy problems</strong><br>
-<img src="../../../../images/algdg/8_nph1.png" alt="alt"></p>
+<img src=../../../../images/algdg/8_nph1.png alt=alt></p>
 <p>The various problems on the right can be solved by different types of algorithms, these problems are easy for a variety of reasons.<br>
 In contrast, the problems on the left are <strong>all difficult for the same reasons!</strong><br>
 They are all the same problem, just in different disguises! They are all <em>equivalent</em>.</p>
-<h4 id="p-and-np"><strong>P and NP</strong></h4>
+<h4 id=p-and-np><strong>P and NP</strong></h4>
 <p>We have already defined the search problem formally.<br>
 We denote the class of all search problems by <strong>NP</strong>.<br>
 The class of all search problems that can be solved in polynomial time is denoted by <strong>P</strong>.
 <strong>P</strong> = polynomial
 <strong>NP</strong> = nondeterministic polynomial time</p>
-<h4 id="reductions-again"><strong>Reductions, again</strong></h4>
+<h4 id=reductions-again><strong>Reductions, again</strong></h4>
 <p>A reduction from search problem <strong>A</strong> to search problem <strong>B</strong> is a polynomial time algorithm <strong>f</strong> that transforms any instance <strong>I</strong> of <strong>A</strong> into an instance <strong>f(I)</strong> of <strong>B</strong>., together with another polynomial time algorithm <strong>h</strong> that maps any solution <strong>S</strong> of <strong>f(I)</strong> back into a solution <strong>h(S)</strong> of <strong>I</strong> .</p>
-<p><img src="../../../../images/algdg/8_nph2.png" alt="alt"></p>
+<p><img src=../../../../images/algdg/8_nph2.png alt=alt></p>
 <p>A search problem is <strong>NP-complete</strong> if all other search problems reduce to it.<br>
-<img src="../../../../images/algdg/8_nph3.png" alt="alt"></p>
-<h4 id="factoring"><strong>Factoring</strong></h4>
+<img src=../../../../images/algdg/8_nph3.png alt=alt></p>
+<h4 id=factoring><strong>Factoring</strong></h4>
 <p>The task of finding all prime factors of a given integer.<br>
 The difficulty in factoring is of a different nature than that of the other hard search problems.<br>
 Nobody believes that factoring is <strong>NP-complete</strong>.<br>
 One difference, the definition does not contain the clause, &ldquo;or report that none exist&rdquo;. A number can always be factored into primes.<br>
 Another difference, factoring succumbs to the power of <em>quantum computation</em>. while other NP-complete problems do not seem to.</p>
-<h3 id="the-reductions"><strong>The Reductions</strong></h3>
-<p><img src="../../../../images/algdg/8_nph4.png" alt="alt"></p>
+<h3 id=the-reductions><strong>The Reductions</strong></h3>
+<p><img src=../../../../images/algdg/8_nph4.png alt=alt></p>
 <p>$$\underline{\mathrm{RUDRATA}(s,t)\mathrm{-PATH} \to \mathrm{RUDRATA,CYCLE}}$$<br>
-<img src="../../../../images/algdg/8_nph5.png" alt="alt"><br>
-<img src="../../../../images/algdg/8_nph6.png" alt="alt"></p>
+<img src=../../../../images/algdg/8_nph5.png alt=alt><br>
+<img src=../../../../images/algdg/8_nph6.png alt=alt></p>
 <p>$$\underline{\mathrm{3SAT} \to \mathrm{INDEPENDENT,SET}}$$<br>
 <em>3SAT</em> , example<br>
 $$(\bar x \lor y \lor \bar z)(x \lor \bar y \lor z)(x \lor y \lor z)(z \lor \bar x)(\bar x \lor \bar y)$$</p>
 <p><em>INDEPENDENT SET</em>,<br>
 a graph and a number g.<br>
-<img src="../../../../images/algdg/8_nph7.png" alt="alt"></p>
+<img src=../../../../images/algdg/8_nph7.png alt=alt></p>
 <p>The above graph has been constructed as follows</p>
 <ul>
 <li>Graph $G$ has a triangle for each clause(or just an edge, if the clause has two literals), with vertices labeled by the clause&rsquo;s literals, and has additional edges between any two vertices that represent opposite literals.</li>
@@ -309,10 +201,10 @@ a graph and a number g.<br>
 </ul>
 <p>$$\underline{\mathrm{SAT} \to \mathrm{3SAT}}$$<br>
 Replace,<br>
-$$(a_1 \lor a_2 \lor &hellip; \lor a_k)$$<br>
+$$(a_1 \lor a_2 \lor &mldr; \lor a_k)$$<br>
 with,<br>
-$$(a_1 \lor a_2 \lor y_1)(\bar y_1 \lor a_3 \lor y_3)(\bar y_2 \lor a_4 \lor y_3)&hellip;(\bar y_{k-3} \lor a_{k-1} \lor a_k ),$$
-<img src="../../../../images/algdg/8_nph8.png" alt="alt"></p>
+$$(a_1 \lor a_2 \lor y_1)(\bar y_1 \lor a_3 \lor y_3)(\bar y_2 \lor a_4 \lor y_3)&mldr;(\bar y_{k-3} \lor a_{k-1} \lor a_k ),$$
+<img src=../../../../images/algdg/8_nph8.png alt=alt></p>
 <p>$$\underline{\mathrm{INDEPENDENT,SET} \to \mathrm{VERTEX,COVER}}$$<br>
 Some reductions rely on ingenuity to relate two very different problems. Others simply record the fact that one problem is a thin disguise of another. To reduce $\mathrm{INDEPENDENT,SET}$ to $\mathrm{VERTEX,COVER}$ we just need to notice that a set of nodes $S$ is a vertex cover of graph $G = (V,E)$ (that is $S$ touches every edge in $E$) if and only if the remaining nodes, $V-S$, are an independent set of $G$.</p>
 <p>Therefore, to solve an instance $(G,g)$ of $\mathrm{INDEPENDENT,SET}$, simple look for a vertex cover of $G$ with $|V|-g$ nodes. If such a vertex cover exists, then take all nodes <em>not</em> in it. If no such vertex cover exists, then $G$ cannot possibly have an independent set of size $g$.</p>
@@ -321,12 +213,12 @@ Define the complement of a graph $G$ to contain precisely those edges that are n
 Then, a set of nodes is an Independent set in $G$, if and only if it is a clique in complement of $G$.<br>
 Therefore, the solution to both is identical.</p>
 <p>$$\underline{\mathrm{3SAT} \to \mathrm{3D,MATCHING}}$$<br>
-<img src="../../../../images/algdg/8_nph9.png" alt="alt"><br>
+<img src=../../../../images/algdg/8_nph9.png alt=alt><br>
 = a boolean variable.</p>
 <p>$$\underline{\mathrm{3D,MATCHING} \to \mathrm{ZOE}}$$<br>
-<img src="../../../../images/algdg/8_nph10.png" alt="alt"></p>
+<img src=../../../../images/algdg/8_nph10.png alt=alt></p>
 <p>$$\underline{\mathrm{ZOE} \to \mathrm{SUBSET,SUM}}$$<br>
-When we look at a $\mathrm{ZOE}$(like the one shown above), we are looking for a set of columns of $A$ that, added together, make up the all-1&rsquo;a vector. But if we think of the columns as binary integers(read from top to bottom), we are looking for a  subset of the integers that add up to the binary integers with all 1&rsquo;s , i.e. 511. And this is an instance of $\mathrm{SUBSET,SUM}$. The reduction is complete!</p>
+When we look at a $\mathrm{ZOE}$(like the one shown above), we are looking for a set of columns of $A$ that, added together, make up the all-1&rsquo;a vector. But if we think of the columns as binary integers(read from top to bottom), we are looking for a subset of the integers that add up to the binary integers with all 1&rsquo;s , i.e. 511. And this is an instance of $\mathrm{SUBSET,SUM}$. The reduction is complete!</p>
 <p>Except for one detail, carry. Because of carry, n-bit binary integers can add up to $2^n -1$,even when the sum of the corresponding vectors is not all 1&rsquo;s. But this is easy to fix!<br>
 Think of the column vectors not as integers in base 2, but as integers in base $n+1$, one more than the number of columns. This way, since at most n integers are added, and all their digits are 0 and 1, there can be no carry, and our reduction works.</p>
 <p>$$\underline{\mathrm{ZOE} \to \mathrm{ILP}}$$</p>
@@ -334,19 +226,19 @@ Think of the column vectors not as integers in base 2, but as integers in base $
 <p>$$\underline{\mathrm{ZOE} \to \mathrm{ILP}}$$</p>
 <p>$$\underline{\mathrm{RUDRATA,CYCLE} \to \mathrm{TSP}}$$</p>
 <p>$$\underline{\mathrm{ANY,PROBLEM,IN,NP} \to \mathrm{SAT}}$$</p>
-<h2 id="chapter-9-coping-with-np-completeness"><strong>Chapter 9: Coping with NP completeness</strong></h2>
-<h3 id="intelligent-exhaustive-search"><strong>Intelligent Exhaustive Search</strong></h3>
+<h2 id=chapter-9-coping-with-np-completeness><strong>Chapter 9: Coping with NP completeness</strong></h2>
+<h3 id=intelligent-exhaustive-search><strong>Intelligent Exhaustive Search</strong></h3>
 <p><strong>Backtracking</strong><br>
 Based on the observation that it is often possible to reject a solution by looking at just a small part of it.</p>
 <p>An example SAT problem.<br>
-<img src="../../../../images/algdg/9_back1.png" alt="alt"></p>
+<img src=../../../../images/algdg/9_back1.png alt=alt></p>
 <p>The associated algorithm,<br>
 $$
 Start,with,some,problem,P_0\<br>
 Let, \mathcal{S} = {P_0},,the,set,of,active,subproblems.\<br>
 Repeat,while,\mathcal{S},is,nonempty:\<br>
 \quad \underline{choose},a,subproblem,P \in,\mathcal{S},and,remove,it,from,\mathcal{S}\<br>
-\quad \underline{expand},it,into,smaller,subproblems,P_1,P_2&hellip;P_k\<br>
+\quad \underline{expand},it,into,smaller,subproblems,P_1,P_2&mldr;P_k\<br>
 \quad For,each,P_i:\<br>
 \quad \quad If,\underline{test}(P_i),succeeds:\quad halt,and,announce,this,solution\<br>
 \quad \quad If,\underline{test}(P_i),fails:\quad discard, P_i\<br>
@@ -354,7 +246,7 @@ Repeat,while,\mathcal{S},is,nonempty:\<br>
 \quad \quad Otherwise:,add,P_i,to,\mathcal{S}\<br>
 Announce,that,there,is,no,solution.
 $$</p>
-<h3 id="branch-and-bound"><strong>Branch and Bound</strong></h3>
+<h3 id=branch-and-bound><strong>Branch and Bound</strong></h3>
 <p>The same principle from search problems to optimization.<br>
 $$
 Start,with,some,problem,P_0\<br>
@@ -362,13 +254,13 @@ Let, \mathcal{S} = {P_0},,the,set,of,active,subproblems.\<br>
 bestSoFar = \infty\<br>
 Repeat,while,\mathcal{S},is,nonempty:\<br>
 \quad \underline{choose},a,subproblem,(partial,solution),P \in,\mathcal{S},and,remove,it,from,\mathcal{S}\<br>
-\quad \underline{expand},it,into,smaller,subproblems,P_1,P_2&hellip;P_k\<br>
+\quad \underline{expand},it,into,smaller,subproblems,P_1,P_2&mldr;P_k\<br>
 \quad For,each,P_i:\<br>
 \quad \quad If,P_i,is,a,complete,solution:\quad update,bestSoFar\<br>
 \quad \quad else,if,\underline{lowerbound}(P_i)\le bestSoFar:\quad add,P_i,to,\mathcal{S}\<br>
 return \quad bestSoFar
 $$</p>
-<p>Let&rsquo;s see how this works for the travelling salesman problem in a graph $G = (V,E)$ with edge lengths $d_e &gt; 0$. A partial solution is a simple path $a \to b$ passing through some vertices $S \subseteq V$, where $S$ includes the endpoints $s$ and $b$. We can denote such a partial solution by the tuple $[a,S,b]$, infact, $a$ will be fixed throughout the algorithm. The corresponding subproblem is to find the best completion of the tour, that is the cheapest complementary path $b \to a$ with intermediate nodes $V - S$. Notice that the initial problem is of the form $[a, {a}, a]$ for any $a \in V$ of our choosing.<br>
+<p>Let&rsquo;s see how this works for the travelling salesman problem in a graph $G = (V,E)$ with edge lengths $d_e > 0$. A partial solution is a simple path $a \to b$ passing through some vertices $S \subseteq V$, where $S$ includes the endpoints $s$ and $b$. We can denote such a partial solution by the tuple $[a,S,b]$, infact, $a$ will be fixed throughout the algorithm. The corresponding subproblem is to find the best completion of the tour, that is the cheapest complementary path $b \to a$ with intermediate nodes $V - S$. Notice that the initial problem is of the form $[a, {a}, a]$ for any $a \in V$ of our choosing.<br>
 At each step of the branch-and-bound algorithm, we extend a particular partial solution $[a,S,b]$ by a single edge $(b,x)$, where $x \in V-S$. There can be up to $|V-S|$ ways to do this, and each of these branches leads to a subproblem of the form $[a,S\cup{x}, x]$.</p>
 <p>How can we lower-bound the cost of completing a partial tour $[a,S,b]$? Many sophisticated methods have been developed for this, but let&rsquo;s look at a rather simple one. The remainder of the tour consists of a path through $V-S$, plus edges from $a$ and $b$ to $V-S$. therefore, its cost is at least the sum of the following:</p>
 <ol>
@@ -377,8 +269,8 @@ At each step of the branch-and-bound algorithm, we extend a particular partial s
 <li>The minimum spanning tree of $V-S$.</li>
 </ol>
 <p>(Do you see why?) And this lower bound can be computed quickly by a minimum spanning tree algorithm. <br>
-<img src="../../../../images/algdg/9_back2.png" alt="alt"></p>
-<h3 id="approximation-algorithms"><strong>Approximation algorithms</strong></h3>
+<img src=../../../../images/algdg/9_back2.png alt=alt></p>
+<h3 id=approximation-algorithms><strong>Approximation algorithms</strong></h3>
 <p>Approximation factor,<br>
 $$\alpha_{\mathcal{A}} = max_I\frac{\mathcal{A}(I)}{OPT(O)}$$</p>
 <p><strong>Vertex Cover</strong></p>
@@ -386,10 +278,10 @@ $$\alpha_{\mathcal{A}} = max_I\frac{\mathcal{A}(I)}{OPT(O)}$$</p>
 Input: \text{ An undirected graph } G = (V,E)\<br>
 Output: \text{ A subset of the vertices } S \subseteq V \text{ that touches every edge.}\<br>
 Goal: \text{ Minimize } |S|$$</p>
-<p><img src="../../../../images/algdg/9_back3.png" alt="alt"></p>
+<p><img src=../../../../images/algdg/9_back3.png alt=alt></p>
 <p>$$Find,a,maximal,matching, M \subseteq E\<br>
 Return; S = {all,endpoints,of,edges,in,M}$$</p>
-<h4 id="clustering"><strong>Clustering</strong></h4>
+<h4 id=clustering><strong>Clustering</strong></h4>
 <p>We have some data that we want to divide into groups.</p>
 <p>We need to define distances between these data points. These distances can be euclidean distances, or even distances as a result of similarity tests.<br>
 Assume that we have such distances and they satisfy these metric properties.</p>
@@ -400,32 +292,32 @@ Assume that we have such distances and they satisfy these metric properties.</p>
 <li>(<em>Trianfle inequality</em>) $d(x,y) \leq d(x,z) + d(z,y)$</li>
 </ol>
 <p>$\underline(k-\mathrm{CLUSTER})$<br>
-<em>Input:</em> Points $X = {x_1&hellip;x_n}$ with underlying distance metric $d(\cdot,\cdot)$; integer $k$.<br>
-<em>Output:</em> A partition of the points into $k$ clusters $C_1,&hellip;C_k$.<br>
+<em>Input:</em> Points $X = {x_1&mldr;x_n}$ with underlying distance metric $d(\cdot,\cdot)$; integer $k$.<br>
+<em>Output:</em> A partition of the points into $k$ clusters $C_1,&mldr;C_k$.<br>
 <em>Goal:</em> Minimize the diameter of the clusters,<br>
 $$max_j max_{x_a,x_b \in C_j} d(x_a, x_b)$$.</p>
-<p><img src="../../../../images/algdg/9_back4.png" alt="alt"></p>
+<p><img src=../../../../images/algdg/9_back4.png alt=alt></p>
 <p><em>Pick any point $\mu_1 \in X$ as the first cluster center.</em><br>
 <em>for $i = 2$ to $k$:</em><br>
-*$\quad$ Let $\mu_i$ be the point in $X$ $that$ $is$ farthest from $\mu_1&hellip;\mu_{i-1}$*<br>
+*$\quad$ Let $\mu_i$ be the point in $X$ $that$ $is$ farthest from $\mu_1&mldr;\mu_{i-1}$*<br>
 *$\quad$ (i.e., that maximizes $min_{j&lt;i}d(\cdot,\mu_j)$*<br>
 *Create $k$ clusters: $C_i = {$ all $x\inX$ whose closest center is $\mu_i}$.*</p>
 <p><strong>TSP</strong><br>
 If the dustances in a TSP satisfy the triangle inequality metric, we can approximate the solution with a factor of 2 by solving the minimum spanning tree problem instead.</p>
 <p><strong>Knapsack</strong></p>
-<p><em>Discard any item with weight $ &gt; W$</em><br>
+<p><em>Discard any item with weight $ > W$</em><br>
 *Let $v_{max} = max_iv_i$*<br>
 *Rescale values $\hat{v_i} = \lfloor v_i \cdot \frac{n}{cv_max}\rfloor$*<br>
 *Run the dynamic programming algorithm with values ${\hat{v_i}}$*<br>
 *Output the resulting choice of items.*</p>
-<h4 id="the-approximability-hierarchy"><strong>The approximability hierarchy</strong></h4>
+<h4 id=the-approximability-hierarchy><strong>The approximability hierarchy</strong></h4>
 <ul>
 <li>Those for which, like the TSP, no finite approximation ratio is possible.</li>
 <li>Those for which an approximation ratio is possible, but there are limits to how small this can be. $\mathrm{VERTEX,COVER},k-\mathrm{CLUSTER}$, and the TSP with triangle inequality belong here. (For these problems we have not established limits to their approximability, but these limits do exist, and their proofs constitute some of the most sophisticated results in this field.)</li>
 <li>Down below we have a more fortunate class of <strong>NP</strong>-complete problems for which approximability has no limits, and polynomial approximation algorithms with error ratios arbitarily close to zero exist. $\mathrm{KNAPSACK}$ resides here.</li>
 <li>Finally, there is another class of problems, between the first two given here, for which the approximation ratio is about $\log{n}$. $\mathrm{SET,COVER}$ is an example.</li>
 </ul>
-<h3 id="local-search-heuristics"><strong>Local Search Heuristics</strong></h3>
+<h3 id=local-search-heuristics><strong>Local Search Heuristics</strong></h3>
 <p><em>Let $s$ be any initial solution</em><br>
 <em>while there is some solution $s'$ in the neighbourhood of $s$</em><br>
 <em>$\quad$ for which $cost(s')&lt;cost(s)$: replace $s$ by $s'$</em><br>
@@ -434,20 +326,20 @@ If the dustances in a TSP satisfy the triangle inequality metric, we can approxi
 <p>Notion of neighborhood of solutions in the search space of $(n-1)!$ different tours ?</p>
 <p>2-change neighborhood of tour $s$ : set of tours that can be obtained by removing two edges of $s$ and then putting in two edges.<br>
 $O(n^2)$ neighbors.</p>
-<p><img src="../../../../images/algdg/9_back5.png" alt="alt"><br>
-<img src="../../../../images/algdg/9_back6.png" alt="alt"></p>
+<p><img src=../../../../images/algdg/9_back5.png alt=alt><br>
+<img src=../../../../images/algdg/9_back6.png alt=alt></p>
 <p>In general, the search space might be riddled with local optima, and some of them may be of very poor quality. The hope is that with a judicious choice of neighborhood structures, most local optima will be reasonable. Whether this is the reality or merely misplaced faith, it is an empirical fact that local searcg algorithms are the tp performers on a broad range of optimization problems. Let&rsquo;s look at another such example.</p>
-<h4 id="graph-partitioning"><strong>Graph partitioning</strong></h4>
+<h4 id=graph-partitioning><strong>Graph partitioning</strong></h4>
 <p><em>Input:</em> An undirected graph $G = (V,E)$ with non-negative edge weights; a real number $\alpha \in (0,1/2)$.<br>
 <em>Output :</em> A partition of the vertices into two groups $A$ and $B$, each of size at least $\alpha|V|$.<br>
 <em>Goal :</em> Minimize the capacity of the cut $(A,B)$.</p>
-<p><img src="../../../../images/algdg/9_back7.png" alt="alt"><br>
+<p><img src=../../../../images/algdg/9_back7.png alt=alt><br>
 We need to decide upon a neighborhood structure for our problem, and there is one obvious way to do this. Let $(A,B)$, with $|A|=|B|$, be a candidate solution, we will define its neighbors to be all solutions obtainable by swapping on ee pair of vertices across the cut, that is, all solutions of the form $(A-{a}+{b}, B-{b}+{a})$ where $a\in A$ and $b \in B$. Here&rsquo;s an example of a local move.<br>
-<img src="../../../../images/algdg/9_back8.png" alt="alt"></p>
+<img src=../../../../images/algdg/9_back8.png alt=alt></p>
 <p>We now have a reasonable local search procedures, and we could just stop here. But there is still a lot of room for improvement in terms of the <em>quality</em> of the solutions produced. The search space includes some local optima that are quite far from the global solution. Here&rsquo;s one which has cost 2.<br>
-<img src="../../../../images/algdg/9_back9.png" alt="alt"><br>
+<img src=../../../../images/algdg/9_back9.png alt=alt><br>
 What can be done about such suboptimal solutions? We could expand the neighborhood size to allow two swaps at a time, but this particular bad instance would still stubbornly resist. Instead, let&rsquo;s look at some other generic schemes for improving local search procedures.</p>
-<h4 id="dealing-with-local-optima"><strong>Dealing with local optima</strong></h4>
+<h4 id=dealing-with-local-optima><strong>Dealing with local optima</strong></h4>
 <p><strong>Randomization and restarts</strong></p>
 <p><strong>Simulated annealing</strong>,<br>
 <em>let $s$ be any starting solution</em><br>
@@ -461,163 +353,77 @@ What can be done about such suboptimal solutions? We could expand the neighborho
 The trick is to start $T$ large and then gradually reduce it to zero. Thus initially, the local search can wander around quite freely, with only a mild preference for low-cost solutions. As time foes on, this preference becomes stronger, and the system mostly sticks to the lower-cost region of the search space, with occasional excursions out of it to escape local optima. Eventually, when the temperature drops further, the system converges on a solution.<br>
 Simulated annealing is inspired by the physics of crystallization. When a substance is to be crystallized, it starts in liquid state, with its particles in relatively unconstrained motion. Then it is slowly cooled, and as this happens, the particles gradually move into more regular configurations. This regularity becomes more and more pronounced until finally a crystal lattice is formed.<br>
 The benefits of simulated annealing comes at a significant cost: because of the changing temperature and the initial freedom of movement, many more local moves are needed until convergence. Moreover, it is quite an art to choose a good timetable by which to decrease the temperature, called <em>annealing schedule</em>. But in many cases where the quality of solutions improves significantly. the tradeoff is worthwhile.</p>
-<p><img src="../../../../images/algdg/9_back9.png" alt="alt"></p>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-dasgupta/algorithms2/">Algorithms by DasGupta, Part 2</a></li>
-        
-    </ul>
-
+<p><img src=../../../../images/algdg/9_back9.png alt=alt></p>
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/>The Algorithms Design Manual, Set and String Problems</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/>The Algorithms Design Manual, Computational Geometry</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/>The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/>The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-dasgupta/algorithms2/>Algorithms by DasGupta, Part 2</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

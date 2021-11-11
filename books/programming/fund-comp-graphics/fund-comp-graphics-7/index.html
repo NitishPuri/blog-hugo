@@ -1,225 +1,116 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 7" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 7">
 <meta property="og:description" content="Chapter 14 : Sampling Integration Although the words “integral” and “measure” often seem intimidating, they relate to some of the most intuitive concepts found in mathematics, and they should not be feared.
-For example, on the 2D real plane $R^2$, we have the area measure $A$ which assigns a value to a set of points in the plane. Note that $A$ is just a function that takes pieces of the plane and returns area." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-7/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 7"/>
-<meta name="twitter:description" content="Chapter 14 : Sampling Integration Although the words “integral” and “measure” often seem intimidating, they relate to some of the most intuitive concepts found in mathematics, and they should not be feared.
-For example, on the 2D real plane $R^2$, we have the area measure $A$ which assigns a value to a set of points in the plane. Note that $A$ is just a function that takes pieces of the plane and returns area."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-7/">
-
-    <title>
-      
-        Fundamentals of Computer Graphics, Peter Shirley, Part 7 | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+For example, on the 2D real plane $R^2$, we have the area measure $A$ which assigns a value to a set of points in the plane. Note that $A$ is just a function that takes pieces of the plane and returns area.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-7/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Fundamentals of Computer Graphics, Peter Shirley, Part 7">
+<meta name=twitter:description content="Chapter 14 : Sampling Integration Although the words “integral” and “measure” often seem intimidating, they relate to some of the most intuitive concepts found in mathematics, and they should not be feared.
+For example, on the 2D real plane $R^2$, we have the area measure $A$ which assigns a value to a set of points in the plane. Note that $A$ is just a function that takes pieces of the plane and returns area.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-7/>
+<title>
+Fundamentals of Computer Graphics, Peter Shirley, Part 7 | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/">Fundamentals of Computer Graphics, Peter Shirley</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Fundamentals of Computer Graphics, Peter Shirley, Part 7</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/>Fundamentals of Computer Graphics, Peter Shirley</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Fundamentals of Computer Graphics, Peter Shirley, Part 7</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-7/">Fundamentals of Computer Graphics, Peter Shirley, Part 7</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-7/>Fundamentals of Computer Graphics, Peter Shirley, Part 7</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-08-17">Aug 17, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-08-17>Aug 17, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#chapter-14--sampling">Chapter 14 : Sampling</a>
-      <ul>
-        <li><a href="#integration">Integration</a></li>
-        <li><a href="#continuous-probability">Continuous Probability</a></li>
-        <li><a href="#monte-carlo-integration">Monte Carlo Integration</a></li>
-        <li><a href="#choosing-random-points">Choosing Random Points</a></li>
-      </ul>
-    </li>
-    <li><a href="#chapter-15--curves">Chapter 15 : Curves</a>
-      <ul>
-        <li></li>
-        <li><a href="#curve-properties">Curve Properties</a></li>
-        <li><a href="#polynomial-pieces">Polynomial Pieces</a></li>
-      </ul>
-    </li>
-    <li><a href="#chapter-17--computer-animation">Chapter 17 : Computer Animation</a>
-      <ul>
-        <li><a href="#principals-of-animation">Principals of Animation</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#chapter-14--sampling>Chapter 14 : Sampling</a>
+<ul>
+<li><a href=#integration>Integration</a></li>
+<li><a href=#continuous-probability>Continuous Probability</a></li>
+<li><a href=#monte-carlo-integration>Monte Carlo Integration</a></li>
+<li><a href=#choosing-random-points>Choosing Random Points</a></li>
+</ul>
+</li>
+<li><a href=#chapter-15--curves>Chapter 15 : Curves</a>
+<ul>
+<li></li>
+<li><a href=#curve-properties>Curve Properties</a></li>
+<li><a href=#polynomial-pieces>Polynomial Pieces</a></li>
+</ul>
+</li>
+<li><a href=#chapter-17--computer-animation>Chapter 17 : Computer Animation</a>
+<ul>
+<li><a href=#principals-of-animation>Principals of Animation</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="chapter-14--sampling">Chapter 14 : Sampling</h2>
-<h3 id="integration">Integration</h3>
+<h2 id=chapter-14--sampling>Chapter 14 : Sampling</h2>
+<h3 id=integration>Integration</h3>
 <p>Although the words “integral” and “measure” often seem intimidating, they relate to some of the most intuitive concepts found in mathematics, and they should not be feared.</p>
-<p>For example, on the 2D real plane $R^2$, we have the area measure $A$ which assigns a value to a set of points in the plane. Note that $A$ is just a function that takes pieces of the plane and returns area. This means the 
+<p>For example, on the 2D real plane $R^2$, we have the area measure $A$ which assigns a value to a set of points in the plane. Note that $A$ is just a function that takes pieces of the plane and returns area. This means the
 domain of $A$ is all possible subsets of $R^2$, which we denote as the power set $P(R^2)$. Thus, we can characterize $A$ in arrow notation:</p>
 <p>$$\begin{align}
-&amp; A : \mathcal P(\mathbb R^2) \to \mathbb R^+. \<br>
-&amp; A([a, a+1]\times [b, b + 1]) = 1,
+& A : \mathcal P(\mathbb R^2) \to \mathbb R^+. \<br>
+& A([a, a+1]\times [b, b + 1]) = 1,
 \end {align}$$</p>
 <p>To be considered a measure, a function has to obey certain area-like properties.<br>
 For example, we have a function $\mu : P(S) \to R^+$. For $\mu$ to be a measure, the following conditions must be true:</p>
@@ -236,12 +127,12 @@ where $\mu$ is the set union operator and $\mu$ is the set intersection operator
 <p>$$\begin{align}
 A(S) = \int_{x\in S}dA(\mathbf x).
 \end {align}$$</p>
-<h4 id="measures-and-averages"><strong>Measures and Averages</strong></h4>
+<h4 id=measures-and-averages><strong>Measures and Averages</strong></h4>
 <p>$$\begin{align}
 average(f) = \frac{\int_{x \in S}f(\mathbf x),d\mu(\mathbf x)}{\int_{x \in S}d\mu(\mathbf x)}.
 \end {align}$$</p>
-<h3 id="continuous-probability">Continuous Probability</h3>
-<h4 id="one-dimensional-continuous-probability-density-functions"><strong>One-Dimensional Continuous Probability Density Functions</strong></h4>
+<h3 id=continuous-probability>Continuous Probability</h3>
+<h4 id=one-dimensional-continuous-probability-density-functions><strong>One-Dimensional Continuous Probability Density Functions</strong></h4>
 <p>Loosely speaking, a <em>continuous random variable</em> $x$ is a scalar or vector quantity that “randomly” takes on some value from the real line $R = (−\infty, +\infty)$. The behavior of $x$ is entirely described by the distribution of values it takes. This distribution of values can be quantitatively described by the <em>probability density function (pdf)</em>, $p$, associated with $x$ (the relationship is denoted $x \sim p$). The probability that $x$ assumes a particular value in some interval<br>
 $[a, b]$ is given by the following integral:</p>
 <p>$$\begin{align}
@@ -252,7 +143,7 @@ Probability(x \in [a, b]) = \int_a^b p(x),dx.
 p(x) \geq 0\quad \text{(probability is non-negative)}, \<br>
 \int_{-\infty}^{+\infty}p(x),dx = 1 \quad (Probability(x \in \mathbb R) = 1).
 \end {align}$$</p>
-<h4 id="one-dimensional-expected-value"><strong>One-Dimensional Expected Value</strong></h4>
+<h4 id=one-dimensional-expected-value><strong>One-Dimensional Expected Value</strong></h4>
 <p>The average value that a real function $f$ of a one-dimensional random variable with underlying pdf $p$ will take on is called its expected value, $E(f(x))$ (sometimes written $Ef(x)$):</p>
 <p>$$\begin{align}
 E(f(x)) = \int f(x)p(x)dx. \<br>
@@ -260,9 +151,9 @@ E(x+y) = E(x) + E(y) \<br>
 \text{also,} \<br>
 E(f(x) + g(y)) = E(f(x)) + E(g(y)).
 \end {align}$$</p>
-<h4 id="multi-dimensional-random-variables"><strong>Multi-Dimensional Random Variables</strong></h4>
+<h4 id=multi-dimensional-random-variables><strong>Multi-Dimensional Random Variables</strong></h4>
 <p>The discussion of random variables and their expected values extends naturally to multi-dimensional spaces. Most graphics problems will be in such higher dimensional spaces. For example, many lighting problems are phrased on the surface of the hemisphere. Fortunately, if we define a measure $\mu$ on the space the random variables occupy, everything is very similar to the one-dimensional case.</p>
-<h4 id="variance"><strong>Variance</strong></h4>
+<h4 id=variance><strong>Variance</strong></h4>
 <p>The variance, $V (x)$, of a one-dimensional random variable is, by definition, the expected value of the square of the difference between $x$ and $E(x)$:<br>
 $$\begin{align}
 V(x) \equiv E([x - E(x)]^2) .
@@ -271,37 +162,37 @@ V(x) \equiv E([x - E(x)]^2) .
 $$\begin{align}
 V(x) = E(x^2) - [E(x)]^2 .
 \end {align}$$</p>
-<h4 id="estimated-means"><strong>Estimated Means</strong></h4>
+<h4 id=estimated-means><strong>Estimated Means</strong></h4>
 <p>Many problems involve sums of independent random variables $x_i$, where the variables share a common density $p$. Such variables are said to be <em>independent identically distributed</em> (iid) random variables. When the sum is divided by the number of variables, we get an estimate of $E(x)$:</p>
 <p>$$\begin{align}
-&amp; E(x) \approx \frac{1}{N}\sum_{i=1}^{N}x_i, \<br>
-&amp; Probability\left[E(x) = \lim_{N\to\infty}\sum_{i=1}^{N}x_i \right] = 1.
+& E(x) \approx \frac{1}{N}\sum_{i=1}^{N}x_i, \<br>
+& Probability\left[E(x) = \lim_{N\to\infty}\sum_{i=1}^{N}x_i \right] = 1.
 \end {align}$$</p>
-<h3 id="monte-carlo-integration">Monte Carlo Integration</h3>
+<h3 id=monte-carlo-integration>Monte Carlo Integration</h3>
 <p>In this section, the basic Monte Carlo solution methods for definite integrals are outlined. These techniques are then straightforwardly applied to certain integral problems. All of the basic material of this section is also covered in several of the classic Monte Carlo texts.</p>
 <p>$$\begin{align}
-E(f(x)) = \int_{x\in S}f(x)p(x)d\mu \approx \frac1N\sum_{i=1}^{N}x_i, 
+E(f(x)) = \int_{x\in S}f(x)p(x)d\mu \approx \frac1N\sum_{i=1}^{N}x_i,
 \end {align}$$</p>
-<h4 id="quasimonte-carlo-integration"><strong>Quasi–Monte Carlo Integration</strong></h4>
+<h4 id=quasimonte-carlo-integration><strong>Quasi–Monte Carlo Integration</strong></h4>
 <p>A popular method for quadrature is to replace the random points in Monte Carlo integration with <em>quasi-random points</em>. Such points are deterministic, but are in some sense uniform.</p>
 <p>Quasi-random points can improve performance in many integration applications. Sometimes care must be taken to make sure that they do not introduce aliasing. It is especially nice that, in any application where calls are made to random or stratified points in $[0, 1]^d$, one can substitute $d$-dimensional quasi-random points with no other changes.</p>
-<h3 id="choosing-random-points">Choosing Random Points</h3>
+<h3 id=choosing-random-points>Choosing Random Points</h3>
 <p>We often want to generate sets of random or pseudorandom points on the unit square for applications such as distribution ray tracing. There are several methods for doing this, e.g., jittering (see Section 13.4). These methods give us a set of $N$ reasonably equi-distributed points on the unit square $[0, 1]^2 : (u_1, v_1)$ through $(u_N, v_N)$.</p>
 <p>Sometimes, our sampling space may not be square (e.g., a circular lens), or may not be uniform (e.g, a filter function centered on a pixel). It would be nice if we could write a mathematical transformation that would take our equidistributed points $(u_i, v_i)$ as input and output a set of points in our desired sampling space with our desired density. For example, to sample a camera lens, the transformation would take $(u_i, v_i)$ and output $(r_i, \phi_i)$ such that the new points are approximately equidistributed on the disk of the lens. While we might be tempted to use the transform</p>
 <p>$$\begin{align}
-\varphi_i &amp;= 2\pi,u_i, \<br>
-r_i &amp;= v_iR,
+\varphi_i &= 2\pi,u_i, \<br>
+r_i &= v_iR,
 \end {align}$$</p>
 <p>it has a serious problem. While the points do cover the lens, they do so nonuniformly (Figure 14.6). What we need in this case is a transformation that takes equal-area regions to equal-area regions—one that takes uniform sampling distributions on the square to uniform distributions on the new domain. <br>
 There are several ways to generate such non-uniform points or uniform points on non-rectangular domains, and the following sections review the three most often used: function inversion, rejection, and Metropolis.</p>
-<p><img src="../../../../images/fundcg/14_sample1.png" alt="alt"></p>
-<h4 id="function-inversion"><strong>Function Inversion</strong></h4>
-<p><img src="../../../../images/fundcg/14_sample2.png" alt="alt"></p>
-<h4 id="rejection"><strong>Rejection</strong></h4>
+<p><img src=../../../../images/fundcg/14_sample1.png alt=alt></p>
+<h4 id=function-inversion><strong>Function Inversion</strong></h4>
+<p><img src=../../../../images/fundcg/14_sample2.png alt=alt></p>
+<h4 id=rejection><strong>Rejection</strong></h4>
 <p>A <em>rejection</em> method chooses points according to some simple distribution and rejects some of them that are in a more complex distribution.</p>
-<h4 id="metropolis"><strong>Metropolis</strong></h4>
+<h4 id=metropolis><strong>Metropolis</strong></h4>
 <p>The <em>Metropolis</em> method uses random <em>mutations</em> to produce a set of samples with a desired density. This concept is used extensively in the <em>Metropolis Light Transport algorithm</em> referenced in the chapter notes. Suppose we have a random point $x_0$ in a domain $S$. Further, suppose for any point $x$, we have a way to generate random $y \sim p_x$. We use the marginal notation $p_x(y) \equiv p(x \to y)$ to denote this density function. Now, suppose we let $x_1$ be a random point in $S$ selected with underlying density $p(x_0 \to x_1)$. We generate $x_2$ with density $p(x_1 \to x_0)$ and so on. In the limit, where we generate an infinite number of samples, it can be proved that the samples will have some underlying density determined by $p$ regardless of the initial point $x_0$.</p>
-<h2 id="chapter-15--curves">Chapter 15 : Curves</h2>
+<h2 id=chapter-15--curves>Chapter 15 : Curves</h2>
 <p>Intuitively, think of a curve as something you can draw with a pen. The curve is the set of points that the pen traces over an interval of time. While we usually think of a pen writing on paper (e.g., a curve that is in a 2D space), the pen could move in 3D to generate a <em>space curve</em>, or you could imagine the pen moving in some other kind of space.</p>
 <p>Mathematically, definitions of curve can be seen in at least two ways:</p>
 <ol>
@@ -312,7 +203,7 @@ There are several ways to generate such non-uniform points or uniform points on 
 <p>There are three main ways to specify curves mathematically:</p>
 <ol>
 <li>
-<p><em>Implicit curve</em> representations define the set of points on a curve by giving a procedure that can test to see if a point in on the curve. Usually, an implicit curve representation is defined by an implicit function of the form  $f(x, y) = 0,$ so that the curve is the set of points for which this equation is true. Note that the implicit function $f$ is a scalar function (it returns a single real number).</p>
+<p><em>Implicit curve</em> representations define the set of points on a curve by giving a procedure that can test to see if a point in on the curve. Usually, an implicit curve representation is defined by an implicit function of the form $f(x, y) = 0,$ so that the curve is the set of points for which this equation is true. Note that the implicit function $f$ is a scalar function (it returns a single real number).</p>
 </li>
 <li>
 <p><em>Parametric curve</em> representations provide a mapping from a <em>free parameter</em> to the set of points on the curve. That is, this free parameter provides an index to the points on the curve. The parametric form of a curve is a function that assigns positions to values of the free parameter. Intuitively, if you think of a curve as something you can draw with a pen on a piece of paper, the free parameter is time, ranging over the interval from the time that we began drawing the curve to the time that we finish. The <em>parametric function</em> of this curve tells us where the pen is at any instant in time: $(x, y) = \mathbf f(t)$.<br>
@@ -322,15 +213,15 @@ Note that the parametric function is a vector-valued function. This example is a
 <p><em>Generative or procedural curve</em> representations provide procedures that can generate the points on the curve that do not fall into the first two categories. Examples of generative curve descriptions include subdivision schemes and fractals.</p>
 </li>
 </ol>
-<h4 id="parameterizations-and-re-parameterizations"><strong>Parameterizations and Re-Parameterizations</strong></h4>
+<h4 id=parameterizations-and-re-parameterizations><strong>Parameterizations and Re-Parameterizations</strong></h4>
 <p>A <em>parametric curve</em> refers to the curve that is given by a specific parametric function over some particular interval. To be more precise, a parametric curve has a given function that is a mapping from an interval of the parameters. It is often convenient to have the parameter run over the unit interval from 0 to 1. When the free parameter varies over the unit interval, we often denote the parameter as $u$.</p>
 <p>If we are given a function $\mathbf f(t)$ that specifies a curve over interval $[a, b]$, we can easily define a new function $\mathbf f_2(u)$ that specifies the same curve over the unit interval. We can first define<br>
 $$ g(u) = a + (b − a)u,$$ <br>
 and then<br>
 $$ \mathbf f_2(u) = \mathbf f(g(u)).$$<br>
 The two functions, $\mathbf f$ and $\mathbf f_2$ both represent the same curve; however, they provide different <em>parameterizations</em> of the curve. The process of creating a new parameterization for an existing curve is called <em>re-parameterization</em>, and the map ping from old parameters to the new ones (g, in this example) is called the <em>re-parameterization function</em>.</p>
-<h4 id="piecewise-parametric-representations"><strong>Piecewise Parametric Representations</strong></h4>
-<p><img src="../../../../images/fundcg/15_curve1.png" alt="alt"></p>
+<h4 id=piecewise-parametric-representations><strong>Piecewise Parametric Representations</strong></h4>
+<p><img src=../../../../images/fundcg/15_curve1.png alt=alt></p>
 <p>For some curves, defining a parametric function that represents their shape is easy. For example, lines, circles, and ellipses all have simple functions that define the points they contain in terms of a parameter. For many curves, finding a function that specifies their shape can be hard. The main strategy that we use to create complex curves is divide-and-conquer: we break the curve into a number of simpler smaller pieces, each of which has a simple description.</p>
 <p>One advantage to using a piecewise representation is that it allows us to make a tradeoff between</p>
 <ol>
@@ -338,10 +229,10 @@ The two functions, $\mathbf f$ and $\mathbf f_2$ both represent the same curve; 
 <li>how complicated the pieces that we use are;</li>
 <li>how many pieces we use.</li>
 </ol>
-<h4 id="splines"><strong>Splines</strong></h4>
+<h4 id=splines><strong>Splines</strong></h4>
 <p>Before computers, when draftsmen wanted to draw a smooth curve, one tool they employed was a stiff piece of metal that they would bend into the desired shape for tracing. Because the metal would bend, not fold, it would have a smooth shape. The stiffness meant that the metal would bend as little as possible to make the desired shape. This stiff piece of metal was called a spline.</p>
 <p>For us, a <em>spline</em> is a piecewise polynomial function. Such functions are very useful for representing curves.</p>
-<h3 id="curve-properties">Curve Properties</h3>
+<h3 id=curve-properties>Curve Properties</h3>
 <p>To describe a curve, we need to give some facts about its properties. For “named” curves, the properties are usually specific according to the type of curve. For example, to describe a circle, we might provide its radius and the position of its center. For an ellipse, we might also provide the orientation of its major axis and the ratio of the lengths of the axes. For free-form curves however, we need to have a more general set of properties to describe individual curves.</p>
 <p>Some properties of curves are attributed to only a single location on the curve, while other properties require knowledge of the whole curve. For an intuition of the difference, imagine that the curve is a train track. If you are standing on the track on a foggy day you can tell that the track is straight or curved and whether or not you are at an end point. These are <em>local</em> properties. You cannot tell whether or not the track is a closed curve, or crosses itself, or how long it is. We call this type of property, a <em>global</em> property.</p>
 <p>Local properties are important tools for describing curves because they do not require knowledge about the whole curve. Local properties include</p>
@@ -351,24 +242,24 @@ The two functions, $\mathbf f$ and $\mathbf f_2$ both represent the same curve; 
 <li>direction at a specific place on the curve,</li>
 <li>curvature (and other derivatives).</li>
 </ul>
-<h4 id="continuity"><strong>Continuity</strong></h4>
+<h4 id=continuity><strong>Continuity</strong></h4>
 <p>We call the condition that the curve pieces fit together <em>continuity</em> conditions because if they hold, the curve can be drawn as a continuous piece.</p>
-<p>In general, we say that a curve is $C_n$ continuous if all of its derivatives up to $n$ match across pieces. We denote the position itself as the zeroth derivative, so that the $C_0$ continuity condition means that the 
+<p>In general, we say that a curve is $C_n$ continuous if all of its derivatives up to $n$ match across pieces. We denote the position itself as the zeroth derivative, so that the $C_0$ continuity condition means that the
 positions of the curve are continuous, and $C_1$ continuity means that positions and first derivatives are continuous. The definition of curve requires the curve to be $C_0$.</p>
-<p><img src="../../../../images/fundcg/15_curve2.png" alt="alt"></p>
+<p><img src=../../../../images/fundcg/15_curve2.png alt=alt></p>
 <p>An illustration of some continuity conditions is shown in Figure 15.2. A discontinuity in the first derivative (the curve is $C_0$ but not $C_1$) is usually noticeable because it displays a sharp corner. A discontinuity in the second derivative is sometimes visually noticeable. Discontinuities in higher derivatives might matter, depending on the application. For example, if the curve represents a motion, an abrupt change in the second derivative is noticeable, so third derivative continuity is often useful. If the curve is going to have a fluid flowing over it (for example, if it is the shape for an airplane wing or boat hull), a discontinuity in the fourth or fifth derivative might cause turbulence.</p>
-<h3 id="polynomial-pieces">Polynomial Pieces</h3>
-<h4 id="polynomial-notation"><strong>Polynomial Notation</strong></h4>
+<h3 id=polynomial-pieces>Polynomial Pieces</h3>
+<h4 id=polynomial-notation><strong>Polynomial Notation</strong></h4>
 <p>&ndash; Not documented!!&ndash;</p>
-<h2 id="chapter-17--computer-animation">Chapter 17 : Computer Animation</h2>
+<h2 id=chapter-17--computer-animation>Chapter 17 : Computer Animation</h2>
 <ul>
-<li>Derives from  latin <em>Anima</em>, meaning the act of imparting life or motion or activity.</li>
+<li>Derives from latin <em>Anima</em>, meaning the act of imparting life or motion or activity.</li>
 <li><em>Keyframing</em>, the animator provides necessary data in time..</li>
 <li><em>Procedural</em>, empirical mathematical functions whose output defines some particular motion.</li>
 <li><em>Physics-based</em>, involves solving differential equaions.</li>
 <li><em>Motion capture</em>, involves techniques for capturing real world motion data and transfer it to computer models.</li>
 </ul>
-<h3 id="principals-of-animation">Principals of Animation</h3>
+<h3 id=principals-of-animation>Principals of Animation</h3>
 <ul>
 <li>squash and stretch; timing; anticipation; follow through and overlapping action; slow-in and slow-out; staging; arcs; secondary action; straight-ahead; pose-to-action; exaggeration; solid drawing skill; appeal;</li>
 <li>Timing</li>
@@ -381,8 +272,8 @@ positions of the curve are continuous, and $C_1$ continuity means that positions
 <li><strong>Deformations</strong></li>
 <li><strong>Character Animation</strong></li>
 <li>Skeleton, as a hierarchical structure</li>
-<li><em>Forward kinematics</em>, technique for evaluating skeleton structures, same as  matrix stack.</li>
-<li><em>Inverse kinematics</em>,  is then used in case the animator gives the effective motion at the end points and expects other joints to &ldquo;move on their own&rdquo;</li>
+<li><em>Forward kinematics</em>, technique for evaluating skeleton structures, same as matrix stack.</li>
+<li><em>Inverse kinematics</em>, is then used in case the animator gives the effective motion at the end points and expects other joints to &ldquo;move on their own&rdquo;</li>
 <li>Facial Animation,</li>
 <li>Motion Capture</li>
 <li><strong>Physics-Based Animation</strong></li>
@@ -393,162 +284,76 @@ positions of the curve are continuous, and $C_1$ continuity means that positions
 <li>flocking</li>
 <li>particle systems</li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-1/">Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-2/">Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-3/">Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-4/">Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-5/">Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-1/>Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-2/>Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-3/>Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-4/>Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-5/>Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

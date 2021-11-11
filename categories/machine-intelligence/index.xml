@@ -1,79 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>machine-intelligence on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/categories/machine-intelligence/</link>
-    <description>Recent content in machine-intelligence on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 05 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.myproductionurl.com/categories/machine-intelligence/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Neural Networks for Computer Vision</title>
-      <link>https://www.myproductionurl.com/research/machine-intelligence/nn-for-cv-1/</link>
-      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/machine-intelligence/nn-for-cv-1/</guid>
-      <description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>machine-intelligence on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/categories/machine-intelligence/</link><description>Recent content in machine-intelligence on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 05 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://nitishpuri.github.io/blog-hugo/categories/machine-intelligence/index.xml" rel="self" type="application/rss+xml"/><item><title>Neural Networks for Computer Vision</title><link>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/nn-for-cv-1/</link><pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/nn-for-cv-1/</guid><description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
 Image Recognition Very Deep Convolutional Networks For Large-Scale Image Recognition Karen Simonyan, Andrew Zisserman : Apr 2015
 Source
 Implementation
- Introduces the VGG network that won ImageNet in 2014. Deeper ConvNets. Takes input as (224 X 224) RGB and mean image subtracted as preprocessing. Two final FC hidden layers, followed by one FC layer with 1000 outputs.</description>
-    </item>
-    
-    <item>
-      <title>Research Notes:: Deep Learning</title>
-      <link>https://www.myproductionurl.com/research/machine-intelligence/research-ml/</link>
-      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/machine-intelligence/research-ml/</guid>
-      <description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
-Image Recognition and Convnet Architectures  Image Recognition  Very Deep Convolutional Networks For Large-Scale Image Recognition Going Deeper with Convolutions Deep Residual Learning for Image Recognition Rethinking the Inception Architecture for Computer Vision Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning Xception: Deep Learning with Depthwise Separable Convolutions   Deep Visualization  Visualizing and Understanding Convolutional Networks Multifaceted Feature Visualization: Uncovering the Different Types of Features Learned By Each Neuron in Deep Neural Networks How transferable are features in deep neural networks?</description>
-    </item>
-    
-    <item>
-      <title>Neural Network Architectures</title>
-      <link>https://www.myproductionurl.com/research/machine-intelligence/nn-arch-1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/machine-intelligence/nn-arch-1/</guid>
-      <description>Deep Learning Architectures Self-Normalizing Neural Networks Günter Klambauer, Thomas Unterthiner, Andreas Mayr, Sepp Hochreiter : Sep 2017
+Introduces the VGG network that won ImageNet in 2014. Deeper ConvNets. Takes input as (224 X 224) RGB and mean image subtracted as preprocessing. Two final FC hidden layers, followed by one FC layer with 1000 outputs.</description></item><item><title>Research Notes:: Deep Learning</title><link>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/research-ml/</link><pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/research-ml/</guid><description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Image Recognition and Convnet Architectures Image Recognition Very Deep Convolutional Networks For Large-Scale Image Recognition Going Deeper with Convolutions Deep Residual Learning for Image Recognition Rethinking the Inception Architecture for Computer Vision Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning Xception: Deep Learning with Depthwise Separable Convolutions Deep Visualization Visualizing and Understanding Convolutional Networks Multifaceted Feature Visualization: Uncovering the Different Types of Features Learned By Each Neuron in Deep Neural Networks How transferable are features in deep neural networks?</description></item><item><title>Neural Network Architectures</title><link>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/nn-arch-1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/nn-arch-1/</guid><description>Deep Learning Architectures Self-Normalizing Neural Networks Günter Klambauer, Thomas Unterthiner, Andreas Mayr, Sepp Hochreiter : Sep 2017
 Source
- Deep learning is setting new benchmarks everyday with the help of RNNs and CNNs. However, looking at problems that are not related to vision or sequential tasks, gradient boosting, random forests, or support vector machines are winning most of the competitions(Eg. Kaggle, HIGGS Challenge). With CNNs success, batch normalization and other stochastic regularization techniques has evolved into a standard.</description>
-    </item>
-    
-    <item>
-      <title>Object Detection and Image Segmentation, Part 2</title>
-      <link>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-2/</guid>
-      <description>Image Segmentation SSD: Single Shot MultiBox Detector Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu, Alexander C. Berg : Dec 2016
+Deep learning is setting new benchmarks everyday with the help of RNNs and CNNs. However, looking at problems that are not related to vision or sequential tasks, gradient boosting, random forests, or support vector machines are winning most of the competitions(Eg. Kaggle, HIGGS Challenge). With CNNs success, batch normalization and other stochastic regularization techniques has evolved into a standard.</description></item><item><title>Object Detection and Image Segmentation, Part 2</title><link>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/detect-segment-2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/detect-segment-2/</guid><description>Image Segmentation SSD: Single Shot MultiBox Detector Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu, Alexander C. Berg : Dec 2016
 Source
 Code
- Accurate approaches for image segmentation and object detection are available, like Faster R-CNN, but they are too slow for real time applications. Eliminates bounding box proposals and the subsequent pixel or feature resampling stage. Improvements include using a small convolutional filter to predict object categories and offsets in bounding box locations, using separate predictors (filters) for different aspect ratio detections, and applying these filters to multiple feature maps from the later stages of a network in order to perform detection at multiple scales.</description>
-    </item>
-    
-    <item>
-      <title>Style Transfer, Part 1</title>
-      <link>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-1/</guid>
-      <description>Style Transfer A Neural Style Algorithm of Artistic Style Leon A. Gatys, Alexander S. Ecker, Matthias Bethge : Sep 2015
+Accurate approaches for image segmentation and object detection are available, like Faster R-CNN, but they are too slow for real time applications. Eliminates bounding box proposals and the subsequent pixel or feature resampling stage. Improvements include using a small convolutional filter to predict object categories and offsets in bounding box locations, using separate predictors (filters) for different aspect ratio detections, and applying these filters to multiple feature maps from the later stages of a network in order to perform detection at multiple scales.</description></item><item><title>Style Transfer, Part 1</title><link>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/style-transfer-1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/style-transfer-1/</guid><description>Style Transfer A Neural Style Algorithm of Artistic Style Leon A. Gatys, Alexander S. Ecker, Matthias Bethge : Sep 2015
 Source
- In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities. Then we came across Deep Neural Networks.</description>
-    </item>
-    
-    <item>
-      <title>Style Transfer, Part 2</title>
-      <link>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-2/</guid>
-      <description>Style Transfer Artistic style transfer for videos Manuel Ruder, Alexey Dosovitskiy, Thomas Brox : Apr 2016
+In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities. Then we came across Deep Neural Networks.</description></item><item><title>Style Transfer, Part 2</title><link>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/style-transfer-2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/style-transfer-2/</guid><description>Style Transfer Artistic style transfer for videos Manuel Ruder, Alexey Dosovitskiy, Thomas Brox : Apr 2016
 Source
- The previously discussed techniques have been applied to videos on per frame basis. However, processing each frame of the video independently leads to flickering and false discontinuities, since the solution of the style transfer task is not stable. To regularize the transfer temporal constraints using optical flow are introduced.  Notation  $\mathbf p^{(i)}$ is the $i^{th}$ frame of the original video.</description>
-    </item>
-    
-  </channel>
-</rss>
+The previously discussed techniques have been applied to videos on per frame basis. However, processing each frame of the video independently leads to flickering and false discontinuities, since the solution of the style transfer task is not stable. To regularize the transfer temporal constraints using optical flow are introduced. Notation $\mathbf p^{(i)}$ is the $i^{th}$ frame of the original video.</description></item></channel></rss>

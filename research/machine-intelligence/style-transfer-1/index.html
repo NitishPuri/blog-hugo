@@ -1,214 +1,107 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Style Transfer, Part 1" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Style Transfer, Part 1">
 <meta property="og:description" content="Style Transfer A Neural Style Algorithm of Artistic Style Leon A. Gatys, Alexander S. Ecker, Matthias Bethge : Sep 2015
 Source
- In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities. Then we came across Deep Neural Networks." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/research/machine-intelligence/style-transfer-1/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="research" />
-
-<meta property="article:modified_time" content="2021-11-09T20:19:04+05:30" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Style Transfer, Part 1"/>
-<meta name="twitter:description" content="Style Transfer A Neural Style Algorithm of Artistic Style Leon A. Gatys, Alexander S. Ecker, Matthias Bethge : Sep 2015
+ In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities. Then we came across Deep Neural Networks.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/style-transfer-1/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="research">
+<meta property="article:modified_time" content="2021-11-09T20:19:04+05:30">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Style Transfer, Part 1">
+<meta name=twitter:description content="Style Transfer A Neural Style Algorithm of Artistic Style Leon A. Gatys, Alexander S. Ecker, Matthias Bethge : Sep 2015
 Source
- In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities. Then we came across Deep Neural Networks."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/research/machine-intelligence/style-transfer-1/">
-
-    <title>
-      
-        Style Transfer, Part 1 | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+ In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities. Then we came across Deep Neural Networks.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/style-transfer-1/>
+<title>
+Style Transfer, Part 1 | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/">Researches</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/machine-intelligence/">Machine Intelligence</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Style Transfer, Part 1</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/research/>Researches</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/>Machine Intelligence</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Style Transfer, Part 1</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../research/machine-intelligence/style-transfer-1/">Style Transfer, Part 1</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../blog-hugo/research/machine-intelligence/style-transfer-1/>Style Transfer, Part 1</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/style-transfer>style-transfer</a>
 </div>
-
-
-    
 <div class="blog-post-categories text-secondary">
-    <strong>Categories:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
-    
+<strong>Categories:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
 </div>
-
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#style-transfer">Style Transfer</a>
-      <ul>
-        <li><a href="#a-namestyle1-a-a-neural-style-algorithm-of-artistic-style"><!-- raw HTML omitted --> <!-- raw HTML omitted --> A Neural Style Algorithm of Artistic Style</a></li>
-        <li><a href="#a-namestyle2-a-improving-the-neural-algorithm-of-artistic-style"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Improving the Neural Algorithm of Artistic Style</a></li>
-        <li><a href="#a-namestyle3-a-preserving-color-in-neural-artistic-style-transfer"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Preserving Color in Neural Artistic Style Transfer</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#style-transfer>Style Transfer</a>
+<ul>
+<li><a href=#a-namestyle1-a-a-neural-style-algorithm-of-artistic-style> A Neural Style Algorithm of Artistic Style</a></li>
+<li><a href=#a-namestyle2-a-improving-the-neural-algorithm-of-artistic-style> Improving the Neural Algorithm of Artistic Style</a></li>
+<li><a href=#a-namestyle3-a-preserving-color-in-neural-artistic-style-transfer> Preserving Color in Neural Artistic Style Transfer</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="style-transfer">Style Transfer</h2>
-<h3 id="a-namestyle1-a-a-neural-style-algorithm-of-artistic-style"><!-- raw HTML omitted --> <!-- raw HTML omitted --> A Neural Style Algorithm of Artistic Style</h3>
+<h2 id=style-transfer>Style Transfer</h2>
+<h3 id=a-namestyle1-a-a-neural-style-algorithm-of-artistic-style> A Neural Style Algorithm of Artistic Style</h3>
 <p><em>Leon A. Gatys, Alexander S. Ecker, Matthias Bethge : Sep 2015</em><br>
-<a href="https://arxiv.org/abs/1508.06576"><em>Source</em></a></p>
+<a href=https://arxiv.org/abs/1508.06576><em>Source</em></a></p>
 <ul>
 <li>In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities.</li>
 <li>Then we came across Deep Neural Networks.
-<img src="../../../images/papers/styleTransfer1.jpg" alt="alt"></li>
+<img src=../../../images/papers/styleTransfer1.jpg alt=alt></li>
 <li><em>Higher</em> layers in the network capture the high-level <em>content</em> in terms of objects and their arrangement in the input image. We represent these feature responses as <em>content representation</em>.
 $$\mathcal L_{content}(\vec p,\vec x,l) = \frac12\sum_{i,j}{(F^l_{ij} - P^l_{ij})^2}$$</li>
 <li>For <em>style</em> we need to capture correlations(given by <em>Gram matrix</em> $G^l \in \mathcal R^{N_l \times N_l}$ where $G^l_{ij} = \sum_kF^l_{ik}F^l_{jk}$) between different filter responses. This representation captures the texture information of the input, but not the global arrangement. This multi-scale representation is called *style representation*.
@@ -217,24 +110,24 @@ $$\mathcal L_{style}(\vec a,\vec x) = \sum_{l=0}^Lw_lE_l$$</li>
 <li>So, we can manipulate both <em>content</em> and <em>style</em> separately.</li>
 <li>The images are synthesised by finding an image that simultaneously matches the content representation of the photograph and the style representation of the respective piece of art.
 $$\mathcal L_{total}(\vec p,\vec a,\vec x) = \alpha\mathcal L_{content}(\vec p,\vec x) + \beta\mathcal L_{style}(\vec a,\vec x)$$
-<img src="../../../images/papers/styleTransfer2.jpg" alt="alt">
-<img src="../../../images/papers/styleTransfer3.jpg" alt="alt">
-<img src="../../../images/papers/styleTransfer4.jpg" alt="alt"></li>
+<img src=../../../images/papers/styleTransfer2.jpg alt=alt>
+<img src=../../../images/papers/styleTransfer3.jpg alt=alt>
+<img src=../../../images/papers/styleTransfer4.jpg alt=alt></li>
 <li><em>Gallleries</em>
 <ul>
-<li><a href="http://kylemcdonald.net/stylestudies/">Style Transfer Studies</a></li>
+<li><a href=http://kylemcdonald.net/stylestudies/>Style Transfer Studies</a></li>
 </ul>
 </li>
 <li><em>Implementations</em>
 <ul>
-<li><a href="https://github.com/jcjohnson/neural-style">Neural Style, JC Johnson, Lua</a></li>
+<li><a href=https://github.com/jcjohnson/neural-style>Neural Style, JC Johnson, Lua</a></li>
 </ul>
 </li>
 </ul>
-<h3 id="a-namestyle2-a-improving-the-neural-algorithm-of-artistic-style"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Improving the Neural Algorithm of Artistic Style</h3>
+<h3 id=a-namestyle2-a-improving-the-neural-algorithm-of-artistic-style> Improving the Neural Algorithm of Artistic Style</h3>
 <p><em>Roman Novak, Yalroslav Nikulin : May 2016</em><br>
-<a href="https://arxiv.org/abs/1605.04603"><em>Source</em></a><br>
-<img src="../../../images/papers/improvedStyle1.jpg" alt="alt"></p>
+<a href=https://arxiv.org/abs/1605.04603><em>Source</em></a><br>
+<img src=../../../images/papers/improvedStyle1.jpg alt=alt></p>
 <ul>
 <li>Objectives addressed in this paper:
 <ul>
@@ -269,7 +162,7 @@ $$\mathcal L_{total}(\vec p,\vec a,\vec x) = \alpha\mathcal L_{content}(\vec p,\
 </li>
 <li>Correlation Chain
 <ul>
-<li>Instead of considering all layer combinations, use only a <em>&ldquo;chained&rdquo;</em> representation, ${G^{l,l-1}|l=2&hellip;16}.$</li>
+<li>Instead of considering all layer combinations, use only a <em>&ldquo;chained&rdquo;</em> representation, ${G^{l,l-1}|l=2&mldr;16}.$</li>
 <li>So, only correlations with immediate neighbors are considered.</li>
 </ul>
 </li>
@@ -293,16 +186,16 @@ $$\mathcal L_{total}(\vec p,\vec a,\vec x) = \alpha\mathcal L_{content}(\vec p,\
 </ul>
 </li>
 <li><strong>Experiments</strong>
-<img src="../../../images/papers/improvedStyle2.jpg" alt="alt"><br>
-<img src="../../../images/papers/improvedStyle3.jpg" alt="alt"><br>
-<img src="../../../images/papers/improvedStyle4.jpg" alt="alt"><br>
-<img src="../../../images/papers/improvedStyle5.jpg" alt="alt"></li>
+<img src=../../../images/papers/improvedStyle2.jpg alt=alt><br>
+<img src=../../../images/papers/improvedStyle3.jpg alt=alt><br>
+<img src=../../../images/papers/improvedStyle4.jpg alt=alt><br>
+<img src=../../../images/papers/improvedStyle5.jpg alt=alt></li>
 </ul>
-<h3 id="a-namestyle3-a-preserving-color-in-neural-artistic-style-transfer"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Preserving Color in Neural Artistic Style Transfer</h3>
+<h3 id=a-namestyle3-a-preserving-color-in-neural-artistic-style-transfer> Preserving Color in Neural Artistic Style Transfer</h3>
 <p><em>Leon A. Gatys, Matthias Bethge, Aaron Hertzmann, Eli Shechtman : Jun 2016</em><br>
-<a href="https://arxiv.org/abs/1606.05897"><em>Source</em></a></p>
-<p><img src="../../../images/papers/colorTransfer1.jpg" alt="alt"><br>
-<img src="../../../images/papers/colorTransfer2.jpg" alt="alt"></p>
+<a href=https://arxiv.org/abs/1606.05897><em>Source</em></a></p>
+<p><img src=../../../images/papers/colorTransfer1.jpg alt=alt><br>
+<img src=../../../images/papers/colorTransfer2.jpg alt=alt></p>
 <ul>
 <li>The original style transfer method also copies the colors of the style image, which might be undesirable in many cases.</li>
 <li><strong>Approach #1: Color histogram matching</strong></li>
@@ -314,20 +207,20 @@ $$\mathcal L_{total}(\vec p,\vec a,\vec x) = \alpha\mathcal L_{content}(\vec p,\
 <li>$\mathbf b=\mu_C- \mathbf A\mu_S$, where $\mu_C$ and$\mu_S$ are mean colors.</li>
 <li>$\mathbf A\Sigma_S \mathbf A^T=\Sigma_C$, where $\Sigma_C$ and $\Sigma_C$ are pixel covariances.</li>
 <li>$\mathbf A$ can be computed using Cholesky decomposition, or by using Image Analogies.
-<img src="../../../images/papers/colorTransfer3.jpg" alt="alt"></li>
+<img src=../../../images/papers/colorTransfer3.jpg alt=alt></li>
 </ul>
 </li>
 <li>Color transfer before style transfer generally gives better results.
-<img src="../../../images/papers/colorTransfer4.jpg" alt="alt"><br>
-<img src="../../../images/papers/colorTransfer5.jpg" alt="alt"></li>
+<img src=../../../images/papers/colorTransfer4.jpg alt=alt><br>
+<img src=../../../images/papers/colorTransfer5.jpg alt=alt></li>
 <li><strong>Approach #2: Luminance-only transfer</strong></li>
 <li>This approach is motivated by the observation that visual perception is far more sensitive to change in luminance than in color.</li>
 <li>$L_S$ and $L_C$ are luminance channels extracted from the style and content images.</li>
 <li>Use a <em>YIQ</em> color space, the color information represented by <em>I</em> and <em>Q</em> channels is combined with $L_T$ to produce the final output image.</li>
 <li>$L_{S'}=\frac {\sigma_C}{\sigma_S}(L_S - \mu_S) + \mu_C$
-<img src="../../../images/papers/colorTransfer6.jpg" alt="alt"><br>
-<img src="../../../images/papers/colorTransfer7.jpg" alt="alt"><br>
-<img src="../../../images/papers/colorTransfer8.jpg" alt="alt"></li>
+<img src=../../../images/papers/colorTransfer6.jpg alt=alt><br>
+<img src=../../../images/papers/colorTransfer7.jpg alt=alt><br>
+<img src=../../../images/papers/colorTransfer8.jpg alt=alt></li>
 <li><strong>Comparison</strong></li>
 <li>Linear color transfer onto the style image, before style transfer.
 <ul>
@@ -338,167 +231,81 @@ $$\mathcal L_{total}(\vec p,\vec a,\vec x) = \alpha\mathcal L_{content}(\vec p,\
 <ul>
 <li>Preserves the colors of content image perfectly.</li>
 <li>However, dependencies between the luminance and the color channels are lost in the output image.
-<img src="../../../images/papers/colorTransfer9.jpg" alt="alt"><br>
-<img src="../../../images/papers/colorTransfer10.jpg" alt="alt"></li>
+<img src=../../../images/papers/colorTransfer9.jpg alt=alt><br>
+<img src=../../../images/papers/colorTransfer10.jpg alt=alt></li>
 </ul>
 </li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../research/machine-intelligence/style-transfer-2/">Style Transfer, Part 2</a></li>
-        
-            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-4/">A visual proof that neural networks can compute any function, Micheal Nelson</a></li>
-        
-            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a></li>
-        
-            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-2/">How the backpropogation algorithm works, Micheal Nelson</a></li>
-        
-            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-3/">Improving the way neural networks learn, Micheal Nelson</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../blog-hugo/research/machine-intelligence/style-transfer-2/>Style Transfer, Part 2</a></li>
+<li><a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-4/>A visual proof that neural networks can compute any function, Micheal Nelson</a></li>
+<li><a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a></li>
+<li><a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-2/>How the backpropogation algorithm works, Micheal Nelson</a></li>
+<li><a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-3/>Improving the way neural networks learn, Micheal Nelson</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

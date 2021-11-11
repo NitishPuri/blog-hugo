@@ -1,78 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Neural Networks and Deep Learning, Micheal Nelson on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/books/programming/neuralnets/</link>
-    <description>Recent content in Neural Networks and Deep Learning, Micheal Nelson on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 20 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.myproductionurl.com/books/programming/neuralnets/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Is there a simple algorithm for intelligence?, Micheal Nelson</title>
-      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-7/</link>
-      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-7/</guid>
-      <description>Notes for the book.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Neural Networks and Deep Learning, Micheal Nelson on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/</link><description>Recent content in Neural Networks and Deep Learning, Micheal Nelson on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 20 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/index.xml" rel="self" type="application/rss+xml"/><item><title>Is there a simple algorithm for intelligence?, Micheal Nelson</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/</link><pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/</guid><description>Notes for the book.
 Source code for the book.
-Appendix: Is there a simple algorithm for intelligence? </description>
-    </item>
-    
-    <item>
-      <title>Deep Learning, Micheal Nelson</title>
-      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-6/</link>
-      <pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-6/</guid>
-      <description>Notes for the book.
+Appendix: Is there a simple algorithm for intelligence?</description></item><item><title>Deep Learning, Micheal Nelson</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/</link><pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/</guid><description>Notes for the book.
 Source code for the book.
-Chapter 6: Deep Learning </description>
-    </item>
-    
-    <item>
-      <title>Why are deep neural networks hard to train?, Micheal Nelson</title>
-      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-5/</link>
-      <pubDate>Sat, 23 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-5/</guid>
-      <description>Notes for the book.
+Chapter 6: Deep Learning</description></item><item><title>Why are deep neural networks hard to train?, Micheal Nelson</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/</link><pubDate>Sat, 23 Dec 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/</guid><description>Notes for the book.
 Source code for the book.
-Chapter 5: Why are deep neural networks hard to train? </description>
-    </item>
-    
-    <item>
-      <title>A visual proof that neural networks can compute any function, Micheal Nelson</title>
-      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-4/</link>
-      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-4/</guid>
-      <description>Notes for the book.
+Chapter 5: Why are deep neural networks hard to train?</description></item><item><title>A visual proof that neural networks can compute any function, Micheal Nelson</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-4/</link><pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-4/</guid><description>Notes for the book.
 Source code for the book.
 Chapter 4: A visual proof that neural networks can compute any function One of the most striking facts about neural networks is that they can compute any function at all.
 That is, suppose someone hands you some complicated, wiggly function, $f(x)$:
-No matter what the function, there is guaranteed to be a neural network so that for every possible input, $x$, the value $f(x)$ (or some close approximation) is output from the network.</description>
-    </item>
-    
-    <item>
-      <title>Improving the way neural networks learn, Micheal Nelson</title>
-      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-3/</link>
-      <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-3/</guid>
-      <description>Notes for the book.
+No matter what the function, there is guaranteed to be a neural network so that for every possible input, $x$, the value $f(x)$ (or some close approximation) is output from the network.</description></item><item><title>Improving the way neural networks learn, Micheal Nelson</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-3/</link><pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-3/</guid><description>Notes for the book.
 Source code for the book.
 Chapter 3: Improving the way neural networks learn Backpropagation was the basic swing, the fooundation for learning in most work on neural networks. Now we will learn the tricks.
 These include,
- A better cost function, known as cross entropy Four regularization methods. A better method for weight initialization. A set of heuristics to help choose good hyper-parameters. And several other techniques,  The cross-entropy cost function Yet while unpleasant, we learn quickly when we&amp;rsquo;re decisively wrong.</description>
-    </item>
-    
-    <item>
-      <title>How the backpropogation algorithm works, Micheal Nelson</title>
-      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-2/</link>
-      <pubDate>Fri, 22 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-2/</guid>
-      <description>Notes for the book.
+A better cost function, known as cross entropy Four regularization methods. A better method for weight initialization. A set of heuristics to help choose good hyper-parameters. And several other techniques, The cross-entropy cost function Yet while unpleasant, we learn quickly when we&amp;rsquo;re decisively wrong.</description></item><item><title>How the backpropogation algorithm works, Micheal Nelson</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-2/</link><pubDate>Fri, 22 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-2/</guid><description>Notes for the book.
 Source code for the book.
 Chapter 2: How the backpropogation algorithm works Was introduced in the 70&amp;rsquo;s, but came into light with this paper.
 Today, it is the workhorse of learning in neural networks.
@@ -80,22 +20,9 @@ Warm up: a fast matrix-based approach to computing the output from a neural netw
 For weights,
 For biases and activations,
 These are related,
-$$\begin{eqnarray} a^{l}j = \sigma\left( \sum_k w^{l}{jk} a^{l-1}_k + b^l_j \right), \tag{23}\end{eqnarray}$$</description>
-    </item>
-    
-    <item>
-      <title>Using neural nets to recognize handwritten digits, Micheal Nelson</title>
-      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-1/</link>
-      <pubDate>Thu, 21 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-1/</guid>
-      <description>Notes for the book.
+$$\begin{eqnarray} a^{l}j = \sigma\left( \sum_k w^{l}{jk} a^{l-1}_k + b^l_j \right), \tag{23}\end{eqnarray}$$</description></item><item><title>Using neural nets to recognize handwritten digits, Micheal Nelson</title><link>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-1/</link><pubDate>Thu, 21 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-1/</guid><description>Notes for the book.
 Source code for the book.
 Chapter 1: Using neural nets to recognize handwritten digits Perceptrons $$\begin{eqnarray} \mbox{output} &amp;amp; = &amp;amp; \left{ \begin{array}{ll} 0 &amp;amp; \mbox{if } \sum_j w_j x_j \leq \mbox{ threshold} \
 1 &amp;amp; \mbox{if } \sum_j w_j x_j &amp;gt; \mbox{ threshold} \end{array} \right. \tag{1}\end{eqnarray}$$
 Network of perceptrons First, simplify notation, $w \cdot x \equiv \sum_j w_j x_j$
-Move, threshold into the network as bias, $b \equiv -\mbox{threshold}$</description>
-    </item>
-    
-  </channel>
-</rss>
+Move, threshold into the network as bias, $b \equiv -\mbox{threshold}$</description></item></channel></rss>

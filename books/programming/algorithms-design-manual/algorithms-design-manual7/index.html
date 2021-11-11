@@ -1,224 +1,115 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="The Algorithms Design Manual, Computational Geometry" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="The Algorithms Design Manual, Computational Geometry">
 <meta property="og:description" content="Computational Geometry Robust Geometric Primitives Input description: A point $p$ and line segment $l$, or two line segments $l_1$, $l_2$.
 Problem description: Does $p$ lie over, under, or on $l$? Does $l_1$ intersect $l_2$?
- Even simple operations like line(segment) intersection can have many different cases including numerical stability and geometric degeneracy issues. Three primary approaches for dealing with degeneracy,  Ignore it : Most common and recommended approach. Fake it : Random data perturbation so that it becomes non-degenerate." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-<meta property="article:published_time" content="2017-10-07T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-11-11T14:51:57+05:30" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="The Algorithms Design Manual, Computational Geometry"/>
-<meta name="twitter:description" content="Computational Geometry Robust Geometric Primitives Input description: A point $p$ and line segment $l$, or two line segments $l_1$, $l_2$.
+ Even simple operations like line(segment) intersection can have many different cases including numerical stability and geometric degeneracy issues. Three primary approaches for dealing with degeneracy,  Ignore it : Most common and recommended approach. Fake it : Random data perturbation so that it becomes non-degenerate.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:published_time" content="2017-10-07T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-11-11T14:51:57+05:30">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="The Algorithms Design Manual, Computational Geometry">
+<meta name=twitter:description content="Computational Geometry Robust Geometric Primitives Input description: A point $p$ and line segment $l$, or two line segments $l_1$, $l_2$.
 Problem description: Does $p$ lie over, under, or on $l$? Does $l_1$ intersect $l_2$?
- Even simple operations like line(segment) intersection can have many different cases including numerical stability and geometric degeneracy issues. Three primary approaches for dealing with degeneracy,  Ignore it : Most common and recommended approach. Fake it : Random data perturbation so that it becomes non-degenerate."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/">
-
-    <title>
-      
-        The Algorithms Design Manual, Computational Geometry | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+ Even simple operations like line(segment) intersection can have many different cases including numerical stability and geometric degeneracy issues. Three primary approaches for dealing with degeneracy,  Ignore it : Most common and recommended approach. Fake it : Random data perturbation so that it becomes non-degenerate.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/>
+<title>
+The Algorithms Design Manual, Computational Geometry | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/">Algorithms Design Manual</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  The Algorithms Design Manual, Computational Geometry</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/>Algorithms Design Manual</a> </li>
+<li class="breadcrumb-item active" aria-current=page> The Algorithms Design Manual, Computational Geometry</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual7/>The Algorithms Design Manual, Computational Geometry</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-10-07">Oct 7, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-10-07>Oct 7, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#computational-geometry">Computational Geometry</a>
-      <ul>
-        <li><a href="#robust-geometric-primitives">Robust Geometric Primitives</a></li>
-        <li><a href="#convex-hull">Convex Hull</a></li>
-        <li><a href="#triangulation">Triangulation</a></li>
-        <li><a href="#vornoi-diagrams">Vornoi Diagrams</a></li>
-        <li><a href="#nearest-neighbor-search">Nearest Neighbor Search</a></li>
-        <li><a href="#range-search">Range Search</a></li>
-        <li><a href="#point-location">Point Location</a></li>
-        <li><a href="#intersection-detection">Intersection Detection</a></li>
-        <li><a href="#bin-packing">Bin Packing</a></li>
-        <li><a href="#medial-axis-transform">Medial-Axis Transform</a></li>
-        <li><a href="#polygon-partitioning">Polygon Partitioning</a></li>
-        <li><a href="#simplifying-polygons">Simplifying Polygons</a></li>
-        <li><a href="#shape-similarity">Shape Similarity</a></li>
-        <li><a href="#motion-planning">Motion Planning</a></li>
-        <li><a href="#maintaining-line-alignments">Maintaining Line Alignments</a></li>
-        <li><a href="#minkowski-sum">Minkowski Sum</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#computational-geometry>Computational Geometry</a>
+<ul>
+<li><a href=#robust-geometric-primitives>Robust Geometric Primitives</a></li>
+<li><a href=#convex-hull>Convex Hull</a></li>
+<li><a href=#triangulation>Triangulation</a></li>
+<li><a href=#vornoi-diagrams>Vornoi Diagrams</a></li>
+<li><a href=#nearest-neighbor-search>Nearest Neighbor Search</a></li>
+<li><a href=#range-search>Range Search</a></li>
+<li><a href=#point-location>Point Location</a></li>
+<li><a href=#intersection-detection>Intersection Detection</a></li>
+<li><a href=#bin-packing>Bin Packing</a></li>
+<li><a href=#medial-axis-transform>Medial-Axis Transform</a></li>
+<li><a href=#polygon-partitioning>Polygon Partitioning</a></li>
+<li><a href=#simplifying-polygons>Simplifying Polygons</a></li>
+<li><a href=#shape-similarity>Shape Similarity</a></li>
+<li><a href=#motion-planning>Motion Planning</a></li>
+<li><a href=#maintaining-line-alignments>Maintaining Line Alignments</a></li>
+<li><a href=#minkowski-sum>Minkowski Sum</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="computational-geometry">Computational Geometry</h2>
-<h3 id="robust-geometric-primitives">Robust Geometric Primitives</h3>
-<p><img src="../../../../images/algdm/17_primitives.png" alt="alt"></p>
+<h2 id=computational-geometry>Computational Geometry</h2>
+<h3 id=robust-geometric-primitives>Robust Geometric Primitives</h3>
+<p><img src=../../../../images/algdm/17_primitives.png alt=alt></p>
 <p><strong>Input description:</strong> A point $p$ and line segment $l$, or two line segments $l_1$, $l_2$.<br>
 <strong>Problem description:</strong> Does $p$ lie over, under, or on $l$? Does $l_1$ intersect $l_2$?</p>
 <ul>
@@ -240,20 +131,20 @@ Blog - Nitish Puri
 <li>A set of low level geometric primitives :
 <ul>
 <li><em>Area of a triangle</em><br>
-$$\begin{array}0 2.A(t) &amp;=&amp; \begin{vmatrix}a_x &amp; a_y &amp; 1\ b_x &amp; b_y &amp; 1 \ c_x &amp; c_y &amp; 1\end{vmatrix} \&amp;= &amp;a_xb_y - a_yb_x + a_yc_x - a_xc_y + b_xc_y - c_xb_y\end{array}$$ <br>
+$$\begin{array}0 2.A(t) &=& \begin{vmatrix}a_x & a_y & 1\ b_x & b_y & 1 \ c_x & c_y & 1\end{vmatrix} \&= &a_xb_y - a_yb_x + a_yc_x - a_xc_y + b_xc_y - c_xb_y\end{array}$$ <br>
 This formula extends to $d$-dimensions, replacing $2$ with $d!$.</li>
 <li><em>Above-below-on test</em> : On which side of a line does a point lie?</li>
 <li><em>Line segment intersection</em> : A line segment intersects a line iff its end points lie on different sides of the line.</li>
 <li><em>In-circle test</em> : Check whether 4 given points lie on a circle,<br>
-$$\begin{array}0 incircle(a,b,c,d) &amp;=&amp; \begin{vmatrix}a_x &amp; a_y &amp; a_x^2+a_y^2&amp;1\ b_x &amp; b_y &amp; b_x^2+b_y^2 &amp; 1 \ c_x &amp; c_y &amp; c_x^2+c_y^2 &amp; 1\d_x &amp; d_y &amp; d_x^2+d_y^2 &amp; 1\end{vmatrix} \\end{array}$$
+$$\begin{array}0 incircle(a,b,c,d) &=& \begin{vmatrix}a_x & a_y & a_x^2+a_y^2&1\ b_x & b_y & b_x^2+b_y^2 & 1 \ c_x & c_y & c_x^2+c_y^2 & 1\d_x & d_y & d_x^2+d_y^2 & 1\end{vmatrix} \\end{array}$$
 This will return 0 if all four points are cocircular, a positive value if $d$ is inside the circle, and negative if $d$ is outside.</li>
 </ul>
 </li>
 <li><strong>Implementations</strong> : CGAL, LEDA.</li>
-<li><em>Related</em> : <a href="#intersection-detection">Intersection detection</a>, <a href="#maintaining-line-arrangement">maintaining arrangement</a>.</li>
+<li><em>Related</em> : <a href=#intersection-detection>Intersection detection</a>, <a href=#maintaining-line-arrangement>maintaining arrangement</a>.</li>
 </ul>
-<h3 id="convex-hull">Convex Hull</h3>
-<p><img src="../../../../images/algdm/17_chull.png" alt="alt"></p>
+<h3 id=convex-hull>Convex Hull</h3>
+<p><img src=../../../../images/algdm/17_chull.png alt=alt></p>
 <p><strong>Input description:</strong> A set $S$ of $n$ points in $d$-dimensional space.<br>
 <strong>Problem description:</strong> Find the smallest convex polygon (or polyhedron) containing all the points of $S$.</p>
 <ul>
@@ -262,7 +153,7 @@ This will return 0 if all four points are cocircular, a positive value if $d$ is
 <li>As many convex hull algorithms as sorting algorithms. How to choose,
 <ul>
 <li><em>How many dimensions are you working with?</em> Certain assumptions break down in higher dimensions. For higher dimensions use a <em>library</em> method.</li>
-<li><em>Is your data given as vertices or half-spaces?</em>  These are <em>dual</em> of each other.</li>
+<li><em>Is your data given as vertices or half-spaces?</em> These are <em>dual</em> of each other.</li>
 <li><em>How many points are likely to be on the hull?</em> Topmost, leftmost, bottom-most and rightmost points would certainly be on the hull, and points lying in the region enclosed by these vertices can be discarded in one sweep. This can also be used in higher dimensions.</li>
 <li><em>How do I find the shape of my point set?</em> Convex hulls would loose most of the shape information details.</li>
 </ul>
@@ -277,10 +168,10 @@ This will return 0 if all four points are cocircular, a positive value if $d$ is
 </ul>
 </li>
 <li><strong>Implementations</strong> : CGAL, LEDA, Qhull</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#sorting">Sorting</a>, <a href="#vornoi-diagrams">Vornoi diagrams</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/#sorting>Sorting</a>, <a href=#vornoi-diagrams>Vornoi diagrams</a></li>
 </ul>
-<h3 id="triangulation">Triangulation</h3>
-<p><img src="../../../../images/algdm/17_triangle.png" alt="alt"></p>
+<h3 id=triangulation>Triangulation</h3>
+<p><img src=../../../../images/algdm/17_triangle.png alt=alt></p>
 <p><strong>Input description:</strong> A set of points or a polyhedron.<br>
 <strong>Problem description:</strong> Partition the interior of the point set or polyhedron into
 triangles.</p>
@@ -297,10 +188,10 @@ triangles.</p>
 </ul>
 </li>
 <li><strong>Implementations</strong> : CGAL, LEDA, and more.</li>
-<li><em>Related</em> : <a href="#vornoi-diagrams">Vornoi diagrams</a>, <a href="#polygon-partitioning">polygon partitioning</a></li>
+<li><em>Related</em> : <a href=#vornoi-diagrams>Vornoi diagrams</a>, <a href=#polygon-partitioning>polygon partitioning</a></li>
 </ul>
-<h3 id="vornoi-diagrams">Vornoi Diagrams</h3>
-<p><img src="../../../../images/algdm/17_vornoi.png" alt="alt"></p>
+<h3 id=vornoi-diagrams>Vornoi Diagrams</h3>
+<p><img src=../../../../images/algdm/17_vornoi.png alt=alt></p>
 <p><strong>Input description:</strong> A set $S$ of points $p_1, \ldots , p_n$.<br>
 <strong>Problem description:</strong> Decompose space into regions around each point such that
 all points in the region around $p_i$ are closer to $p_i$ than any other point in $S$.</p>
@@ -327,10 +218,10 @@ all points in the region around $p_i$ are closer to $p_i$ than any other point i
 </ul>
 </li>
 <li><strong>Implementations</strong> : CGAL, LEDA, Qhull, and more.</li>
-<li><em>Related</em> : <a href="#nearest-neighbor-search">Nearest neighbor search</a>, <a href="#point-location">point location</a>, <a href="#triangulation">triangulation</a></li>
+<li><em>Related</em> : <a href=#nearest-neighbor-search>Nearest neighbor search</a>, <a href=#point-location>point location</a>, <a href=#triangulation>triangulation</a></li>
 </ul>
-<h3 id="nearest-neighbor-search">Nearest Neighbor Search</h3>
-<p><img src="../../../../images/algdm/17_nnsearch.png" alt="alt"></p>
+<h3 id=nearest-neighbor-search>Nearest Neighbor Search</h3>
+<p><img src=../../../../images/algdm/17_nnsearch.png alt=alt></p>
 <p><strong>Input description:</strong> A set $S$ of $n$ points in $d$ dimensions; a query point $q$.<br>
 <strong>Problem description:</strong> Which point in $S$ is closest to $q$?</p>
 <ul>
@@ -344,18 +235,18 @@ all points in the region around $p_i$ are closer to $p_i$ than any other point i
 <li><em>Is your data set static or dynamic?</em> Static structures can be more efficient.</li>
 </ul>
 </li>
-<li><strong>Implementations</strong> : ANN, KDTREE 2, CGAL, LEDA, and more,&hellip;</li>
-<li><em>Related</em> :<a href="">Kd-trees</a>, <a href="#vornoi-diagrams">Vornoi diagrams</a>, <a href="#range-search">range search</a></li>
+<li><strong>Implementations</strong> : ANN, KDTREE 2, CGAL, LEDA, and more,&mldr;</li>
+<li><em>Related</em> :<a href>Kd-trees</a>, <a href=#vornoi-diagrams>Vornoi diagrams</a>, <a href=#range-search>range search</a></li>
 </ul>
-<h3 id="range-search">Range Search</h3>
-<p><img src="../../../../images/algdm/17_rsearch.png" alt="alt"></p>
+<h3 id=range-search>Range Search</h3>
+<p><img src=../../../../images/algdm/17_rsearch.png alt=alt></p>
 <p><strong>Input description:</strong> A set $S$ of $n$ points in $E_d$ and a query region $Q$.<br>
 <strong>Problem description:</strong> What points in $S$ lie within $Q$?</p>
 <ul>
 <li>Arises often in database and GIS applications.</li>
 <li>The difficulty of range search depends on the following factors,
 <ul>
-<li><em>How many range queries are you going to perform?</em> -  Brute force works just fine when the number ois small.</li>
+<li><em>How many range queries are you going to perform?</em> - Brute force works just fine when the number ois small.</li>
 <li><em>What shape is your query polygon?</em> - <em>Axis-parallel rectangles</em> are easiest to query against. Use decomposition for non-convex polygons.</li>
 <li><em>How many dimensions?</em></li>
 <li><em>Is your point set static?</em></li>
@@ -363,11 +254,11 @@ all points in the region around $p_i$ are closer to $p_i$ than any other point i
 </ul>
 </li>
 <li><strong>Implementations</strong> : CGAL, LEDA, ANN, Ranger</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/#kd-trees">Kd-trees</a>, <a href="#point-location">point location</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual2/#kd-trees>Kd-trees</a>, <a href=#point-location>point location</a></li>
 </ul>
-<h3 id="point-location">Point Location</h3>
-<p><img src="../../../../images/algdm/17_ploc.png" alt="alt"></p>
-<p><strong>Input description:</strong> A decomposition of the plane into polygonal regions and a query point $q$.  <br>
+<h3 id=point-location>Point Location</h3>
+<p><img src=../../../../images/algdm/17_ploc.png alt=alt></p>
+<p><strong>Input description:</strong> A decomposition of the plane into polygonal regions and a query point $q$. <br>
 <strong>Problem description:</strong> Which region contains the query point $q$?</p>
 <ul>
 <li>Variations to the simple problem,
@@ -381,11 +272,11 @@ all points in the region around $p_i$ are closer to $p_i$ than any other point i
 </ul>
 </li>
 <li><strong>Implementations</strong> : CGAL, LEDA, ANN, Arrange</li>
-<li><em>Related</em> : <a href="">Kd-trees</a>, <a href="#vornoi-diagrams">Vornoi diagrams</a>, <a href="#nearest-neighbor-search">nearest neighbor search</a></li>
+<li><em>Related</em> : <a href>Kd-trees</a>, <a href=#vornoi-diagrams>Vornoi diagrams</a>, <a href=#nearest-neighbor-search>nearest neighbor search</a></li>
 </ul>
-<h3 id="intersection-detection">Intersection Detection</h3>
-<p><img src="../../../../images/algdm/17_intersect.png" alt="alt"></p>
-<p><strong>Input description:</strong> A set $S$ of lines and line segments $l_1, \ldots , l_n$ or a pair of polygons or polyhedra $P_1$ and $P_2$.  <br>
+<h3 id=intersection-detection>Intersection Detection</h3>
+<p><img src=../../../../images/algdm/17_intersect.png alt=alt></p>
+<p><strong>Input description:</strong> A set $S$ of lines and line segments $l_1, \ldots , l_n$ or a pair of polygons or polyhedra $P_1$ and $P_2$. <br>
 <strong>Problem description:</strong> Which pairs of line segments intersect each other? What is the intersection of $P_1$ and $P_2$?</p>
 <ul>
 <li>Numerous applications from collision detection to error checking in VLSI design.</li>
@@ -401,10 +292,10 @@ all points in the region around $p_i$ are closer to $p_i$ than any other point i
 </li>
 <li>Planar sweep algorithms can be used to efficiently compute the intersections for a set of line segments.</li>
 <li><strong>Implementations</strong> LEDA, CGAL, and more.</li>
-<li><em>Related</em> : <a href="#maintaining-line-arrangements">Maintaining arrangements</a>, <a href="#motion-planning">motion planning</a></li>
+<li><em>Related</em> : <a href=#maintaining-line-arrangements>Maintaining arrangements</a>, <a href=#motion-planning>motion planning</a></li>
 </ul>
-<h3 id="bin-packing">Bin Packing</h3>
-<p><img src="../../../../images/algdm/17_binpick.png" alt="alt"></p>
+<h3 id=bin-packing>Bin Packing</h3>
+<p><img src=../../../../images/algdm/17_binpick.png alt=alt></p>
 <p><strong>Input description:</strong> A set of $n$ items with sizes $d_1, \ldots , d_n$. A set of $m$ bins with capacity $c_1, \ldots , c_m$.<br>
 <strong>Problem description:</strong> Store all the items using the smallest number of bins.</p>
 <ul>
@@ -421,10 +312,10 @@ all points in the region around $p_i$ are closer to $p_i$ than any other point i
 <li>Biggest objects first, turns out to be the best heuristics.</li>
 <li>For non-rectangular shapes, bounding boxes can be used.</li>
 <li>More sophisticated algorithms are available.</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#knapsack-problem">Knapsack problem</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#set-packing">set packing</a>,</li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/#knapsack-problem>Knapsack problem</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/#set-packing>set packing</a>,</li>
 </ul>
-<h3 id="medial-axis-transform">Medial-Axis Transform</h3>
-<p><img src="../../../../images/algdm/17_matransform.png" alt="alt"></p>
+<h3 id=medial-axis-transform>Medial-Axis Transform</h3>
+<p><img src=../../../../images/algdm/17_matransform.png alt=alt></p>
 <p><strong>Input description:</strong> A polygon or polyhedron $P$.<br>
 <strong>Problem description:</strong> What are the set of points within $P$ that have more than one closest point on the boundary of $P$?</p>
 <ul>
@@ -433,17 +324,17 @@ all points in the region around $p_i$ are closer to $p_i$ than any other point i
 <li>Always a tree for polygons(without holes). DP can be used to find the <em>edit-distance</em> between two skeletons.</li>
 <li>Two distinct images,
 <ul>
-<li><em>Geometric data</em> : Vornoi diagram of line segments can be used. The portion of the vornoi 
+<li><em>Geometric data</em> : Vornoi diagram of line segments can be used. The portion of the vornoi
 diagram that lies in the polygon is the skeleton.</li>
 <li><em>Image data</em> : Geometric approach can be used by converting the image data into geometric regions. <br>
 Pixel-based approaches can also be used, but they tend not to be very accurate, because of the differences in the continuos and discrete world.</li>
 </ul>
 </li>
 <li><strong>Implementations</strong> : CGAL, VRNOI,</li>
-<li><em>Related</em> : <a href="#vornoi-diagrams">Vornoi diagrams</a>, <a href="#minkowski-sum">minkowski sum</a></li>
+<li><em>Related</em> : <a href=#vornoi-diagrams>Vornoi diagrams</a>, <a href=#minkowski-sum>minkowski sum</a></li>
 </ul>
-<h3 id="polygon-partitioning">Polygon Partitioning</h3>
-<p><img src="../../../../images/algdm/17_polypart.png" alt="alt"></p>
+<h3 id=polygon-partitioning>Polygon Partitioning</h3>
+<p><img src=../../../../images/algdm/17_polypart.png alt=alt></p>
 <p><strong>Input description:</strong> A polygon or polyhedron $P$. <br>
 <strong>Problem description:</strong> Partition $P$ into a small number of simple (typically convex) pieces.</p>
 <ul>
@@ -457,10 +348,10 @@ Pixel-based approaches can also be used, but they tend not to be very accurate, 
 </li>
 <li><em>Hertel-Mehlhorn heuristic</em>, start with an arbitrary triangulation, and delete chords until it leaves only convex pieces.</li>
 <li>DP finds the absolute minimum partitions in $O(n^4)$.</li>
-<li><em>Related</em> : <a href="#triangulation">Triangulation</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#set-cover">set cover</a></li>
+<li><em>Related</em> : <a href=#triangulation>Triangulation</a>, <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual8/#set-cover>set cover</a></li>
 </ul>
-<h3 id="simplifying-polygons">Simplifying Polygons</h3>
-<p><img src="../../../../images/algdm/17_simpoly.png" alt="alt"></p>
+<h3 id=simplifying-polygons>Simplifying Polygons</h3>
+<p><img src=../../../../images/algdm/17_simpoly.png alt=alt></p>
 <p><strong>Input description:</strong> A polygon or polyhedron $p$, with $n$ vertices.<br>
 <strong>Problem description:</strong> Find a polygon or polyhedron $p'$ containing only $n'$ vertices, such that the shape of $p'$ is as close as possible to $p$.</p>
 <ul>
@@ -473,15 +364,15 @@ Pixel-based approaches can also be used, but they tend not to be very accurate, 
 <li>Several issues arise,
 <ul>
 <li><em>Do you want the convex hull?</em> Can be useful in some applications(mmotion planning), and can be disastrous in some(OCR system).</li>
-<li><em>Am I allowed to insert or just delete points?</em> Local modifications to reduce the vertex count are done. Most robust heuristics <em>move</em> the vertices around to cover up the gaps created by deletions. 
+<li><em>Am I allowed to insert or just delete points?</em> Local modifications to reduce the vertex count are done. Most robust heuristics <em>move</em> the vertices around to cover up the gaps created by deletions.
 <em>Must the resulting polygon be intersection-free?</em> Simplicity(non-self intersection) can be difficult to achieve for some shapes.</li>
 <li><em>Are you given an image to clean up instead of a polygon to simplify?</em> Conventionally, Fourier transform is used to clean up images.</li>
 </ul>
 </li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/#discrete-fourier-transform">Fourier transform</a>, <a href="#convex-hull">convex hull</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual3/#discrete-fourier-transform>Fourier transform</a>, <a href=#convex-hull>convex hull</a></li>
 </ul>
-<h3 id="shape-similarity">Shape Similarity</h3>
-<p><img src="../../../../images/algdm/17_ssim.png" alt="alt"></p>
+<h3 id=shape-similarity>Shape Similarity</h3>
+<p><img src=../../../../images/algdm/17_ssim.png alt=alt></p>
 <p><strong>Input description:</strong> Two polygonal shapes, $P_1$ and $P_2$.<br>
 <strong>Problem description:</strong> How similar are $P_1$ and $P_2$?</p>
 <ul>
@@ -496,11 +387,11 @@ However, this only captures a crude notion of shape, and might be ineffective in
 <li><em>Support Vector Machines</em>, or other learning based approaches such as <em>neural networks</em>.</li>
 </ul>
 </li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#graph-isomorphism">Graph isomorphism</a>, <a href="#medial-axis-transform">thinning</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/#graph-isomorphism>Graph isomorphism</a>, <a href=#medial-axis-transform>thinning</a></li>
 </ul>
-<h3 id="motion-planning">Motion Planning</h3>
-<p><img src="../../../../images/algdm/17_mplan.png" alt="alt"></p>
-<p><strong>Input description:</strong> A polygonal-shaped robot starting in a given position $s$ in a room containing polygonal obstacles, and a goal position $t$.  <br>
+<h3 id=motion-planning>Motion Planning</h3>
+<p><img src=../../../../images/algdm/17_mplan.png alt=alt></p>
+<p><strong>Input description:</strong> A polygonal-shaped robot starting in a given position $s$ in a room containing polygonal obstacles, and a goal position $t$. <br>
 <strong>Problem description:</strong> Find the shortest route taking $s$ to $t$ without intersecting any obstacles.</p>
 <ul>
 <li>Robots, computer animation, molecular docking, and more,..</li>
@@ -514,10 +405,10 @@ However, this only captures a crude notion of shape, and might be ineffective in
 </ul>
 </li>
 <li><strong>Implementations</strong> : The <em>Motion Planning Toolkit</em>*, CGAL</li>
-<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path">Shortest path</a>, <a href="#minkowski-sum">Minkowski sum</a></li>
+<li><em>Related</em> : <a href=https://nitishpuri.github.io/blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path>Shortest path</a>, <a href=#minkowski-sum>Minkowski sum</a></li>
 </ul>
-<h3 id="maintaining-line-alignments">Maintaining Line Alignments</h3>
-<p><img src="../../../../images/algdm/17_linearr.png" alt="alt"></p>
+<h3 id=maintaining-line-alignments>Maintaining Line Alignments</h3>
+<p><img src=../../../../images/algdm/17_linearr.png alt=alt></p>
 <p><strong>Input description:</strong> A set of lines and line segments $l_1, \ldots , l_n$.<br>
 <strong>Problem description:</strong> What is the decomposition of the plane defined by $l_1, \ldots , l_n$?</p>
 <ul>
@@ -537,12 +428,12 @@ $$L : y = 2ax - b \leftrightarrow p : (a,b)$$<br>
 This is surprisingly the same problem in many cases.</li>
 </ul>
 </li>
-<li><em>Related</em> : <a href="#intersection-detection">Intersection detection</a>, <a href="#point-location">point location</a></li>
+<li><em>Related</em> : <a href=#intersection-detection>Intersection detection</a>, <a href=#point-location>point location</a></li>
 </ul>
-<h3 id="minkowski-sum">Minkowski Sum</h3>
-<p><img src="../../../../images/algdm/17_msum.png" alt="alt"></p>
+<h3 id=minkowski-sum>Minkowski Sum</h3>
+<p><img src=../../../../images/algdm/17_msum.png alt=alt></p>
 <p><strong>Input description:</strong> Point sets or polygons $A$ and $B$, containing $n$ and $m$ vertices respectively.<br>
-<strong>Problem description:</strong> What is the convolution of $A$ and $B$ — i.e. , the Minkowski 
+<strong>Problem description:</strong> What is the convolution of $A$ and $B$ — i.e. , the Minkowski
 sum $A + B = {x + y|x \in A, y \in B}$?</p>
 <ul>
 <li>Very interesting geometric operations that can <em>fatten</em> objects in appropriate ways.</li>
@@ -552,167 +443,81 @@ sum $A + B = {x + y|x \in A, y \in B}$?</p>
 <ul>
 <li><em>Are your objects rasterized images or explicit polygons?</em> Polygonal representations can get more complicated.</li>
 <li><em>Do you want to fatten your object by a fixed amount?</em> Just use a circular disk with offset as radius.</li>
-<li><em>Are your objects convex or non-convex?</em> This can become ugly and majestic with  surprising results for non-convex polygons.</li>
+<li><em>Are your objects convex or non-convex?</em> This can become ugly and majestic with surprising results for non-convex polygons.</li>
 </ul>
 </li>
-<li><em>Related</em> : <a href="#medial-axis-transform">Thinning</a>, <a href="#motion-planning">motion planning</a>, <a href="#simplifying-polygons">simplifying polygons</a></li>
+<li><em>Related</em> : <a href=#medial-axis-transform>Thinning</a>, <a href=#motion-planning>motion planning</a>, <a href=#simplifying-polygons>simplifying polygons</a></li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual1/">The Algorithms Design Manual</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual4/">The Algorithms Design Manual, Combinatorial Problems</a></li>
-        
-            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual2/">The Algorithms Design Manual, Data structures</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual6/>The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual5/>The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual1/>The Algorithms Design Manual</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual4/>The Algorithms Design Manual, Combinatorial Problems</a></li>
+<li><a href=../../../../blog-hugo/books/programming/algorithms-design-manual/algorithms-design-manual2/>The Algorithms Design Manual, Data structures</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

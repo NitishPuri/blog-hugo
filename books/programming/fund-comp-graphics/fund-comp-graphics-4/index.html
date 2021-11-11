@@ -1,252 +1,143 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 4" />
-<meta property="og:description" content="Chapter 10 : Surface Shading Diffuse Shading Many objects in the world have a surface appearance loosely described as “matte,” indicating that the object is not at all shiny. Examples include paper, unfinished wood, and dry unpolished stones. To a large degree, such objects do not have a color change with a change in viewpoint. For example, if you stare at a particular point on a piece of paper and move while keeping your gaze fixed on that point, the color at that point will stay relatively constant." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-4/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 4"/>
-<meta name="twitter:description" content="Chapter 10 : Surface Shading Diffuse Shading Many objects in the world have a surface appearance loosely described as “matte,” indicating that the object is not at all shiny. Examples include paper, unfinished wood, and dry unpolished stones. To a large degree, such objects do not have a color change with a change in viewpoint. For example, if you stare at a particular point on a piece of paper and move while keeping your gaze fixed on that point, the color at that point will stay relatively constant."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-4/">
-
-    <title>
-      
-        Fundamentals of Computer Graphics, Peter Shirley, Part 4 | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 4">
+<meta property="og:description" content="Chapter 10 : Surface Shading Diffuse Shading Many objects in the world have a surface appearance loosely described as “matte,” indicating that the object is not at all shiny. Examples include paper, unfinished wood, and dry unpolished stones. To a large degree, such objects do not have a color change with a change in viewpoint. For example, if you stare at a particular point on a piece of paper and move while keeping your gaze fixed on that point, the color at that point will stay relatively constant.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-4/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Fundamentals of Computer Graphics, Peter Shirley, Part 4">
+<meta name=twitter:description content="Chapter 10 : Surface Shading Diffuse Shading Many objects in the world have a surface appearance loosely described as “matte,” indicating that the object is not at all shiny. Examples include paper, unfinished wood, and dry unpolished stones. To a large degree, such objects do not have a color change with a change in viewpoint. For example, if you stare at a particular point on a piece of paper and move while keeping your gaze fixed on that point, the color at that point will stay relatively constant.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-4/>
+<title>
+Fundamentals of Computer Graphics, Peter Shirley, Part 4 | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/">Fundamentals of Computer Graphics, Peter Shirley</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Fundamentals of Computer Graphics, Peter Shirley, Part 4</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/>Fundamentals of Computer Graphics, Peter Shirley</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Fundamentals of Computer Graphics, Peter Shirley, Part 4</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-4/">Fundamentals of Computer Graphics, Peter Shirley, Part 4</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-4/>Fundamentals of Computer Graphics, Peter Shirley, Part 4</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-08-17">Aug 17, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-08-17>Aug 17, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#chapter-10--surface-shading">Chapter 10 : Surface Shading</a>
-      <ul>
-        <li><a href="#diffuse-shading">Diffuse Shading</a></li>
-        <li><a href="#phong-shading">Phong Shading</a></li>
-        <li><a href="#artistic-shading">Artistic Shading</a></li>
-      </ul>
-    </li>
-    <li><a href="#chapter-11--texture-mapping">Chapter 11 : Texture Mapping</a>
-      <ul>
-        <li><a href="#3d-texture-mapping">3D Texture Mapping</a></li>
-        <li><a href="#2d-texture-mapping">2D Texture Mapping</a></li>
-        <li><a href="#texture-mapping-for-rasterized-triangles">Texture Mapping for Rasterized Triangles</a></li>
-        <li><a href="#bump-textures">Bump Textures</a></li>
-        <li><a href="#environment-maps">Environment Maps</a></li>
-        <li><a href="#shadow-maps">Shadow Maps</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#chapter-10--surface-shading>Chapter 10 : Surface Shading</a>
+<ul>
+<li><a href=#diffuse-shading>Diffuse Shading</a></li>
+<li><a href=#phong-shading>Phong Shading</a></li>
+<li><a href=#artistic-shading>Artistic Shading</a></li>
+</ul>
+</li>
+<li><a href=#chapter-11--texture-mapping>Chapter 11 : Texture Mapping</a>
+<ul>
+<li><a href=#3d-texture-mapping>3D Texture Mapping</a></li>
+<li><a href=#2d-texture-mapping>2D Texture Mapping</a></li>
+<li><a href=#texture-mapping-for-rasterized-triangles>Texture Mapping for Rasterized Triangles</a></li>
+<li><a href=#bump-textures>Bump Textures</a></li>
+<li><a href=#environment-maps>Environment Maps</a></li>
+<li><a href=#shadow-maps>Shadow Maps</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="chapter-10--surface-shading">Chapter 10 : Surface Shading</h2>
-<h3 id="diffuse-shading">Diffuse Shading</h3>
+<h2 id=chapter-10--surface-shading>Chapter 10 : Surface Shading</h2>
+<h3 id=diffuse-shading>Diffuse Shading</h3>
 <p>Many objects in the world have a surface appearance loosely described as “matte,” indicating that the object is not at all shiny. Examples include paper, unfinished wood, and dry unpolished stones. To a large degree, such objects do not have a color change with a change in viewpoint. For example, if you stare at a particular point on a piece of paper and move while keeping your gaze fixed on that point, the color at that point will stay relatively constant. Such matte objects can be considered as behaving as <strong>Lambertian objects</strong>.</p>
-<h4 id="lambertian-shading-model"><strong>Lambertian Shading Model</strong></h4>
-<p><img src="../../../../images/fundcg/10_lamb1.png" alt="alt"> <img src="../../../../images/fundcg/10_lamb2.png" alt="alt"></p>
+<h4 id=lambertian-shading-model><strong>Lambertian Shading Model</strong></h4>
+<p><img src=../../../../images/fundcg/10_lamb1.png alt=alt> <img src=../../../../images/fundcg/10_lamb2.png alt=alt></p>
 <p>$$\begin{align}c = c_rc_l\text{max}(0, \mathbf{n.l})\end{align}$$</p>
-<h4 id="ambient-shading"><strong>Ambient Shading</strong></h4>
+<h4 id=ambient-shading><strong>Ambient Shading</strong></h4>
 <p>$$\begin{align}c = c_r (c_a + c_l\text{max}(0, \mathbf{n.l}))\end{align}$$</p>
-<h4 id="vertex-based-diffuse-shading"><strong>Vertex-Based Diffuse Shading</strong></h4>
+<h4 id=vertex-based-diffuse-shading><strong>Vertex-Based Diffuse Shading</strong></h4>
 <p>If we apply the above equation to an object made up of triangles, it will typically have a faceted appearance. Often, the triangles are an approximation to a smooth surface. To avoid the faceted appearance, we can place surface normal vectors at the vertices of the triangles (Phong, 1975), and apply Equation (10.3) at each of the vertices using the normal vectors at the vertices (see Figure 10.4). This will give a color at each triangle vertex, and this color can be interpolated using the barycentric interpolation described in Section 8.1.2.</p>
-<p><img src="../../../../images/fundcg/10_phong1.png" alt="alt"></p>
+<p><img src=../../../../images/fundcg/10_phong1.png alt=alt></p>
 <p>One problem with shading at triangle vertices is that we need to get the normals from somewhere. Many models will come with normals supplied. If you tessellate your own smooth model, you can create normals when you create the triangles. If you are presented with a polygonal model that does not have normals at vertices and you want to shade it smoothly, you can compute normals by a variety of heuristic methods. The simplest is to just average the normals of the triangles that share each vertex and use this average normal at the vertex. This average normal will not automatically be of unit length, so you should convert it to a unit vector before using it for shading.</p>
-<h3 id="phong-shading">Phong Shading</h3>
-<p><img src="../../../../images/fundcg/10_phong2.png" alt="alt"></p>
+<h3 id=phong-shading>Phong Shading</h3>
+<p><img src=../../../../images/fundcg/10_phong2.png alt=alt></p>
 <p>Some surfaces are essentially like matte surfaces, but they have <strong>highlights</strong>. Examples of such surfaces include polished tile floors, gloss paint, and whiteboards. Highlights move across a surface as the viewpoint moves. This means that we must add a unit vector e toward the eye into our equations. If you look carefully at highlights, you will see that they are really reflections of the light; sometimes these reflections are blurred. The color of these highlights is the color of the light—the surface color seems to have little effect. This is because the reflection occurs at the object’s surface, and the light that penetrates the surface and picks up the object’s color is scattered diffusely.</p>
-<h4 id="phong-lighting-model"><strong>Phong Lighting Model</strong></h4>
+<h4 id=phong-lighting-model><strong>Phong Lighting Model</strong></h4>
 <p>We want to add a fuzzy “spot” the same color as the light source in the right place. The center of the dot should be drawn where the direction $e$ to the eye “lines” up with the natural direction of reflection $r$ as shown in Figure 10.5. Here “lines up” is mathematically equivalent to “where $\sigma$ is zero.” We would like to have the highlight have some non-zero area, so that the eye sees some highlight wherever $\sigma$ is small.</p>
 <p>$$\begin{align}c = c_l\text{max}(0, \mathbf{e.r})^p.\end{align}$$<br>
 $p$ is the <strong>Phong Exponent</strong>.<br>
-<img src="../../../../images/fundcg/10_phong3.jpg" alt="alt"></p>
+<img src=../../../../images/fundcg/10_phong3.jpg alt=alt></p>
 <p>$$\begin{align}\mathbf{r} = -\mathbf{l} + 2(\mathbf{l.n})\mathbf{n}\end{align}$$<br>
-<img src="../../../../images/fundcg/10_phong4.png" alt="alt"></p>
+<img src=../../../../images/fundcg/10_phong4.png alt=alt></p>
 <p>Another heuristic can also be used here,.<br>
 $$\begin{align}\mathbf{h} = \frac{\mathbf{e} + \mathbf{l}}{||\mathbf{e} + \mathbf{l}||}\end{align}$$<br>
-<img src="../../../../images/fundcg/10_phong5.png" alt="alt"></p>
+<img src=../../../../images/fundcg/10_phong5.png alt=alt></p>
 <p>$$\begin{align}c = c_r (c_a + c_t\text{max}(0, \mathbf{n.l})) +c_lc_p(\mathbf{h.n})^p\end{align}$$</p>
-<h4 id="surface-normal-vector-interpolation"><strong>Surface Normal Vector Interpolation</strong></h4>
+<h4 id=surface-normal-vector-interpolation><strong>Surface Normal Vector Interpolation</strong></h4>
 <p>Smooth surfaces with highlights tend to change color quickly compared to Lambertian surfaces with the same geometry. Thus, shading at the normal vectors can generate disturbing artifacts.</p>
 <p>These problems can be reduced by interpolating the normal vectors across the polygon and then applying Phong shading at each pixel. This allows you to get good images without making the size of the triangles extremely small.</p>
-<h3 id="artistic-shading">Artistic Shading</h3>
+<h3 id=artistic-shading>Artistic Shading</h3>
 <p>The Lambertian and Phong shading methods are based on heuristics designed to imitate the appearance of objects in the real world.</p>
-<h4 id="line-drawing"><strong>Line Drawing</strong></h4>
+<h4 id=line-drawing><strong>Line Drawing</strong></h4>
 <p>The most obvious thing we see in human drawings that we don’t see in real life is <strong>silhouettes</strong>.</p>
 <p>draw silhouette if $f_0(\mathbf{e})f_1(\mathbf{e}) \leq 0$.</p>
 <p>draw crease if $(\mathbf{n}_0 · \mathbf{n}_1) \leq \text{threshold}$</p>
-<h4 id="cool-to-warm-shading"><strong>Cool-to-Warm Shading</strong></h4>
-<p><img src="../../../../images/fundcg/10_art1.jpg" alt="alt"></p>
-<p>$$\begin{align}k_w &amp;= \frac{1 + \mathbf{n.l}}{2}.\<br>
-c &amp;= k_wc_w + (1 - k_w)c_c \end{align}$$</p>
-<h2 id="chapter-11--texture-mapping">Chapter 11 : Texture Mapping</h2>
+<h4 id=cool-to-warm-shading><strong>Cool-to-Warm Shading</strong></h4>
+<p><img src=../../../../images/fundcg/10_art1.jpg alt=alt></p>
+<p>$$\begin{align}k_w &= \frac{1 + \mathbf{n.l}}{2}.\<br>
+c &= k_wc_w + (1 - k_w)c_c \end{align}$$</p>
+<h2 id=chapter-11--texture-mapping>Chapter 11 : Texture Mapping</h2>
 <p>The shading models presented in Chapter 10 assume that a diffuse surface has uniform reflectance $c_r$. This is fine for surfaces such as blank paper or painted walls, but it is inefficient for objects such as a printed sheet of paper. Such objects have an appearance whose complexity arises from variation in reflectance properties. While we could use such small triangles that the variation is captured by varying the reflectance properties of the triangles, this would be inefficient.</p>
 <p>Texture mapping can be classified by several different properties:</p>
 <ol>
@@ -254,24 +145,24 @@ c &amp;= k_wc_w + (1 - k_w)c_c \end{align}$$</p>
 <li>the correspondences defined between points on the surface and points in the texture function, and</li>
 <li>whether the texture function is primarily procedural or primarily a table look-up.</li>
 </ol>
-<h3 id="3d-texture-mapping">3D Texture Mapping</h3>
+<h3 id=3d-texture-mapping>3D Texture Mapping</h3>
 <p><strong>3D Stripe Textures</strong><br>
 $$RGB;stripe(;point;\mathbf{p} )\<br>
-\mathbf{if};(sin( \pi x_p/w) &gt; 0) \mathbf{then} \ 
+\mathbf{if};(sin( \pi x_p/w) > 0) \mathbf{then} \
 \quad \mathbf{return};c_0 \<br>
 \mathbf{else} \<br>
 \quad \mathbf{return};c_1 $$</p>
-<p><img src="../../../../images/fundcg/11_texture1.png" alt="alt"></p>
-<h4 id="texture-arrays">Texture Arrays</h4>
-<p><img src="../../../../images/fundcg/11_texture2.jpg" alt="alt">  <br>
-<img src="../../../../images/fundcg/11_texture3.png" alt="alt"></p>
-<h4 id="solid-noise">Solid Noise</h4>
+<p><img src=../../../../images/fundcg/11_texture1.png alt=alt></p>
+<h4 id=texture-arrays>Texture Arrays</h4>
+<p><img src=../../../../images/fundcg/11_texture2.jpg alt=alt> <br>
+<img src=../../../../images/fundcg/11_texture3.png alt=alt></p>
+<h4 id=solid-noise>Solid Noise</h4>
 <p><strong>Perlin noise.</strong><br>
-<img src="../../../../images/fundcg/11_texture4.jpg" alt="alt"></p>
-<p>Getting a noisy appearance by calling a random number for every point would not be appropriate, because it would just be like <code>white noise</code> in TV static. We would like to make it smoother without losing the random quality. One 
-possibility is to blur white noise, but there is no practical implementation of this. Another possibility is to make a large lattice with a random number at every lattice point, and then interpolate these random points for new points 
-between lattice nodes; this is just a 3D texture array as described in the last section with random numbers in the array. This technique makes the lattice too obvious. Perlin used a variety of tricks to improve this basic lattice 
-technique so the lattice was not so obvious. This results in a rather baroque-looking set of steps, but essentially there are just three changes from linearly interpolating a 3D array of random values. The first change is to use Hermite interpolation to avoid mach bands, just as can be done with regular 
+<img src=../../../../images/fundcg/11_texture4.jpg alt=alt></p>
+<p>Getting a noisy appearance by calling a random number for every point would not be appropriate, because it would just be like <code>white noise</code> in TV static. We would like to make it smoother without losing the random quality. One
+possibility is to blur white noise, but there is no practical implementation of this. Another possibility is to make a large lattice with a random number at every lattice point, and then interpolate these random points for new points
+between lattice nodes; this is just a 3D texture array as described in the last section with random numbers in the array. This technique makes the lattice too obvious. Perlin used a variety of tricks to improve this basic lattice
+technique so the lattice was not so obvious. This results in a rather baroque-looking set of steps, but essentially there are just three changes from linearly interpolating a 3D array of random values. The first change is to use Hermite interpolation to avoid mach bands, just as can be done with regular
 textures. The second change is the use of random vectors rather than values, with a dot product to derive a random number; this makes the underlying
 grid structure less visually obvious by moving the local minima and maxima off the grid vertices. The third change is to use a 1D array and hashing to create a virtual 3D array of random vectors. This adds computation to lower memory use.</p>
 <p>$$\begin{align}
@@ -283,37 +174,37 @@ where $(x, y, z)$ are the Cartesian coorinates of $\mathbf{x}$, and</p>
 \end{align}$$</p>
 <p>and $\omega(t)$ is the cubic weighing function:<br>
 $$\begin{align}
-\omega(t) = \begin{cases}2|t|^3 - 3|t|^2 + 1 &amp; if |t| &lt; 1, \ 0 &amp; \text{otherwise.}\end{cases}
+\omega(t) = \begin{cases}2|t|^3 - 3|t|^2 + 1 & if |t| &lt; 1, \ 0 & \text{otherwise.}\end{cases}
 \end{align}$$</p>
-<p>The final piece is that $\Gamma_{ijk}$ is a random unit vector for the lattice point $(x, y, z) = (i, j, k)$. Since we want any potential $ijk$, we use a 
+<p>The final piece is that $\Gamma_{ijk}$ is a random unit vector for the lattice point $(x, y, z) = (i, j, k)$. Since we want any potential $ijk$, we use a
 pseudorandom table:<br>
 $$\begin{align}
 \Gamma_{ijk} = \mathbf{G}(\phi(i + \phi(j + \phi(k)))),
 \end{align}$$</p>
 <p>where $\mathbf{G}$ is a precomputed array of $n$ random unit vectors, and $\phi(i) = P[i \mod n]$ where $P$ is an array of length $n$ containing a permutation of the integers $0$ through $n-1$.</p>
-<h4 id="turbulence"><strong>Turbulence</strong></h4>
+<h4 id=turbulence><strong>Turbulence</strong></h4>
 <p>$$\begin{align}
 n_t(\mathbf{x}) = \sum_i \frac{|n(2^i\mathbf{x})|}{2^i}
 \end{align}$$</p>
-<p><img src="../../../../images/fundcg/11_texture5.jpg" alt="alt">  <br>
-<img src="../../../../images/fundcg/11_texture6.jpg" alt="alt"></p>
-<h3 id="2d-texture-mapping">2D Texture Mapping</h3>
-<p><img src="../../../../images/fundcg/11_texture7.jpg" alt="alt"></p>
-<h3 id="texture-mapping-for-rasterized-triangles">Texture Mapping for Rasterized Triangles</h3>
-<p><img src="../../../../images/fundcg/11_texture8.png" alt="alt"></p>
+<p><img src=../../../../images/fundcg/11_texture5.jpg alt=alt> <br>
+<img src=../../../../images/fundcg/11_texture6.jpg alt=alt></p>
+<h3 id=2d-texture-mapping>2D Texture Mapping</h3>
+<p><img src=../../../../images/fundcg/11_texture7.jpg alt=alt></p>
+<h3 id=texture-mapping-for-rasterized-triangles>Texture Mapping for Rasterized Triangles</h3>
+<p><img src=../../../../images/fundcg/11_texture8.png alt=alt></p>
 <p>$$\begin{align}
-u(\beta, \gamma) &amp;= u_a + \beta(u_b - u_a) + \gamma(u_c - u_a),\<br>
-v(\beta, \gamma) &amp;= v_a + \beta(v_b - v_a) + \gamma(v_c - v_a),\<br>
+u(\beta, \gamma) &= u_a + \beta(u_b - u_a) + \gamma(u_c - u_a),\<br>
+v(\beta, \gamma) &= v_a + \beta(v_b - v_a) + \gamma(v_c - v_a),\<br>
 \end{align}$$<br>
-<img src="../../../../images/fundcg/11_texture9.png" alt="alt"></p>
-<h4 id="perspective-correct-textures"><strong>Perspective Correct Textures</strong></h4>
-<p><img src="../../../../images/fundcg/11_texture10.png" alt="alt"></p>
+<img src=../../../../images/fundcg/11_texture9.png alt=alt></p>
+<h4 id=perspective-correct-textures><strong>Perspective Correct Textures</strong></h4>
+<p><img src=../../../../images/fundcg/11_texture10.png alt=alt></p>
 <p>$$
 \mathbf{for,all}; x;\mathbf{do} \<br>
 \quad \mathbf{for,all}; y;\mathbf{do} \<br>
 \quad \quad \text{compute } (\alpha, \beta, \gamma);\text{for};(x, y) \<br>
 \quad \quad \mathbf{if};\alpha\in(0, 1),\text{ and } \beta\in(0, 1) and \gamma\in(0, 1); \mathbf{then} \<br>
-\quad \quad\quad \mathbf{t} = \alpha\mathbf{t}_0 + \beta\mathbf{t}_1 + \gamma\mathbf{t}_2 \ 
+\quad \quad\quad \mathbf{t} = \alpha\mathbf{t}_0 + \beta\mathbf{t}_1 + \gamma\mathbf{t}_2 \
 \quad \quad\quad \text{draw pixel }(x, y) \text{with color texture(}\mathbf{t}\text{) for a solid texture} \<br>
 \quad \quad\quad \text{or with texture}(\beta, \gamma)\text{for a 2D texture}.
 $$</p>
@@ -326,178 +217,92 @@ Compute bounds for $x = x_i/h_i$ and $y = y_i/h_i$</p>
 \quad \quad \mathbf{if};\alpha\in(0, 1),\text{ and } \beta\in(0, 1) and \gamma\in(0, 1); \mathbf{then} \<br>
 \quad\quad\quad d = h_1h_2 + h_2\beta(h_0-h_1) + h_1\gamma(h_0-h_2) \<br>
 \quad \quad \quad \beta_w = h_0h_2\beta/d \<br>
-\quad \quad \quad \gamma_w = h_0h_1\gamma/d \ 
-\quad \quad \quad \alpha_w = 1 - \beta_w - \gamma_w \ 
-\quad \quad \quad u = \alpha_wu_0 \beta_wu_1 + \gamma_wu_2\ 
-\quad \quad \quad v = \alpha_wv_0 \beta_wv_1 + \gamma_wv_2\ 
+\quad \quad \quad \gamma_w = h_0h_1\gamma/d \
+\quad \quad \quad \alpha_w = 1 - \beta_w - \gamma_w \
+\quad \quad \quad u = \alpha_wu_0 \beta_wu_1 + \gamma_wu_2\
+\quad \quad \quad v = \alpha_wv_0 \beta_wv_1 + \gamma_wv_2\
 \quad \quad \quad \text{draw pixel }(x, y) \text{ with color texture}(u, v)
 $$</p>
-<h3 id="bump-textures">Bump Textures</h3>
+<h3 id=bump-textures>Bump Textures</h3>
 <p>Although we have only discussed changing reflectance using texture, you can also change the surface normal to give an illusion of fine-scale geometry on the surface. We can apply a <strong>bump map</strong> that perturbs the surface normal.</p>
-<p><img src="../../../../images/fundcg/11_texture11.png" alt="alt">
-<img src="../../../../images/fundcg/11_texture12.png" alt="alt"></p>
-<h3 id="environment-maps">Environment Maps</h3>
+<p><img src=../../../../images/fundcg/11_texture11.png alt=alt>
+<img src=../../../../images/fundcg/11_texture12.png alt=alt></p>
+<h3 id=environment-maps>Environment Maps</h3>
 <p>Often we would like to have a texture-mapped background and for objects to have specular reflections of that background. This can be accomplished using <strong>environment maps</strong>.<br>
 An environment map can be implemented as a background function that takes in a viewing direction $\mathbf{b}$ and returns a RGB color from a texture map. There are many ways to store environment maps. For example, we can use a spherical table indexed by spherical coordinates. In this section, we will instead describe a cube-based table with six square texture maps, often called a <strong>cube map</strong>.</p>
-<p><img src="../../../../images/fundcg/11_texture13.png" alt="alt"></p>
-<h3 id="shadow-maps">Shadow Maps</h3>
+<p><img src=../../../../images/fundcg/11_texture13.png alt=alt></p>
+<h3 id=shadow-maps>Shadow Maps</h3>
 <p>The basic observation to be made about a shadow map is that if we rendered the scene using the location of a light source as the eye, the visible surfaces would all be lit, and the hidden surfaces would all be in shadow. This can be used to determine whether a point being rasterized is in shadow.</p>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-1/">Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-2/">Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-3/">Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-5/">Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-6/">Fundamentals of Computer Graphics, Peter Shirley, Part 6</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-1/>Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-2/>Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-3/>Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-5/>Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-6/>Fundamentals of Computer Graphics, Peter Shirley, Part 6</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

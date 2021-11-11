@@ -1,240 +1,133 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Object Detection and Image Segmentation" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Object Detection and Image Segmentation">
 <meta property="og:description" content="Image Segmentation Image segmentation review Source
  A review of segmentation at qure.ai  Rich feature hierarchies for accurate object detection and semantic segmentation Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik : Oct 2014
 Source
- Introduces R-CNN, Regions with CNN. Bridging the gap between image classification and object detection.  Object detection with R-CNN Region proposals. Uses selective search. Propose a bunch of boxes in the image and see if any of them actually correspond to an object." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/research/machine-intelligence/detect-segment-1/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="research" />
-
-<meta property="article:modified_time" content="2021-11-10T12:27:45+05:30" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Object Detection and Image Segmentation"/>
-<meta name="twitter:description" content="Image Segmentation Image segmentation review Source
+ Introduces R-CNN, Regions with CNN. Bridging the gap between image classification and object detection.  Object detection with R-CNN Region proposals. Uses selective search. Propose a bunch of boxes in the image and see if any of them actually correspond to an object.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/detect-segment-1/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="research">
+<meta property="article:modified_time" content="2021-11-10T12:27:45+05:30">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Object Detection and Image Segmentation">
+<meta name=twitter:description content="Image Segmentation Image segmentation review Source
  A review of segmentation at qure.ai  Rich feature hierarchies for accurate object detection and semantic segmentation Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik : Oct 2014
 Source
- Introduces R-CNN, Regions with CNN. Bridging the gap between image classification and object detection.  Object detection with R-CNN Region proposals. Uses selective search. Propose a bunch of boxes in the image and see if any of them actually correspond to an object."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/research/machine-intelligence/detect-segment-1/">
-
-    <title>
-      
-        Object Detection and Image Segmentation | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+ Introduces R-CNN, Regions with CNN. Bridging the gap between image classification and object detection.  Object detection with R-CNN Region proposals. Uses selective search. Propose a bunch of boxes in the image and see if any of them actually correspond to an object.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/detect-segment-1/>
+<title>
+Object Detection and Image Segmentation | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/">Researches</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/machine-intelligence/">Machine Intelligence</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Object Detection and Image Segmentation</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/research/>Researches</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/research/machine-intelligence/>Machine Intelligence</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Object Detection and Image Segmentation</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../research/machine-intelligence/detect-segment-1/">Object Detection and Image Segmentation</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../blog-hugo/research/machine-intelligence/detect-segment-1/>Object Detection and Image Segmentation</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
 </div>
-
-
-    
 <div class="blog-post-categories text-secondary">
-    <strong>Categories:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
-    
+<strong>Categories:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/notes>notes</a>
 </div>
-
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#image-segmentation">Image Segmentation</a>
-      <ul>
-        <li><a href="#a-namereview1-a-image-segmentation-review"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Image segmentation review</a></li>
-        <li><a href="#a-namercnn1-a-rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Rich feature hierarchies for accurate object detection and semantic segmentation</a></li>
-        <li><a href="#a-namefastrcnn-a-fast-r-cnn"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Fast R-CNN</a></li>
-        <li><a href="#a-namefasterrcnn-a-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></li>
-        <li><a href="#a-namemaskrcnn-a-mask-r-cnn"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Mask R-CNN</a></li>
-        <li><a href="#a-namereview2-a-a-review-of-deep-learning-techniques-applied-to-semantic-segmentation"><!-- raw HTML omitted --> <!-- raw HTML omitted --> A Review of Deep Learning Techniques Applied to Semantic Segmentation</a></li>
-        <li><a href="#a-namedeeplab-a-deeplab--semantic-image-segmentation-with-deep-convolution-nets-atrous-convolution-and-fully-connected-crfs"><!-- raw HTML omitted --> <!-- raw HTML omitted --> DeepLab : Semantic Image Segmentation with Deep Convolution Nets, Atrous Convolution, and Fully Connected CRFs</a></li>
-        <li><a href="#a-nameunet-a-u-net-convolution-networks-for-biomedical-image-segmentation"><!-- raw HTML omitted --> <!-- raw HTML omitted --> U-Net: Convolution Networks for Biomedical Image Segmentation</a></li>
-        <li><a href="#a-namefcnn1-a-fully-convolutional-networks-for-semantic-segmentation"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Fully Convolutional Networks for Semantic Segmentation</a></li>
-        <li><a href="#a-namepixcnn-a-from-image-level-to-pixel-level-labeling-with-convolutional-networks"><!-- raw HTML omitted --> <!-- raw HTML omitted --> From Image-level to Pixel-level Labeling with Convolutional Networks</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#image-segmentation>Image Segmentation</a>
+<ul>
+<li><a href=#a-namereview1-a-image-segmentation-review> Image segmentation review</a></li>
+<li><a href=#a-namercnn1-a-rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation> Rich feature hierarchies for accurate object detection and semantic segmentation</a></li>
+<li><a href=#a-namefastrcnn-a-fast-r-cnn> Fast R-CNN</a></li>
+<li><a href=#a-namefasterrcnn-a-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks> Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></li>
+<li><a href=#a-namemaskrcnn-a-mask-r-cnn> Mask R-CNN</a></li>
+<li><a href=#a-namereview2-a-a-review-of-deep-learning-techniques-applied-to-semantic-segmentation> A Review of Deep Learning Techniques Applied to Semantic Segmentation</a></li>
+<li><a href=#a-namedeeplab-a-deeplab--semantic-image-segmentation-with-deep-convolution-nets-atrous-convolution-and-fully-connected-crfs> DeepLab : Semantic Image Segmentation with Deep Convolution Nets, Atrous Convolution, and Fully Connected CRFs</a></li>
+<li><a href=#a-nameunet-a-u-net-convolution-networks-for-biomedical-image-segmentation> U-Net: Convolution Networks for Biomedical Image Segmentation</a></li>
+<li><a href=#a-namefcnn1-a-fully-convolutional-networks-for-semantic-segmentation> Fully Convolutional Networks for Semantic Segmentation</a></li>
+<li><a href=#a-namepixcnn-a-from-image-level-to-pixel-level-labeling-with-convolutional-networks> From Image-level to Pixel-level Labeling with Convolutional Networks</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="image-segmentation">Image Segmentation</h2>
-<h3 id="a-namereview1-a-image-segmentation-review"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Image segmentation review</h3>
-<p><a href="http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review"><em>Source</em></a></p>
+<h2 id=image-segmentation>Image Segmentation</h2>
+<h3 id=a-namereview1-a-image-segmentation-review> Image segmentation review</h3>
+<p><a href=http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review><em>Source</em></a></p>
 <ul>
 <li>A review of segmentation at qure.ai</li>
 </ul>
-<h3 id="a-namercnn1-a-rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Rich feature hierarchies for accurate object detection and semantic segmentation</h3>
+<h3 id=a-namercnn1-a-rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation> Rich feature hierarchies for accurate object detection and semantic segmentation</h3>
 <p><em>Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik : Oct 2014</em><br>
-<a href="https://arxiv.org/abs/1311.2524"><em>Source</em></a></p>
+<a href=https://arxiv.org/abs/1311.2524><em>Source</em></a></p>
 <ul>
 <li>Introduces R-CNN, Regions with CNN. Bridging the gap between image classification and object detection.
-<img src="../../../images/papers/rcnn1.jpg" alt="alt"></li>
+<img src=../../../images/papers/rcnn1.jpg alt=alt></li>
 <li><strong>Object detection with R-CNN</strong></li>
-<li><em>Region proposals.</em> Uses <a href="https://ivi.fnwi.uva.nl/isis/publications/bibtexbrowser.php?key=UijlingsIJCV2013&amp;bib=all.bib">selective search</a>.</li>
+<li><em>Region proposals.</em> Uses <a href="https://ivi.fnwi.uva.nl/isis/publications/bibtexbrowser.php?key=UijlingsIJCV2013&bib=all.bib">selective search</a>.</li>
 <li>Propose a bunch of boxes in the image and see if any of them actually correspond to an object.</li>
 <li><strong>Feature extraction.</strong> Extracts a 4096 dimensional feature vector from each region proposal by propagating a mean subtracted <em>227 X 227 RGB</em> image through five conv layers and two fully connected layers.</li>
 <li>These test time detections are highly parallel and the costs can amortized costs are hence low.</li>
 <li>Training is done by <em>supervised pre-training</em> followed by <em>domain-specific fine-tuning</em></li>
 <li>Finally, R-CNN runs a simpler linear regression on the region proposal to generate tighter bounding box coordinates to get our final results.
-<img src="../../../images/papers/rcnn2.jpg" alt="alt"></li>
+<img src=../../../images/papers/rcnn2.jpg alt=alt></li>
 </ul>
-<h3 id="a-namefastrcnn-a-fast-r-cnn"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Fast R-CNN</h3>
+<h3 id=a-namefastrcnn-a-fast-r-cnn> Fast R-CNN</h3>
 <p><em>Ross Girshick : Sep 2015</em><br>
-<a href="https://arxiv.org/abs/1504.08083"><em>Source</em></a><br>
-<a href="https://github.com/rbgirshick/fast-rcnn"><em>Implementation</em></a></p>
+<a href=https://arxiv.org/abs/1504.08083><em>Source</em></a><br>
+<a href=https://github.com/rbgirshick/fast-rcnn><em>Implementation</em></a></p>
 <ul>
 <li><em>9 X</em> faster at training time. <em>213 X</em> faster at test time.</li>
 <li>Streamline the previous process by jointly learning to classify object proposals and refine their spatial locations.</li>
@@ -247,9 +140,9 @@ Blog - Nitish Puri
 </ul>
 </li>
 <li><strong>Architecture</strong>
-<img src="../../../images/papers/fastRcnn1.jpg" alt="alt"></li>
+<img src=../../../images/papers/fastRcnn1.jpg alt=alt></li>
 <li>The RoI pooling layer : Run the CNN just once per image and then find a way to share that computation across the ~2000 proposals.
-<img src="../../../images/papers/fastRcnn2.jpg" alt="alt"></li>
+<img src=../../../images/papers/fastRcnn2.jpg alt=alt></li>
 <li>Initializing from pre-trained networks. with some modifications.</li>
 <li>Fine tuning for detection.
 <ul>
@@ -261,239 +154,153 @@ Blog - Nitish Puri
 </ul>
 </li>
 </ul>
-<h3 id="a-namefasterrcnn-a-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</h3>
+<h3 id=a-namefasterrcnn-a-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks> Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</h3>
 <p><em>Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun : Jan 2016</em><br>
 <em>Microsoft Research</em><br>
-<a href="https://arxiv.org/abs/1506.01497"><em>Source</em></a><br>
-<a href="https://github.com/rbgirshick/py-faster-rcnn"><em>Implementation</em></a></p>
+<a href=https://arxiv.org/abs/1506.01497><em>Source</em></a><br>
+<a href=https://github.com/rbgirshick/py-faster-rcnn><em>Implementation</em></a></p>
 <ul>
 <li>Eliminating the bottleneck, region proposals as inputs.</li>
 <li>Introduces <em>Region Proposal Networks</em> (RPNs) that share convolutional layers with object detection networks.
-<img src="../../../images/papers/fasterRcnn1.jpg" alt="alt"><br>
-<img src="../../../images/papers/fasterRcnn2.jpg" alt="alt"></li>
+<img src=../../../images/papers/fasterRcnn1.jpg alt=alt><br>
+<img src=../../../images/papers/fasterRcnn2.jpg alt=alt></li>
 <li>While training we alternate between the region proposal task and object detection task while keeping the proposals fixed.<br>
-<img src="../../../images/papers/fasterRcnn3.jpg" alt="alt"></li>
+<img src=../../../images/papers/fasterRcnn3.jpg alt=alt></li>
 </ul>
-<h3 id="a-namemaskrcnn-a-mask-r-cnn"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Mask R-CNN</h3>
+<h3 id=a-namemaskrcnn-a-mask-r-cnn> Mask R-CNN</h3>
 <p><em>Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick : Apr 2017</em><br>
 <em>Facebook AI Research</em><br>
-<a href="https://arxiv.org/abs/1703.06870"><em>Source</em></a><br>
-<a href="https://github.com/CharlesShang/FastMaskRCNN"><em>Implementation</em></a></p>
-<p><img src="../../../images/papers/maskRcnn1.jpg" alt="alt"></p>
+<a href=https://arxiv.org/abs/1703.06870><em>Source</em></a><br>
+<a href=https://github.com/CharlesShang/FastMaskRCNN><em>Implementation</em></a></p>
+<p><img src=../../../images/papers/maskRcnn1.jpg alt=alt></p>
 <ul>
 <li>Extends Faster R-CNN by adding another branch that predicts the object mask along with the bounding boxes.<br>
-<img src="../../../images/papers/maskRcnn1.jpg" alt="alt"></li>
+<img src=../../../images/papers/maskRcnn1.jpg alt=alt></li>
 <li>Faster R-CNN does not provide pixel-to-pixel alignment between network inputs and outputs.</li>
 <li>To fix this a layer <em>RoIAlign</em> is proposed which replaces <em>RoIPool</em> layer used previously.</li>
 <li>The first stage is identical to Faster R-CNN.</li>
 <li>In the second stage, along with predicting the class and the box offset, Mask R-CNN also outputs a binary mask for each RoI.</li>
 <li>Multi-task loss is used : $L = L_{cls} + L_{bbox} + L_{mask}$.</li>
 <li>Masks are generated for every class without competition among classes. This <em>decouples</em> mask and class prediction.</li>
-<li>Different architectures are used as  convolutional <em>backbone</em>, ResNet and ResNeXt
-<img src="../../../images/papers/maskRcnn2.jpg" alt="alt"><br>
-<img src="../../../images/papers/maskRcnn3.jpg" alt="alt"><br>
-<img src="../../../images/papers/maskRcnn4.jpg" alt="alt"></li>
+<li>Different architectures are used as convolutional <em>backbone</em>, ResNet and ResNeXt
+<img src=../../../images/papers/maskRcnn2.jpg alt=alt><br>
+<img src=../../../images/papers/maskRcnn3.jpg alt=alt><br>
+<img src=../../../images/papers/maskRcnn4.jpg alt=alt></li>
 </ul>
-<h3 id="a-namereview2-a-a-review-of-deep-learning-techniques-applied-to-semantic-segmentation"><!-- raw HTML omitted --> <!-- raw HTML omitted --> A Review of Deep Learning Techniques Applied to Semantic Segmentation</h3>
+<h3 id=a-namereview2-a-a-review-of-deep-learning-techniques-applied-to-semantic-segmentation> A Review of Deep Learning Techniques Applied to Semantic Segmentation</h3>
 <p><em>Alberto Garcia-Garcia, Sergio Orts-Escolano, Sergiu Oprea, Victor Villena-Martinez, Jose Garcia-Rodriguez : Apr 2017</em>
-<a href="https://arxiv.org/abs/1704.06857"><em>Source</em></a></p>
+<a href=https://arxiv.org/abs/1704.06857><em>Source</em></a></p>
 <ul>
 <li><em>Semantic Segmentation, Deep Learning, Scene Labeling, Object Segmentation</em></li>
-<li>This paper provides a review on deep learning methods for semantic segmentation applied to various  application areas. This also describes the terminology used as well as some background concepts, then some existing models are reviewed(2017). At last a set of promising future works are discussed.</li>
+<li>This paper provides a review on deep learning methods for semantic segmentation applied to various application areas. This also describes the terminology used as well as some background concepts, then some existing models are reviewed(2017). At last a set of promising future works are discussed.</li>
 <li>These techniques are not very mature as of yet, mainly because of a lack of unifying picture.
-<img src="../../../images/papers/deepSegment1.jpg" alt="Evolution of object recognition"></li>
+<img src=../../../images/papers/deepSegment1.jpg alt="Evolution of object recognition"></li>
 <li>CNN Architectures : AlexNet, VGG, GoogleNet, ResNet, etc..</li>
-<li>2D and 3D Datasets : <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2012/">PascalVOC</a>,  [Microsoft COCO](6. <a href="http://mscoco.org/),">http://mscoco.org/),</a> and more,&hellip;</li>
+<li>2D and 3D Datasets : <a href=http://host.robots.ox.ac.uk/pascal/VOC/voc2012/>PascalVOC</a>, [Microsoft COCO](6. <a href=http://mscoco.org/),>http://mscoco.org/),</a> and more,&mldr;</li>
 <li>Decoder Variants, Integrating Context Knowledge</li>
 <li>Instance Segmentation</li>
 <li>RGB-D Data and 3D Data</li>
 <li>Video Sequences</li>
 </ul>
-<h3 id="a-namedeeplab-a-deeplab--semantic-image-segmentation-with-deep-convolution-nets-atrous-convolution-and-fully-connected-crfs"><!-- raw HTML omitted --> <!-- raw HTML omitted --> DeepLab : Semantic Image Segmentation with Deep Convolution Nets, Atrous Convolution, and Fully Connected CRFs</h3>
+<h3 id=a-namedeeplab-a-deeplab--semantic-image-segmentation-with-deep-convolution-nets-atrous-convolution-and-fully-connected-crfs> DeepLab : Semantic Image Segmentation with Deep Convolution Nets, Atrous Convolution, and Fully Connected CRFs</h3>
 <p><em>Liang-Chieh Chen, George Papandreou, Iasonas Kokkinos, Kevin Murphy, Alan L. Yuille : May 2017</em><br>
-<a href="https://arxiv.org/abs/1606.00915"><em>Source</em></a></p>
+<a href=https://arxiv.org/abs/1606.00915><em>Source</em></a></p>
 <ul>
 <li><em>Semantic Segmentation, Atrous Convolution, Conditional Random Fields</em></li>
 <li>Introduces upsampled filters(Altrous Convolution) as a tool in dense prediction tasks. Allows us to control the resolution at which feature responses are computed and also allows us to effectively enlarge the field of view of filters to incorporate larger context without increasing the number of parameters or the amount of computation.</li>
 <li>???? // <em>Read this again..</em></li>
 </ul>
-<h3 id="a-nameunet-a-u-net-convolution-networks-for-biomedical-image-segmentation"><!-- raw HTML omitted --> <!-- raw HTML omitted --> U-Net: Convolution Networks for Biomedical Image Segmentation</h3>
+<h3 id=a-nameunet-a-u-net-convolution-networks-for-biomedical-image-segmentation> U-Net: Convolution Networks for Biomedical Image Segmentation</h3>
 <p><em>Olaf Ronneberger, Philipp Fischer, Thomas Brox : May 2015</em>
-<a href="https://arxiv.org/abs/1505.04597"><em>Source</em></a></p>
+<a href=https://arxiv.org/abs/1505.04597><em>Source</em></a></p>
 <ul>
 <li>Focuses on end-to-end training for segmentation tasks, relying heavily on data augmentation.</li>
 </ul>
-<h3 id="a-namefcnn1-a-fully-convolutional-networks-for-semantic-segmentation"><!-- raw HTML omitted --> <!-- raw HTML omitted --> Fully Convolutional Networks for Semantic Segmentation</h3>
+<h3 id=a-namefcnn1-a-fully-convolutional-networks-for-semantic-segmentation> Fully Convolutional Networks for Semantic Segmentation</h3>
 <p><em>Jonathan Long, Evan Shelhamer, Trevor Darrell : Mar 2015</em><br>
-<a href="https://arxiv.org/abs/1411.4038"><em>Source</em></a></p>
+<a href=https://arxiv.org/abs/1411.4038><em>Source</em></a></p>
 <ul>
 <li>One of the first works to use Fully Connected layers to create pixel heatmap as output.</li>
 <li>Introducing Upsampling or Convolution Transpose.</li>
 </ul>
-<h3 id="a-namepixcnn-a-from-image-level-to-pixel-level-labeling-with-convolutional-networks"><!-- raw HTML omitted --> <!-- raw HTML omitted --> From Image-level to Pixel-level Labeling with Convolutional Networks</h3>
+<h3 id=a-namepixcnn-a-from-image-level-to-pixel-level-labeling-with-convolutional-networks> From Image-level to Pixel-level Labeling with Convolutional Networks</h3>
 <p><em>Pedro O. Pinheiro, Ronan Collobert : Apr 2015</em><br>
-<a href="https://arxiv.org/abs/1411.6228"><em>Source</em></a></p>
+<a href=https://arxiv.org/abs/1411.6228><em>Source</em></a></p>
 <ul>
 <li>Weakly supervised segmentation.</li>
 <li>Put more weights to pixels with known class labels.</li>
 <li>Uses part of model trained on ImageNet and trains for segmentation on PascalVOC.</li>
 </ul>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../research/machine-intelligence/detect-segment-2/">Object Detection and Image Segmentation, Part 2</a></li>
-        
-            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-4/">A visual proof that neural networks can compute any function, Micheal Nelson</a></li>
-        
-            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a></li>
-        
-            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-2/">How the backpropogation algorithm works, Micheal Nelson</a></li>
-        
-            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-3/">Improving the way neural networks learn, Micheal Nelson</a></li>
-        
-    </ul>
-
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../blog-hugo/research/machine-intelligence/detect-segment-2/>Object Detection and Image Segmentation, Part 2</a></li>
+<li><a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-4/>A visual proof that neural networks can compute any function, Micheal Nelson</a></li>
+<li><a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a></li>
+<li><a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-2/>How the backpropogation algorithm works, Micheal Nelson</a></li>
+<li><a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-3/>Improving the way neural networks learn, Micheal Nelson</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>

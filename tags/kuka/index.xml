@@ -1,21 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>kuka on Blog - Nitish Puri</title>
-    <link>https://www.myproductionurl.com/tags/kuka/</link>
-    <description>Recent content in kuka on Blog - Nitish Puri</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 28 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.myproductionurl.com/tags/kuka/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Inverse Kinematics on Kuka Arm using ROS and Python</title>
-      <link>https://www.myproductionurl.com/research/robotics/kuka-kinematics/</link>
-      <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.myproductionurl.com/research/robotics/kuka-kinematics/</guid>
-      <description>Picking and placing objects is something that we as humans take for granted. That&amp;rsquo;s not the case for our mechanical(and electronic) friends. They have to
- Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&amp;rsquo;t always go very well for us either).  One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kuka on Blog - Nitish Puri</title><link>https://nitishpuri.github.io/blog-hugo/tags/kuka/</link><description>Recent content in kuka on Blog - Nitish Puri</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 28 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://nitishpuri.github.io/blog-hugo/tags/kuka/index.xml" rel="self" type="application/rss+xml"/><item><title>Inverse Kinematics on Kuka Arm using ROS and Python</title><link>https://nitishpuri.github.io/blog-hugo/research/robotics/kuka-kinematics/</link><pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate><guid>https://nitishpuri.github.io/blog-hugo/research/robotics/kuka-kinematics/</guid><description>Picking and placing objects is something that we as humans take for granted. That&amp;rsquo;s not the case for our mechanical(and electronic) friends. They have to
+Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&amp;rsquo;t always go very well for us either). One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object.</description></item></channel></rss>

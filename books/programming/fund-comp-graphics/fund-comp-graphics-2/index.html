@@ -1,242 +1,133 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 2" />
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 2">
 <meta property="og:description" content="Chapter 5 : Linear Algebra Determinants Determinants as the area of a parallelogram and volume of a parallelepiped.
 We can see from Figure 5.6 that $|(b_c\mathbf{b}\mathbf{a})| = |c\mathbf{a}|$, because these parallelograms are just sheared versions of each other.
 Solving for bc yields $b_c =|\mathbf{ca}|/|\mathbf{ba}|$.
 An analogous argument yields $a_c =|\mathbf{bc}|/|\mathbf{ba}|$.
 This is the two-dimensional version of Cramer’s rule which we will revisit soon.
-Matrices A matrix is an array of numeric elements that follow certain arithmetic rules." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-2/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
-
-<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00" />
-
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
-
-<meta name="twitter:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 2"/>
-<meta name="twitter:description" content="Chapter 5 : Linear Algebra Determinants Determinants as the area of a parallelogram and volume of a parallelepiped.
+Matrices A matrix is an array of numeric elements that follow certain arithmetic rules.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-2/"><meta property="og:image" content="https://nitishpuri.github.io/images/site-feature-image.jpg"><meta property="article:section" content="books">
+<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://nitishpuri.github.io/images/site-feature-image.jpg">
+<meta name=twitter:title content="Fundamentals of Computer Graphics, Peter Shirley, Part 2">
+<meta name=twitter:description content="Chapter 5 : Linear Algebra Determinants Determinants as the area of a parallelogram and volume of a parallelepiped.
 We can see from Figure 5.6 that $|(b_c\mathbf{b}\mathbf{a})| = |c\mathbf{a}|$, because these parallelograms are just sheared versions of each other.
 Solving for bc yields $b_c =|\mathbf{ca}|/|\mathbf{ba}|$.
 An analogous argument yields $a_c =|\mathbf{bc}|/|\mathbf{ba}|$.
 This is the two-dimensional version of Cramer’s rule which we will revisit soon.
-Matrices A matrix is an array of numeric elements that follow certain arithmetic rules."/>
-
-
-
-    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-2/">
-
-    <title>
-      
-        Fundamentals of Computer Graphics, Peter Shirley, Part 2 | Blog - Nitish Puri
-      
-    </title>
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href='../../../../css/style.css' rel="stylesheet">
-
-    
-
-        
-    
-
-    <script>
-MathJax = {
-    tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$','$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-    },
-    options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-};
-
-window.addEventListener('load', (event) => {
-    document.querySelectorAll("mjx-container").forEach(function(x){
-        x.parentElement.classList += 'has-jax'})
-    });
-
-</script>
+Matrices A matrix is an array of numeric elements that follow certain arithmetic rules.">
+<link rel=canonical href=https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-2/>
+<title>
+Fundamentals of Computer Graphics, Peter Shirley, Part 2 | Blog - Nitish Puri
+</title>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1 crossorigin=anonymous>
+<link href=../../../../blog-hugo/css/style.css rel=stylesheet>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  </head>
-  <body>
-    
-      
-
-<header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../../">
-                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-    alt="">
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<header class=blog-header>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class=container-fluid>
+<a class=navbar-brand href=../../../../blog-hugo>
+<img src=https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg width=30 height=30 class="d-inline-block align-top" alt>
 Blog - Nitish Puri
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../books/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../research/"></a>
-                        
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                            
-                            <a class="nav-link " href="../../../../about/">About</a>
-                        
-                    </li>
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-controls=navbarNav aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between" id=navbarNav>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/books/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/research/></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=../../../../blog-hugo/blog-hugo/about/>About</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 </header>
-
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
-    <ol class="breadcrumb">
-    
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
-    
-    
-        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/">Fundamentals of Computer Graphics, Peter Shirley</a> </li>
-    
-    
-    <li class="breadcrumb-item active" aria-current="page">  Fundamentals of Computer Graphics, Peter Shirley, Part 2</li>
-    
-    
+<div class=container>
+<div class=row>
+<div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/>Home</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/>Books</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/>Programming</a> </li>
+<li class=breadcrumb-item> <a href=https://nitishpuri.github.io/blog-hugo/books/programming/fund-comp-graphics/>Fundamentals of Computer Graphics, Peter Shirley</a> </li>
+<li class="breadcrumb-item active" aria-current=page> Fundamentals of Computer Graphics, Peter Shirley, Part 2</li>
 </ol>
 </nav>
-
 <header>
-    <h2 class="blog-post-title">
-    <a class="text-dark text-decoration-none" href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-2/">Fundamentals of Computer Graphics, Peter Shirley, Part 2</a>
+<h2 class=blog-post-title>
+<a class="text-dark text-decoration-none" href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-2/>Fundamentals of Computer Graphics, Peter Shirley, Part 2</a>
 </h2>
-
-    
-
-
 <div class="blog-post-date text-secondary">
-    
-        <time datetime="2017-08-17">Aug 17, 2017</time>
-    
-    
-        by <span rel="author">Nitish Puri</span>
-    
+<time datetime=2017-08-17>Aug 17, 2017</time>
+by <span rel=author>Nitish Puri</span>
 </div>
-
-    
 <div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-    
-        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-    
+<strong>Tags:</strong>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
 </div>
-
-
-    
-
-    <hr>
+<hr>
 </header>
-<article class="blog-post">
-
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#chapter-5--linear-algebra">Chapter 5 : Linear Algebra</a>
-      <ul>
-        <li><a href="#determinants">Determinants</a></li>
-        <li><a href="#matrices">Matrices</a></li>
-        <li><a href="#computing-with-matrices-and-determinants">Computing with Matrices and Determinants</a></li>
-        <li><a href="#eigenvalues-and-matrix-diagonalization">Eigenvalues and Matrix Diagonalization</a></li>
-      </ul>
-    </li>
-    <li><a href="#chapter-6-transformation-matrices">Chapter 6: Transformation Matrices</a>
-      <ul>
-        <li><a href="#2d-linear-transformations">2D Linear Transformations</a></li>
-        <li><a href="#3d-linear-transformations">3D Linear Transformations</a></li>
-        <li><a href="#translation-and-affine-transformations">Translation and Affine Transformations</a></li>
-        <li><a href="#inverses-of-transformation-matrices">Inverses of Transformation Matrices</a></li>
-        <li><a href="#coordinate-transformations">Coordinate Transformations</a></li>
-      </ul>
-    </li>
-    <li><a href="#chapter-7--viewing">Chapter 7 : Viewing</a>
-      <ul>
-        <li><a href="#viewing-transformations">Viewing Transformations</a></li>
-        <li><a href="#projective-transformations">Projective Transformations</a></li>
-        <li><a href="#perspective-projection">Perspective Projection</a></li>
-        <li><a href="#some-properties-of-the-perspective-transform">Some Properties of the Perspective Transform</a></li>
-        <li><a href="#field-of-view">Field-of-View</a></li>
-      </ul>
-    </li>
-  </ul>
+<article class=blog-post>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#chapter-5--linear-algebra>Chapter 5 : Linear Algebra</a>
+<ul>
+<li><a href=#determinants>Determinants</a></li>
+<li><a href=#matrices>Matrices</a></li>
+<li><a href=#computing-with-matrices-and-determinants>Computing with Matrices and Determinants</a></li>
+<li><a href=#eigenvalues-and-matrix-diagonalization>Eigenvalues and Matrix Diagonalization</a></li>
+</ul>
+</li>
+<li><a href=#chapter-6-transformation-matrices>Chapter 6: Transformation Matrices</a>
+<ul>
+<li><a href=#2d-linear-transformations>2D Linear Transformations</a></li>
+<li><a href=#3d-linear-transformations>3D Linear Transformations</a></li>
+<li><a href=#translation-and-affine-transformations>Translation and Affine Transformations</a></li>
+<li><a href=#inverses-of-transformation-matrices>Inverses of Transformation Matrices</a></li>
+<li><a href=#coordinate-transformations>Coordinate Transformations</a></li>
+</ul>
+</li>
+<li><a href=#chapter-7--viewing>Chapter 7 : Viewing</a>
+<ul>
+<li><a href=#viewing-transformations>Viewing Transformations</a></li>
+<li><a href=#projective-transformations>Projective Transformations</a></li>
+<li><a href=#perspective-projection>Perspective Projection</a></li>
+<li><a href=#some-properties-of-the-perspective-transform>Some Properties of the Perspective Transform</a></li>
+<li><a href=#field-of-view>Field-of-View</a></li>
+</ul>
+</li>
+</ul>
 </nav>
-    
-    <h2 id="chapter-5--linear-algebra">Chapter 5 : Linear Algebra</h2>
-<p><img src="../../../../images/fundcg/5_liner1.png" alt="alt">
-<img src="../../../../images/fundcg/5_liner2.png" alt="alt"></p>
-<h3 id="determinants">Determinants</h3>
+<h2 id=chapter-5--linear-algebra>Chapter 5 : Linear Algebra</h2>
+<p><img src=../../../../images/fundcg/5_liner1.png alt=alt>
+<img src=../../../../images/fundcg/5_liner2.png alt=alt></p>
+<h3 id=determinants>Determinants</h3>
 <p>Determinants as the area of a parallelogram and volume of a parallelepiped.</p>
-<p><img src="../../../../images/fundcg/5_deter1.png" alt="alt"></p>
+<p><img src=../../../../images/fundcg/5_deter1.png alt=alt></p>
 <p>We can see from Figure 5.6 that $|(b_c\mathbf{b}\mathbf{a})| = |c\mathbf{a}|$, because these parallelograms are just sheared versions of each other.<br>
 Solving for bc yields $b_c =|\mathbf{ca}|/|\mathbf{ba}|$.<br>
 An analogous argument yields $a_c =|\mathbf{bc}|/|\mathbf{ba}|$.</p>
 <p>This is the two-dimensional version of <em>Cramer’s rule</em> which we will revisit soon.</p>
-<h3 id="matrices">Matrices</h3>
+<h3 id=matrices>Matrices</h3>
 <p>A matrix is an array of numeric elements that follow certain arithmetic rules.</p>
 <p><strong>Matrix Arithmetic</strong></p>
 <p>Product with a scalar.<br>
@@ -249,8 +140,8 @@ Inverse matrix.</p>
 <p>Transpose of matrix,<br>
 $$ (\mathbf{AB})^{T} = \mathbf{B}^{T}\mathbf{A}^{T}$$</p>
 <p>Also,<br>
-$$ |{\mathbf{AB}}| = |{\mathbf{A}}|,|{\mathbf{B}}| $$  <br>
-$$ |{\mathbf{A}^{-1}}| = \frac{1}{|{\mathbf{A}}|} $$  <br>
+$$ |{\mathbf{AB}}| = |{\mathbf{A}}|,|{\mathbf{B}}| $$ <br>
+$$ |{\mathbf{A}^{-1}}| = \frac{1}{|{\mathbf{A}}|} $$ <br>
 $$ |{\mathbf{A}^T}| = |{\mathbf{A}}| $$</p>
 <p><strong>Vector operations in Matrix form.</strong></p>
 <p><em>Special types of Matrices</em></p>
@@ -260,22 +151,22 @@ $$ |{\mathbf{A}^T}| = |{\mathbf{A}}| $$</p>
 <li><em>Orthogonal Matrix -</em> All of its rows(and columns) are vectors of length 1 and are orthogonal to each other. Determinant os such a matrix is either +1 or -1.<br>
 The idea of an orthogonal matrix corresponds to the idea of an <em>orthonormal</em> basis, not just a set of orthogonal vectors.</li>
 </ul>
-<h3 id="computing-with-matrices-and-determinants">Computing with Matrices and Determinants</h3>
+<h3 id=computing-with-matrices-and-determinants>Computing with Matrices and Determinants</h3>
 <p>Determinants as areas.<br>
 Laplace&rsquo;s Expansion.<br>
 Computing determinants by calculating cofactors.</p>
 <p><strong>Computing inverses</strong></p>
 <p>$$\begin{eqnarray} \mathbf{A}^{-1} = \frac{1}{|{\mathbf{A}}|}\begin{bmatrix}<br>
-a^c_{11} &amp; a^c_{21} &amp; a^c_{31} &amp; a^c_{41} \\<br>
-a^c_{12} &amp; a^c_{22} &amp; a^c_{32} &amp; a^c_{42} \\<br>
-a^c_{13} &amp; a^c_{23} &amp; a^c_{33} &amp; a^c_{43} \\<br>
-a^c_{14} &amp; a^c_{24} &amp; a^c_{34} &amp; a^c_{44} \\<br>
+a^c_{11} & a^c_{21} & a^c_{31} & a^c_{41} \\<br>
+a^c_{12} & a^c_{22} & a^c_{32} & a^c_{42} \\<br>
+a^c_{13} & a^c_{23} & a^c_{33} & a^c_{43} \\<br>
+a^c_{14} & a^c_{24} & a^c_{34} & a^c_{44} \\<br>
 \end{bmatrix} \end{eqnarray}$$</p>
 <p><strong>Linear Systems</strong></p>
 <p>$$\mathbf{Ax}=\mathbf{b}$$</p>
 <p><em>Cramer&rsquo;s rule,</em><br>
 The rule here is to take a ratio of determinants, where the denominator is $|{\mathbf{A}}|$ and the numerator is the determinant of a matrix created by replacing a column of $\mathbf{A}$ with the column vector $\mathbf{b}$. The column replaced corresponds to the position of the unknown in vector $\mathbf{x}$. For example, $y$ is the second unknown and the second column is replaced. Note that if $|{\mathbf{A}}| = 0$, the division is undefined and there is no solution. This is just another version of the rule that if $\mathbf{A}$ is singular (zero determinant) then there is no unique solution to the equations.</p>
-<h3 id="eigenvalues-and-matrix-diagonalization">Eigenvalues and Matrix Diagonalization</h3>
+<h3 id=eigenvalues-and-matrix-diagonalization>Eigenvalues and Matrix Diagonalization</h3>
 <p>Square matrices have <em>eigenvalues</em> and <em>eigenvectors</em> associated with them. The eigenvectors are those <em>non-zero</em> vectors whose directions do not change when multiplied by the matrix. For example, suppose for a matrix $\mathbf{A}$ and vector $\mathbf{a}$, we have<br>
 $$ \mathbf{Aa} = \lambda\mathbf{a} $$
 This means we have stretched or compressed $\mathbf{a}$, but its direction has not changed.<br>
@@ -296,322 +187,236 @@ $$\mathbf{A} = \mathbf{QDQ}_T$$</p>
 <p>Here $\mathbf{U}$ and $\mathbf{V}$ are two, potentially different, orthogonal matrices, whose columns are known as the left and right <em>singular vectors</em> of $\mathbf{A}$, and $\mathbf{S}$ is a diagonal matrix whose entries are known as the <em>singular values</em> of $\mathbf{A}$. When $\mathbf{A}$ is symmetric and has all non-negative eigenvalues, the SVD and the eigenvalue decomposition are the same.<br>
 Also,<br>
 $$\mathbf{M} = \mathbf{AA}_T = (\mathbf{USV}_T)(\mathbf{USV}_T)_T = \mathbf{US}(\mathbf{V}_TV)\mathbf{SU}_T = \mathbf{US}^2\mathbf{U}_T$$</p>
-<h2 id="chapter-6-transformation-matrices">Chapter 6: Transformation Matrices</h2>
-<h3 id="2d-linear-transformations">2D Linear Transformations</h3>
-<p>$$\begin{bmatrix}a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}\end{bmatrix} \begin{bmatrix}x \\ y\end{bmatrix}
+<h2 id=chapter-6-transformation-matrices>Chapter 6: Transformation Matrices</h2>
+<h3 id=2d-linear-transformations>2D Linear Transformations</h3>
+<p>$$\begin{bmatrix}a_{11} & a_{12} \\ a_{21} & a_{22}\end{bmatrix} \begin{bmatrix}x \\ y\end{bmatrix}
 \begin{bmatrix}a_{11}x + a_{12}y \\ a_{21}x + a_{22}y\end{bmatrix}$$</p>
 <p>This kind of operation, which takes in a 2-vector and produces another 2-vector by a simple matrix multiplication, is a <em>linear transformation</em>.</p>
 <p><strong>Scaling</strong></p>
-<p>$$ \mbox{scale}(s_x, s_y) = \begin{bmatrix} s_x &amp; 0 \\ 0 &amp; s_y \end{bmatrix}$$</p>
-<p><img src="../../../../images/fundcg/6_scale.png" alt="alt"></p>
+<p>$$ \mbox{scale}(s_x, s_y) = \begin{bmatrix} s_x & 0 \\ 0 & s_y \end{bmatrix}$$</p>
+<p><img src=../../../../images/fundcg/6_scale.png alt=alt></p>
 <p><strong>Shearing</strong><br>
-$$ \mbox{shear-x}(s) = \begin{bmatrix} 1 &amp; s \\ 0 &amp; 1 \end{bmatrix}$$<br>
-$$ \mbox{shear-y}(s) = \begin{bmatrix} 1 &amp; 0 \\ s &amp; 1 \end{bmatrix}$$</p>
-<p><img src="../../../../images/fundcg/6_shear.png" alt="alt"></p>
+$$ \mbox{shear-x}(s) = \begin{bmatrix} 1 & s \\ 0 & 1 \end{bmatrix}$$<br>
+$$ \mbox{shear-y}(s) = \begin{bmatrix} 1 & 0 \\ s & 1 \end{bmatrix}$$</p>
+<p><img src=../../../../images/fundcg/6_shear.png alt=alt></p>
 <p><strong>Rotation</strong></p>
-<p>$$ \mbox{rotate}(\phi) = \begin{bmatrix} cos(\phi) &amp; -sin(\phi) \\ sin(\phi) &amp; cos(\phi) \end{bmatrix}$$<br>
-<img src="../../../../images/fundcg/6_rotate.png" alt="alt"></p>
+<p>$$ \mbox{rotate}(\phi) = \begin{bmatrix} cos(\phi) & -sin(\phi) \\ sin(\phi) & cos(\phi) \end{bmatrix}$$<br>
+<img src=../../../../images/fundcg/6_rotate.png alt=alt></p>
 <p><strong>Reflection</strong><br>
-$$ \mbox{reflect-y} = \begin{bmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}$$<br>
-$$ \mbox{reflect-x} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}$$</p>
-<p><img src="../../../../images/fundcg/6_reflect.png" alt="alt"></p>
+$$ \mbox{reflect-y} = \begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$$<br>
+$$ \mbox{reflect-x} = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$$</p>
+<p><img src=../../../../images/fundcg/6_reflect.png alt=alt></p>
 <p>Reflection is in fact just a rotation by $\pi$ radians.</p>
 <p><strong>Composition and Decomposition of transforms</strong><br>
-<img src="../../../../images/fundcg/6_comp.png" alt="alt"></p>
+<img src=../../../../images/fundcg/6_comp.png alt=alt></p>
 <p><em>Not commutative.</em><br>
-<img src="../../../../images/fundcg/6_comp2.png" alt="alt"></p>
+<img src=../../../../images/fundcg/6_comp2.png alt=alt></p>
 <p><strong>Decomposition of transforms</strong><br>
-<img src="../../../../images/fundcg/6_decomp.png" alt="alt"></p>
+<img src=../../../../images/fundcg/6_decomp.png alt=alt></p>
 <p><strong>Symmetric Eigenvalue Decomposition</strong></p>
 <p>$$\mathbf{A} = \mathbf{RSR}^T$$</p>
 <p>where $\mathbf{R}$ is an orthogonal matrix and $\mathbf{S}$ is a diagonal matrix; we will call the columns of $\mathbf{R}$ (the eigenvectors) by the names $\mathbf{v}_1$ and $\mathbf{v}_2$, and we’ll call the diagonal entries of $\mathbf{S}$ (the eigenvalues) by the names $\lambda_1$ and $\lambda_2$.</p>
-<p><img src="../../../../images/fundcg/6_svd.png" alt="alt"></p>
+<p><img src=../../../../images/fundcg/6_svd.png alt=alt></p>
 <p>This symmetric <em>2 X 2</em> matrix has 3 degrees of freedom. One rotation angle and two scale values.</p>
 <p><strong>Singular value Decomposition</strong></p>
-<p><img src="../../../../images/fundcg/6_svd2.png" alt="alt"></p>
+<p><img src=../../../../images/fundcg/6_svd2.png alt=alt></p>
 <p>$$\mathbf{A} = \mathbf{USV}^T$$</p>
 <p>In summary, every matrix can be decomposed via SVD into a rotation times a scale times another rotation. Only symmetric matrices can be decomposed via eigenvalue diagonalization into a rotation times a scale times the inverse-rotation, and such matrices are a simple scale in an arbitrary direction. The SVD of a symmetric matrix will yield the same triple product as eigenvalue decomposition via a slightly more complex algebraic manipulation.</p>
 <p><strong>Paeth Decomposition of Rotations</strong></p>
-<p>$$\begin{bmatrix} cos\phi &amp; -sin\phi \\ sin\phi &amp; cos\phi\end{bmatrix}  = 
-\begin{bmatrix}1 &amp; \frac{cos{\phi}-1}{sin\phi} \\ 0 &amp; 1\end{bmatrix} 
-\begin{bmatrix}1 &amp; 0 \\ sin\phi &amp; 1\end{bmatrix}
-\begin{bmatrix}1 &amp; \frac{cos{\phi}-1}{sin\phi} \\ 0 &amp; 1\end{bmatrix}$$</p>
-<p><img src="../../../../images/fundcg/6_decomp2.png" alt="alt"></p>
-<h3 id="3d-linear-transformations">3D Linear Transformations</h3>
+<p>$$\begin{bmatrix} cos\phi & -sin\phi \\ sin\phi & cos\phi\end{bmatrix} =
+\begin{bmatrix}1 & \frac{cos{\phi}-1}{sin\phi} \\ 0 & 1\end{bmatrix}
+\begin{bmatrix}1 & 0 \\ sin\phi & 1\end{bmatrix}
+\begin{bmatrix}1 & \frac{cos{\phi}-1}{sin\phi} \\ 0 & 1\end{bmatrix}$$</p>
+<p><img src=../../../../images/fundcg/6_decomp2.png alt=alt></p>
+<h3 id=3d-linear-transformations>3D Linear Transformations</h3>
 <p><strong>Scaling</strong></p>
-<p>$$ \mbox{scale}(s_x, s_y, s_z) = \begin{bmatrix} s_x &amp; 0 &amp; 0\\ 0 &amp; s_y &amp; 0\\ 0 &amp; 0 &amp; s_z\end{bmatrix}$$</p>
+<p>$$ \mbox{scale}(s_x, s_y, s_z) = \begin{bmatrix} s_x & 0 & 0\\ 0 & s_y & 0\\ 0 & 0 & s_z\end{bmatrix}$$</p>
 <p><strong>Rotation</strong></p>
-<p>$$ \begin{eqnarray} 
-\mbox{rotate-z}(\phi) &amp; = 
-&amp;\begin{bmatrix} cos,\phi &amp; -sin,\phi &amp; 0\\ sin,\phi &amp; cos,\phi &amp; 0 \\ 0 &amp; 0 &amp; 1\end{bmatrix} \\<br>
-\mbox{rotate-x}(\phi) &amp; = &amp; \begin{bmatrix} 1 &amp; 0 &amp; 0\\ 0 &amp; cos,\phi &amp; -sin,\phi \\ 0 &amp; sin,\phi &amp; cos,\phi\end{bmatrix} \\<br>
-\mbox{rotate-y}(\phi) &amp; = &amp; \begin{bmatrix} cos,\phi &amp; -sin,\phi &amp; 0\\ sin,\phi &amp; cos,\phi &amp; 0 \\ 0 &amp; 0 &amp; 1\end{bmatrix}\end{eqnarray}$$</p>
+<p>$$ \begin{eqnarray}
+\mbox{rotate-z}(\phi) & =
+&\begin{bmatrix} cos,\phi & -sin,\phi & 0\\ sin,\phi & cos,\phi & 0 \\ 0 & 0 & 1\end{bmatrix} \\<br>
+\mbox{rotate-x}(\phi) & = & \begin{bmatrix} 1 & 0 & 0\\ 0 & cos,\phi & -sin,\phi \\ 0 & sin,\phi & cos,\phi\end{bmatrix} \\<br>
+\mbox{rotate-y}(\phi) & = & \begin{bmatrix} cos,\phi & -sin,\phi & 0\\ sin,\phi & cos,\phi & 0 \\ 0 & 0 & 1\end{bmatrix}\end{eqnarray}$$</p>
 <p><strong>Shear</strong></p>
-<p>$$ \begin{eqnarray} \mbox{shear-z}(d_x, d_z) &amp; = &amp;\begin{bmatrix} 1 &amp; d_y &amp; d_z\\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1\end{bmatrix} \end{eqnarray}$$</p>
+<p>$$ \begin{eqnarray} \mbox{shear-z}(d_x, d_z) & = &\begin{bmatrix} 1 & d_y & d_z\\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix} \end{eqnarray}$$</p>
 <p>As with 2D transforms, any 3D transformation matrix can be decomposed using SVD into a rotation, scale, and another rotation. Any symmetric 3D matrix has an eigenvalue decomposition into rotation, scale, and inverse-rotation. Finally, a 3D rotation can be decomposed into a product of 3D shear matrices.</p>
-<h4 id="arbitrary-3d-rotations">Arbitrary 3D Rotations</h4>
-<p>$$ \begin{eqnarray} \mathbf{R}_{uvw} &amp; = &amp;\begin{bmatrix} x_u &amp; y_u &amp; z_u\\ x_v &amp; y_v &amp; z_v \\ x_w &amp; y_w &amp; z_w\end{bmatrix} \end{eqnarray}$$</p>
-<p>$$\mathbf{u}\cdot\mathbf{u} =\mathbf{v}\cdot\mathbf{v} = \mathbf{w}\cdot\mathbf{w}  = 1 , \ 
-\mathbf{u}\cdot\mathbf{v} =\mathbf{v}\cdot\mathbf{w} = \mathbf{w}\cdot\mathbf{u}  = 0$$<br>
+<h4 id=arbitrary-3d-rotations>Arbitrary 3D Rotations</h4>
+<p>$$ \begin{eqnarray} \mathbf{R}_{uvw} & = &\begin{bmatrix} x_u & y_u & z_u\\ x_v & y_v & z_v \\ x_w & y_w & z_w\end{bmatrix} \end{eqnarray}$$</p>
+<p>$$\mathbf{u}\cdot\mathbf{u} =\mathbf{v}\cdot\mathbf{v} = \mathbf{w}\cdot\mathbf{w} = 1 , \
+\mathbf{u}\cdot\mathbf{v} =\mathbf{v}\cdot\mathbf{w} = \mathbf{w}\cdot\mathbf{u} = 0$$<br>
 $$\mathbf{R}_{uvw}\mathbf{u} = \begin{bmatrix}\mathbf{u}\cdot\mathbf{u} \\ \mathbf{v}\cdot\mathbf{u} \\ \mathbf{w}\cdot\mathbf{u}\end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 0\end{bmatrix} = x$$</p>
-<h4 id="transforming-normal-vectors">Transforming Normal Vectors</h4>
+<h4 id=transforming-normal-vectors>Transforming Normal Vectors</h4>
 <p>Surface normal vectors are perpendicular to the tangent plane of a surface. These normals do not transform the way we would like when the underlying surface is transformed.</p>
-<p><img src="../../../../images/fundcg/6_normal.png" alt="alt"></p>
+<p><img src=../../../../images/fundcg/6_normal.png alt=alt></p>
 <p>$$ \mathbf{n}_N = (\mathbf{n}^T\mathbf{M}^{-1})^T = (\mathbf{M}^{-1})^T\mathbf{n}$$</p>
-<h3 id="translation-and-affine-transformations">Translation and Affine Transformations</h3>
-<p>$$ \begin{bmatrix}x'\\y'\\1\end{bmatrix} = \begin{bmatrix}m_{11} &amp; m_{12} &amp; x_t \\ m_{21} &amp; m_{22} &amp; y_t \\ 0 &amp; 0 &amp; 1 \end{bmatrix}
-\begin{bmatrix}x \\ y\\1\end{bmatrix} = \begin{bmatrix}m_{11}x + m_{12}y + x_t \\ m_{21}x + m_{22}y + y_t \\  1 \end{bmatrix}$$</p>
+<h3 id=translation-and-affine-transformations>Translation and Affine Transformations</h3>
+<p>$$ \begin{bmatrix}x'\\y'\\1\end{bmatrix} = \begin{bmatrix}m_{11} & m_{12} & x_t \\ m_{21} & m_{22} & y_t \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix}x \\ y\\1\end{bmatrix} = \begin{bmatrix}m_{11}x + m_{12}y + x_t \\ m_{21}x + m_{22}y + y_t \\ 1 \end{bmatrix}$$</p>
 <p>For vectors that represent directions,</p>
-<p>$$ \begin{bmatrix}1 &amp; 0 &amp; x_t \\ 0 &amp; 1 &amp; y_t \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\begin{bmatrix}x \\ y\\0\end{bmatrix} = \begin{bmatrix}x \\ y \\  0 \end{bmatrix}$$</p>
+<p>$$ \begin{bmatrix}1 & 0 & x_t \\ 0 & 1 & y_t \\ 0 & 0 & 1 \end{bmatrix}\begin{bmatrix}x \\ y\\0\end{bmatrix} = \begin{bmatrix}x \\ y \\ 0 \end{bmatrix}$$</p>
 <p>It is interesting to note that if we multiply an arbitrary matrix composed of scales, shears, and rotations with a simple translation (translation comes second), we get</p>
-<p>$$ \begin{bmatrix}1 &amp; 0 &amp; 0 &amp; x_t \\ 0 &amp; 1 &amp; 0&amp; y_t \\ 0 &amp; 0 &amp; 1 &amp; z_t \\ 0 &amp; 0 &amp; 0 &amp; 1\end{bmatrix}\begin{bmatrix}a_{11} &amp; a_{12} &amp; a_{13} &amp; 0 \\ a_{21} &amp; a_{22} &amp; a_{23} &amp; 0\\ a_{31} &amp; a_{32} &amp; a_{33} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1\end{bmatrix} = \begin{bmatrix}a_{11} &amp; a_{12} &amp; a_{13} &amp; x_t \\ a_{21} &amp; a_{22} &amp; a_{23} &amp; y_t\\ a_{31} &amp; a_{32} &amp; a_{33} &amp; z_t \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}$$</p>
+<p>$$ \begin{bmatrix}1 & 0 & 0 & x_t \\ 0 & 1 & 0& y_t \\ 0 & 0 & 1 & z_t \\ 0 & 0 & 0 & 1\end{bmatrix}\begin{bmatrix}a_{11} & a_{12} & a_{13} & 0 \\ a_{21} & a_{22} & a_{23} & 0\\ a_{31} & a_{32} & a_{33} & 0 \\ 0 & 0 & 0 & 1\end{bmatrix} = \begin{bmatrix}a_{11} & a_{12} & a_{13} & x_t \\ a_{21} & a_{22} & a_{23} & y_t\\ a_{31} & a_{32} & a_{33} & z_t \\ 0 & 0 & 0 & 1 \end{bmatrix}$$</p>
 <p>Thus, we can look at any matrix and think of it as a scaling/rotation part and a translation part because the components are nicely separated from each other. An important class of transforms are <em>rigid-body transforms</em>. These are composed only of translations and rotations, so they have no stretching or shrinking of the objects. Such transforms will have a pure rotation for the $a_{ij}$ above.</p>
-<h3 id="inverses-of-transformation-matrices">Inverses of Transformation Matrices</h3>
-<p>$$ \begin{array}0 \mathbf{M} &amp;= &amp;\mathbf{R}_1\mbox{scale}(\sigma_1, \sigma_2, \sigma_3)\mathbf{R}_2,\\<br>
-\mathbf{M}^{-1} &amp; = &amp;\mathbf{R}_2^{T}\mbox{scale}(1/\sigma_1, 1/\sigma_2, 1/\sigma_3)\mathbf{R}_1^{T} \end{array}$$</p>
-<h3 id="coordinate-transformations">Coordinate Transformations</h3>
+<h3 id=inverses-of-transformation-matrices>Inverses of Transformation Matrices</h3>
+<p>$$ \begin{array}0 \mathbf{M} &= &\mathbf{R}_1\mbox{scale}(\sigma_1, \sigma_2, \sigma_3)\mathbf{R}_2,\\<br>
+\mathbf{M}^{-1} & = &\mathbf{R}_2^{T}\mbox{scale}(1/\sigma_1, 1/\sigma_2, 1/\sigma_3)\mathbf{R}_1^{T} \end{array}$$</p>
+<h3 id=coordinate-transformations>Coordinate Transformations</h3>
 <p>All of the previous discussion has been in terms of using transformation matrices to move points around. We can also think of them as simply changing the coordinate system in which the point is represented. For example, in Figure 6.19, we see two ways to visualize a movement. In different contexts, either interpretation may be more suitable.</p>
-<p>For example, a driving game may have a model of a city and a model of a car. If the player is presented with a view out the windshield, objects inside the car are always drawn in the same place on the screen, while the streets and buildings appear to move backward as the player drives. On each frame, we apply a transformation to these objects that moves them farther back than on the previous frame. One way to think of this operation is simply that it moves the buildings backward; another way to think of it is that the buildings are staying put but the coordinate system in which we want to draw them—which is attached to the car—is moving. In the second interpretation, the transformation is changing  the coordinates of the city geometry, expressing them as coordinates in the car’s coordinate system. Both ways will lead to exactly the same matrix that is applied to the geometry outside the car.</p>
-<p><img src="../../../../images/fundcg/6_coord1.png" alt="alt"></p>
+<p>For example, a driving game may have a model of a city and a model of a car. If the player is presented with a view out the windshield, objects inside the car are always drawn in the same place on the screen, while the streets and buildings appear to move backward as the player drives. On each frame, we apply a transformation to these objects that moves them farther back than on the previous frame. One way to think of this operation is simply that it moves the buildings backward; another way to think of it is that the buildings are staying put but the coordinate system in which we want to draw them—which is attached to the car—is moving. In the second interpretation, the transformation is changing the coordinates of the city geometry, expressing them as coordinates in the car’s coordinate system. Both ways will lead to exactly the same matrix that is applied to the geometry outside the car.</p>
+<p><img src=../../../../images/fundcg/6_coord1.png alt=alt></p>
 <p><em>Coordinate frame</em>,</p>
 <p>$$ \mathbf{p } + u\mathbf{u} + v\mathbf{v} + w\mathbf{w}$$</p>
-<p>$$\mathbf{p}<em>{xy} = \begin{bmatrix}\mathbf{u} &amp; \mathbf{v} &amp; \mathbf{e} \\ 0 &amp; 0 &amp; 1\end{bmatrix} \mathbf{p}</em>{uv}$$</p>
-<h2 id="chapter-7--viewing">Chapter 7 : Viewing</h2>
-<p><img src="../../../../images/fundcg/7_view1.png" alt="alt"></p>
-<h3 id="viewing-transformations">Viewing Transformations</h3>
+<p>$$\mathbf{p}<em>{xy} = \begin{bmatrix}\mathbf{u} & \mathbf{v} & \mathbf{e} \\ 0 & 0 & 1\end{bmatrix} \mathbf{p}</em>{uv}$$</p>
+<h2 id=chapter-7--viewing>Chapter 7 : Viewing</h2>
+<p><img src=../../../../images/fundcg/7_view1.png alt=alt></p>
+<h3 id=viewing-transformations>Viewing Transformations</h3>
 <ul>
 <li>A <em>camera transformation</em> or <em>eye transformation</em>, which is a rigid body transformation that places the camera at the origin in a convenient orientation. It depends only on the position and orientation, or pose, of the camera.</li>
 <li>A <em>projection transformation</em>, which projects points from camera space so that all visible points fall in the range −1 to 1 in x and y. It depends only on the type of projection desired.</li>
 <li>A <em>viewport transformation</em> or <em>windowing transformation</em>, which maps this unit image rectangle to the desired rectangle in pixel coordinates. It depends only on the size and position of the output image.</li>
 </ul>
-<p><img src="../../../../images/fundcg/7_view2.png" alt="alt"></p>
-<h4 id="the-viewport-transformation">The Viewport Transformation</h4>
-<p>$$ \mathbf{M}_{vp} = \begin{bmatrix}\frac{n_x}2 &amp; 0 &amp; 0 &amp; \frac{n_x-1}2 \\ 0 &amp; \frac{n_y}2 &amp; 0 &amp; \frac{n_y-1}2 \\ 0 &amp; 0 &amp; 1 
-&amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1\end{bmatrix}$$</p>
-<h4 id="the-orthographic-projection-transformation">The Orthographic Projection Transformation</h4>
-<p><img src="../../../../images/fundcg/7_ortho1.png" alt="alt"></p>
-<p>$$ \mathbf{M}_{ortho} = \begin{bmatrix} \frac2{r-l}  &amp; 0 &amp; 0 &amp; -\frac{r+l}{r-l} \\ 0 &amp; \frac{2}{t-b} &amp; 0 &amp; -\frac{t+b}{t-b} \\ 0 &amp; 0 &amp; \frac{2}{n-f} &amp; -\frac{n+f}{n-f} \\ 0 &amp; 0 &amp; 0 &amp;1\end{bmatrix} $$</p>
-<p>$$ \begin{bmatrix}  x_{pixel} \\ y_{pixel} \\ z_{canonical} \\ 1\end{bmatrix}  = (\mathbf{M}_{vp}\mathbf{M}_{ortho}) \begin{bmatrix} x \\ y \\ z \\ 1\end{bmatrix}$$</p>
-<h4 id="the-camera-transformation">The Camera Transformation</h4>
-<p><img src="../../../../images/fundcg/7_camera.png" alt="alt"></p>
+<p><img src=../../../../images/fundcg/7_view2.png alt=alt></p>
+<h4 id=the-viewport-transformation>The Viewport Transformation</h4>
+<p>$$ \mathbf{M}_{vp} = \begin{bmatrix}\frac{n_x}2 & 0 & 0 & \frac{n_x-1}2 \\ 0 & \frac{n_y}2 & 0 & \frac{n_y-1}2 \\ 0 & 0 & 1
+& 0 \\ 0 & 0 & 0 & 1\end{bmatrix}$$</p>
+<h4 id=the-orthographic-projection-transformation>The Orthographic Projection Transformation</h4>
+<p><img src=../../../../images/fundcg/7_ortho1.png alt=alt></p>
+<p>$$ \mathbf{M}_{ortho} = \begin{bmatrix} \frac2{r-l} & 0 & 0 & -\frac{r+l}{r-l} \\ 0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b} \\ 0 & 0 & \frac{2}{n-f} & -\frac{n+f}{n-f} \\ 0 & 0 & 0 &1\end{bmatrix} $$</p>
+<p>$$ \begin{bmatrix} x_{pixel} \\ y_{pixel} \\ z_{canonical} \\ 1\end{bmatrix} = (\mathbf{M}_{vp}\mathbf{M}_{ortho}) \begin{bmatrix} x \\ y \\ z \\ 1\end{bmatrix}$$</p>
+<h4 id=the-camera-transformation>The Camera Transformation</h4>
+<p><img src=../../../../images/fundcg/7_camera.png alt=alt></p>
 <ul>
 <li>the eye position $\mathbf{e}$,</li>
 <li>the gaze direction $\mathbf{g}$,</li>
 <li>the view-up vector $\mathbf{t}$.</li>
 </ul>
-<p>$$ \begin{array}1 \mathbf{w} &amp;=&amp; -\frac{\mathbf{g}}{||\mathbf{g}||} \\<br>
-\mathbf{u} &amp; = &amp; \frac{\mathbf{t} \times \mathbf{w}}{|| \mathbf{t} \times \mathbf{w}||} \\ 
-\mathbf{v} &amp; = &amp; \mathbf{w} \times \mathbf{u} \end{array}$$</p>
-<p>$$ \begin{array}0 \mathbf{M}_{cam} &amp;=&amp; \begin{bmatrix} \mathbf{u} &amp; \mathbf{v} &amp; \mathbf{w} &amp; \mathbf{e} \\ 0 &amp; 0 &amp; 0 &amp; 1\end{bmatrix}^{-1} \\ &amp;=&amp; \begin{bmatrix} x_u &amp; y_u &amp; z_u &amp; 0 \\ x_v &amp; v_v &amp; z_V &amp; 0 \\ x_w &amp; y_w &amp; z_w &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp;1 \end{bmatrix} \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; -x_e \\ 0 &amp; 1 &amp; 0 &amp;-y_e \\ 0 &amp; 0 &amp; 1 &amp; -z_e \\ 0 &amp; 0 &amp; 0 &amp; 1\end{bmatrix}\end{array}$$</p>
+<p>$$ \begin{array}1 \mathbf{w} &=& -\frac{\mathbf{g}}{||\mathbf{g}||} \\<br>
+\mathbf{u} & = & \frac{\mathbf{t} \times \mathbf{w}}{|| \mathbf{t} \times \mathbf{w}||} \\
+\mathbf{v} & = & \mathbf{w} \times \mathbf{u} \end{array}$$</p>
+<p>$$ \begin{array}0 \mathbf{M}_{cam} &=& \begin{bmatrix} \mathbf{u} & \mathbf{v} & \mathbf{w} & \mathbf{e} \\ 0 & 0 & 0 & 1\end{bmatrix}^{-1} \\ &=& \begin{bmatrix} x_u & y_u & z_u & 0 \\ x_v & v_v & z_V & 0 \\ x_w & y_w & z_w & 0 \\ 0 & 0 & 0 &1 \end{bmatrix} \begin{bmatrix} 1 & 0 & 0 & -x_e \\ 0 & 1 & 0 &-y_e \\ 0 & 0 & 1 & -z_e \\ 0 & 0 & 0 & 1\end{bmatrix}\end{array}$$</p>
 <p><em>The algorithm:</em></p>
 <p>$$ construct ;\mathbf{M}<em>{vp}\\<br>
 construct;\mathbf{M}</em>{ortho}\<br>
 construct;\mathbf{M}<em>{cam} \<br>
 \mathbf{M} = \mathbf{M}</em>{vp}\mathbf{M}<em>{ortho}\mathbf{M}</em>{cam}\<br>
 \mathbf{for}; each ;line ;segment (a_i, b_i) ;\mathbf{do}:\<br>
-\quad     \mathbf{p} = \mathbf{Ma}_i \<br>
-\quad     \mathbf{q} = \mathbf{Mb}_i \<br>
-\quad     drawline(x_p, y_p, x_q, y_q) $$</p>
-<h3 id="projective-transformations">Projective Transformations</h3>
+\quad \mathbf{p} = \mathbf{Ma}_i \<br>
+\quad \mathbf{q} = \mathbf{Mb}_i \<br>
+\quad drawline(x_p, y_p, x_q, y_q) $$</p>
+<h3 id=projective-transformations>Projective Transformations</h3>
 <p>$$ y_s = \frac{d}{z}y$$</p>
-<p><img src="../../../../images/fundcg/7_project1.png" alt="alt"></p>
-<p>$$ \begin{bmatrix} \bar x \\ \bar y \\ \bar z \\ \bar w\end{bmatrix}  = \begin{bmatrix} a_1 &amp; b_1 &amp; c_1 &amp; d_1 \\ a_2 &amp; b_2 &amp; c_2 &amp; d_2 \\a_3 &amp; b_3 &amp; c_3 &amp; d_3 \\ e &amp; f &amp; g &amp; h \\ \end{bmatrix} \begin{bmatrix} z \\ y \\ z \\ 1\end{bmatrix}$$</p>
+<p><img src=../../../../images/fundcg/7_project1.png alt=alt></p>
+<p>$$ \begin{bmatrix} \bar x \\ \bar y \\ \bar z \\ \bar w\end{bmatrix} = \begin{bmatrix} a_1 & b_1 & c_1 & d_1 \\ a_2 & b_2 & c_2 & d_2 \\a_3 & b_3 & c_3 & d_3 \\ e & f & g & h \\ \end{bmatrix} \begin{bmatrix} z \\ y \\ z \\ 1\end{bmatrix}$$</p>
 <p>$$ (x', y', z') = (\bar x/\bar w, \bar y/\bar w, \bar z/\bar w) $$</p>
-<h3 id="perspective-projection">Perspective Projection</h3>
-<p>$$ \mathbf{P} = \begin{bmatrix}  n &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; n &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; n+f &amp; -fn \\0 &amp; 0 &amp; 1 &amp; 0\end{bmatrix} $$</p>
+<h3 id=perspective-projection>Perspective Projection</h3>
+<p>$$ \mathbf{P} = \begin{bmatrix} n & 0 & 0 & 0 \\ 0 & n & 0 & 0\\ 0 & 0 & n+f & -fn \\0 & 0 & 1 & 0\end{bmatrix} $$</p>
 <p>The first, second, and fourth rows simply implement the perspective equation. The third row, as in the orthographic and viewport matrices, is designed to bring the <em>z</em>-coordinate “along for the ride” so that we can use it later for hidden surface removal. In the perspective projection, though, the addition of a non-constant denominator prevents us from actually preserving the value of <em>z</em>—it’s actually impossible to keep <em>z</em> from changing while getting <em>x</em> and <em>y</em> to do what we need them to do. Instead we’ve opted to keep <em>z</em> unchanged for points on the near or far planes.</p>
-<p>$$ \mathbf{P}\begin{bmatrix}  x \\ y \\ z \\ 1 \end{bmatrix}  =  \begin{bmatrix}  x \\ y \\ z\frac{n+f}{n} - f \\ \frac z n \end{bmatrix} \sim \begin{bmatrix}  \frac {nx}z \\ \frac{ny}z \\ n+f -\frac{fn}z \\ 1 \end{bmatrix}  $$</p>
-<p><img src="../../../../images/fundcg/7_persp1.png" alt="alt"> <br>
-<img src="../../../../images/fundcg/7_persp2.png" alt="alt"></p>
+<p>$$ \mathbf{P}\begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix} = \begin{bmatrix} x \\ y \\ z\frac{n+f}{n} - f \\ \frac z n \end{bmatrix} \sim \begin{bmatrix} \frac {nx}z \\ \frac{ny}z \\ n+f -\frac{fn}z \\ 1 \end{bmatrix} $$</p>
+<p><img src=../../../../images/fundcg/7_persp1.png alt=alt> <br>
+<img src=../../../../images/fundcg/7_persp2.png alt=alt></p>
 <p>As you can see, <em>x</em> and <em>y</em> are scaled and, more importantly, divided by <em>z</em>. Because both <em>n</em> and <em>z</em> (inside the view volume) are negative, there are no <em>“flips”</em> in <em>x</em> and <em>y</em>. Although it is not obvious (see the exercise at the end of the chapter), the transform also preserves the relative order of <em>z</em> values between $z = n$ and $z = f$, allowing us to do depth ordering after this matrix is applied. This will be important later when we do hidden surface elimination.<br>
 Sometimes we will want to take the inverse of $\mathbf{P}$, for example to bring a screen coordinate plus $z$ back to the original space, as we might want to do for picking. The inverse is</p>
-<p>$$ \mathbf{P}^{-1} = \begin{bmatrix} \frac 1 n &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; \frac 1 n &amp; 0 &amp; 0  \\ 
-0 &amp; 0 &amp; 0 &amp; 1 \\0 &amp; 0 &amp; -\frac 1 {fn} &amp; \frac{n+f}{fn}\end{bmatrix}$$</p>
+<p>$$ \mathbf{P}^{-1} = \begin{bmatrix} \frac 1 n & 0 & 0 & 0 \\ 0 & \frac 1 n & 0 & 0 \\
+0 & 0 & 0 & 1 \\0 & 0 & -\frac 1 {fn} & \frac{n+f}{fn}\end{bmatrix}$$</p>
 <p>or,</p>
-<p>$$ \mathbf{P}^{-1} = \begin{bmatrix} f &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; f &amp; 0 &amp; 0  \\ 
-0 &amp; 0 &amp; 0 &amp; fn \\0 &amp; 0 &amp; -1  &amp; n+f\end{bmatrix}$$</p>
+<p>$$ \mathbf{P}^{-1} = \begin{bmatrix} f & 0 & 0 & 0 \\ 0 & f & 0 & 0 \\
+0 & 0 & 0 & fn \\0 & 0 & -1 & n+f\end{bmatrix}$$</p>
 <p>$$ \mathbf{M}<em>{per} = \mathbf{M}</em>{ortho}\mathbf{P} $$</p>
 <p>So, the full set of matrices for perspective viewing is,</p>
-<p>$$ \mathbf{M}  = \mathbf{M}<em>{vp}\mathbf{M}</em>{ortho}\mathbf{P}\mathbf{M}_{cam} $$</p>
+<p>$$ \mathbf{M} = \mathbf{M}<em>{vp}\mathbf{M}</em>{ortho}\mathbf{P}\mathbf{M}_{cam} $$</p>
 <p>The resulting algorithm is,</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">compute M_vp
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>compute M_vp
 compute M_per
 compute M_cam
-M <span style="color:#f92672">=</span> M_vp <span style="color:#f92672">*</span> M_per <span style="color:#f92672">*</span> M_cam
-<span style="color:#66d9ef">for</span>(line_segment (a_i, b_i))
-    p <span style="color:#f92672">=</span> Ma_i
-    q <span style="color:#f92672">=</span> Mb_i
-    drawline(x_p<span style="color:#f92672">/</span>w_p, y_p<span style="color:#f92672">/</span>w_p, x_q<span style="color:#f92672">/</span>w_q, y_q<span style="color:#f92672">/</span>w_q)
+M <span style=color:#f92672>=</span> M_vp <span style=color:#f92672>*</span> M_per <span style=color:#f92672>*</span> M_cam
+<span style=color:#66d9ef>for</span>(line_segment (a_i, b_i))
+    p <span style=color:#f92672>=</span> Ma_i
+    q <span style=color:#f92672>=</span> Mb_i
+    drawline(x_p<span style=color:#f92672>/</span>w_p, y_p<span style=color:#f92672>/</span>w_p, x_q<span style=color:#f92672>/</span>w_q, y_q<span style=color:#f92672>/</span>w_q)
 </code></pre></div><p>$$ compute;\mathbf{M}<em>{vp} \<br>
-compute;\mathbf{M}</em>{per} \\ 
+compute;\mathbf{M}</em>{per} \\
 compute; \mathbf{M}<em>{cam} \<br>
 \mathbf{M} = \mathbf{M}</em>{vp}\mathbf{M}<em>{per}\mathbf{M}</em>{cam} \<br>
 \mathbf{for}; each ;line ;segment ;(\mathbf{a}_i, \mathbf{b}_i) \mathbf{do}: \<br>
-\quad    \mathbf{p} = \mathbf{Ma}_i \\ 
-\quad     \mathbf{q} = \mathbf{Mb}_i \<br>
-\quad      drawline(x_p/w_p, y_p/w_p, x_q/w_q, y_q/w_q)$$</p>
-<p>$$ \begin{array} 0 \mathbf{M}<em>{per} &amp;=&amp; \begin{bmatrix} \frac{2n}{r-l}  &amp; 0 &amp; \frac{l+r}{l-r} &amp; 0 \\ 0 &amp; \frac{2n}{t-b} &amp; \frac{b+t}{b-t} &amp; 0 \\ 0 &amp; 0 &amp; \frac{f+n}{n-f} &amp; \frac{2fn}{f-n} \ 0 &amp; 0 &amp; 1 &amp;0\end{bmatrix} \\ 
-\mathbf{M}</em>{OpenGL} &amp;=&amp; \begin{bmatrix} \frac{2|n|}{r-l}  &amp; 0 &amp; \frac{r+l}{r-l} &amp; 0 \\ 0 &amp; \frac{2|n|}{t-b} &amp; \frac{t+b}{t-b} &amp; 0 \\ 0 &amp; 0 &amp; \frac{|n|+|f|}{|n|-|f|} &amp; \frac{2|f||n|}{|n|-|f|} \\ 0 &amp; 0 &amp; -1 &amp;0\end{bmatrix}  \end{array}$$</p>
-<h3 id="some-properties-of-the-perspective-transform">Some Properties of the Perspective Transform</h3>
+\quad \mathbf{p} = \mathbf{Ma}_i \\
+\quad \mathbf{q} = \mathbf{Mb}_i \<br>
+\quad drawline(x_p/w_p, y_p/w_p, x_q/w_q, y_q/w_q)$$</p>
+<p>$$ \begin{array} 0 \mathbf{M}<em>{per} &=& \begin{bmatrix} \frac{2n}{r-l} & 0 & \frac{l+r}{l-r} & 0 \\ 0 & \frac{2n}{t-b} & \frac{b+t}{b-t} & 0 \\ 0 & 0 & \frac{f+n}{n-f} & \frac{2fn}{f-n} \ 0 & 0 & 1 &0\end{bmatrix} \\
+\mathbf{M}</em>{OpenGL} &=& \begin{bmatrix} \frac{2|n|}{r-l} & 0 & \frac{r+l}{r-l} & 0 \\ 0 & \frac{2|n|}{t-b} & \frac{t+b}{t-b} & 0 \\ 0 & 0 & \frac{|n|+|f|}{|n|-|f|} & \frac{2|f||n|}{|n|-|f|} \\ 0 & 0 & -1 &0\end{bmatrix} \end{array}$$</p>
+<h3 id=some-properties-of-the-perspective-transform>Some Properties of the Perspective Transform</h3>
 <p>An important property of the perspective transform is that it takes lines to lines and planes to planes. In addition, it takes line segments in the view volume to line segments in the canonical volume.</p>
-<h3 id="field-of-view">Field-of-View</h3>
-<p><img src="../../../../images/fundcg/7_fov.png" alt="alt"></p>
-
-
-    
-
-    <footer>
-
-
-    <h4>See also</h4>
-    <ul>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-1/">Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-3/">Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-4/">Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-5/">Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
-        
-            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-6/">Fundamentals of Computer Graphics, Peter Shirley, Part 6</a></li>
-        
-    </ul>
-
+<h3 id=field-of-view>Field-of-View</h3>
+<p><img src=../../../../images/fundcg/7_fov.png alt=alt></p>
+<footer>
+<h4>See also</h4>
+<ul>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-1/>Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-3/>Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-4/>Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-5/>Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
+<li><a href=../../../../blog-hugo/books/programming/fund-comp-graphics/fund-comp-graphics-6/>Fundamentals of Computer Graphics, Peter Shirley, Part 6</a></li>
+</ul>
 </footer>
-
 </article>
-
-
-
-        </div>
-
-        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
-    
-        
-
-
+</div>
+<aside class="col-12 col-lg-3 ml-auto blog-sidebar">
 <section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
-        </li>
-        
-        <li>
-            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
-        </li>
-        
-    </ol>
+<h4>Recent Posts</h4>
+<ol class=list-unstyled>
+<li>
+<a href=../../../../blog-hugo/books/programming/the-little-schemer/>The Little Schemer</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/game-engine-architecture/>Game Engine Architecture</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-7/>Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-6/>Deep Learning, Micheal Nelson</a>
+</li>
+<li>
+<a href=../../../../blog-hugo/books/programming/neuralnets/neural-networks-and-deep-learning-5/>Why are deep neural networks hard to train?, Micheal Nelson</a>
+</li>
+</ol>
 </section>
-
-
-    
-    
-        <section>
-    
-        
-    
-        
-        <h4>Categories</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
-            
-        </p>
-        
-    
-        
-        <h4>Tags</h4>
-        <p>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
-            
-            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
-            
-        </p>
-        
-    
-        
-    
+<section>
+<h4>Categories</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/books>books</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/courses>courses</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/categories/notes>notes</a>
+</p>
+<h4>Tags</h4>
+<p>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/algorithms>algorithms</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/architecture>architecture</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/biorobots>biorobots</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/book>book</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/data-science>data-science</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/deep-learning>deep-learning</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/design>design</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/game-engine>game-engine</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/graphics>graphics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/image-segmentation>image-segmentation</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/kuka>kuka</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/lisp>lisp</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/machine-intelligence>machine-intelligence</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/notes>notes</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/opengl>opengl</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/philosophy>philosophy</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/programming>programming</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/projects>projects</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/robotics>robotics</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/scheme>scheme</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/style-transfer>style-transfer</a>
+<a class="btn btn-primary btn-small badge" href=../../../../blog-hugo/tags/udacity>udacity</a>
+</p>
 </section>
-
-    
-
-    
-
 </aside>
-
-
-      </div>
-    </div>
-    
-
-    
-      
-    
-
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js integrity=sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW crossorigin=anonymous></script>
+</body>
 </html>
