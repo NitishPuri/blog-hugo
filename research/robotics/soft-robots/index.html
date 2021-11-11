@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Soft Robotics" />
+<meta property="og:description" content="Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Soft Robotics Soft Robotics: A Perspective—Current Trends and Prospects for the Future Carmel Majidi : 2013
+Source
+ Soft robots are primarily composed of easily deformable matter such as fluids, gels, and elastomers that match the elastic and rheological properties of biological tissue and organs. Like an octopus squeezing through a narrow opening or a caterpillar rolling through uneven terrain, a soft robot must adapt its shape and locomotion strategy for a broad range of tasks, obstacles, and environmental conditions." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/research/robotics/soft-robots/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="research" />
+
+<meta property="article:modified_time" content="2017-09-17T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Soft Robotics"/>
+<meta name="twitter:description" content="Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Soft Robotics Soft Robotics: A Perspective—Current Trends and Prospects for the Future Carmel Majidi : 2013
+Source
+ Soft robots are primarily composed of easily deformable matter such as fluids, gels, and elastomers that match the elastic and rheological properties of biological tissue and organs. Like an octopus squeezing through a narrow opening or a caterpillar rolling through uneven terrain, a soft robot must adapt its shape and locomotion strategy for a broad range of tasks, obstacles, and environmental conditions."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/research/robotics/soft-robots/">
+
+    <title>
+      
+        Soft Robotics | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/">Researches</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/robotics/">Robotics</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Soft Robotics</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../research/robotics/soft-robots/">Soft Robotics</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-09-17">Sep 17, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
+    
+</div>
+
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
+    
+</div>
+
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#soft-robotics">Soft Robotics</a>
+      <ul>
+        <li><a href="#soft1">Soft Robotics: A Perspective—Current Trends and Prospects for the Future</a></li>
+        <li><a href="#soft2">A Resilient, Untethered Soft Robot</a></li>
+        <li><a href="#soft3">Design, fabrication and control of soft robots</a></li>
+        <li><a href="#soft4">A Hybrid Combining Hard and Soft Robots</a></li>
+        <li><a href="#origami1">An Untethered Miniature Origami Robot that Self-folds, Walks, Swims, and Degrades</a></li>
+        <li><a href="#origami2">A Brief History Of Oribotics</a></li>
+      </ul>
+    </li>
+    <li><a href="#cloud-robotics">Cloud Robotics</a>
+      <ul>
+        <li><a href="#cloud1">A Survey of Research on Cloud Robotics and Automation</a></li>
+      </ul>
+    </li>
+    <li><a href="#human-robot-interaction">Human Robot Interaction</a>
+      <ul>
+        <li><a href="#autonomous1">Robotics and Autonomous Systems</a></li>
+        <li><a href="#uncanny">The Uncanny Valley</a></li>
+        <li><a href="#robot-heads">All  robots are not created equal: The design and perception of humanoid robot heads</a></li>
+        <li><a href="#social-lstm">Social LSTM: Human Trajectory Prediction in Crowded Spaces</a></li>
+        <li><a href="#ethics1">What Should We Want From a Robot Ethic?</a></li>
+        <li><a href="#ethics2">Robot ethics: a view from the philosophy of science</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <p>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.</p>
+<h2 id="soft-robotics">Soft Robotics</h2>
+<h3 id="soft1">Soft Robotics: A Perspective—Current Trends and Prospects for the Future</h3>
+<p><em>Carmel Majidi : 2013</em><br>
+<a href="http://sml.me.cmu.edu/files/papers/majidi_soro2013.pdf"><em>Source</em></a></p>
+<ul>
+<li>Soft robots are primarily composed of easily deformable matter such as fluids, gels, and elastomers that match the elastic and rheological properties of biological tissue and organs. Like an octopus squeezing through a narrow opening or a caterpillar rolling through uneven terrain, a soft robot must adapt its shape and locomotion strategy for a broad range of tasks, obstacles, and environmental conditions. This emerging class of elastically soft, versatile, and biologically inspired machines represents an exciting and highly interdisciplinary paradigm in engineering that could revolutionize the role of robotics in healthcare, field exploration, and cooperative human assistance.</li>
+<li>Most suitable for environments and applications that require interaction with soft materials and organisms and/or artificial replication of biological functions.<br>
+<img src="../../../images/papers/soft_1.jpg" alt="alt"></li>
+<li>Compliance Matching
+<ul>
+<li>To prevent injury or robot immobility, the surface e of soft robots must be adequately soft and deformable in order to distribute forces over a large contact area and eliminate interfacial stress concentrations.</li>
+<li>Compliance matching is particularly important in the subdomain of wearable technologies for human motor assistance.</li>
+</ul>
+</li>
+<li>Potential Applications
+<ul>
+<li>Soft wearables for human motor assistance.</li>
+<li>Biologically inspired field robots for autonomous exploration.<br>
+<img src="../../../images/papers/soft_2.jpg" alt="alt"></li>
+<li>At the scales of invertebrates, insects and microorganisms, may also eventually be used for drug delivery, minimally invasive surgery, and medical implants.</li>
+<li>It is unlikely that they would be useful for heavy-duty industrial applications.</li>
+</ul>
+</li>
+<li>Beyond Robotics
+<ul>
+<li>As the field of soft robotics grows, the supporting softmatter technologies used in sensing, electronics, and actuation will continue to mature and will eventually appear in application domains.</li>
+<li>Strechable microelectronics.<br>
+<img src="../../../images/papers/soft_3.jpg" alt="alt"></li>
+</ul>
+</li>
+</ul>
+<h3 id="soft2">A Resilient, Untethered Soft Robot</h3>
+<p><em>Michael T. Tolley et. al</em><br>
+<a href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=FAC76B025D8BB3D946644D559576DCA3?doi=10.1.1.650.8035&amp;rep=rep1&amp;type=pdf"><em>Source</em></a></p>
+<p><img src="../../../images/papers/soft_4.jpg" alt="alt"><br>
+Pneumatic actuation of untethered quadrupedal soft robot.<br>
+(a) Schematic representation of the components of the mini air compressor (MAC)-driven, battery powered soft robot. Layer 1 consisting of six Pneu-Nets (PN) is sealed onto layer 2.<br>
+(b) Schematic representation of a cross-section of Pneu-Net 1 as its internal pneumatic network is pressurized.<br>
+(c) Photographs of Pneu-Net 1 at rest (left) and pressurized to 16 psi (middle). Photograph of electronic components (mini air compressors, battery pack, relays, and circuit boards) between Pneu-Nets 3 and 4 (right) that drive the robot.</p>
+<ul>
+<li>
+<p>Experimental design as a starting point for further research.</p>
+</li>
+<li>
+<p>Research for selection of materials, more description in the original paper.</p>
+</li>
+<li>
+<p>Uses electrically operated air compressors to provide pneumatic actuation.
+<img src="../../../images/papers/soft_5.jpg" alt="alt"><br>
+<img src="../../../images/papers/soft_6.jpg" alt="alt"><br>
+Untethered operation of the quadrupedal soft robot.<br>
+(a–d) Untethered soft robot conducting indoor surveillance with the view of the onboard camera overlaid. The robot starts moving forward with a straight ambulatory gait (a).<br>
+The robot switches to a turning gait to explore a passageway on the left (b, c). The robot uses its onboard camera to image a hidden laptop (d).<br>
+(e–h) Untethered soft robot operating outdoors before and after being run over by a car (e). The robot depressurizes its actuators in preparation for impact (f). The car running over the elastomeric legs of the soft robot (g). The soft robot actuating and standing up after being ran over by the car (h). Green dots on the figures in the upper-right corner of each frame indicate which PNs are currently actuated (pressurized); red dots indicate unactuated PNs.</p>
+</li>
+<li>
+<p>Discusses gait patterns and control parameters in detail.</p>
+</li>
+<li>
+<p>Resilient to harsh environments like fire, snow and water.</p>
+</li>
+<li>
+<p>Final cost of a single assembly, <em>$1111</em>.</p>
+</li>
+</ul>
+<h3 id="soft3">Design, fabrication and control of soft robots</h3>
+<p><em>Daniela Rus and Michael T. Tolley</em><br>
+<a href="https://dspace.mit.edu/openaccess-disseminate/1721.1/100772"><em>Source</em></a></p>
+<ul>
+<li>Biological inspirations for soft robots.
+<ul>
+<li>Move with the ability to bend and twist with high curvatures and thus can be used in confined spaces.</li>
+<li>Deform their bodies in a continuous way and thus achieve motions that emulate biology.</li>
+<li>Adapt their shape to the environment employing compliant motion and thus manipulate objects or move on rough terrain and exhibit resilience.</li>
+<li>Execute rapid, agile maneuvers, such as the escape maneuver in fish.
+<img src="../../../images/papers/soft_7.jpg" alt="alt"><br>
+Mobile soft robotic systems inspired by a range of biological systems, demonstrating <br>
+a) caterpillar-inspired locomotion,<br>
+b) a multi-gait quadruped,<br>
+c) active camouflage,<br>
+d) walking in hazardous environments, <br>
+e) worm-inspired locomotion, <br>
+f) particle jamming-based actuation, <br>
+g) rolling powered by a pneumatic battery, <br>
+h) a hybrid hard/soft robot, <br>
+i) snake inspired locomotion, <br>
+j) jumping powered by internal combustion, <br>
+k) manta-ray inspired locomotion, and <br>
+l) an autonomous fish.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Design and Fabrication</strong> <br>
+<img src="../../../images/papers/soft_8.jpg" alt="alt"><br>
+Grasping and manipulation, canonical challenges in robotics, can be greatly simplified
+with soft robotics. Examples of experimental soft robotic manipulations systems demonstrating <br>
+a) microactuation, <br>
+b) soft continuum manipulation, <br>
+c) grasping with particle jamming, <br>
+d) simple gripper fabrication by soft lithography, <br>
+e) underactuated dextrous grasping, <br>
+f) octopus inspired manipulation, <br>
+g) inflatable robotic manipulators, <br>
+h) feedback control of a multisegmented arm, <br>
+i) a soft glove for rehabilitation.</p>
+<p><em>Actuation</em> <br>
+<img src="../../../images/papers/soft_9.jpg" alt="alt"><br>
+Common approaches to actuation of soft robot bodies in resting (left) and actuated
+(right) states. <br>
+a) Longitudinal tensile actuators (e.g. tension cables or shape memory alloy
+actuators which contract when heated) along a soft robot arm cause bending when activated. <br>
+b) Transverse tensile actuators cause a soft robot arm to extend when contracted (a muscle
+arrangement also seen in the octopus). <br>
+c) Pneumatic artificial muscles composed of an elastomeric tube in a woven fiber shell. A 
+pressure applied internally causes the tube and shell to expand radially, causing longitudinal contraction.<br>
+d) Fluidic elastic actuator or Pneu-Net design consisting of a pneumatic network of channels in an elastomer that expand when filled with a pressurized fluid, causing the soft body to bend toward a 
+strain limited layer (e.g. a stiffer rubber or elastomer embedded with paper or other tensile fibers).</p>
+<ul>
+<li>Commonly uses one of the two approaches
+<ul>
+<li>Variable length tendons (robotic octopus arm)</li>
+<li>Pneumatic actuation</li>
+</ul>
+</li>
+<li>Regardless of the actuation method, soft actuators are frequently arranged in a biologically inspired agonist-antagonist arrangement (like muscles) to allow bi-directional actuation.</li>
+<li>Another benefit of this arrangement is that co-contraction of muscle pairs leads to adaptable compliance.</li>
+<li>Another focus has been electroactive polymers(EAPs).</li>
+</ul>
+<p><strong>Stretchable Electronics</strong></p>
+<ul>
+<li><em>Sensing</em></li>
+<li>Flexible-bending sensors based on piezoelectric polymers, but these are not stretchable. Proprioceptive sensors uses curved layered structures filled with a liquid conductor.</li>
+<li><em>Power Sources</em></li>
+<li>A big challenge.</li>
+<li><em>Design</em></li>
+<li>Traditional CAD is not designed with layered freeform structures in mind.</li>
+<li>Custom FEA softwares like VoxCAD are used.</li>
+<li><em>Fabrication</em></li>
+<li>Multimaterial 3D printing, shape deposition manufacturing and soft lithography.</li>
+</ul>
+<p><strong>Computation and Control</strong></p>
+<ul>
+<li>Controlling soft robots requires new approaches to modeling, control, dynamics, and high-level planning.</li>
+<li>Taking inspiration from biological systems.</li>
+<li><em>Modeling and Kinematics</em></li>
+<li>Requires continuous mathematics, instead of rigid-link based system analysis.</li>
+<li>Various different models are used based on simplifying assumptions using piecewise constant curvature models for forward kinematics.</li>
+<li>IK is more challenging.</li>
+<li>Exact solutions are not available.</li>
+<li><em>Control</em></li>
+<li>The problem is as challenging as IK, however, due to compliant nature of soft robots, they can execute operations without precise control and positioning.</li>
+</ul>
+<p><strong>Systems and Applications</strong><br>
+<img src="../../../images/papers/soft_10.jpg" alt="alt"><br>
+(Top) Soft robotic fish physical prototype and design schematic. <br>
+(Bottom) Images from a high speed video of the fish executing a c-turn escape maneuver, with elapsed time indicated.</p>
+<ul>
+<li><em>Locomotion</em></li>
+<li>One approach to achieving mobile systems is to tether a soft robot to a mobile rigid robot with a greater carrying capacity.</li>
+<li><em>Manipulation</em></li>
+<li>Soft systems have a natural advantage over rigid robots in grasping and manipulating unknown objects due to compliance.</li>
+<li><em>Medical/Wearable Applications</em></li>
+<li>Soft robots are the most natural option for medical applications.</li>
+<li>Examples, orthopedic rehabilitaation, wearable input devices, soft orthodics, soft system for simulation of cardiac actuation.</li>
+<li><em>Soft Cyborgs</em></li>
+</ul>
+<p><strong>Future Directions</strong></p>
+<ul>
+<li>Soft robots are the way to home automation, where they can work more close to humans.</li>
+<li>Ex. physiotherapy, babysitting etc.</li>
+<li>How do we get there,?? We need,
+<ul>
+<li>rapid design tools and fabrication recipes for low cost soft robots.</li>
+<li>novel algorithmic approaches to the control of soft robots that account for their material properties.</li>
+<li>tools for developing device-specific programming environments that allow non-experts to use the soft machines.</li>
+<li>creative individuals to design new solutions</li>
+<li>early adopters of the technology.</li>
+</ul>
+</li>
+<li>Augmentation (using rigid skeletons) is going to be very crucial.</li>
+</ul>
+<h3 id="soft4">A Hybrid Combining Hard and Soft Robots</h3>
+<p><em>Adam A. Stokes : 2013</em><br>
+<a href="https://gmwgroup.harvard.edu/pubs/pdf/1180.pdf"><em>Source</em></a></p>
+<ul>
+<li>One feature that distinguishes hard and soft robots is mechanical compliance.</li>
+<li>The paper discusses,
+<ul>
+<li>Design of the hard robotic subsystem</li>
+<li>Design of the electropneumatic control subsystem</li>
+<li>Design of the soft robotic subsystem.</li>
+<li>Design of the hybrid subsystem.</li>
+<li>Design of the communication system.</li>
+</ul>
+</li>
+<li>Results and Discussion <br>
+<img src="../../../images/papers/soft_11.jpg" alt="alt"><br>
+(a) A plan-view schematic of the design of the pneu-net-based quadrupedal soft robot. Each of the four legs contains two independently actuated pneu-nets. A full technical drawing is provided by Supplementary Figure S2.  <br>
+(b) A system diagram showing the pneumatic and electrical control system. <br>
+(c) A photograph showing the soft robot, pneumatic tether, microcontroller, and pneumatic control system. <br>
+<img src="../../../images/papers/soft_12.jpg" alt="alt"><br>
+A photograph of the hybrid robotic platform showing the wheeled hard robot (iRobot Create) and the
+legged soft robot. The hard robot carried, in marsupial fashion, the legged soft robot, the electropneumatic control system, and the wireless communications system. This figure
+does not show the wireless camera that was mounted on the hard robot.<br>
+<img src="../../../images/papers/soft_13.jpg" alt="alt"><br>
+A series of still frames from Supplementary Video S1 show the hybrid robotic system retrieving an object (iPod Nano) from the center of a room (a–f ). <br>
+The hard robot carries the soft robot to the object (b). <br>
+The soft robot first acts as a walker (c–d) and then as a gripper (e). <br>
+When the hard robot is driven away (f ), the soft robot inverts and protects the iPod as it is pulled to a new location.</li>
+</ul>
+<h3 id="origami1">An Untethered Miniature Origami Robot that Self-folds, Walks, Swims, and Degrades</h3>
+<p><em>Daniela Rus et. al</em><br>
+<a href="http://shu21th.sakura.ne.jp/file/ICRA2015v26Final.pdf"><em>Source</em></a></p>
+<p><img src="../../../images/papers/origami_1.jpg" alt="alt"><br>
+The developed origami robot. <br>
+(a) (From left to right) water-degradable model whose outer layer dissolves in water;
+conductive model (aluminum coated polyester); acetone-degradable
+model whose entire body (except magnet) dissolves in acetone. <br>
+(b) Self-folded robot (controlled by a magnetic field) walking on a palm.</p>
+<ul>
+<li>In this paper,
+<ul>
+<li>Performing on-site origami sheet self-folding followed by untethered actuation.</li>
+<li>Developing the robot&rsquo;s control method for walking and swimming using a newly developed electromagnetic system.</li>
+<li>Testing the robot&rsquo;s ability to perform basic tasks and behaviors.</li>
+<li>Demonstrating the robot&rsquo;s ability to degrade, as a proof of convept.
+<img src="../../../images/papers/origami_2.jpg" alt="alt"><br>
+The designed mobile robot and the actuation methods. <br>
+(a) The outlook. <br>
+(b) The crease pattern. <br>
+(c) Walking mode by torquebased control. <br>
+(d) Swimming mode by force-based control.</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://youtu.be/jS2eW6FBpG4"><strong>Watch in Action</strong></a></p>
+<h3 id="origami2">A Brief History Of Oribotics</h3>
+<p><em>Matthew Gardiner</em><br>
+<a href="http://matthewgardiner.net/data/media/pdf/4OSME-ABriefHistoryofOribotics-Email.pdf"><em>Source</em></a></p>
+<p><strong>Oribotics is origami that is controlled by robot technology; it is paper or foldable material that will fold and unfold on command.</strong></p>
+<ul>
+<li>Oribotics has its roots in generative animation code <em>Root 2</em> and <em>Orimmatic</em>.</li>
+<li>A hybrid of science and art, the paper discusses various iterations of the bot along with its inspirations.</li>
+</ul>
+<h2 id="cloud-robotics">Cloud Robotics</h2>
+<h3 id="cloud1">A Survey of Research on Cloud Robotics and Automation</h3>
+<p><em>Ben Kehoe, Sachin Patil</em><br>
+<a href="https://people.eecs.berkeley.edu/~pabbeel/papers/2015-TASE-cloud-robotics-survey.pdf"><em>Source</em></a></p>
+<ul>
+<li>Cloud is defined as, <em>a model for enabling ubiquitous, convenient, on demand network access to a shared pool of configurable resources (e.g., servers, storage, networks, applications, and services that can be rapidly provisioned and released with minimal management effort or service provider interaction”</em></li>
+<li>And, cloud robot and autonomous systems are defined as, <em>Any robot or automation system that relies on either data or code from a network to support its operation, i.e., where not all sensing, computation, and memory is integrated into a single standalone system</em><br>
+<img src="../../../images/papers/cloud_1.jpg" alt="alt"></li>
+<li><strong>Big Data</strong><br>
+<img src="../../../images/papers/cloud_2.jpg" alt="alt"><br>
+<img src="../../../images/papers/cloud_3.jpg" alt="alt"></li>
+<li>Includes everything from image data from computer vision tasks to cad data for AR, grasping and pose estimation.</li>
+<li><strong>Cloud Computing</strong></li>
+<li>Includes remote localization and mapping(SLAM), motion planning and more.
+<img src="../../../images/papers/cloud_4.jpg" alt="alt"></li>
+<li><strong>Collective Robot Learning</strong></li>
+<li>CloudThink, MyRobots and other collective open frameworks.
+<img src="../../../images/papers/cloud_5.jpg" alt="alt"></li>
+<li><strong>OpenSource</strong>
+<ul>
+<li>ROS, CloudSim OpenRave, Gazebo, Arduino</li>
+<li>Raven, RoboEarth, RAaaS</li>
+</ul>
+</li>
+</ul>
+<h2 id="human-robot-interaction">Human Robot Interaction</h2>
+<h3 id="autonomous1">Robotics and Autonomous Systems</h3>
+<p>*Thibault Kruse, Amit Kumar Pandey, *
+<a href="http://www.sciencedirect.com/science/article/pii/S0921889013001048"><em>Source</em></a></p>
+<ul>
+<li>Human-aware navigation is the interaction between research on human-robot interaction and robot motion planning.<br>
+<img src="../../../images/papers/auto_1.jpg" alt="alt"></li>
+<li>Challenges of human-aware navigation
+<ul>
+<li>Comfort : absence of annoyance and stress for humans in interaction with robots.
+<ul>
+<li>Eliminate the obvious causes of discomfort.</li>
+</ul>
+</li>
+<li>Naturalness : similarities between robots and humans in low-level behavior pattern.
+<ul>
+<li>Robot motion should be &ldquo;predictable&rdquo; by humans.</li>
+</ul>
+</li>
+<li>Sociability : adherence to explicit high-level cultural conventions.
+<ul>
+<li>Social/cultural rules like standing in a queue, and gaze.</li>
+<li>Context based affordances like not obstructing the view to the TV.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Towards a human-aware navigation framework
+<img src="../../../images/papers/auto_2.jpg" alt="alt"></li>
+<li><em>Prediction</em> based on geometric reasoning or machine learning.(or both)<br>
+<img src="../../../images/papers/auto_3.jpg" alt="alt"></li>
+<li><em>Pose Selection</em></li>
+<li><em>Path Planning</em> and human-aware cost functions.</li>
+<li><em>Behavior Selection</em> for interacting with humans.</li>
+<li><em>Local Planning</em> for collision avoidance to ensure the safety of the robot and the environment.</li>
+<li>And the above <em>feautes</em> need to be integrated together.</li>
+</ul>
+<h3 id="uncanny">The Uncanny Valley</h3>
+<p><em>Masahiro Mori : More than 40 years ago</em><br>
+<a href="https://spectrum.ieee.org/automaton/robotics/humanoids/the-uncanny-valley"><em>Source</em></a></p>
+<ul>
+<li>How <em>creepy</em> are humanoid robots.</li>
+<li>Most functions are <em>monotonous</em>, but this one is not.<br>
+<img src="../../../images/papers/uncanny_1.jpg" alt="alt"><br>
+The graph depicts the uncanny valley, the proposed relation between the human likeness of an entity and the perceiver&rsquo;s affinity for it. [<em>Translators' note: Bunraku is a traditional Japanese form of musical puppet theater dating from the 17th century. The puppets range in size but are typically about a meter in height, dressed in elaborate costumes, and controlled by three puppeteers obscured only by their black robes.</em>]</li>
+<li><strong>The Effect of movement.</strong><br>
+<img src="../../../images/papers/uncanny_2.jpg" alt="alt"><br>
+The presence of movement steepens the slopes of the uncanny valley. The arrow&rsquo;s path in the figure represents the sudden death of a healthy person. [Translators' note: <em>Noh</em> is a traditional Japanese form of musical theater dating from the 14th century in which actors commonly wear masks. The <em>yase otoko</em> mask bears the face of an emaciated man and represents a ghost from hell. The <em>okina</em> mask represents an old man.]</li>
+<li>Movement can greatly amplify the <em>creepiness</em> of a prosthetic hand, or a complete humanoid bot.</li>
+<li><strong>Escape by design</strong></li>
+<li>Design to make them look functional(think about eyeglasses not looking like real eyeballs).</li>
+<li><strong>An Explanation of the Uncanny</strong></li>
+<li>No real explanation available, but we still need to map this function accurately so as to build socially acceptable bots.</li>
+</ul>
+<h3 id="robot-heads">All  robots are not created equal: The design and perception of humanoid robot heads</h3>
+<p><em>Carl F. Disalvo et. al</em><br>
+<a href="https://www.cs.cmu.edu/~kiesler/publications/2002pdfs/2002DiSalvo.robots%20unequal.pdf"><em>Source</em></a><br>
+<img src="../../../images/papers/heads_1.jpg" alt="alt"></p>
+<ul>
+<li>Motivations for design of the (modular)head for <em>Pearl</em>. 
+<img src="../../../images/papers/heads_2.jpg" alt="alt"></li>
+<li><strong>Findings</strong> influencing the comparisons
+<ul>
+<li>The presence of features</li>
+<li>The dimensions of the head and features and the total number of features</li>
+<li>Robot heads in comparison to human heads</li>
+<li>How human-like is <em>Humanoid</em>?</li>
+</ul>
+</li>
+<li><strong>Design suggestions for a Humanoid Robotic head</strong>
+<ul>
+<li><em>Wide head, wide eyes</em> : to maintain the robot-ness</li>
+<li><em>Features that dominate the face</em> : less space for forehead, hair, jaw and chin, to maintain robot-ness.</li>
+<li><em>Complexity and detail in the eyes</em> : They express.</li>
+<li><em>Four or more features</em> : More features provide more human-ness.</li>
+<li><em>Skin</em> : Depends on the applications, but consumer products must have some kind of skin.</li>
+<li><em>Humanistic form language</em> : Organic curves and shape to increase the resemblance.</li>
+</ul>
+</li>
+</ul>
+<h3 id="social-lstm">Social LSTM: Human Trajectory Prediction in Crowded Spaces</h3>
+<p><em>Alexandre Alahi et. al</em><br>
+<a href="https://web.stanford.edu/~alahi/downloads/CVPR16_N_LSTM.pdf"><em>Source</em></a></p>
+<ul>
+<li>We can <em>read</em> other peoples movements, but how can we make the bots do the same.
+<img src="../../../images/papers/slstm_1.jpg" alt="alt"></li>
+<li>Previous works try to <em>model</em> these interactions, which results in failure in generalization 
+for complex crowd activities.
+<ul>
+<li><strong>Human-human interactions</strong> : <em>Social force</em> model, Gaussian processes and more hand crafted features.</li>
+<li><strong>Activity forecasting</strong> : Predict motion in a video, <em>inverse reinforcement learning</em>, mostly based on static scene understanding.</li>
+<li><strong>RNN models for sequence prediction</strong></li>
+</ul>
+</li>
+<li><strong>Social LSTM</strong></li>
+<li>Inspired from <em>LSTM</em>s. But they themselves don&rsquo;t have the ability to capture dependencies among multiple correlated sequences.<br>
+<img src="../../../images/papers/slstm_2.jpg" alt="alt"><br>
+Overview of our Social-LSTM method. We use a separate LSTM network for each trajectory in a scene. The LSTMs are then connected to each other through a Social pooling (S-pooling)
+layer. Unlike the traditional LSTM, this pooling layer allows spatially proximal LSTMs to share information with each other. The variables in the figure are explained later. The bottom row
+shows the S-pooling for one person in the scene. The hidden-states of all LSTMs within a certain radius are pooled together and used as an input at the next time-step.</li>
+<li>Each scene is first pre-processed to obtain the spatial coordinates of all the people at different times.</li>
+<li>Introduces social pooling layers for social entities to share information and state.</li>
+<li>The pooling tries to preserve some spatial information through grid based pooling.</li>
+<li>More variations are used, for example only sharing the estimated position(occupancy maps) between neighbors.</li>
+<li>More implementation details in the paper.</li>
+<li>Explains the architecture, different cost functions and comparison with previous state-of-the-art models.</li>
+</ul>
+<h3 id="ethics1">What Should We Want From a Robot Ethic?</h3>
+<p><em>Peter M. Asaro</em><br>
+<a href="http://www.peterasaro.org/writing/Asaro%20IRIE.pdf"><em>Source</em></a></p>
+<ul>
+<li>Humans need to deal with ethics all the time.</li>
+<li>In case of robots with ethics, we have at least three distinct ways of thinking about it,
+<ul>
+<li>How humans act ethically, through or with robots?</li>
+<li>How to design robots that act ethically?</li>
+<li>Should robots have ethics(or rights)?</li>
+</ul>
+</li>
+<li>Robots(and humans) can have varying degree of <em>morality</em>.
+<ul>
+<li><em>Amoral</em> robots, controlled by <em>moral</em> humans.</li>
+<li>Robots with <em>moral significance</em>, performing actions irrespective of their moral weights.</li>
+<li>Robots with <em>moral intelligence</em> built in by moral humans.</li>
+<li>Robots with <em>dynamic moral intelligence</em> that can evolve their own ethical systems.</li>
+<li><em>Consciousness, self-awareness, fear of pain and death, reflexive deliberation and self evaluation of ethical systems and moral judgments</em>.</li>
+</ul>
+</li>
+<li>By the last degree of morality, the robots might even <em>demand</em> their rights.</li>
+<li><strong>Responsibility and Agency in Socio-Technical Systems</strong></li>
+<li>Contrast a robot with a <em>corporation</em> instead of a <em>human</em> in terms of legal treatment.</li>
+<li>Most important decisions to be made belong to the battle ground.</li>
+</ul>
+<h3 id="ethics2">Robot ethics: a view from the philosophy of science</h3>
+<p><em>Guglielmo Tamburrini</em><br>
+<a href="https://www.researchgate.net/publication/228959347_Robot_ethics_a_view_from_the_philosophy_of_science"><em>Source</em></a></p>
+<ul>
+<li><strong>Robot ethics and models of robot-environment interactions</strong></li>
+<li>Whether and how to isolate environmental factors affecting robotic behaviors is crucial.</li>
+<li>How to properly identify, specify and maintain <em>normal operating conditions</em>.</li>
+<li><strong>Robot Soldiers: Task Requirements and Ethics</strong></li>
+<li>Have already been deployed in Iraq and Afghanistan.</li>
+<li>Are remote controlled systems classified as robots?</li>
+<li>It has been widely established that completely <em>autonomous</em> robots would be more ethical on the battlefield, however they don&rsquo;t have the capability to do so yet.</li>
+<li>In fact, such an <em>autonomous</em> system would be sufficiently advanced to solve any other problem that artificial intelligence and cognitive robotics will ever be confronted with.</li>
+<li>This is an <em>AI-complete problem</em>, and state-of-art is hardly close to it.</li>
+<li><strong>Autonomy and Responsibility Issues For Learning Robots</strong></li>
+<li>Learning agents must have some kind of <em>background knowledge</em> about how to generalize, and must operate in some sufficiently pre-determined, stochastic environment characterized by some fixed statistical distribution.</li>
+<li>The information processing abilities of learning robotic systems, whose behavioral effects are not fully predictable by their users, suggest juridical and ethical analogies between learning robots and learning biological systems that are capable of perceiving, planning and acting.</li>
+<li><strong>Robotic myths, ethics, and scientific method</strong></li>
+<li>Great expectations.</li>
+</ul>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../research/robotics/biorobots/">Biologically Inspired Robots</a></li>
+        
+            <li><a href="../../../research/robotics/kuka-kinematics/">Inverse Kinematics on Kuka Arm using ROS and Python</a></li>
+        
+            <li><a href="../../../research/robotics/mobile-robots/">Mobile Robots</a></li>
+        
+            <li><a href="../../../research/robotics/research-robotics/">Robotics Research</a></li>
+        
+            <li><a href="../../../research/robotics/rsend-term2/">Robotics Engineer Nanodegree :: Term 2</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

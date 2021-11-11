@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Elements Of Statistical Learning, Part 3" />
+<meta property="og:description" content="Chapter 14: Unsupervised Learning  Introduction  Learning without labels..   Association Rules  Market Basket Analysis The Apriori Algorithm Unsupervised as Supervised Learning  Data Pooling   Generalized Association Rules   Cluster Analysis  Priority Matrices Dissimilarities Based on Attributes Object Dissimilarity Clustering Algorithms Combinatorial Algorithms K-means Gaussian Mixtures as Soft K-Means Clustering Vector Quantization K-medoids Hierarchical Clustering   Self-Organizing Maps Principal Components, Curves and Surfaces  Principal Components Principal Curves and Surfaces Spectral Clustering Kernel Principal Components Sparse Principal Components   Non-Negative Matrix Factorization Independent Component Analysis and Exploratory Projection Pursuit Nonlinear Dimension Reduction and Multidimensional Scaling The Google PageRank Algorithm  Chapter 15: Random Forests  Definition of Random Forests Details of Random Forests  Chapter 16: Ensemble Learning  Boosting and Regularization Paths Learning Ensembles  Chapter 17: Undirected Graphical Models  Markov Graphs and Their Properties Undirected Graphical Models for Continous Variables Undirected Graphical Models for Discrete Variables  Chapter 18: High Dimensional Problems: p &raquo; N  Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids Linear Classifiers and Quadratic Regularization  Regularized Discriminant Analysis Logistic Regression with Quadratic Regularization The Support Vector Classifier Feature Selection Computational Shortcuts When p &raquo; N   Linear Classifiers with {L_1} Regularization Classification when Features are Unavailable High-Dimensional Regression: Supervised Principal Components Feature Assessment and the Multiple Testing Problem  " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/ele/elements-of-statistical-learning-part-3/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-09-18T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Elements Of Statistical Learning, Part 3"/>
+<meta name="twitter:description" content="Chapter 14: Unsupervised Learning  Introduction  Learning without labels..   Association Rules  Market Basket Analysis The Apriori Algorithm Unsupervised as Supervised Learning  Data Pooling   Generalized Association Rules   Cluster Analysis  Priority Matrices Dissimilarities Based on Attributes Object Dissimilarity Clustering Algorithms Combinatorial Algorithms K-means Gaussian Mixtures as Soft K-Means Clustering Vector Quantization K-medoids Hierarchical Clustering   Self-Organizing Maps Principal Components, Curves and Surfaces  Principal Components Principal Curves and Surfaces Spectral Clustering Kernel Principal Components Sparse Principal Components   Non-Negative Matrix Factorization Independent Component Analysis and Exploratory Projection Pursuit Nonlinear Dimension Reduction and Multidimensional Scaling The Google PageRank Algorithm  Chapter 15: Random Forests  Definition of Random Forests Details of Random Forests  Chapter 16: Ensemble Learning  Boosting and Regularization Paths Learning Ensembles  Chapter 17: Undirected Graphical Models  Markov Graphs and Their Properties Undirected Graphical Models for Continous Variables Undirected Graphical Models for Discrete Variables  Chapter 18: High Dimensional Problems: p &raquo; N  Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids Linear Classifiers and Quadratic Regularization  Regularized Discriminant Analysis Logistic Regression with Quadratic Regularization The Support Vector Classifier Feature Selection Computational Shortcuts When p &raquo; N   Linear Classifiers with {L_1} Regularization Classification when Features are Unavailable High-Dimensional Regression: Supervised Principal Components Feature Assessment and the Multiple Testing Problem  "/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/ele/elements-of-statistical-learning-part-3/">
+
+    <title>
+      
+        Elements Of Statistical Learning, Part 3 | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/ele/">Elements Of Statistical Learning by Trevor Hastie, Robert Tibshirani, Jerome Friedman</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Elements Of Statistical Learning, Part 3</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/ele/elements-of-statistical-learning-part-3/">Elements Of Statistical Learning, Part 3</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-09-18">Sep 18, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-14-unsupervised-learning">Chapter 14: Unsupervised Learning</a></li>
+    <li><a href="#chapter-15-random-forests">Chapter 15: Random Forests</a></li>
+    <li><a href="#chapter-16-ensemble-learning">Chapter 16: Ensemble Learning</a></li>
+    <li><a href="#chapter-17-undirected-graphical-models">Chapter 17: Undirected Graphical Models</a></li>
+    <li><a href="#chapter-18-high-dimensional-problems-p--n">Chapter 18: High Dimensional Problems: p &raquo; N</a></li>
+  </ul>
+</nav>
+    
+    <h2 id="chapter-14-unsupervised-learning">Chapter 14: Unsupervised Learning</h2>
+<ul>
+<li>Introduction
+<ul>
+<li>Learning without labels..</li>
+</ul>
+</li>
+<li>Association Rules
+<ul>
+<li>Market Basket Analysis</li>
+<li>The Apriori Algorithm</li>
+<li>Unsupervised as Supervised Learning
+<ul>
+<li>Data Pooling</li>
+</ul>
+</li>
+<li>Generalized Association Rules</li>
+</ul>
+</li>
+<li>Cluster Analysis
+<ul>
+<li>Priority Matrices</li>
+<li>Dissimilarities Based on Attributes</li>
+<li>Object Dissimilarity</li>
+<li>Clustering Algorithms</li>
+<li>Combinatorial Algorithms</li>
+<li>K-means</li>
+<li>Gaussian Mixtures as Soft K-Means Clustering</li>
+<li>Vector Quantization</li>
+<li>K-medoids</li>
+<li>Hierarchical Clustering</li>
+</ul>
+</li>
+<li>Self-Organizing Maps</li>
+<li>Principal Components, Curves and Surfaces
+<ul>
+<li>Principal Components</li>
+<li>Principal Curves and Surfaces</li>
+<li>Spectral Clustering</li>
+<li>Kernel Principal Components</li>
+<li>Sparse Principal Components</li>
+</ul>
+</li>
+<li>Non-Negative Matrix Factorization</li>
+<li>Independent Component Analysis and Exploratory Projection Pursuit</li>
+<li>Nonlinear Dimension Reduction and Multidimensional Scaling</li>
+<li>The Google PageRank Algorithm</li>
+</ul>
+<h2 id="chapter-15-random-forests">Chapter 15: Random Forests</h2>
+<ul>
+<li>Definition of Random Forests</li>
+<li>Details of Random Forests</li>
+</ul>
+<h2 id="chapter-16-ensemble-learning">Chapter 16: Ensemble Learning</h2>
+<ul>
+<li>Boosting and Regularization Paths</li>
+<li>Learning Ensembles</li>
+</ul>
+<h2 id="chapter-17-undirected-graphical-models">Chapter 17: Undirected Graphical Models</h2>
+<ul>
+<li>Markov Graphs and Their Properties</li>
+<li>Undirected Graphical Models for Continous Variables</li>
+<li>Undirected Graphical Models for Discrete Variables</li>
+</ul>
+<h2 id="chapter-18-high-dimensional-problems-p--n">Chapter 18: High Dimensional Problems: p &raquo; N</h2>
+<ul>
+<li>Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids</li>
+<li>Linear Classifiers and Quadratic Regularization
+<ul>
+<li>Regularized Discriminant Analysis</li>
+<li>Logistic Regression with Quadratic Regularization</li>
+<li>The Support Vector Classifier</li>
+<li>Feature Selection</li>
+<li>Computational Shortcuts When p &raquo; N</li>
+</ul>
+</li>
+<li>Linear Classifiers with {L_1} Regularization</li>
+<li>Classification when Features are Unavailable</li>
+<li>High-Dimensional Regression: Supervised Principal Components</li>
+<li>Feature Assessment and the Multiple Testing Problem</li>
+</ul>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/ele/elements-of-statistical-learning-part-1/">Elements Of Statistical Learning, Part 1</a></li>
+        
+            <li><a href="../../../../books/programming/ele/elements-of-statistical-learning-part-2/">Elements Of Statistical Learning, Part 2</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

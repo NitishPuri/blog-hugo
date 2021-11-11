@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>style-transfer on Blog - Nitish Puri</title>
+    <link>https://www.myproductionurl.com/tags/style-transfer/</link>
+    <description>Recent content in style-transfer on Blog - Nitish Puri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://www.myproductionurl.com/tags/style-transfer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Style Transfer, Part 1</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-1/</guid>
+      <description>Style Transfer A Neural Style Algorithm of Artistic Style Leon A. Gatys, Alexander S. Ecker, Matthias Bethge : Sep 2015
+Source
+ In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities. Then we came across Deep Neural Networks.</description>
+    </item>
+    
+    <item>
+      <title>Style Transfer, Part 2</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-2/</guid>
+      <description>Style Transfer Artistic style transfer for videos Manuel Ruder, Alexey Dosovitskiy, Thomas Brox : Apr 2016
+Source
+ The previously discussed techniques have been applied to videos on per frame basis. However, processing each frame of the video independently leads to flickering and false discontinuities, since the solution of the style transfer task is not stable. To regularize the transfer temporal constraints using optical flow are introduced.  Notation  $\mathbf p^{(i)}$ is the $i^{th}$ frame of the original video.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="The Algorithms Design Manual, Graph Problems(Polynomial-Time)" />
+<meta property="og:description" content="Graph Problems : Polynomial-Time Connected Components Input description: A directed or undirected graph $G$.
+Problem description: Identify the different pieces or components of $G$, where vertices $x$ and $y$ are members of different components if no path exists from $x$ to $y$ in $G$.
+ Associated problems  Identify natural clusters in a set of items. Also used as a preprocessing step to test whether a graph is connected.   Other notions of connectivity, What if my graph is connected?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+<meta property="article:published_time" content="2017-10-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-11T14:43:40+05:30" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="The Algorithms Design Manual, Graph Problems(Polynomial-Time)"/>
+<meta name="twitter:description" content="Graph Problems : Polynomial-Time Connected Components Input description: A directed or undirected graph $G$.
+Problem description: Identify the different pieces or components of $G$, where vertices $x$ and $y$ are members of different components if no path exists from $x$ to $y$ in $G$.
+ Associated problems  Identify natural clusters in a set of items. Also used as a preprocessing step to test whether a graph is connected.   Other notions of connectivity, What if my graph is connected?"/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/">
+
+    <title>
+      
+        The Algorithms Design Manual, Graph Problems(Polynomial-Time) | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/">Algorithms Design Manual</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  The Algorithms Design Manual, Graph Problems(Polynomial-Time)</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-10-05">Oct 5, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#graph-problems--polynomial-time">Graph Problems : Polynomial-Time</a>
+      <ul>
+        <li><a href="#connected-components">Connected Components</a></li>
+        <li><a href="#topological-sort">Topological Sort</a></li>
+        <li><a href="#minimum-spanning-tree">Minimum Spanning Tree</a></li>
+        <li><a href="#shortest-path">Shortest Path</a></li>
+        <li><a href="#transitive-closure-and-reduction">Transitive Closure and Reduction</a></li>
+        <li><a href="#matching">Matching</a></li>
+        <li><a href="#eulerian-cyclechinese-postman">Eulerian Cycle/Chinese Postman</a></li>
+        <li><a href="#edge-and-vertex-connectivity">Edge and Vertex Connectivity</a></li>
+        <li><a href="#network-flow">Network Flow</a></li>
+        <li><a href="#drawing-graphs-nicely">Drawing Graphs Nicely</a></li>
+        <li><a href="#drawing-trees">Drawing Trees</a></li>
+        <li><a href="#planarity-detection-and-embedding">Planarity Detection and Embedding</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="graph-problems--polynomial-time">Graph Problems : Polynomial-Time</h2>
+<h3 id="connected-components">Connected Components</h3>
+<p><img src="../../../../images/algdm/15_connected.png" alt="alt"></p>
+<p><strong>Input description:</strong> A directed or undirected graph $G$.<br>
+<strong>Problem description:</strong> Identify the different pieces or components of $G$, where vertices 
+$x$ and $y$ are members of different components if no path exists from $x$ to $y$ in $G$.</p>
+<ul>
+<li>Associated problems
+<ul>
+<li>Identify natural clusters in a set of items.</li>
+<li>Also used as a preprocessing step to test whether a graph is connected.</li>
+</ul>
+</li>
+<li><em>Other notions of connectivity</em>,</li>
+<li>What if my graph is connected? Weekly or strongly connected? <br>
+Weekly connected components can be identified by a single DFS or BFS traversal. For strongly
+connected components, check whether the graph is weekly connected, then check again on 
+the reversed graph.</li>
+<li>What is the weakest point in my graph/network?</li>
+<li>Is the graph a tree? How can I find a cycle if cone exists?</li>
+<li><strong>Implementations</strong>
+<ul>
+<li>C++ : Boost Graph Library, LEDA</li>
+<li>Java : JUNG, JGraphT</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#edge-vertex-connectivity">Edge-vertex connectivity</a>,
+<a href="#shortest-path">shortest path</a></li>
+</ul>
+<h3 id="topological-sort">Topological Sort</h3>
+<p><img src="../../../../images/algdm/15_topsort.png" alt="alt"></p>
+<p><strong>Input description:</strong> A directed acyclic graph $G = (V,E)$, also known as a <em>partial order</em> 
+or <em>poset</em>.<br>
+<strong>Problem description:</strong> Find a linear ordering of the vertices of $V$ such that for 
+each edge $(i,j) \in E$, vertex $i$ is to the left of vertex $j$.</p>
+<ul>
+<li>Arises as a subproblem in most algorithms on DAGs.</li>
+<li>Plays the same role for DAGs as depth-first search plays for general graphs.</li>
+<li>Can be used to schedule tasks under precedence constraints.</li>
+<li><em>Only</em> DAGs can be topologically sorted, any directed cycle would provide an inherent
+contradiction to linear order of tasks.</li>
+<li><em>Every</em> DAG can be topologically sorted.</li>
+<li>DAGs can be often topologically sorted in many different ways.</li>
+<li>Simple linear time algorithm :
+<ul>
+<li>Find source vertices(zero in-degree) using DFS.</li>
+<li>Eliminate source vertices and edges, find new source vertices and place then next in 
+the schedule.</li>
+<li>Repeat.</li>
+</ul>
+</li>
+<li>Special considerations,
+<ul>
+<li>What if I need all the linear extensions, instead of just one of them?<br>
+NP-hard, use backtracking.</li>
+<li>What if your graph is not acyclic?<br>
+Remove the smallest set of edges(feedback arc set) or vertices(feedback vertex set) so as 
+to create a DAG. Also NP-hard.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> :
+<ul>
+<li>C++ : Boost Graph Library, LEDA</li>
+<li>Java : JDSL, JGraphT</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#sorting">Sorting</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#feedback-edgevertex-set">feedback edge/vertex set</a></li>
+</ul>
+<h3 id="minimum-spanning-tree">Minimum Spanning Tree</h3>
+<p><img src="../../../../images/algdm/15_connected.png" alt="alt"></p>
+<p><strong>Input description:</strong> A graph $G = (V,E)$ with weighted edges.<br>
+<strong>Problem description:</strong> The minimum weight subset of edges $E' \subset E$ that form a
+tree on $V$.</p>
+<ul>
+<li>MST defines the cheapest subset of edges that keep the graph in one connected component.</li>
+<li>Can be compute quickly and easily, and create a sparse subgraph that reflects a lot about 
+the original graph.</li>
+<li>They provide a way to identify clusters in sets of points.</li>
+<li>They can be used to give approximate solutions to hard problems such as Steiner tree and 
+traveling salesman.</li>
+<li>As an educational tool, MST algorithms provide graphic evidence that greedy algorithms can 
+give provably optimal solutions.</li>
+<li><em>Kruskal&rsquo;s algorithm</em>.
+<ul>
+<li>Each vertex starts as a separate tree and these trees merges together by repeatedly adding
+the lowest cost edge that spans two distinct subtrees (i.e. , does not create a cycle).</li>
+<li>Efficiently implemented using <em>union-find</em> data structure.</li>
+</ul>
+</li>
+<li><em>Prim&rsquo;s algorithm</em>.
+<ul>
+<li>Starts with an arbitrary vertex and <em>grows</em> a tree from it, repeatedly finding 
+the lowest-cost edge that links some new vertex into this tree.</li>
+<li>Implemented using priority queues.</li>
+</ul>
+</li>
+<li><em>Boruvka&rsquo;s algorithm</em>
+<ul>
+<li>Rests on the observation that the lowest-weight edge incident on each vertex must be 
+in the minimum spanning tree. The union of these edges will result in a spanning forest 
+of at most $n/2$ trees. Now for each of these trees $T$, select the edge $(x,y)$ of lowest
+weight such that $x \in T$ and $y \notin T $.</li>
+<li>Repeat till a single tree is created.</li>
+</ul>
+</li>
+<li>Questions to ask,
+<ul>
+<li>Are the weights of all the edges of your graph identical? MST can be found using DFS 
+or BFS.</li>
+<li>Should I use Prim’s or Kruskal’s algorithm? <br>
+Prim’s algorithm is faster on dense graphs, while Kruskal’s is faster on sparse graphs</li>
+<li>What if my input is points in the plane, instead of a graph? <br>
+First run Delaunay triangulation, then find MST on that graph.</li>
+<li>How do I find a spanning tree that avoids vertices of high degree? <br>
+NP-Complete, identical to Hamiltonian path problem. However efficient approximation
+algorithms exist.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : Boost, LEDA, and more.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#steiner-tree">Steiner tree</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#travelling-salesman-problem">travelling salesman</a></li>
+</ul>
+<h3 id="shortest-path">Shortest Path</h3>
+<p><img src="../../../../images/algdm/15_shortest.png" alt="alt"></p>
+<p><strong>Input description:</strong> An edge-weighted graph $G$, with vertices $s$ and $t$.<br>
+<strong>Problem description:</strong> Find the shortest path from $s$ to $t$ in $G$.</p>
+<ul>
+<li><em>Applications</em>,</li>
+<li>Most obvious applications arise in transportation or communications.</li>
+<li><em>Image segmentation</em>. requires modelling the graph with proper transitions.</li>
+<li>Differentiate <em>homophones</em>, words that sound similar.</li>
+<li>For informative visualization of graphs. Keep the <em>center</em> at the <em>center</em>.</li>
+<li><em>Dijkstra&rsquo;s algorithm</em> : single source shortest path on positively weighted graphs.</li>
+<li>Questions to ask,
+<ul>
+<li>Is your graph weighted or unweighted?<br>
+If unweighted, a simple BFS would do. If weighted use Dijkstra&rsquo;s algorithm.</li>
+<li>Does your graph have negative cost weights?<br>
+Use <em>Bellman-Ford algorithm</em>. If negative cost cycles are present, then the problem is 
+ill defined.</li>
+<li>Is your input a set of geometric obstacles instead of a graph? <br>
+Dijkstra&rsquo;s algorithm would work, but there are faster algorithms for this setting.</li>
+<li>Is your graph acyclic? i.e. a DAG? <br>
+Use topological sort.</li>
+<li>Do you need the shortest path between all pairs of points?<br>
+Use <em>Floyd-Warshall algorithm</em></li>
+<li>How do I find the shortest cycle in a graph?<br>
+<em>Floyd&rsquo;s algorithm</em> can do that. Finding <em>longest</em> cycle is similar to Hamiltonian 
+cycle, and is NP-complete.</li>
+</ul>
+</li>
+<li>Other graph properties are related,
+<ul>
+<li><em>Eccentricity</em> of a vertex is the shortest-path distance to the farthest vertex.</li>
+<li><em>Radius</em> of a graph is the smallest <em>eccentricity</em>.</li>
+<li><em>Center</em> is the set of vertices whose eccentricity is the radius.</li>
+<li><em>Diameter</em> of a graph is the maximum eccentricity of any vertex.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> :
+<ul>
+<li>C++ : MLB, Boost, LEDA and more.</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#network-flow">Network flow</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/#motion-planning">motion planning</a></li>
+</ul>
+<h3 id="transitive-closure-and-reduction">Transitive Closure and Reduction</h3>
+<p><img src="../../../../images/algdm/15_closure.png" alt="alt"></p>
+<p><strong>Input description:</strong> A directed graph $G = (V,E)$.<br>
+<strong>Problem description:</strong> For <em>transitive closure</em>, construct a graph $G' = (V, E')$ with
+edge $(i, j) \in E'$ iff there is a directed path from $i$ to $j$ in $G$. For 
+<em>transitive reduction</em>, construct a small graph $G' = (V, E')$ with a directed path from $i$ 
+to $j$ in $G'$ iff there is a directed path from $i$ to $j$ in $G$.</p>
+<ul>
+<li>Transitive closure can be thought of as establishing a data structure 
+that makes it possible to solve reachability questions efficiently.</li>
+<li>The simplest algorithm just performs a breadth-first or depth-first search
+from each vertex and keeps track of all vertices encountered. But this degenerates to cubic
+time on dense graphs.</li>
+<li>Can also use <em>Warshall&rsquo;s algorithm</em>, or use matrix multiplication.</li>
+<li>The problem can be greatly reduced if we only consider the strongly connected components.</li>
+<li><em>Transitive reduction</em> (also known as <em>minimum equivalent digraph</em>) is the inverse 
+operation of transitive closure, reducing the number of edges, while maintaining 
+identical reachability properties.</li>
+<li>Primary application in space minimization, reducing redundancy, remove clutter while visualization.</li>
+<li>However, there are multiple identifying formulations of the problem</li>
+<li>A linear-time, quick-and-dirty transitive reduction algorithm identifies the
+strongly connected components of G, replaces each by a simple directed cycle,
+and adds these edges to those bridging the different components.</li>
+<li><strong>Implementations</strong> : Boost Graph, LEDA, Graphlib(Transitivity) and more.</li>
+<li><em>Related</em> : <a href="#connected-components">Connected components</a>, <a href="#shortest-path">shortest path</a></li>
+</ul>
+<h3 id="matching">Matching</h3>
+<p><img src="../../../../images/algdm/15_matching.png" alt="alt"></p>
+<p><strong>Input description:</strong> A (weighted) graph $G = (V,E)$.<br>
+<strong>Problem description:</strong> Find the largest set of edges $E'$ from $E$ such that each
+vertex in $V$ is incident to at most one edge of $E'$.</p>
+<ul>
+<li>The basic matching problem can be formulated in many different forms while remaining essentially the same <em>assignment</em> problem.</li>
+<li>Is your graph bipartite? Then things will be simpler.</li>
+<li>What if certain employees can be given multiple jobs? This can be modeled by replicating the employee(or job) as many times as needed.</li>
+<li>Is your graph weighted or unweighted? Most problems would be unweighted, but the same can be modeled on weighted graphs, where we require to construct maximum <em>weight</em> matching.</li>
+<li>Standard algorithms for bipartite matching are based on network flow.</li>
+<li><strong>Implementations</strong> : CSA, BIM, GOBLIN, LEDA, Blossum IV, Stanford GraphBase and more.</li>
+<li><em>Related</em> : <a href="#eulerian-cycle-chinese-postman">Eulerian Cycle</a>, <a href="#network-flow">network flow</a></li>
+</ul>
+<h3 id="eulerian-cyclechinese-postman">Eulerian Cycle/Chinese Postman</h3>
+<p><img src="../../../../images/algdm/15_eulerian.png" alt="alt"></p>
+<p><strong>Input description:</strong> A graph $G = (V,E)$.<br>
+<strong>Problem description:</strong> Find the shortest tour visiting each edge of $G$ at least once.</p>
+<ul>
+<li>This problem is has many applications and variants.</li>
+<li>These are a few conditions that can determine if a Eulerian cycle or path exists,
+<ul>
+<li>An undirected graph contains an Eulerian cycle iff (1) it is connected, and (2) each vertex is of even degree.</li>
+<li>An undirected graph contains an Eulerian path iff (1) it is connected, and (2)
+all but two vertices are of even degree. These two vertices will be the start
+and end points of any path.</li>
+<li>A directed graph contains an Eulerian cycle iff (1) it is strongly-connected, 
+and (2) each vertex has the same in-degree as out-degree.</li>
+<li>Finally, a directed graph contains an Eulerian path from x to y iff (1) it is 
+connected, and (2) all other vertices have the same in-degree as out-degree, 
+with x and y being vertices with in-degree one less and one more than their 
+out-degrees, respectively.</li>
+</ul>
+</li>
+<li>This characterization of Eulerian graphs makes it easy to test and explicitly create a cycle.</li>
+<li>The <em>chinese postman</em> problem minimizes the length of a cycle that traverses every edge at least once.</li>
+<li><em>Related</em> : <a href="#matching">Matching</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#hamiltonian-cycle">Hamiltonian Cycle</a></li>
+</ul>
+<h3 id="edge-and-vertex-connectivity">Edge and Vertex Connectivity</h3>
+<p><img src="../../../../images/algdm/15_evcon.png" alt="alt"></p>
+<p><strong>Input description:</strong> A graph $G$. Optionally, a pair of vertices $s$ and $t$. <br>
+<strong>Problem description:</strong> What is the smallest subset of vertices (or edges) whose
+deletion will disconnect $G$? Or which will separate $s$ from $t$?</p>
+<ul>
+<li>The edge (vertex) connectivity of a graph $G$ is the smallest number of edge 
+(vertex) deletions sufficient to disconnect $G$.</li>
+<li>Is the graph already disconnected?</li>
+<li>Is there one weak link in my graph?</li>
+<li>What if I want to split the graph into equal sized pieces?</li>
+<li>Are arbitrary cuts OK, or must I separate a given pair of vertices?</li>
+<li>Edge and vertex connectivity can both be found using network-flow techniques.</li>
+<li><em>Related</em> : <a href="#connected-components">Connected components</a>, <a href="#network-flow">network flow</a></li>
+</ul>
+<h3 id="network-flow">Network Flow</h3>
+<p><img src="../../../../images/algdm/15_network.png" alt="alt"></p>
+<p><strong>Input description:</strong> A directed graph $G$, where each edge $e = (i,j)$ has a capacity
+$c_e$. A source node $s$ and sink node $t$.<br>
+<strong>Problem description:</strong> What is the maximum flow you can route from $s$ to $t$ while
+respecting the capacity constraint of each edge?</p>
+<ul>
+<li>Goes far beyond plumbing.</li>
+<li>A surprising variety of linear programming problems can be modeled as network-flow problems.</li>
+<li>And, network flow algorithms can solve these problems much faster than general purpose linear programming methods.</li>
+<li>Two primary classes of problems,
+<ul>
+<li><em>Maximum Flow</em></li>
+<li><em>Minimum Cost flow</em></li>
+</ul>
+</li>
+<li>Special considerations,
+<ul>
+<li>What if I have multiple sources/sinks? Add a vertex to create super source/sink.</li>
+<li>What if all arc capacities are identical, either 0 or 1? Faster algorithms exist.</li>
+<li>What if all my edge costs are identical?</li>
+<li>What if I have multiple types of material moving through the network? <em>multicommodity flow</em></li>
+</ul>
+</li>
+<li>Primary classes of algorithms,
+<ul>
+<li>Augmenting path methods</li>
+<li>Preflow-push methods</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/#linear-programming">Linear programming</a>, <a href="#matching">matching</a>, <a href="#edge-and-vertex-connectivity">connectivity</a></li>
+</ul>
+<h3 id="drawing-graphs-nicely">Drawing Graphs Nicely</h3>
+<p><img src="../../../../images/algdm/15_drawgraph.png" alt="alt"></p>
+<p><strong>Input description:</strong> A graph $G$. <br>
+<strong>Problem description:</strong> Draw a graph $G$ so as to accurately reflect its structure.</p>
+<ul>
+<li>What exactly does a nice drawing mean?</li>
+<li>Several criteria can be used,
+<ul>
+<li>Crossings,</li>
+<li>Area,</li>
+<li>Edge length,</li>
+<li>Angular resolution,</li>
+<li>Aspect ratio</li>
+</ul>
+</li>
+<li>Unfortunately, these goals are mutually contradictory and the problem is NP-complete.</li>
+<li>Also, drawing the complete graph, with more than 15 to 20 vertices, would not look particularly nice in the absence of any inherent symmetry.</li>
+<li>Some questions to ask,
+<ul>
+<li>Must the edges be straight, or can I have curves/bends?</li>
+<li>Is there a natural, application specific drawing? use it if it exists.</li>
+<li>Is your graph either planer or a tree?</li>
+<li>Is your graph directed?</li>
+<li>How fast must your algorithm be? Use incremental updates for interactive applications.</li>
+<li>Does your graph contain symmetries?</li>
+</ul>
+</li>
+<li>First quick and dirty method, place all the vertices in a circle, and start adding the edges.
+<ul>
+<li>Simulated annealing can be used to minimize the crossings.</li>
+</ul>
+</li>
+<li>A general purpose heuristic can model the graph as a system of springs and then use enerygy minimization to space the vertices.</li>
+<li>After the graph is drawn, you may also want to place the edge/vertex labels. This, can be shown to be NP-complete, but heuristics can be used effectively.</li>
+<li>Also related problem of graph visualization in 3 dimensions.</li>
+<li><strong>Implementations</strong> : GraphViz.</li>
+<li><em>Related</em> : <a href="#drawing-trees">Drawing trees</a>, <a href="#planarity-detection-and-embedding">planarity testing</a></li>
+</ul>
+<h3 id="drawing-trees">Drawing Trees</h3>
+<p><img src="../../../../images/algdm/15_drawtrees.png" alt="alt"></p>
+<p><strong>Input description:</strong> A tree $T$, which is a graph without any cycles.<br>
+<strong>Problem description:</strong> Create a nice drawing of the tree $T$.</p>
+<ul>
+<li>Are you drawing a <em>free</em> or a <em>rooted</em> tree.</li>
+<li><em>Rooted trees</em> define a hierarchical order.</li>
+<li><em>Free trees</em> do not encode any structure beyond their connection topology(e.g. a Minimum Spanning Tree).</li>
+<li>Trees are always planar and hance can and should be drawn without any crossing edges.</li>
+<li>Two primary options for trees,
+<ul>
+<li><em>Ranked embeddings</em>, place the root at top, divide space into root-degree strips, remmove root, repeat recursively. Do some adjustments afterwards.</li>
+<li><em>Radial embeddings</em>, useful for free trees, place root/center at the center of page, divide the space into angular sections based on the degree, repeat recursively. Adjust.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : GraphViz.</li>
+<li><em>Related</em> : <a href="#drawing-graphs">Drawing graphs</a>, <a href="#planarity-detection-and-embedding">planar drawings</a></li>
+</ul>
+<h3 id="planarity-detection-and-embedding">Planarity Detection and Embedding</h3>
+<p><img src="../../../../images/algdm/15_planarity.png" alt="alt"></p>
+<p><strong>Input description:</strong> A graph $G$.<br>
+<strong>Problem description:</strong> Can $G$ be drawn in the plane such that no two edges cross?
+If so, produce such a drawing.</p>
+<ul>
+<li>Planar drawings(or <em>embeddings</em>) make clear the structure of a given graph by eliminating crossing edges.</li>
+<li>However, not very much needed/encountered explicitly in applications.</li>
+<li>More important, planarity testing.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#graph-partition">Graph partition</a>, <a href="#drawing-trees">drawing trees</a></li>
+</ul>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual1/">The Algorithms Design Manual</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual4/">The Algorithms Design Manual, Combinatorial Problems</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual2/">The Algorithms Design Manual, Data structures</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual3/">The Algorithms Design Manual, Numerical Problems</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-dasgupta/algorithms2/">Algorithms by DasGupta, Part 2</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

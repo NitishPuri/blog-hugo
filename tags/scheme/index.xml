@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>scheme on Blog - Nitish Puri</title>
+    <link>https://www.myproductionurl.com/tags/scheme/</link>
+    <description>Recent content in scheme on Blog - Nitish Puri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 05 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.myproductionurl.com/tags/scheme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Little Schemer</title>
+      <link>https://www.myproductionurl.com/books/programming/the-little-schemer/</link>
+      <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/the-little-schemer/</guid>
+      <description>The Little Schemer by Friedman, Felleisen
+1. Toys ; Is &amp;#39;x&amp;#39; an atom (define atom? (lambda(x) (and (not (pair? x)) (not (null? x))))) 2. Do It, Do It Again, and Again, and Again&amp;hellip; ; Is &amp;#39;l&amp;#39; a list of atoms (define lat? (lambda(l) (cond ((null? l) #t) ((atom? (car l)) (lat? (cdr l))) (else #f)))) ; Is &amp;#39;a&amp;#39; a member of &amp;#39;lat&amp;#39; (define member? (lambda (a lat) (cond ((null? lat) #f) (else (or (eq?</description>
+    </item>
+    
+  </channel>
+</rss>

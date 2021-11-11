@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>opengl on Blog - Nitish Puri</title>
+    <link>https://www.myproductionurl.com/tags/opengl/</link>
+    <description>Recent content in opengl on Blog - Nitish Puri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.myproductionurl.com/tags/opengl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes On Opengl</title>
+      <link>https://www.myproductionurl.com/books/programming/notes-on-opengl/</link>
+      <pubDate>Wed, 09 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/notes-on-opengl/</guid>
+      <description>Starter notes on OpenGL/Transformations
+Transformations Translation : (x, y, z)
+$$ \begin{bmatrix}
+1 &amp;amp; 0 &amp;amp; 0 &amp;amp; x \\
+0 &amp;amp; 1 &amp;amp; 0 &amp;amp; y \\
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; z \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1
+\end{bmatrix} $$
+Scale : (x, y, z) $$ \begin{bmatrix}
+x &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; y &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; z &amp;amp; 0 \\</description>
+    </item>
+    
+  </channel>
+</rss>

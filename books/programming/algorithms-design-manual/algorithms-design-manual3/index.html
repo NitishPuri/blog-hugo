@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="The Algorithms Design Manual, Numerical Problems" />
+<meta property="og:description" content="Numerical Problems Check out Numerical Recipes
+Whats different?
+ Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written.  Solving Linear Equations Input description: An $m \times n$ matrix $A$ and an $m \times 1$ vector $b$, together representing $m$ linear equations on $n$ variables." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-10-03T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="The Algorithms Design Manual, Numerical Problems"/>
+<meta name="twitter:description" content="Numerical Problems Check out Numerical Recipes
+Whats different?
+ Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written.  Solving Linear Equations Input description: An $m \times n$ matrix $A$ and an $m \times 1$ vector $b$, together representing $m$ linear equations on $n$ variables."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/">
+
+    <title>
+      
+        The Algorithms Design Manual, Numerical Problems | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/">Algorithms Design Manual</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  The Algorithms Design Manual, Numerical Problems</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual3/">The Algorithms Design Manual, Numerical Problems</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-10-03">Oct 3, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#numerical-problems">Numerical Problems</a>
+      <ul>
+        <li><a href="#solving-linear-equations">Solving Linear Equations</a></li>
+        <li><a href="#bandwidth-reduction">Bandwidth Reduction</a></li>
+        <li><a href="#matrix-multiplication">Matrix Multiplication</a></li>
+        <li><a href="#determinants-and-permanents">Determinants and Permanents</a></li>
+        <li><a href="#constrained-and-unconstrained-optimization">Constrained and Unconstrained Optimization</a></li>
+        <li><a href="#linear-programming">Linear Programming</a></li>
+        <li><a href="#random-number-generation">Random Number Generation</a></li>
+        <li><a href="#factoring-and-primality-testing">Factoring and Primality Testing</a></li>
+        <li><a href="#arbitrary-precision-arithmetic">Arbitrary Precision Arithmetic</a></li>
+        <li><a href="#knapsack-problem">Knapsack Problem</a></li>
+        <li><a href="#discrete-fourier-transform">Discrete Fourier Transform</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="numerical-problems">Numerical Problems</h2>
+<p><em>Check out <a href="http://numerical.recipes/">Numerical Recipes</a></em></p>
+<p>Whats different?</p>
+<ul>
+<li>Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge.</li>
+<li>Extensive Libraries of Code. There is no reason to not to use all thats already written.</li>
+</ul>
+<h3 id="solving-linear-equations">Solving Linear Equations</h3>
+<p><img src="../../../../images/algdm/13_linear1.png" alt="alt"></p>
+<p><strong>Input description:</strong> An $m \times n$ matrix $A$ and an $m \times 1$ vector $b$, together representing $m$ linear equations on $n$ variables.<br>
+<strong>Problem description:</strong> What is the vector $x$ such that $A \cdot  x = b$?</p>
+<ul>
+<li>Naive algorithm using <em>Gaussian Elimination</em> is $O(n^3)$.</li>
+<li>Issues to worry about,
+<ul>
+<li>Are roundoff errors and numerical stability affecting my solution? Use library routines.</li>
+<li>Which routine in the library should I use? Reduce to special form for faster implementations.</li>
+<li>Is my system sparse? Use specialized algorithms for faster implementations.</li>
+<li>Will I be solving many systems using the same coefficient matrix? Use LU Decomposition.
+$$A \cdot x = (L \cdot U) \cdot x = L \cdot (U \cdot x) = b$$ <br>
+This gives a solution in two $O(n^2)$ since backsubstitution gives solves triangular system of equations in quadratic time instead of $O(n^3)$, after $LU$ decomposition has been done in $O(n^3)$.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong>
+<ul>
+<li><strong>LAPACK</strong>(C/C++)</li>
+<li><strong>JScience, JAMA</strong>(Java)</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#matrix-multiplication">Matrix multipplication</a>, <a href="#determinants-and-permanents">determinant/permanent</a></li>
+</ul>
+<h3 id="bandwidth-reduction">Bandwidth Reduction</h3>
+<p><img src="../../../../images/algdm/13_bandwidth.png" alt="alt"></p>
+<p><strong>Input description:</strong> A graph $G = (V,E)$, representing an $n \times n$ matrix $M$ of zero and non-zero elements.<br>
+<strong>Problem description:</strong> Which permutation $p$ of the vertices minimizes the length
+of the longest edge when the vertices are ordered on a line—i.e. , minimizes
+$max(i,j) \in E |p(i) − p(j)|$?</p>
+<ul>
+<li>Applied to matrices bandwidth reduction permutes the rows and columns of a sparse matrix to minimize the distance $b$ of any non-zero entry from the center diagonal.</li>
+<li>Gaussian elimination can be performed in $O(nb^2)$ on matrices of bandwidth $b$. This is a big win over $O(n^3)$ if $b &laquo; n$.</li>
+<li>An example on graphs
+<ul>
+<li>Arranging $n$ circuit components in a line to minimize the length of the longest wire(and hence time delay) is a bandwidth problem.</li>
+<li>A hypertext application with links on a magnetic tape, we need to store linked objects near each other to minimize search time.</li>
+<li>More general formulations of rectangular circuit layouts and disks inherit the same hardness and heuristics.</li>
+</ul>
+</li>
+<li>Variations
+<ul>
+<li>In <em>linear arrangement</em>, we seek to minimize the sum of the lengths of the edges.</li>
+<li>In <em>profile minimization</em>, we seek to minimize the sum of one way distances for each vertex $v$ the length of the longest edge whose other vertex is the left of $v$.</li>
+</ul>
+</li>
+<li>Unfortunately, this is NP-complete, even for a tree, thus or only options are a brute-force search or heuristics.</li>
+<li>Heuristic in worst case $O(n^3)$, close to linear in practice.</li>
+<li>Brute-force in $n!$ possible permutations.</li>
+<li><strong>Implementations</strong>
+<ul>
+<li><a href="http://www.mfn.unipmn.it/%E2%88%BCmanzini/bandmin">Del Corso and Manzini’s code</a> for exact solutions to bandwidth problems.</li>
+<li>More references in the book.</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#solving-linear-equations">Solving linear equations</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#topological-sort">topological sort</a></li>
+</ul>
+<h3 id="matrix-multiplication">Matrix Multiplication</h3>
+<p><img src="../../../../images/algdm/13_matmul.png" alt="alt"></p>
+<p><strong>Input description:</strong> An $x \times y$ matrix $A$ and a $y \times z$ matrix $B$.<br>
+<strong>Problem description:</strong> Compute the $x \times z$ matrix $A \times B$.</p>
+<ul>
+<li>A fundamental problem in linear algebra.</li>
+<li>Multiplication can done in arbitrary order, with varying costs in $O(xyz)$, but minimum can not be predicted.</li>
+<li>With bandwidth-$b$ matrices, a speedup of $O(xbz)$ can be achieved.</li>
+<li>Strassen&rsquo;s algorithm using divide-and-conquer runs in $O(n^{2.81})$, but is only practically useful for $n &gt; 100$.</li>
+<li>For long chains on matrix multiplications, dynamic programming can be used to optimize the parenthesization to minimize the dimensions of intermediate results.</li>
+<li><em>Related</em> : <a href="#solving-linear-equations">Solving linear equations</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#shortest-path">shortest path</a>.</li>
+</ul>
+<h3 id="determinants-and-permanents">Determinants and Permanents</h3>
+<p><img src="../../../../images/algdm/13_determinants.png" alt="alt"></p>
+<p><strong>Input description:</strong> An $n \times n$ matrix $M$.<br>
+<strong>Problem description:</strong> What is the determinant $|M|$ or permanent $perm(M)$ of the matrix $M$?</p>
+<ul>
+<li>Used to solve a variety of problems.
+<ul>
+<li>Testing if a matrix is <em>singular</em>, i.e. the matrix has no inverse, iff $|M|=0$.</li>
+<li>Test whether a set of points lie in a plane, iff $|M|=0$.</li>
+<li>Test whether a point lies in the left or right side of a line or a plane.</li>
+<li>Compute area or volume of a triangle, tetrahedron or other simplicial complex.
+$$|M| = \sum_{i=1}^{n!}(-1)^{sign(\pi_i)} \prod_{j=1}^n M[j,\pi_j]$$</li>
+</ul>
+</li>
+<li>This is $O(n!)$. However can be done faster using LU decomposition in $O(n^3)$.</li>
+<li>Closely related, <em>permanent</em>, counts the number of perfect matchings in $G$, represented by its adjacency matrix $M$.
+$$perm(M) = \sum_{i=1}^{n!} \prod_{j=1}^n M[j, \pi_j] $$
+However, calculating this is NP-hard.</li>
+<li><em>Related</em> : <a href="#solving-linear-equations">Solving linear equations</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#matching">matching</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/#robust-geometric-primitives">geometric primitives</a>.</li>
+</ul>
+<h3 id="constrained-and-unconstrained-optimization">Constrained and Unconstrained Optimization</h3>
+<p><img src="../../../../images/algdm/13_optim.png" alt="alt"></p>
+<p><strong>Input description:</strong> A function $f(x_1, \ldots , x_n)$. <br>
+<strong>Problem description:</strong> What point $p = (p_1, \ldots , p_n)$ maximizes (or minimizes) the
+function $f$?</p>
+<ul>
+<li>Optimization arises whenever there is an objective function that must be tuned for optimal performance.</li>
+<li>Pattern recognition to energy/potential minimization</li>
+<li>Questions to ask,
+<ul>
+<li>Am I doing constrained ot unconstrained optimization?</li>
+<li>Is the function I am trying to optimize described by a formula?</li>
+<li>Is it expensive to compute the function at a given point?</li>
+<li>How many dimensions do we have? How many do we need?</li>
+<li>How smooth is my function?</li>
+</ul>
+</li>
+<li>Variations of gradient descent and simulated annealing</li>
+<li><em>Related</em> : <a href="#linear-programming">Linear programming</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#satisfiability">satisfiability</a></li>
+</ul>
+<h3 id="linear-programming">Linear Programming</h3>
+<p><img src="../../../../images/algdm/13_linearprog.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set $S$ of $$ linear inequalities on $m$ variables<br>
+$$S_i := \sum_{j=1}^m c_{ij} \cdot x_j \ge b_i, 1 \le i \le n$$
+and a linear optimization function $f(X) = \sum_{j=1}^m c_j \cdot x_j$.<br>
+**Problem description:** Which variable assignment $X'$ maximizes the objective function $f$ while satisfying all inequalities $S$?</p>
+<ul>
+<li>Most important problem in mathematical optimization and operations research.
+<ul>
+<li>Resource allocation</li>
+<li>Approximating the solution of inconsistent equations.</li>
+<li>Graph algorithms : Many can be solved using linear programming, most of the rest can be solved using <em>Integer linear programming</em>.</li>
+</ul>
+</li>
+<li>The <em>simplex</em> method.</li>
+<li>While a simple algorithm, needs considerable <em>art</em> and the right data structures for large sparse systems.</li>
+<li>Also used, <em>interior-point</em> methods.</li>
+<li>Commercial solutions are of much higher quality than free/open source solutions.</li>
+<li>Questions to ask,
+<ul>
+<li>Do any variables have integrality constraints? Although it is NP-complete, reasonable programs are available.</li>
+<li>Do I have more variables or constraints? If there are more constraints than variables, consider solving the <em>dual</em> LP, which would be much easier.</li>
+<li>What if my optimization function or constraints are not linear? Although fast implementations exist(for quadratic programming), but this is NP-complete.</li>
+<li>What if my model does not match the input format of my LP solver? Map your problem to <em>standard forms</em>.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong>
+<ul>
+<li><a href="https://projects.coin-or.org/Clp">COIN OR</a></li>
+<li><a href="https://www.gnu.org/software/glpk/">GNU Linear Programming Kit: GLPK</a></li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#constrained-and-unconstrained-optimization">Constrained and Unconstrained optimization</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#network-flow">network flow</a></li>
+</ul>
+<h3 id="random-number-generation">Random Number Generation</h3>
+<p><img src="../../../../images/algdm/13_random.png" alt="alt"></p>
+<p><strong>Input description:</strong> Nothing, or perhaps a seed.<br>
+<strong>Problem description:</strong> Generate a sequence of random integers.</p>
+<ul>
+<li>Discrete event simulations, passwords and cryptographic keys, randomized algorithms for graph and geometric problems.</li>
+</ul>
+<blockquote>
+<p>Anyone who considers arithmetical methods of producing random digits is , of course, in a state of sin. &ndash; Von Neumann.</p>
+</blockquote>
+<ul>
+<li>However, we can create <em>pseudorandom</em> numbers.</li>
+<li>Questions to ask,
+<ul>
+<li>Should my program use the same <em>random</em> numbers each time it runs?</li>
+<li>How good is my compiler&rsquo;s built-in random number generator?</li>
+<li>What if I must implement my own random-number generator?
+$$R_n = (aR_{n-1} + c) \mod m$$</li>
+<li>What if I don&rsquo;t want such large numbers?</li>
+<li>What if I need non-uniformly distributed random numbers?</li>
+<li>How long should I run my Monte-Carlo simulation to get the best results?</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#constrained-and-unconstrained-optimization">Constrained and unconstrained optimization</a>, <a href="#generating-permutations">generating permutations</a>, <a href="#generating-subsets">generating subsets</a>, <a href="#generating-partitions">generating partitions</a>.</li>
+</ul>
+<h3 id="factoring-and-primality-testing">Factoring and Primality Testing</h3>
+<p><img src="../../../../images/algdm/13_prime.png" alt="alt"></p>
+<p><strong>Input description:</strong> An integer $n$.<br>
+<strong>Problem description:</strong> Is $n$ a prime number, and if not what are its factors?</p>
+<ul>
+<li>Long suspected of being only of mathematical interest, these problems have surprisingly many applications.</li>
+<li>The RSA, has tables, games.</li>
+<li>Several algorithms and implementations exist for generating and testing prime numbers and factoring(exponential).</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#cryptography">Cryptography</a>, <a href="#arbitrary-precision-arithmetic">high precision arithmetic</a></li>
+</ul>
+<h3 id="arbitrary-precision-arithmetic">Arbitrary Precision Arithmetic</h3>
+<p><img src="../../../../images/algdm/13_arbitprec.png" alt="alt"></p>
+<p><strong>Input description:</strong> Two very large integers, $x$ and $y$.<br>
+<strong>Problem description:</strong> What is $x + y$, $x − y$, $x \times y$, and $x/y$?</p>
+<ul>
+<li>Many applications require much larger integers than that can fit into a 32-bit integer.</li>
+<li>Questions to ask,
+<ul>
+<li>Am I solving a problem instance requiring large integers, or do I have an embedded application?</li>
+<li>Do I need high- or arbitrary-precision arithmetic?</li>
+<li>What base should I do arithmetic in?</li>
+<li>How low-level are you willing to get for fast computation?</li>
+</ul>
+</li>
+<li>The basic operations,
+<ul>
+<li>Addition</li>
+<li>Subtraction</li>
+<li>Multiplication</li>
+<li>Division</li>
+<li>Exponentiation</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#factoring-and-primality-testing">Factoring Integers</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#cryptography">cryptography</a></li>
+</ul>
+<h3 id="knapsack-problem">Knapsack Problem</h3>
+<p><img src="../../../../images/algdm/13_knapsack.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set of items $S = {1, \cdots , n}$, where item $i$ has size $s_i$ and value $v_i$. A knapsack capacity is $C$.<br>
+<strong>Problem description:</strong> Find the subset $S' \subset S$ that maximizes the value of $\sum_{i \in S'}v_i$, given that $\sum_{i \in S'}s_i \le C$; i.e. , all the items fit in a knapsack of size $C$.</p>
+<ul>
+<li>Resource allocation and financial constraints.</li>
+<li>Variations
+<ul>
+<li>$0/1$ problem, where objects can not be broken arbitarily. This makes it hard.</li>
+</ul>
+</li>
+<li>Questions to consider,
+<ul>
+<li>Does every item have the same cost/value or the same size? This becomes easy</li>
+<li>Does each item have the same “price per pound”? NP-complete, but still is considered &ldquo;easy&rdquo;. Also called <em>subset problem</em>. <em>Integer partition</em> becomes a special case.</li>
+<li>Are all the sizes relatively small integers? Can be solved in $O(nC)$, $C = $ capacity.</li>
+<li>What if I have multiple knapsacks? Bin-packing problem.</li>
+</ul>
+</li>
+<li>Greedy heuristics often give &ldquo;good&rdquo; approximations.
+<ul>
+<li>Based on <em>&lsquo;price per pound&rsquo;</em>.</li>
+<li>Convert weights to integers using <em>scaling</em>.</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#bin-packing">Bin packing</a>, <a href="#linear-programming">integer programming</a></li>
+</ul>
+<h3 id="discrete-fourier-transform">Discrete Fourier Transform</h3>
+<p><img src="../../../../images/algdm/13_fft.png" alt="alt"></p>
+<p><strong>Input description:</strong> A sequence of $n$ real or complex values $h_i, 0 \le i \le n − 1$, sampled at uniform intervals from a function $h$.<br>
+<strong>Problem description:</strong> The discrete Fourier transform $H_m = \sum_{k=0}^{n-1} h_k e^{2\pi ikm/n$} for $0 \le m \le n − 1$.</p>
+<ul>
+<li>Electric engineers eat these for breakfast.</li>
+<li>They provide a way to transform samples of a time series into the <em>frequency domain</em>.</li>
+<li>Appplications include,
+<ul>
+<li>Filtering</li>
+<li>Image compression</li>
+<li>Convolution and deconvolution</li>
+<li>Computing the correlation of functions
+$$z(t) = \int_{-\inf}^{\inf}f(\tau)g(t + \tau)d\tau$$</li>
+</ul>
+</li>
+<li>Naive implementation works in $O(n^2)$.</li>
+<li>The fast Fourier transform(FFT) computes discrete fourier transform in $O(n \log n)$.</li>
+<li>Often implemented in hardware for real time performance.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/#text-compression">Data compression</a>, <a href="#arbitrary-precision-arithmetic">high-precision arithmetic</a></li>
+</ul>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual1/">The Algorithms Design Manual</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

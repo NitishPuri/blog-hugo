@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog - Nitish Puri</title>
+    <link>https://www.myproductionurl.com/</link>
+    <description>Recent content on Blog - Nitish Puri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 05 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.myproductionurl.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Little Schemer</title>
+      <link>https://www.myproductionurl.com/books/programming/the-little-schemer/</link>
+      <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/the-little-schemer/</guid>
+      <description>The Little Schemer by Friedman, Felleisen
+1. Toys ; Is &amp;#39;x&amp;#39; an atom (define atom? (lambda(x) (and (not (pair? x)) (not (null? x))))) 2. Do It, Do It Again, and Again, and Again&amp;hellip; ; Is &amp;#39;l&amp;#39; a list of atoms (define lat? (lambda(l) (cond ((null? l) #t) ((atom? (car l)) (lat? (cdr l))) (else #f)))) ; Is &amp;#39;a&amp;#39; a member of &amp;#39;lat&amp;#39; (define member? (lambda (a lat) (cond ((null? lat) #f) (else (or (eq?</description>
+    </item>
+    
+    <item>
+      <title>Robotics Engineer Nanodegree :: Term 2</title>
+      <link>https://www.myproductionurl.com/research/robotics/rsend-term2/</link>
+      <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/robotics/rsend-term2/</guid>
+      <description>Starting the term 2 of Udacity Robotics Software Engineer Nanodegree today. Will be updating this page with micro breifs of topics and projects for the term.
+This term focuses on localisation and mapping problems based on probabilistic and deep reinforcement learning models deployed on embedded hardware(NVIDIA Jetson Tx2).
+High Level Topics  Probabilistic Robotics. Introduction to Jetson Robotic System Deployment. Localization. Mapping and SLAM RL Basics Path Planning and RL Navigation.</description>
+    </item>
+    
+    <item>
+      <title>Game Engine Architecture</title>
+      <link>https://www.myproductionurl.com/books/programming/game-engine-architecture/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/game-engine-architecture/</guid>
+      <description>Based on : Game Engine Architecture by Jason Gregory
+All the technology that goes in making a AAA game!!!!
+Foundations Introduction  Industry overview Structure of a Typical Game Team  Engineers Artists Game Designers Producers Other Staff Publishers and Studios   What is a Game??  Video Games as Soft Real-Time Simulations   What is a Game Engine??  Engine Differences across Genres  First-Person Shooter(Quake, Unreal Tournament, Half Life) Platformers and Other Third-Person Games(Gears of War, Dead Space, Red Dead Redemption, Uncharted) Fighting Games(Soul Calliber, Tekken, Fight Night) Racing Games(NFS, Gran Turismo, Mario kart) Real Time Strategy(Warcraft, Starcraft, Command and Conquer, Age of Empires) Massively Multiplayer Online Games(World of Warcraft, Destiny) Player Authored Content(Mods)(Minecraft) Other Games(sports, RPG, puzzle games, social sims, text based!</description>
+    </item>
+    
+    <item>
+      <title>Is there a simple algorithm for intelligence?, Micheal Nelson</title>
+      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-7/</link>
+      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-7/</guid>
+      <description>Notes for the book.
+Source code for the book.
+Appendix: Is there a simple algorithm for intelligence? </description>
+    </item>
+    
+    <item>
+      <title>Deep Learning, Micheal Nelson</title>
+      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-6/</link>
+      <pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-6/</guid>
+      <description>Notes for the book.
+Source code for the book.
+Chapter 6: Deep Learning </description>
+    </item>
+    
+    <item>
+      <title>Why are deep neural networks hard to train?, Micheal Nelson</title>
+      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-5/</link>
+      <pubDate>Sat, 23 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-5/</guid>
+      <description>Notes for the book.
+Source code for the book.
+Chapter 5: Why are deep neural networks hard to train? </description>
+    </item>
+    
+    <item>
+      <title>A visual proof that neural networks can compute any function, Micheal Nelson</title>
+      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-4/</link>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-4/</guid>
+      <description>Notes for the book.
+Source code for the book.
+Chapter 4: A visual proof that neural networks can compute any function One of the most striking facts about neural networks is that they can compute any function at all.
+That is, suppose someone hands you some complicated, wiggly function, $f(x)$:
+No matter what the function, there is guaranteed to be a neural network so that for every possible input, $x$, the value $f(x)$ (or some close approximation) is output from the network.</description>
+    </item>
+    
+    <item>
+      <title>Mobile Robots</title>
+      <link>https://www.myproductionurl.com/research/robotics/mobile-robots/</link>
+      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/robotics/mobile-robots/</guid>
+      <description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Kinematics tf: The Transform Library Tully Foote
+Open Source Robotics Foundation
+ The need for tf : to provide a standard way to keep track of coordinate frames and transform data within the entire system to a component user without requiring knowledge of all the coordinate frames. Broadcaster and Listner modules. Closely related to scene graphs.</description>
+    </item>
+    
+    <item>
+      <title>The Algorithms Design Manual, Set and String Problems</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/</link>
+      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/</guid>
+      <description>Set and String Problems Set Cover Input description: A collection of subsets $S = {S_1, \ldots , S_m}$ of the universal set $U = {1, \ldots , n}$.
+Problem description: What is the smallest subset $T$ of $S$ whose union equals the universal set—i.e. , $ \cup_{i=1}^{|T|} T_i = U$?
+ Several variations of set problem,  Are you allowed to cover elements more than once? Distinction between set cover and set packing.</description>
+    </item>
+    
+    <item>
+      <title>The Algorithms Design Manual, Computational Geometry</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/</link>
+      <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/</guid>
+      <description>Computational Geometry Robust Geometric Primitives Input description: A point $p$ and line segment $l$, or two line segments $l_1$, $l_2$.
+Problem description: Does $p$ lie over, under, or on $l$? Does $l_1$ intersect $l_2$?
+ Even simple operations like line(segment) intersection can have many different cases including numerical stability and geometric degeneracy issues. Three primary approaches for dealing with degeneracy,  Ignore it : Most common and recommended approach. Fake it : Random data perturbation so that it becomes non-degenerate.</description>
+    </item>
+    
+    <item>
+      <title>The Algorithms Design Manual, Graph Problems(Hard Problems)</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/</guid>
+      <description>Graph Problems : Hard Problems Dealing with NP-completeness.
+Clique Input description: A graph $G = (V,E)$. Problem description: What is the largest $S \subset V$ such that for all $x, y \in S,, (x, y) \in E$?
+ Finding the maximum clique is NP-complete, as hard as it gets. And, provably hard to approximate to withing the factor of $n^{1/2-\epsilon}$. What can we do about it?  Will a maximal clique suffice?</description>
+    </item>
+    
+    <item>
+      <title>The Algorithms Design Manual, Graph Problems(Polynomial-Time)</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/</link>
+      <pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/</guid>
+      <description>Graph Problems : Polynomial-Time Connected Components Input description: A directed or undirected graph $G$.
+Problem description: Identify the different pieces or components of $G$, where vertices $x$ and $y$ are members of different components if no path exists from $x$ to $y$ in $G$.
+ Associated problems  Identify natural clusters in a set of items. Also used as a preprocessing step to test whether a graph is connected.   Other notions of connectivity, What if my graph is connected?</description>
+    </item>
+    
+    <item>
+      <title>The Algorithms Design Manual, Combinatorial Problems</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/</link>
+      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/</guid>
+      <description>Combinatorial Problems Check out Numerical Recipes
+Whats different?
+ Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written.  Sorting Input description: A set of $n$ items. Problem description: Arrange the items in increasing (or decreasing) order.
+ The most fundamental algorithmic problem in computer science.</description>
+    </item>
+    
+    <item>
+      <title>The Algorithms Design Manual, Numerical Problems</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/</guid>
+      <description>Numerical Problems Check out Numerical Recipes
+Whats different?
+ Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written.  Solving Linear Equations Input description: An $m \times n$ matrix $A$ and an $m \times 1$ vector $b$, together representing $m$ linear equations on $n$ variables.</description>
+    </item>
+    
+    <item>
+      <title>The Algorithms Design Manual, Data structures</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/</guid>
+      <description>Data Structures Dictionaries Input Description : A set of $n$ records, each identified by one or more fields.
+Problem description : Build and maintain a data structure to efficiently locate, insert, and delete the record associated with any query key $q$.
+ It is more important to avoid using a bad data structure than to identify the single best option available. Questions to ask:  How many items will you have in your data structure?</description>
+    </item>
+    
+    <item>
+      <title>The Algorithms Design Manual</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual1/</link>
+      <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual1/</guid>
+      <description>How to design algorithms? Using &amp;lsquo;The right stuff&amp;rsquo;.,..  Do I really understand the problem?  What exactly does the input consist of? What exactly are the desired results or outputs? Can I construct an input example small enough to solve by hand? What happens when I try to solve it? How important is it to my application that i always find the optimal answer? Can I settle for something close to the optimal answer?</description>
+    </item>
+    
+    <item>
+      <title>Inverse Kinematics on Kuka Arm using ROS and Python</title>
+      <link>https://www.myproductionurl.com/research/robotics/kuka-kinematics/</link>
+      <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/robotics/kuka-kinematics/</guid>
+      <description>Picking and placing objects is something that we as humans take for granted. That&amp;rsquo;s not the case for our mechanical(and electronic) friends. They have to
+ Calculate an optimal collision-free path from the source to target location. Perform inverse kinematics to control the joints on your arm. Pick the object cleanly,without knocking over other objects in your path(well, this one doesn&amp;rsquo;t always go very well for us either).  One of the most challenging projects that I did in my Udacity Robotics Nanodegree program was to control a 6-jointed robot arm to pick and place an object.</description>
+    </item>
+    
+    <item>
+      <title>Improving the way neural networks learn, Micheal Nelson</title>
+      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-3/</link>
+      <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-3/</guid>
+      <description>Notes for the book.
+Source code for the book.
+Chapter 3: Improving the way neural networks learn Backpropagation was the basic swing, the fooundation for learning in most work on neural networks. Now we will learn the tricks.
+These include,
+ A better cost function, known as cross entropy Four regularization methods. A better method for weight initialization. A set of heuristics to help choose good hyper-parameters. And several other techniques,  The cross-entropy cost function Yet while unpleasant, we learn quickly when we&amp;rsquo;re decisively wrong.</description>
+    </item>
+    
+    <item>
+      <title>How the backpropogation algorithm works, Micheal Nelson</title>
+      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-2/</link>
+      <pubDate>Fri, 22 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-2/</guid>
+      <description>Notes for the book.
+Source code for the book.
+Chapter 2: How the backpropogation algorithm works Was introduced in the 70&amp;rsquo;s, but came into light with this paper.
+Today, it is the workhorse of learning in neural networks.
+Warm up: a fast matrix-based approach to computing the output from a neural network First, the notations,
+For weights,
+For biases and activations,
+These are related,
+$$\begin{eqnarray} a^{l}j = \sigma\left( \sum_k w^{l}{jk} a^{l-1}_k + b^l_j \right), \tag{23}\end{eqnarray}$$</description>
+    </item>
+    
+    <item>
+      <title>Using neural nets to recognize handwritten digits, Micheal Nelson</title>
+      <link>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-1/</link>
+      <pubDate>Thu, 21 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-1/</guid>
+      <description>Notes for the book.
+Source code for the book.
+Chapter 1: Using neural nets to recognize handwritten digits Perceptrons $$\begin{eqnarray} \mbox{output} &amp;amp; = &amp;amp; \left{ \begin{array}{ll} 0 &amp;amp; \mbox{if } \sum_j w_j x_j \leq \mbox{ threshold} \
+1 &amp;amp; \mbox{if } \sum_j w_j x_j &amp;gt; \mbox{ threshold} \end{array} \right. \tag{1}\end{eqnarray}$$
+Network of perceptrons First, simplify notation, $w \cdot x \equiv \sum_j w_j x_j$
+Move, threshold into the network as bias, $b \equiv -\mbox{threshold}$</description>
+    </item>
+    
+    <item>
+      <title>Elements Of Statistical Learning, Part 3</title>
+      <link>https://www.myproductionurl.com/books/programming/ele/elements-of-statistical-learning-part-3/</link>
+      <pubDate>Mon, 18 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/ele/elements-of-statistical-learning-part-3/</guid>
+      <description>Chapter 14: Unsupervised Learning  Introduction  Learning without labels..   Association Rules  Market Basket Analysis The Apriori Algorithm Unsupervised as Supervised Learning  Data Pooling   Generalized Association Rules   Cluster Analysis  Priority Matrices Dissimilarities Based on Attributes Object Dissimilarity Clustering Algorithms Combinatorial Algorithms K-means Gaussian Mixtures as Soft K-Means Clustering Vector Quantization K-medoids Hierarchical Clustering   Self-Organizing Maps Principal Components, Curves and Surfaces  Principal Components Principal Curves and Surfaces Spectral Clustering Kernel Principal Components Sparse Principal Components   Non-Negative Matrix Factorization Independent Component Analysis and Exploratory Projection Pursuit Nonlinear Dimension Reduction and Multidimensional Scaling The Google PageRank Algorithm  Chapter 15: Random Forests  Definition of Random Forests Details of Random Forests  Chapter 16: Ensemble Learning  Boosting and Regularization Paths Learning Ensembles  Chapter 17: Undirected Graphical Models  Markov Graphs and Their Properties Undirected Graphical Models for Continous Variables Undirected Graphical Models for Discrete Variables  Chapter 18: High Dimensional Problems: p &amp;raquo; N  Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids Linear Classifiers and Quadratic Regularization  Regularized Discriminant Analysis Logistic Regression with Quadratic Regularization The Support Vector Classifier Feature Selection Computational Shortcuts When p &amp;raquo; N   Linear Classifiers with {L_1} Regularization Classification when Features are Unavailable High-Dimensional Regression: Supervised Principal Components Feature Assessment and the Multiple Testing Problem  </description>
+    </item>
+    
+    <item>
+      <title>Soft Robotics</title>
+      <link>https://www.myproductionurl.com/research/robotics/soft-robots/</link>
+      <pubDate>Sun, 17 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/robotics/soft-robots/</guid>
+      <description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Soft Robotics Soft Robotics: A Perspective—Current Trends and Prospects for the Future Carmel Majidi : 2013
+Source
+ Soft robots are primarily composed of easily deformable matter such as fluids, gels, and elastomers that match the elastic and rheological properties of biological tissue and organs. Like an octopus squeezing through a narrow opening or a caterpillar rolling through uneven terrain, a soft robot must adapt its shape and locomotion strategy for a broad range of tasks, obstacles, and environmental conditions.</description>
+    </item>
+    
+    <item>
+      <title>Elements Of Statistical Learning, Part 2</title>
+      <link>https://www.myproductionurl.com/books/programming/ele/elements-of-statistical-learning-part-2/</link>
+      <pubDate>Fri, 15 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/ele/elements-of-statistical-learning-part-2/</guid>
+      <description>Chapter 7: Model Assessment and Selection  Introduction Bias, Variance and Model Complexity  The Bias-Variance Decomposition  Example : Bias-Variance Tradeoff   Optimism of the Training Error Rate Estimates of In-Sample Prediction Error The Effective Number of Parameters  Also known as effective degree of freedom $= trace(S)$, where $\hat y=Sy$.   The Bayesian Approach and BIC Minimum Description Length Vapnik-Chervonenkis Dimension ☠ Cross-Validation 👍  K-Fold Cross Validation The Wrong and Right Way to Do Cross-validation Does Cross-Validation Really Work?</description>
+    </item>
+    
+    <item>
+      <title>Algorithms by DasGupta, Part 7</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms7/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms7/</guid>
+      <description>Chapter 10: Quntized Algorithms There is a catch ofcourse: this algorithm needs a quantum computer to execute.
+Qubits, superposition and measurment Such a superposition is the basic unit of encoded information in quantum computers. It is called a qubit.
+This linear superposition is however private to the electron. For us to get a glimpse of the electron&amp;rsquo;s state, we must make a measurment, and when we do get a single bit of information, 0 or 1.</description>
+    </item>
+    
+    <item>
+      <title>Algorithms by DasGupta, Part 6</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms6/</link>
+      <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms6/</guid>
+      <description>Chapter 8: NP-Complete problems Search problems A set of problems that can not be solved in time better than an exhaustive search.
+Satisfiability SAT, is a problem of great practical importance, applications ranging from chip testing to computer design to image analysis and software engineering.
+It is also a canonical hard problem.
+Consider this Boolean formula in conjugative normal form,
+$$(x \lor y \lor z)(x \lor \bar y)(y \lor \bar z)(z \lor \bar x)(\bar x \lor \bar y \lor \bar z)$$</description>
+    </item>
+    
+    <item>
+      <title>Algorithms by DasGupta, Part 5</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms5/</link>
+      <pubDate>Sat, 09 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms5/</guid>
+      <description>Chapter 7: Linear Programming and reductions Linear programming describes a broad class of optimization tasks in which both the constraints and the optimization criterion are linear functions. It turns out an enormous number of problems can be expressed in this way.
+An introduction to linear programming Eample : Profit maximization
+We represent the situation be a linear program as follows,
+Objective function :
+$$max; x_1 + 6x_2$$
+Constraints :
+$$x_1 \leq 200 \ x_2 \leq 300 \ x_1 + x_2 \leq 400 \ x_1, x_2 \geq 0$$</description>
+    </item>
+    
+    <item>
+      <title>Biologically Inspired Robots</title>
+      <link>https://www.myproductionurl.com/research/robotics/biorobots/</link>
+      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/robotics/biorobots/</guid>
+      <description>Bio Robots OpenRatSLAM : an open source brain-based SLAM system Feb 2013
+Source
+ RatSLAM, OpenRatSLAM, SLAM, Navigation, Mapping, Brain-based, Appearance-based, ROS, Open-source, Hippocampus RatSLAM is a navigation system based on the neural processes underlying navigation in the rodent brain, capable of operating with low resolution monocular image data. This paper describes OpenRatSLAM, an open source version of RatSLAM with bindings to ROS SLAM(Simultaneous Localization and Mapping) , at the core based on SIFT or SURF features.</description>
+    </item>
+    
+    <item>
+      <title>Neural Networks for Computer Vision</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/nn-for-cv-1/</link>
+      <pubDate>Tue, 05 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/nn-for-cv-1/</guid>
+      <description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Image Recognition Very Deep Convolutional Networks For Large-Scale Image Recognition Karen Simonyan, Andrew Zisserman : Apr 2015
+Source
+Implementation
+ Introduces the VGG network that won ImageNet in 2014. Deeper ConvNets. Takes input as (224 X 224) RGB and mean image subtracted as preprocessing. Two final FC hidden layers, followed by one FC layer with 1000 outputs.</description>
+    </item>
+    
+    <item>
+      <title>Research Notes:: Deep Learning</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/research-ml/</link>
+      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/research-ml/</guid>
+      <description>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Image Recognition and Convnet Architectures  Image Recognition  Very Deep Convolutional Networks For Large-Scale Image Recognition Going Deeper with Convolutions Deep Residual Learning for Image Recognition Rethinking the Inception Architecture for Computer Vision Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning Xception: Deep Learning with Depthwise Separable Convolutions   Deep Visualization  Visualizing and Understanding Convolutional Networks Multifaceted Feature Visualization: Uncovering the Different Types of Features Learned By Each Neuron in Deep Neural Networks How transferable are features in deep neural networks?</description>
+    </item>
+    
+    <item>
+      <title>Robotics Research</title>
+      <link>https://www.myproductionurl.com/research/robotics/research-robotics/</link>
+      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/robotics/research-robotics/</guid>
+      <description>Biologically Inspired Robots  Biologically Inspired Robots  OpenRatSLAM : an open source brain-based SLAM system Biologically Inspired Approaches to Robotics The First Takeoff of a Biologically Inspired At-Scale Robotic Insect Towards Dynamic Trot Gait Locomotion—Design, Control, and Experiments with Cheetah-cub, a Compliant Quadruped Robot Gait Pattern Generation and Stabilization for Humanoid Robot Based on Coupled Oscillators    Mobile Robots, Robot Grasping and Swarm Robotics  Kinematics  tf: The Transform Library Solving Kinematics Problems of a 6-DOF Robot Manipulator   Robot Grasping  Robotic Grasping and Contact: A Review Universal Robotic Gripper Based on the Jamming of Granular Material Dex-Net 2.</description>
+    </item>
+    
+    <item>
+      <title>Algorithms by DasGupta, Part 3</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms3/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms3/</guid>
+      <description>Chapter 3: Decomposition of Graphs Why Graphs The range of problems that can be solved by representing your problem in Graphs.
+Graph representations,
+Adjacency Matrix
+$$ a_{ij} = \begin{cases} 1 \text{ if there is an edge from } v_i \text{ to } v_j \ 0 \text{ otherwise} \end{cases}$$
+Or, *Adjacency List*,
+$|V|$ linked lists, one per vertex. The list for *u* holds the names of vertices to which *u*, has an outgoing edge.</description>
+    </item>
+    
+    <item>
+      <title>Algorithms by DasGupta, Part 4</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms4/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms4/</guid>
+      <description>Chapter 5: Greedy Algorithms !Thinking Ahead.
+Minimum spanning trees Property 1 Removing a cycle edge cannot disconnect a graph.
+The tree with minimum total weight is then known as minimum spanning tree.
+Formally,
+Input : An undirected graph $G = (V, E)$; edge weights $w_e$.
+Output : *A tree $T = (V, E&#39;)$, with $E&#39; \subseteq E$, that minimizes $weight(T) = \sum_{e \in E&#39;}w_e$.*
+A greedy approach Kruskal&amp;rsquo;s algorithm
+Repeatedly add the next lightest edge that doesn&amp;rsquo;t produce a cycle.</description>
+    </item>
+    
+    <item>
+      <title>Algorithms by DasGupta, Part 2</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms2/</link>
+      <pubDate>Sat, 19 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms2/</guid>
+      <description>Chapter 2: Divide-and-Conquer Algorithms The divide and conquer strategy solves a problem by
+ Breaking it into sub-problems that are themselves smaller instances of the same type of problem. Recursively solving these problems. Appropriately combining their results.  Multiplication For multiplying two n-bit integers x and y.
+$x = \bbox[5px, border:2px solid black]{ x_L } \quad \bbox[5px, border:2px solid black]{ x_R } = 2^{n/2}x_L + x_R$
+$y = \bbox[5px, border:2px solid black]{ y_L } \quad \bbox[5px, border:2px solid black]{ y_R } = 2^{n/2}y_L + y_R$</description>
+    </item>
+    
+    <item>
+      <title>Algorithms by DasGupta, Part1</title>
+      <link>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms1/</link>
+      <pubDate>Sat, 19 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms1/</guid>
+      <description>Chapter 0: Prologue  Books and algorithms  Ideas that changed the world. Widespread use of decimal system.   Enter Fibonacci  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...., Also, $F_n = F_{n-1} + F_{n-2}$ And, $F_n ≈ 2^{0.694n}$ A naive implementation , with no caching of values.., fib1  Runtime &amp;ndash;&amp;gt; $T(n) &amp;gt;= F_n$, exponential in n   Can We Do Better,&amp;hellip;.? A Polynomial algorithm&amp;hellip;, fib2  A loop based algorithm that remembers previous values in an array.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 1</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-1/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-1/</guid>
+      <description>Chapter 1: Introduction Graphics Areas Core areas:
+ Modeling Rendering Animation  Other related ares:
+ User interaction Virtual reality Visualization Image processing 3D scanning Computational photography  Major Applications  Video Games Cartoons Visual Effects Animated Films CAD/CAM Simulation Medical Imaging Information visualization  Graphics API&amp;rsquo;s Need to deal with at least two different API&amp;rsquo;s : Graphics API and a User Interface API
+Graphics Pipeline A special software/hardware subsystem that efficiently draws 3D primitives in perspective.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 2</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-2/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-2/</guid>
+      <description>Chapter 5 : Linear Algebra Determinants Determinants as the area of a parallelogram and volume of a parallelepiped.
+We can see from Figure 5.6 that $|(b_c\mathbf{b}\mathbf{a})| = |c\mathbf{a}|$, because these parallelograms are just sheared versions of each other.
+Solving for bc yields $b_c =|\mathbf{ca}|/|\mathbf{ba}|$.
+An analogous argument yields $a_c =|\mathbf{bc}|/|\mathbf{ba}|$.
+This is the two-dimensional version of Cramer’s rule which we will revisit soon.
+Matrices A matrix is an array of numeric elements that follow certain arithmetic rules.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 3</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-3/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-3/</guid>
+      <description>Chapter 8 : The Graphics Pipeline The previous several chapters have established the mathematical scaffolding we need to look at the second major approach to rendering: Drawing objects one by one onto the screen, or object-order rendering. Unlike in ray tracing, where we consider each pixel in turn and find the objects that influence its color, we&amp;rsquo;ll now instead consider each geometric object in turn and find the pixels that it could have an effect on.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 4</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-4/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-4/</guid>
+      <description>Chapter 10 : Surface Shading Diffuse Shading Many objects in the world have a surface appearance loosely described as “matte,” indicating that the object is not at all shiny. Examples include paper, unfinished wood, and dry unpolished stones. To a large degree, such objects do not have a color change with a change in viewpoint. For example, if you stare at a particular point on a piece of paper and move while keeping your gaze fixed on that point, the color at that point will stay relatively constant.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 5</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-5/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-5/</guid>
+      <description>Illustrations RGB Color Cube Barycentric Interpolation Shading Models Total Internal Reflection Depth of Field and Caustics Complex Models using Blob Tree Vertex Shading Fragment Shading The Visible Spectrum HSV Colorspace What effect is this? Desaturation Color Transfer Atmospheric Effects A Comparison Motion Blur Ray Tracing Subsurface Scattering Photon Mapping Caustics using Photon Tracing Modelling </description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 6</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-6/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-6/</guid>
+      <description>Chapter 12 : Data Structures for Graphics Triangle Meshes Most real-world models are composed of complexes of triangles with shared vertices. These are usually known as triangular meshes, triangle meshes, or triangular irregular networks (TINs) and handling them efficiently is crucial to the performance of many graphics programs.
+The minimum information required for a triangle mesh is a set of triangles (triples of vertices) and the positions (in 3D space) of their vertices.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 7</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-7/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-7/</guid>
+      <description>Chapter 14 : Sampling Integration Although the words “integral” and “measure” often seem intimidating, they relate to some of the most intuitive concepts found in mathematics, and they should not be feared.
+For example, on the 2D real plane $R^2$, we have the area measure $A$ which assigns a value to a set of points in the plane. Note that $A$ is just a function that takes pieces of the plane and returns area.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 8</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-8/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-8/</guid>
+      <description>Chapter 18 : Using Graphics Hardware  What is Graphics Hardware,.? Describing Geometry for Hardware. Triangle Strips Indexed Drawing Indexed triangles, or some combination of vertex arrays and meshes Display lists and Vertex Buffer Objects Processing Geometry into Pixels Programming the pipeline Basic Execution Model Example of phong shading using a vertex shader and a then using a fragment shader General Purpose computing on GPU.  Chapter 19 : Building Interactive Graphics Applications  The Ball Shooting Program Programming Models  Control Driven Programming Event Driven Programming   GUI applications, The event driven ball shooting program The Modelview - Controller Architecture Examples:  Working with GUI APIs Working with Graphics APIs   Example implementations  OpenGL with FLTK Direct3D with MFC   Applying our results  Eg.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 9</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-9/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-9/</guid>
+      <description>Chapter 23 : Tone Reproduction  HDR : High Dynamic Range Classification Dynamic Range Color Image Formation Frequency-Based Operators Gradient-Domain operators Spatial Operators Division Sigmoids Other Approaches  Histogram Equalization   Night Tonemapping Discussion  Global illumination generally produces HDR images, Real-time rendering applications considerations: Sigmoid operators or Histogram equalization are good enough.    Chapter 24 : Global Illumination  Particle Tracing for Lambertian Scenes  Very randomized algorithm For each of n particles, calculate power, compute a random point on source, compute a random direction, while a random condition is satisfied, compute ray-intersection, add luminance to intersected surface, modify the power and ray, continue.</description>
+    </item>
+    
+    <item>
+      <title>Elements Of Statistical Learning, Part 1</title>
+      <link>https://www.myproductionurl.com/books/programming/ele/elements-of-statistical-learning-part-1/</link>
+      <pubDate>Wed, 09 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/ele/elements-of-statistical-learning-part-1/</guid>
+      <description>Chapter 1: Introduction  Motivation towards statistical learning and belief in data. What&amp;rsquo;s next.  Chapter 2: Overview of Supervised Learning  Variable types and terminology  Quantitative vs Qualitative output. Regression and Classification   Simple approaches : Least Squares and Nearest Neighbors  Linear Models and Least Squares
+$\hat Y = \hat \beta_0 + \sum_{j=1}^pX_j\hat\beta_j$  Least squares by solving normal equations.   Nearest Neighbor Methods  Voronoi tessellation   From Least Squares to Nearest Neighbors   Statistical Decision Theory Local Methods in High Dimensions  **The curse of Dimensionality,Bellman **     Statistical Models, Supervised Learning and Function Approximation  A Statistical Model for the Joint Distribution Pr(X, Y ) Supervised Learning Function Approximation   Structured Regression Models  Difficulty of the Problem   Classes of Restricted Estimators  Roughness Penalty and Bayesian Methods  regularization   Kernel Methods and Local Regression Basis Functions and Dictionary Methods   Model Selection and the Bias–Variance Tradeoff</description>
+    </item>
+    
+    <item>
+      <title>Notes On Opengl</title>
+      <link>https://www.myproductionurl.com/books/programming/notes-on-opengl/</link>
+      <pubDate>Wed, 09 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/notes-on-opengl/</guid>
+      <description>Starter notes on OpenGL/Transformations
+Transformations Translation : (x, y, z)
+$$ \begin{bmatrix}
+1 &amp;amp; 0 &amp;amp; 0 &amp;amp; x \\
+0 &amp;amp; 1 &amp;amp; 0 &amp;amp; y \\
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; z \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1
+\end{bmatrix} $$
+Scale : (x, y, z) $$ \begin{bmatrix}
+x &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; y &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; z &amp;amp; 0 \\</description>
+    </item>
+    
+    <item>
+      <title>Head First Design Patterns</title>
+      <link>https://www.myproductionurl.com/books/programming/head-first-design-patterns/</link>
+      <pubDate>Tue, 09 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/head-first-design-patterns/</guid>
+      <description>Strategy Pattern  Defines a family of algorithms, encapsulates each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.  Observer Pattern  Defines one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated.  Decorator Pattern  Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for existing functionality. Java IO classes  Factory Method Pattern  Defines an interface for creating an object, but lets subclasses decide which class to instantiate.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://www.myproductionurl.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/about/</guid>
+      <description>Computer Graphics - Simulations - Machine Intelligence - Computer Vision - everything in between.
+Games - Music - Visual Art.
+ IIT Roorkee (2008-2012)  Mechanical Engineering   VizExperts India (2012-2017)  GIS   Stryker (2018-Present)  Medical Imaging    OpenSceneGraph, Qt/QML, Unreal Engine, p5.js
+C++, Python, Javascript
+A little bit of everything, all of the time. - Bo Burnham
+Here i am allowed, everything all of the time.</description>
+    </item>
+    
+    <item>
+      <title>Introduction To Philosophy</title>
+      <link>https://www.myproductionurl.com/books/philosophy/introduction-to-philosophy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/philosophy/introduction-to-philosophy/</guid>
+      <description>These are just some bullet notes from the Coursera course Introduction to philosophy
+ What Is Philosophy Working out the best way to thinking about things. The philosophical question. Philosophy: Difficult, Important and Everywhere Is it &amp;lsquo;Fundamental&amp;rsquo;?  No,.. Yes,..?   Is it &amp;lsquo;Important&amp;rsquo;?  No,.. Yes,.?   How Do We Do It? Arguments to your questions Do we have free will? Is there a right way to think about things?</description>
+    </item>
+    
+    <item>
+      <title>Learning how to Learn</title>
+      <link>https://www.myproductionurl.com/books/philosophy/learning-to-learn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/philosophy/learning-to-learn/</guid>
+      <description>These are just some bullet notes from the Coursera course Introduction to philosophy
+ What is learning  Focused and Diffuse modes of thinking Procrastination Memory Importance of Sleep   Chunking  Recall Illusions of Competence Acetylcholine : focused learning Dopamine : motivation serotonin Overlearning, Choking, Eenstellung, Interleaving Illusions of Competence Deliberate learning Transfer and Library of Chunks   Procrastination  procrastination and memory Zombie Mode: Habits  The Cue, Routine, Reward and Belief   Process VS Product   Memory  Long term memory the power of repetition Using your visual and spatial memory systems Meaningful groups and Memory Palace   Learning  Keep learning Create metaphors and analogy Don&amp;rsquo;t Panic No need to envy!</description>
+    </item>
+    
+    <item>
+      <title>Neural Network Architectures</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/nn-arch-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/nn-arch-1/</guid>
+      <description>Deep Learning Architectures Self-Normalizing Neural Networks Günter Klambauer, Thomas Unterthiner, Andreas Mayr, Sepp Hochreiter : Sep 2017
+Source
+ Deep learning is setting new benchmarks everyday with the help of RNNs and CNNs. However, looking at problems that are not related to vision or sequential tasks, gradient boosting, random forests, or support vector machines are winning most of the competitions(Eg. Kaggle, HIGGS Challenge). With CNNs success, batch normalization and other stochastic regularization techniques has evolved into a standard.</description>
+    </item>
+    
+    <item>
+      <title>Object Detection and Image Segmentation</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-1/</guid>
+      <description>Image Segmentation Image segmentation review Source
+ A review of segmentation at qure.ai  Rich feature hierarchies for accurate object detection and semantic segmentation Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik : Oct 2014
+Source
+ Introduces R-CNN, Regions with CNN. Bridging the gap between image classification and object detection.  Object detection with R-CNN Region proposals. Uses selective search. Propose a bunch of boxes in the image and see if any of them actually correspond to an object.</description>
+    </item>
+    
+    <item>
+      <title>Object Detection and Image Segmentation, Part 2</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/detect-segment-2/</guid>
+      <description>Image Segmentation SSD: Single Shot MultiBox Detector Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu, Alexander C. Berg : Dec 2016
+Source
+Code
+ Accurate approaches for image segmentation and object detection are available, like Faster R-CNN, but they are too slow for real time applications. Eliminates bounding box proposals and the subsequent pixel or feature resampling stage. Improvements include using a small convolutional filter to predict object categories and offsets in bounding box locations, using separate predictors (filters) for different aspect ratio detections, and applying these filters to multiple feature maps from the later stages of a network in order to perform detection at multiple scales.</description>
+    </item>
+    
+    <item>
+      <title>Style Transfer, Part 1</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-1/</guid>
+      <description>Style Transfer A Neural Style Algorithm of Artistic Style Leon A. Gatys, Alexander S. Ecker, Matthias Bethge : Sep 2015
+Source
+ In fine art, especially painting, humans have mastered the skill to create unique visual experiences through composing a complex interplay between the content and style of an image. Thus far the algorithmic basis of this process is unknown and there exists no artificial system with similar capabilities. Then we came across Deep Neural Networks.</description>
+    </item>
+    
+    <item>
+      <title>Style Transfer, Part 2</title>
+      <link>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/research/machine-intelligence/style-transfer-2/</guid>
+      <description>Style Transfer Artistic style transfer for videos Manuel Ruder, Alexey Dosovitskiy, Thomas Brox : Apr 2016
+Source
+ The previously discussed techniques have been applied to videos on per frame basis. However, processing each frame of the video independently leads to flickering and false discontinuities, since the solution of the style transfer task is not stable. To regularize the transfer temporal constraints using optical flow are introduced.  Notation  $\mathbf p^{(i)}$ is the $i^{th}$ frame of the original video.</description>
+    </item>
+    
+  </channel>
+</rss>

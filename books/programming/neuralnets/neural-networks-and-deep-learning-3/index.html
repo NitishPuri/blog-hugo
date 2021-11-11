@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Improving the way neural networks learn, Micheal Nelson" />
+<meta property="og:description" content="Notes for the book.
+Source code for the book.
+Chapter 3: Improving the way neural networks learn Backpropagation was the basic swing, the fooundation for learning in most work on neural networks. Now we will learn the tricks.
+These include,
+ A better cost function, known as cross entropy Four regularization methods. A better method for weight initialization. A set of heuristics to help choose good hyper-parameters. And several other techniques,  The cross-entropy cost function Yet while unpleasant, we learn quickly when we&rsquo;re decisively wrong." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-3/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-09-23T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Improving the way neural networks learn, Micheal Nelson"/>
+<meta name="twitter:description" content="Notes for the book.
+Source code for the book.
+Chapter 3: Improving the way neural networks learn Backpropagation was the basic swing, the fooundation for learning in most work on neural networks. Now we will learn the tricks.
+These include,
+ A better cost function, known as cross entropy Four regularization methods. A better method for weight initialization. A set of heuristics to help choose good hyper-parameters. And several other techniques,  The cross-entropy cost function Yet while unpleasant, we learn quickly when we&rsquo;re decisively wrong."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-3/">
+
+    <title>
+      
+        Improving the way neural networks learn, Micheal Nelson | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/neuralnets/">Neural Networks and Deep Learning, Micheal Nelson</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Improving the way neural networks learn, Micheal Nelson</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-3/">Improving the way neural networks learn, Micheal Nelson</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-09-23">Sep 23, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-3-improving-the-way-neural-networks-learn"><strong>Chapter 3: Improving the way neural networks learn</strong></a>
+      <ul>
+        <li><a href="#the-cross-entropy-cost-function"><strong>The cross-entropy cost function</strong></a></li>
+        <li><a href="#overfitting-and-regularization"><strong>Overfitting and regularization</strong></a></li>
+        <li><a href="#weight-initialization"><strong>Weight initialization</strong></a></li>
+        <li><a href="#handwriting-recognition-revisited-the-code"><strong>Handwriting recognition revisited: the code</strong></a></li>
+        <li><a href="#how-to-choose-a-neural-networks-hyper-parameters"><strong>How to choose a neural network&rsquo;s hyper-parameters?</strong></a></li>
+        <li><a href="#other-techniques"><strong>Other techniques</strong></a></li>
+        <li><a href="#other-models-of-artificial-neuron"><strong>Other models of artificial neuron</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <p>Notes for the <a href="http://neuralnetworksanddeeplearning.com/index.html">book</a>.<br>
+<a href="https://github.com/mnielsen/neural-networks-and-deep-learning">Source code</a> for the book.</p>
+<h2 id="chapter-3-improving-the-way-neural-networks-learn"><strong>Chapter 3: Improving the way neural networks learn</strong></h2>
+<p><em>Backpropagation</em> was the <em>basic swing</em>, the <em>fooundation</em> for learning in most work on neural networks. 
+Now we will learn the <em>tricks</em>.</p>
+<p>These include,</p>
+<ul>
+<li>A better cost function, known as <em>cross entropy</em></li>
+<li>Four <em>regularization</em> methods.</li>
+<li>A better method for <em>weight initialization</em>.</li>
+<li>A set of heuristics to help <em>choose good hyper-parameters</em>.</li>
+<li>And several other techniques,</li>
+</ul>
+<h3 id="the-cross-entropy-cost-function"><strong>The cross-entropy cost function</strong></h3>
+<p>Yet while unpleasant, we learn quickly when we&rsquo;re decisively wrong.<br>
+By contrast, we learn slowly when our errors are less well defined.</p>
+<p>However, turns out this is not always the case with the neural networks we train.<br>
+If the results are very wrong, it might very well be the case that the activations are close to 0 or 1. And thus the gradients of our sigmoid activation would be very small.<br>
+This would cause the learning to progress very slowly.</p>
+<h4 id="introducing-the-cross-entropy-cost-function"><strong>Introducing the cross-entropy cost function</strong></h4>
+<p>$$\begin{eqnarray} 
+C = -\frac{1}{n} \sum_x \left[y \ln a + (1-y ) \ln (1-a) \right],
+\tag{57}\end{eqnarray}$$</p>
+<p>Barring the explanation of what it does,<br>
+Here is the derivative,</p>
+<p>$$\begin{eqnarray} 
+\frac{\partial C}{\partial w_j} =  \frac{1}{n} \sum_x x_j(\sigma(z)-y).
+\tag{61}\end{eqnarray}$$</p>
+<p>Now, this expression says that the change is directly proportional to the error, which is what we would intuitively expect our network to do.</p>
+<p>The cross-entropy function was specially chosen to have just this property.</p>
+<p>Ans, in a similar way, we can calculate the partial derivative for the bias.<br>
+$$\begin{eqnarray} 
+\frac{\partial C}{\partial b} = \frac{1}{n} \sum_x (\sigma(z)-y).
+\tag{62}\end{eqnarray}$$</p>
+<p>When should we use this? Probably always,..</p>
+<h4 id="what-does-the-cross-entropy-mean-where-does-it-come-from"><strong>What does the cross-entropy mean? Where does it come from?</strong></h4>
+<p>It comes naturally from our expected gradients,<br>
+If we start with,<br>
+$$\begin{eqnarray} 
+\frac{\partial C}{\partial w_j} &amp; = &amp; x_j(a-y) \tag{71}\</p>
+<p>\frac{\partial C}{\partial b } &amp; = &amp; (a-y).
+\tag{72}\end{eqnarray}$$</p>
+<p>We can come up with this equation,<br>
+$$\begin{eqnarray}
+C = -\frac{1}{n} \sum_x [y \ln a +(1-y) \ln(1-a)] + {\rm constant},
+\tag{77}\end{eqnarray}$$</p>
+<p>Cross-entropy also has significance in <em>information theory</em>, where it tells about <em>information gain</em>.</p>
+<h4 id="softmax"><strong>Softmax</strong></h4>
+<p>The softmax activation,<br>
+$$\begin{eqnarray} 
+a^L_j = \frac{e^{z^L_j}}{\sum_k e^{z^L_k}},
+\tag{78}\end{eqnarray}$$</p>
+<p>What&rsquo;s so good about it,.??<br>
+$$\begin{eqnarray}
+\sum_j a^L_j &amp; = &amp; \frac{\sum_j e^{z^L_j}}{\sum_k e^{z^L_k}} = 1.
+\tag{79}\end{eqnarray}$$</p>
+<p>That is, we can interpret it in terms of probabilities.<br>
+Which can help us in providing a more intuitive explanation of the results.<br>
+To the mathematicians at least.</p>
+<p>But, how does that help with the learning slowdown problem??</p>
+<p>Let us consider this cost function, (called <em>log-likelihood</em>)<br>
+$$\begin{eqnarray}
+C \equiv -\ln a^L_y.
+\tag{80}\end{eqnarray}$$</p>
+<p>Using this cost with softmax activation, we can derive the gradients w.r.t. weights and bias as,<br>
+$$\begin{eqnarray}
+\frac{\partial C}{\partial b^L_j} &amp; = &amp; a^L_j-y_j  \tag{81}\<br>
+\frac{\partial C}{\partial w^L_{jk}} &amp; = &amp; a^{L-1}_k (a^L_j-y_j) 
+\tag{82}\end{eqnarray}$$</p>
+<p>Which is strikingly similar in form to the gradients we calculated using <em>sigmoid</em> activation with <em>cross-entropy</em> loss. And hence, the same intuitions apply.</p>
+<p>So, what should we use then,.?<br>
+<em>sigmoid output layer with cross-entropy loss</em>, or<br>
+<em>softmax output layer with log0likelihood loss</em>.</p>
+<p>Actually, both work well. However, <em>softmax log-likelihood</em>is worth using when we want to interpret output activations as probabilities.</p>
+<h3 id="overfitting-and-regularization"><strong>Overfitting and regularization</strong></h3>
+<p>Models with large number of free parameters can describe amazingly wide range of phenomena. That doesn&rsquo;t make it a good model. It just means that the model has enough freedom to describe any data set of a given size, without really capturing any genuine insights about the phenomena.</p>
+<p>This model may work for the existing data, however it won&rsquo;t be able to generalize to new situations.</p>
+<p>Our simple model for MNIST dataset described earlier has 24,000 parameters. That&rsquo;s a lot of parameters.</p>
+<p>Current state-of-the-art models have millions or even billions of parameters. How can we trust those results?</p>
+<p><strong>Define overfitting here&hellip;</strong></p>
+<p><strong>Talking about cross-validation,&hellip;</strong></p>
+<p><strong>Get more training data to reduce overfitting!!!!</strong></p>
+<h4 id="regularization"><strong>Regularization</strong></h4>
+<p>Techniques used to reduce overfitting.</p>
+<p><em>Weight decay</em> or <em>L2 regularization</em>.<br>
+$$\begin{eqnarray} C = -\frac{1}{n} \sum_{xj} \left[ y_j \ln a^L_j+(1-y_j) \ln
+(1-a^L_j)\right] + \frac{\lambda}{2n} \sum_w w^2.
+\tag{85}\end{eqnarray}$$</p>
+<p>The first term is the same old cross-entropy loss function. The second term, namely the squared sum of all weights, is the regularization that we&rsquo;ve added.<br>
+and $\lambda &gt; 0$, is called the <em>regularization parameter</em>.</p>
+<p><em>Worth noting:</em> The regularization terms <em>doesn&rsquo;t</em> include biases.</p>
+<p>Of course we can add regularization to other cost functions as well.<br>
+$$\begin{eqnarray} C = \frac{1}{2n} \sum_x |y-a^L|^2 +
+\frac{\lambda}{2n} \sum_w w^2.
+\tag{86}\end{eqnarray}$$</p>
+<p>Intuitively, the effect of regularization is to make it so the network prefers to learn small weights, all other things being equal.</p>
+<p>But first, let&rsquo;s see how this effects our equations for gradients and weight/bias updates.<br>
+$$\begin{eqnarray} 
+\frac{\partial C}{\partial w} &amp; = &amp; \frac{\partial C_0}{\partial w} + 
+\frac{\lambda}{n} w \tag{88}\ 
+\frac{\partial C}{\partial b} &amp; = &amp; \frac{\partial C_0}{\partial b}.
+\tag{89}\end{eqnarray}$$</p>
+<p>And,<br>
+$$\begin{eqnarray}
+b &amp; \rightarrow &amp; b -\eta \frac{\partial C_0}{\partial b}.
+\tag{90}\end{eqnarray}$$
+$$\begin{eqnarray} 
+w &amp; \rightarrow &amp; w-\eta \frac{\partial C_0}{\partial
+w}-\frac{\eta \lambda}{n} w \tag{91}\ 
+&amp; = &amp; \left(1-\frac{\eta \lambda}{n}\right) w -\eta \frac{\partial
+C_0}{\partial w}. 
+\tag{92}\end{eqnarray}$$</p>
+<p><em>A analysis of results with/without regularization on the MNIST data.</em><br>
+<em>Conclusion:</em> Regularization helps reduce overfitting. But how??</p>
+<h4 id="why-does-regularization-help-reduce-overfitting"><strong>Why does regularization help reduce overfitting?</strong></h4>
+<p>A standard story people tell to explain what&rsquo;s going on is along the following lines: smaller weights are, in some sense, lower complexity, and so provide a simpler and more powerful explanation for the data, and should thus be preferred.</p>
+<p><em>An example with linear/polynomial regression.</em><br>
+The idea is that, larger weights in or neural net would allow the model to gather more information, and hence would allow it to learn the noise in the input.</p>
+<p>Simpler explanations can be more attractive, but that doesn&rsquo;t mean they are right, this intuition should be used with great caution! Further, deciding which of the explanations is <em>simpler</em> can be quite subtle and <em>subjective</em>. Finally, the true test of a model is not its simplicity, but how well it explains the unseen/new(for the model) phenomena.</p>
+<p>With that said, it is an empirical fact that regularization helps to generalize better.<br>
+Still, we don&rsquo;t have an entirely satisfactory understanding of what&rsquo;s going on.<br>
+We don&rsquo;t even have a good understanding of how generalization works.</p>
+<p>This is particularly galling because in everyday life we humans generalize phenomenally well.</p>
+<p>We have a system - the human brain - with huge number of free parameters. And we can generalize with very few training examples. Our brains in some sense are regularizing amazingly well. How?</p>
+<p>Back to our problem, it has been conjectures that the <em>dynamics of gradient descent learning in multilayer nets</em> has a <em>self-regularizing effect</em>. This is fortunate, but disquieting as we don&rsquo;t understand why.</p>
+<p>In the meantime, we would just use regularization whenever we can.</p>
+<h4 id="other-techniques-for-regularization"><strong>Other techniques for regularization</strong></h4>
+<p><strong>L1 regularization:</strong><br>
+$$\begin{eqnarray}  C = C_0 + \frac{\lambda}{n} \sum_w |w|.
+\tag{95}\end{eqnarray}$$</p>
+<p><strong>Dropout:</strong><br>
+Here we <em>randomly</em>(and <em>temporarily</em>) delete half* the hidden neurons in the network, while leaving all the weights and other neurons untouched.<br>
+<img src="../../../../images/nnfordl/dropout1.png" alt="alt"></p>
+<p>We do this only during the training,. When we run the full network during testing, we need to halve the weights outgoing from the hidden units.</p>
+<p>How does it do regularization? It is a lot like using a committee of smaller networks. The different networks will overfit in different ways, and hopefully, the net effect would reduce overfitting.</p>
+<p>In another explanation, using dropout forces the neurons to learn more robust features, reducing co-adaptations.</p>
+<p><strong>Artificially expanding the training data:</strong></p>
+<p><em>All about data augmentation</em> <br>
+<em>Very powerful. Very useful.</em></p>
+<h3 id="weight-initialization"><strong>Weight initialization</strong></h3>
+<p><em>About using Gaussian distribution for input weights, and its pitfalls.</em></p>
+<h3 id="handwriting-recognition-revisited-the-code"><strong>Handwriting recognition revisited: the code</strong></h3>
+<p>The updated <code>Network</code> class,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Network</span>(object):
+
+    <span style="color:#66d9ef">def</span> __init__(self, sizes, cost<span style="color:#f92672">=</span>CrossEntropyCost):
+        self<span style="color:#f92672">.</span>num_layers <span style="color:#f92672">=</span> len(sizes)
+        self<span style="color:#f92672">.</span>sizes <span style="color:#f92672">=</span> sizes
+        self<span style="color:#f92672">.</span>default_weight_initializer()
+        self<span style="color:#f92672">.</span>cost<span style="color:#f92672">=</span>cost
+</code></pre></div><p>Weight initialization, using Gaussian random variables with zero mean and standard deviation 1 divided by the square root of number of connections</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">default_weight_initializer</span>(self):
+        self<span style="color:#f92672">.</span>biases <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(y, <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>sizes[<span style="color:#ae81ff">1</span>:]]
+        self<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(y, x)<span style="color:#f92672">/</span>np<span style="color:#f92672">.</span>sqrt(x) 
+                        <span style="color:#66d9ef">for</span> x, y <span style="color:#f92672">in</span> zip(self<span style="color:#f92672">.</span>sizes[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], self<span style="color:#f92672">.</span>sizes[<span style="color:#ae81ff">1</span>:])]
+</code></pre></div><p>Here is the old weight initializer, using only Gaussian random variables,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">large_weight_initializer</span>(self):
+        self<span style="color:#f92672">.</span>biases <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(y, <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>sizes[<span style="color:#ae81ff">1</span>:]]
+        self<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(y, x) 
+                        <span style="color:#66d9ef">for</span> x, y <span style="color:#f92672">in</span> zip(self<span style="color:#f92672">.</span>sizes[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], self<span style="color:#f92672">.</span>sizes[<span style="color:#ae81ff">1</span>:])]
+</code></pre></div><p>For our newly added <code>cost</code> attribute,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CrossEntropyCost</span>(object):
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fn</span>(a, y):
+        <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>sum(np<span style="color:#f92672">.</span>nan_to_num(<span style="color:#f92672">-</span>y<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>log(a)<span style="color:#f92672">-</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>y)<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>a)))
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delta</span>(z, a, y):
+        <span style="color:#66d9ef">return</span> (a<span style="color:#f92672">-</span>y)
+</code></pre></div><p>It is implemented as a class since along with the actual cost, we also need a way to calculate the gradient. This class encapsulates both things.</p>
+<p>And, here is the <code>QuadraticCost</code> that we were using earlier, abstracted into a class,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QuadraticCost</span>(object):
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fn</span>(a, y):
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0.5</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(a<span style="color:#f92672">-</span>y)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delta</span>(z, a, y):
+        <span style="color:#66d9ef">return</span> (a<span style="color:#f92672">-</span>y) <span style="color:#f92672">*</span> sigmoid_prime(z)
+</code></pre></div><h3 id="how-to-choose-a-neural-networks-hyper-parameters"><strong>How to choose a neural network&rsquo;s hyper-parameters?</strong></h3>
+<p><em>That&rsquo;s a huge space to get lost in.</em></p>
+<p><strong>Broad strategy:</strong><br>
+Start with the problem of doing better than chance.<br>
+The <em>simplest</em>(also fastest or easiest) method that can get you started.<br>
+Just make sure to get quick feedback of how the model is doing.</p>
+<p>Then we start with parameter tuning.</p>
+<p><strong>Learning rate:</strong></p>
+<p>A sample result while training in MNIST.
+<img src="../../../../images/nnfordl/dropout2.png" alt="alt"></p>
+<p><em>More rules of thumb about how to choose and change the learning rate.</em></p>
+<p><strong>Use early stopping to determine the number of training epochs:</strong><br>
+<em>Again, rules of thumb on when to use this, and what to do with it.</em></p>
+<p><strong>Learning rate schedule:</strong><br>
+<em>Its good to reduce the learning rate when accuracy starts to plateau.</em></p>
+<p><strong>The regularization parameter:$\lambda$</strong><br>
+<em>Start with none.</em><br>
+<em>Find a good $\eta$.</em><br>
+<em>Play with $\lambda$.</em><br>
+<em>Fine tune $\lambda$.</em><br>
+<em>Fine tune $\eta$ again.</em></p>
+<p><strong>Mini-batch size:</strong><br>
+<em>This one depends upon the resources available too.</em><br>
+<em>Using a larger mini-batch may make things go faster if sufficient memory is available.</em></p>
+<p><strong>Automated techniques:</strong><br>
+<em>Cross validation: Grid search and its smarter cousins.</em></p>
+<p>The space of hyper-parameters is so large, that one never really finishes optimizing, one only abandons the network to posterity.</p>
+<h3 id="other-techniques"><strong>Other techniques</strong></h3>
+<h4 id="variations-on-stochastic-gradient-descent"><strong>Variations on stochastic gradient descent</strong></h4>
+<p><strong>Hessian technique:</strong> <br>
+Uses <em>higher order derivatives</em>.<br>
+Can converge faster than gradient descent<br>
+Difficult to apply in practice because of the huge size of the matrix.</p>
+<p><strong>Momentum-based gradient descent:</strong><br>
+Based on similar intuition of using higher order derivatives.<br>
+Introduces a notion of <em>velocity</em>. Gradient affects the velocity and not the <em>position</em> directly.<br>
+Introduces a kind of <em>friction</em> term, which tends to gradually reduce the velocity.</p>
+<p>$$\begin{eqnarray} 
+v &amp; \rightarrow  &amp; v' = \mu v - \eta \nabla C \tag{107}\<br>
+w &amp; \rightarrow &amp; w' = w+v'.
+\tag{108}\end{eqnarray}$$</p>
+<p><strong>Other approaches of minimizing the cost function:</strong><br>
+<em>BFGS</em> and <em>L-BFGS</em>, and more&hellip;</p>
+<h3 id="other-models-of-artificial-neuron"><strong>Other models of artificial neuron</strong></h3>
+<ul>
+<li><em>tanh</em> instead of <em>sigmoid</em></li>
+<li><em>relu</em> : <em>This is the new shit</em></li>
+</ul>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-4/">A visual proof that neural networks can compute any function, Micheal Nelson</a></li>
+        
+            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a></li>
+        
+            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-2/">How the backpropogation algorithm works, Micheal Nelson</a></li>
+        
+            <li><a href="../../../../research/machine-intelligence/nn-for-cv-1/">Neural Networks for Computer Vision</a></li>
+        
+            <li><a href="../../../../research/machine-intelligence/research-ml/">Research Notes:: Deep Learning</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

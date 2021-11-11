@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="How the backpropogation algorithm works, Micheal Nelson" />
+<meta property="og:description" content="Notes for the book.
+Source code for the book.
+Chapter 2: How the backpropogation algorithm works Was introduced in the 70&rsquo;s, but came into light with this paper.
+Today, it is the workhorse of learning in neural networks.
+Warm up: a fast matrix-based approach to computing the output from a neural network First, the notations,
+For weights,
+For biases and activations,
+These are related,
+$$\begin{eqnarray} a^{l}j = \sigma\left( \sum_k w^{l}{jk} a^{l-1}_k &#43; b^l_j \right), \tag{23}\end{eqnarray}$$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-2/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-09-22T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="How the backpropogation algorithm works, Micheal Nelson"/>
+<meta name="twitter:description" content="Notes for the book.
+Source code for the book.
+Chapter 2: How the backpropogation algorithm works Was introduced in the 70&rsquo;s, but came into light with this paper.
+Today, it is the workhorse of learning in neural networks.
+Warm up: a fast matrix-based approach to computing the output from a neural network First, the notations,
+For weights,
+For biases and activations,
+These are related,
+$$\begin{eqnarray} a^{l}j = \sigma\left( \sum_k w^{l}{jk} a^{l-1}_k &#43; b^l_j \right), \tag{23}\end{eqnarray}$$"/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/neuralnets/neural-networks-and-deep-learning-2/">
+
+    <title>
+      
+        How the backpropogation algorithm works, Micheal Nelson | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/neuralnets/">Neural Networks and Deep Learning, Micheal Nelson</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  How the backpropogation algorithm works, Micheal Nelson</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-2/">How the backpropogation algorithm works, Micheal Nelson</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-09-22">Sep 22, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-2-how-the-backpropogation-algorithm-works"><strong>Chapter 2: How the backpropogation algorithm works</strong></a>
+      <ul>
+        <li><a href="#warm-up-a-fast-matrix-based-approach-to-computing-the-output-from-a-neural-network"><strong>Warm up: a fast matrix-based approach to computing the output from a neural network</strong></a></li>
+        <li><a href="#the-two-assumptions-we-need-about-the-cost-function"><strong>The two assumptions we need about the cost function</strong></a></li>
+        <li><a href="#the-hadamard-product-s-odot-t"><strong>The Hadamard product, $s \odot t$</strong></a></li>
+        <li><a href="#the-four-fundamental-equations-behind-backpropagation"><strong>The four fundamental equations behind backpropagation</strong></a></li>
+        <li><a href="#proof-of-the-four-fundamental-equations"><strong>Proof of the four fundamental equations</strong></a></li>
+        <li><a href="#the-backpropagation-algorithm"><strong>The backpropagation algorithm</strong></a></li>
+        <li><a href="#the-code-for-backpropagation"><strong>The code for backpropagation</strong></a></li>
+        <li><a href="#in-what-sense-is-backpropagation-a-fast-algorithm"><strong>In what sense is backpropagation a fast algorithm?</strong></a></li>
+        <li><a href="#backpropagation-the-big-picture"><strong>Backpropagation: the big picture</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <p>Notes for the <a href="http://neuralnetworksanddeeplearning.com/index.html">book</a>.<br>
+<a href="https://github.com/mnielsen/neural-networks-and-deep-learning">Source code</a> for the book.</p>
+<h2 id="chapter-2-how-the-backpropogation-algorithm-works"><strong>Chapter 2: How the backpropogation algorithm works</strong></h2>
+<p>Was introduced in the 70&rsquo;s, but came into light with <a href="https://www.nature.com/nature/journal/v323/n6088/pdf/323533a0.pdf">this paper</a>.</p>
+<p>Today, it is the workhorse of learning in neural networks.</p>
+<h3 id="warm-up-a-fast-matrix-based-approach-to-computing-the-output-from-a-neural-network"><strong>Warm up: a fast matrix-based approach to computing the output from a neural network</strong></h3>
+<p>First, the notations,<br>
+For weights,<br>
+<img src="../../../../images/nnfordl/backprop1.png" alt="alt"></p>
+<p>For biases and activations,<br>
+<img src="../../../../images/nnfordl/backprop2.png" alt="alt"></p>
+<p>These are related,<br>
+$$\begin{eqnarray} 
+a^{l}<em>j = \sigma\left( \sum_k w^{l}</em>{jk} a^{l-1}_k + b^l_j \right),
+\tag{23}\end{eqnarray}$$</p>
+<p>which can be rewritten in <em>vectorized</em> form as,<br>
+$$\begin{eqnarray} 
+a^{l} = \sigma(w^l a^{l-1}+b^l).
+\tag{25}\end{eqnarray}$$</p>
+<p>This form is more compact and practical as we will be using libraries that provide fast matrix multiplication and vectorization capabilities.</p>
+<h3 id="the-two-assumptions-we-need-about-the-cost-function"><strong>The two assumptions we need about the cost function</strong></h3>
+<p>The goal of backpropogation is to calculate the partial derivatives $\partial C / \partial w$ and $\partial C / \partial b$.</p>
+<p>Here is an example of cost function we will be using(there can and will be others).<br>
+$$\begin{eqnarray}
+C = \frac{1}{2n} \sum_x |y(x)-a^L(x)|^2,
+\tag{26}\end{eqnarray}$$</p>
+<p>Now, the assumptions,</p>
+<ol>
+<li>The cost function can be written as an average $C = \frac{1}{n} \sum_x C_x$ over cost $C_x$ for individual training examples.</li>
+<li>The cost function can be written as  a function of the outputs from the neural network:
+<img src="../../../../images/nnfordl/backprop3.png" alt="alt"></li>
+</ol>
+<p>$$\begin{eqnarray}
+C = \frac{1}{2} |y-a^L|^2 = \frac{1}{2} \sum_j (y_j-a^L_j)^2,
+\tag{27}\end{eqnarray}$$</p>
+<h3 id="the-hadamard-product-s-odot-t"><strong>The Hadamard product, $s \odot t$</strong></h3>
+<p>$s \odot t$ represents the <em>elementwise</em> product of two vectors.<br>
+$$\begin{eqnarray}
+\left[\begin{array}{c} 1 \ 2 \end{array}\right] 
+\odot \left[\begin{array}{c} 3 \ 4\end{array} \right]
+= \left[ \begin{array}{c} 1 * 3 \ 2 * 4 \end{array} \right]
+= \left[ \begin{array}{c} 3 \ 8 \end{array} \right].
+\tag{28}\end{eqnarray}$$</p>
+<h3 id="the-four-fundamental-equations-behind-backpropagation"><strong>The four fundamental equations behind backpropagation</strong></h3>
+<p>First, we define the <em>error</em> in the $j^{th}$ neuron in the $l^{th}$ layer, $\delta^l_j$<br>
+$$\begin{eqnarray} 
+\delta^l_j \equiv \frac{\partial C}{\partial z^l_j}.
+\tag{29}\end{eqnarray}$$</p>
+<p><strong>An equation for the error in the output layer,</strong> $\delta^L$:<br>
+$$\begin{eqnarray} 
+\delta^L_j = \frac{\partial C}{\partial a^L_j} \sigma'(z^L_j).
+\tag{BP1}\end{eqnarray}$$</p>
+<p>Which can again be rewritten in vectorized form,<br>
+$$\begin{eqnarray} 
+\delta^L = \nabla_a C \odot \sigma'(z^L).
+\tag{BP1a}\end{eqnarray}$$</p>
+<p>where, in case of a quadratic cost function, we have $\nabla_a C = (a^L-y)$.So, <br>
+$$\begin{eqnarray} 
+\delta^L = (a^L-y) \odot \sigma'(z^L).
+\tag{30}\end{eqnarray}$$</p>
+<p><strong>An equation for the error $\delta^l$ in terms of the error in the next layer,</strong> $\delta^{l+1}$:<br>
+$$\begin{eqnarray} 
+\delta^l = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^l),
+\tag{BP2}\end{eqnarray}$$</p>
+<p>Suppose we know the error $\delta^{l+1}$ at the $l+q^{\rm th}$ layer. When we apply the transpose weight matrix, $(w^{l+1})^T$, we can think intuitively of this as moving the error <em>backward</em> through the network, giving us some sort of measure of the error at the output of the $l^{\rm th}$ layer.</p>
+<p>By combining $(BP1)$ and $(BP2)$, we can compute the error $\delta^l$ for any layer in the network.</p>
+<p><strong>An equation for the rate of change of the cost with respect to any bias in the network</strong></p>
+<p>$$\begin{eqnarray}  \frac{\partial C}{\partial b^l_j} =
+\delta^l_j.
+\tag{BP3}\end{eqnarray}$$</p>
+<p>which can also be written as,<br>
+$$\begin{eqnarray}
+\frac{\partial C}{\partial b} = \delta,
+\tag{31}\end{eqnarray}$$</p>
+<p><strong>An equation for the rate of change of the cost with respect to any weight in the network:</strong></p>
+<p>$$\begin{eqnarray}
+\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j.
+\tag{BP4}\end{eqnarray}$$</p>
+<p>which can also be written as,</p>
+<p>$$\begin{eqnarray}  \frac{\partial
+C}{\partial w} = a_{\rm in} \delta_{\rm out},
+\tag{32}\end{eqnarray}$$</p>
+<p>This can also be depicted as,<br>
+<img src="../../../../images/nnfordl/backprop4.png" alt="alt"></p>
+<p>Looking at this image, we can also say that a weight will learn slowly if either the input neuron is low-activation, or if the output neuron has <em>saturated</em>, i.e. it&rsquo;s gradient has become too small(when its either high- or low-activation in case of <em>sigmoid</em>).</p>
+<p><strong>Summary of the four equations of backpropagation</strong><br>
+<img src="../../../../images/nnfordl/backprop5.png" alt="alt"></p>
+<h3 id="proof-of-the-four-fundamental-equations"><strong>Proof of the four fundamental equations</strong></h3>
+<p>We start with the expression for $\delta^L$<br>
+$$\begin{eqnarray}
+\delta^L_j = \frac{\partial C}{\partial z^L_j}.
+\tag{36}\end{eqnarray}$$</p>
+<p>Applying chain rule,<br>
+$$\begin{eqnarray}
+\delta^L_j = \sum_k \frac{\partial C}{\partial a^L_k} \frac{\partial a^L_k}{\partial z^L_j},
+\tag{37}\end{eqnarray}$$</p>
+<p>But, the output activation $a_k^L$ of the $k_{\rm th}$ neuron only depends on the weighted input $x_j^L$ for the $j^{\rm th}$ neuron when $k=j$. And so, $\partial a^L_k / \partial z^L_j$ vanishes when $k \neq j$. So,</p>
+<p>$$\begin{eqnarray}
+\delta^L_j = \frac{\partial C}{\partial a^L_j} \frac{\partial a^L_j}{\partial z^L_j}.
+\tag{38}\end{eqnarray}$$</p>
+<p>Recalling that, $a^L_j = \sigma(z^L_j)$<br>
+$$\begin{eqnarray}
+\delta^L_j = \frac{\partial C}{\partial a^L_j} \sigma'(z^L_j),
+\tag{39}\end{eqnarray}$$</p>
+<p>which is $(BP1)$ in component form.</p>
+<p>Next, we prove $(BP2)$, which gives an equation for the error $\delta^L$ in terms of the error in the next layer, $\delta^{l+1}$. 
+$$\begin{eqnarray}
+\delta^l_j &amp; = &amp; \frac{\partial C}{\partial z^l_j} \tag{40}\<br>
+&amp; = &amp; \sum_k \frac{\partial C}{\partial z^{l+1}_k} \frac{\partial z^{l+1}_k}{\partial z^l_j} \tag{41}\ 
+&amp; = &amp; \sum_k \frac{\partial z^{l+1}_k}{\partial z^l_j} \delta^{l+1}_k,
+\tag{42}\end{eqnarray}$$</p>
+<p>Now, 
+$$\begin{eqnarray}
+z^{l+1}<em>k = \sum_j w^{l+1}</em>{kj} a^l_j +b^{l+1}<em>k = \sum_j w^{l+1}</em>{kj} \sigma(z^l_j) +b^{l+1}_k.
+\tag{43}\end{eqnarray}$$</p>
+<p>Differentiating,</p>
+<p>$$\begin{eqnarray}
+\frac{\partial z^{l+1}<em>k}{\partial z^l_j} = w^{l+1}</em>{kj} \sigma'(z^l_j).
+\tag{44}\end{eqnarray}$$</p>
+<p>Substituting back in $(42)$,<br>
+$$\begin{eqnarray}
+\delta^l_j = \sum_k w^{l+1}_{kj}  \delta^{l+1}_k \sigma'(z^l_j).
+\tag{45}\end{eqnarray}$$</p>
+<p>which is $(BP2)$ in component form.</p>
+<h3 id="the-backpropagation-algorithm"><strong>The backpropagation algorithm</strong></h3>
+<ol>
+<li><strong>Input $x$:</strong> Set the corresponding activation $a^1$ for the input layer.</li>
+<li><strong>Feedforward:</strong> For each $l = 2, 3, \ldots, L$ compute $z^l = w^la^{l−1} + b^l$ and $a^l = \sigma(z^l)$.</li>
+<li><strong>Output error $\delta^L$:</strong> Compute the vector $\delta^{L} = \nabla_a C \odot \sigma'(z^L)$.</li>
+<li><strong>Backpropagate the error:</strong> For each $l = L−1, L−2,\ldots, 2$ compute $\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^{l})$.</li>
+<li><strong>Output:</strong> The gradient of the cost function is given by $\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j$ and $\frac{\partial C}{\partial b^l_j} = \delta^l_j$.</li>
+</ol>
+<p>The above steps show <em>back</em>propagation applied w.r.t. a single training example. In practice, it is common to use some a learning algorithm like <em>stochastic gradient descent</em>, computing the gradients of many training examples. In particular, the following algorithm applies gradient descent learning step, based on mini-batches.</p>
+<ol>
+<li><strong>Input a set of training examples</strong></li>
+<li><strong>For each training example $x$:</strong> Set the corresponding input activation $a^{x,1}$ and perform the following steps:
+<ul>
+<li><strong>Feedforward:</strong> For each $l = 2, 3, \ldots, L$ compute $z^{x,l} = w^l a^{x,l-1}+b^l$ and $a^{x,l} = \sigma(z^{x,l})$</li>
+<li><strong>Output error $\delta^{x,L}$:</strong> Compute the vector $\delta^{x,L} = \nabla_a C_x \odot \sigma'(z^{x,L})$.</li>
+<li><strong>Backpropagate the error:</strong> For each $l = L-1, L-2, \ldots, 2$ compute $\delta^{x,l} = ((w^{l+1})^T \delta^{x,l+1}) \odot \sigma'(z^{x,l})$</li>
+</ul>
+</li>
+<li><strong>Gradient descent:</strong> For each $l = L, L-1, \ldots, 2$ update the weights according to the rule $w^l \rightarrow w^l-\frac{\eta}{m} \sum_x \delta^{x,l} (a^{x,l-1})^T$, and biases according to the rule $b^l \rightarrow b^l-\frac{\eta}{m} \sum_x \delta^{x,l}$.</li>
+</ol>
+<p>Of course, in practice, we would also need an outer loop, generating the mini-batches, and another outer loop, stepping through the multiple epochs, but they are just ommitted for simplicity.</p>
+<h3 id="the-code-for-backpropagation"><strong>The code for backpropagation</strong></h3>
+<p>The code for backpropagation was is contained in two methods, <code>update_mini_batch</code>, described in the last post, and <code>backprop</code> method, discussed here,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">backprop</span>(self, x, y):
+      <span style="color:#e6db74">&#34;&#34;&#34;Return a tuple &#34;(nabla_b, nabla_w)&#34; representing the
+</span><span style="color:#e6db74">      gradient for the cost function C_x.  &#34;nabla_b&#34; and
+</span><span style="color:#e6db74">      &#34;nabla_w&#34; are layer-by-layer lists of numpy arrays, similar
+</span><span style="color:#e6db74">      to &#34;self.biases&#34; and &#34;self.weights&#34;.&#34;&#34;&#34;</span>
+      nabla_b <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>zeros(b<span style="color:#f92672">.</span>shape) <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>biases]
+      nabla_w <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>zeros(w<span style="color:#f92672">.</span>shape) <span style="color:#66d9ef">for</span> w <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>weights]
+      <span style="color:#75715e"># feedforward</span>
+      activation <span style="color:#f92672">=</span> x
+      activations <span style="color:#f92672">=</span> [x] <span style="color:#75715e"># list to store all the activations, layer by layer</span>
+      zs <span style="color:#f92672">=</span> [] <span style="color:#75715e"># list to store all the z vectors, layer by layer</span>
+      <span style="color:#66d9ef">for</span> b, w <span style="color:#f92672">in</span> zip(self<span style="color:#f92672">.</span>biases, self<span style="color:#f92672">.</span>weights):
+          z <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(w, activation)<span style="color:#f92672">+</span>b
+          zs<span style="color:#f92672">.</span>append(z)
+          activation <span style="color:#f92672">=</span> sigmoid(z)
+          activations<span style="color:#f92672">.</span>append(activation)
+      <span style="color:#75715e"># backward pass</span>
+      delta <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cost_derivative(activations[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], y) <span style="color:#f92672">*</span> \
+          sigmoid_prime(zs[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+      nabla_b[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> delta
+      nabla_w[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(delta, activations[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>transpose())
+      <span style="color:#75715e"># Note that the variable l in the loop below is used a little</span>
+      <span style="color:#75715e"># differently to the notation in Chapter 2 of the book.  Here,</span>
+      <span style="color:#75715e"># l = 1 means the last layer of neurons, l = 2 is the</span>
+      <span style="color:#75715e"># second-last layer, and so on.  It&#39;s a renumbering of the</span>
+      <span style="color:#75715e"># scheme in the book, used here to take advantage of the fact</span>
+      <span style="color:#75715e"># that Python can use negative indices in lists.</span>
+      <span style="color:#66d9ef">for</span> l <span style="color:#f92672">in</span> xrange(<span style="color:#ae81ff">2</span>, self<span style="color:#f92672">.</span>num_layers):
+          z <span style="color:#f92672">=</span> zs[<span style="color:#f92672">-</span>l]
+          sp <span style="color:#f92672">=</span> sigmoid_prime(z)
+          delta <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(self<span style="color:#f92672">.</span>weights[<span style="color:#f92672">-</span>l<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>transpose(), delta) <span style="color:#f92672">*</span> sp
+          nabla_b[<span style="color:#f92672">-</span>l] <span style="color:#f92672">=</span> delta
+          nabla_w[<span style="color:#f92672">-</span>l] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(delta, activations[<span style="color:#f92672">-</span>l<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>transpose())
+      <span style="color:#66d9ef">return</span> (nabla_b, nabla_w)
+</code></pre></div><h3 id="in-what-sense-is-backpropagation-a-fast-algorithm"><strong>In what sense is backpropagation a fast algorithm?</strong></h3>
+<p>Let&rsquo;s consider another approach, using numerical gradients,<br>
+$$\begin{eqnarray}  \frac{\partial
+C}{\partial w_{j}} \approx \frac{C(w+\epsilon
+e_j)-C(w)}{\epsilon},
+\tag{46}\end{eqnarray}$$</p>
+<p>Gradients for the biases can be computed similarly.</p>
+<p>This looks promising. It&rsquo;s conceptually simple and easy to implement.<br>
+Certainly much more promising than the chain rule to compute the gradient!</p>
+<p>However, turns out it is extremely slow. That&rsquo;s because for each distinct weight $w_j$ we need to compute $C(w+\epsilon e_j)$ in order to compute $\delta C/\delta w_j$.</p>
+<p>That means, if we have a million weights, to compute the gradient, we need to calculate the cost a million different times, requiring a million forward passes through the network.</p>
+<p>Backpropagation enables us to simultaneously calculate <em>all</em> the partial derivatives using just one single forward pass through the network, followed by one backward pass. Which is roughly the same as just two forward passes through the network. And so even though backpropagation appears superficially complex, it is much, much faster.</p>
+<p>But even that speedup was not enough in the early days, and we need some more clever ideas to make deeper networks work.</p>
+<h3 id="backpropagation-the-big-picture"><strong>Backpropagation: the big picture</strong></h3>
+<p>So, we have seen what backprop does, and the steps that it takes. But does that give an intuitive idea of how it does what it does?</p>
+<p>To improve our intuition,<br>
+let&rsquo;s imagine that we&rsquo;ve made a small change $\Delta{w_{jk}^l}$ to some weight in the network.</p>
+<p><img src="../../../../images/nnfordl/backprop6.png" alt="alt"><br>
+That will cause a change in its output activation,<br>
+<img src="../../../../images/nnfordl/backprop7.png" alt="alt"><br>
+which will cause a change in <em>all</em> the activations in the next layer.<br>
+<img src="../../../../images/nnfordl/backprop8.png" alt="alt"><br>
+and it would propagate to the final cost function.<br>
+<img src="../../../../images/nnfordl/backprop9.png" alt="alt"></p>
+<p>This change can also be written mathematically as,<br>
+$$\begin{eqnarray} 
+\Delta C \approx \frac{\partial C}{\partial w^l_{jk}} \Delta w^l_{jk}.
+\tag{47}\end{eqnarray}$$</p>
+<p>This suggests if we propagate the change $\Delta w^l_{jk}$ forward, we should be able to compute $\delta{C}/\delta w^l_{jk}$.</p>
+<p>Let&rsquo;s try that out,<br>
+The change $\Delta w^l_{jk}$ causes a small change $\Delta a_l_j$ in the activation of the $j^{th}$ neuron in the $l^{th}$ layer.<br>
+$$\begin{eqnarray} 
+\Delta a^l_j \approx \frac{\partial a^l_j}{\partial w^l_{jk}} \Delta w^l_{jk}.
+\tag{48}\end{eqnarray}$$</p>
+<p>This will cause change in <em>all</em> the activations in the next layer. We&rsquo;ll concentrate on just a single such activation.<br>
+<img src="../../../../images/nnfordl/backprop10.png" alt="alt"></p>
+<p>Which can be written as,<br>
+$$\begin{eqnarray}
+\Delta a^{l+1}_q \approx \frac{\partial a^{l+1}_q}{\partial a^l_j} \Delta a^l_j.
+\tag{49}\end{eqnarray}$$</p>
+<p>Substituting in $(48)$,<br>
+$$\begin{eqnarray}
+\Delta a^{l+1}<em>q \approx \frac{\partial a^{l+1}<em>q}{\partial a^l_j} \frac{\partial a^l_j}{\partial w^l</em>{jk}} \Delta w^l</em>{jk}.
+\tag{50}\end{eqnarray}$$</p>
+<p>And, following similar patterns, it propagates to the change in final cost $\Delta C$.<br>
+<img src="../../../../images/nnfordl/backprop11.png" alt="alt"></p>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-4/">A visual proof that neural networks can compute any function, Micheal Nelson</a></li>
+        
+            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a></li>
+        
+            <li><a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-3/">Improving the way neural networks learn, Micheal Nelson</a></li>
+        
+            <li><a href="../../../../research/machine-intelligence/nn-for-cv-1/">Neural Networks for Computer Vision</a></li>
+        
+            <li><a href="../../../../research/machine-intelligence/research-ml/">Research Notes:: Deep Learning</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Programming" />
+<meta property="og:description" content="These are some notes." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Programming"/>
+<meta name="twitter:description" content="These are some notes."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/">
+
+    <title>
+      
+        Programming | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../css/style.css' rel="stylesheet">
+
+    <link rel="alternate" type="application/rss&#43;xml" href="https://www.myproductionurl.com/books/programming/index.xml">
+    
+
+        
+    
+
+    
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Programming</li>
+    
+    
+</ol>
+</nav>
+
+
+
+
+
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/the-little-schemer/">The Little Schemer</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2018-05-05">May 5, 2018</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/programming">programming</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/lisp">lisp</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/scheme">scheme</a>
+    
+</div>
+
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../categories/notes">notes</a>
+    
+</div>
+
+
+    </header>
+    The Little Schemer by Friedman, Felleisen
+1. Toys ; Is &#39;x&#39; an atom (define atom? (lambda(x) (and (not (pair? x)) (not (null? x))))) 2. Do It, Do It Again, and Again, and Again&hellip; ; Is &#39;l&#39; a list of atoms (define lat? (lambda(l) (cond ((null? l) #t) ((atom? (car l)) (lat? (cdr l))) (else #f)))) ; Is &#39;a&#39; a member of &#39;lat&#39; (define member? (lambda (a lat) (cond ((null? lat) #f) (else (or (eq?
+    
+    <p></p>
+    <a href="../../books/programming/the-little-schemer/">Read More →</a>
+    
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2018-01-10">Jan 10, 2018</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/game-engine">game-engine</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/graphics">graphics</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/architecture">architecture</a>
+    
+</div>
+
+
+        
+
+    </header>
+    Based on : Game Engine Architecture by Jason Gregory
+All the technology that goes in making a AAA game!!!!
+Foundations Introduction  Industry overview Structure of a Typical Game Team  Engineers Artists Game Designers Producers Other Staff Publishers and Studios   What is a Game??  Video Games as Soft Real-Time Simulations   What is a Game Engine??  Engine Differences across Genres  First-Person Shooter(Quake, Unreal Tournament, Half Life) Platformers and Other Third-Person Games(Gears of War, Dead Space, Red Dead Redemption, Uncharted) Fighting Games(Soul Calliber, Tekken, Fight Night) Racing Games(NFS, Gran Turismo, Mario kart) Real Time Strategy(Warcraft, Starcraft, Command and Conquer, Age of Empires) Massively Multiplayer Online Games(World of Warcraft, Destiny) Player Authored Content(Mods)(Minecraft) Other Games(sports, RPG, puzzle games, social sims, text based!
+    
+    <p></p>
+    <a href="../../books/programming/game-engine-architecture/">Read More →</a>
+    
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/neuralnets/">Neural Networks and Deep Learning, Micheal Nelson</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-09-20">Sep 20, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/deep-learning">deep-learning</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/notes">notes</a>
+    
+</div>
+
+
+        
+
+    </header>
+    Notes for the book.
+Source code for the book.
+ Chapter 1 : Using neural nets to recognize handwritten digits Chapter 2 : How the backpropogation algorithm works Chapter 3 : Improving the way neural networks learn Chapter 4 : A visual proof that neural networks can compute any function Chapter 5 : Why are deep neural networks hard to train? Chapter 6 : Deep Learning Appendix : Is there a simple algorithm for intelligence?
+    
+    <p></p>
+    <a href="../../books/programming/neuralnets/">Read More →</a>
+    
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/fund-comp-graphics/">Fundamentals of Computer Graphics, Peter Shirley</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-08-17">Aug 17, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/graphics">graphics</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/notes">notes</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/programming">programming</a>
+    
+</div>
+
+
+        
+
+    </header>
+    Fundamentals of Computer Graphics : Chapter 1 - 4
+Introduction, Basic Maths, Raster Images and Introduction to Ray Tracing. Fundamentals of Computer Graphics : Chapter 5 - 7
+Linear Algebra, Transformation Matrices and View Transformations Fundamentals of Computer Graphics : Chapter 8 - 9
+The Graphics Pipeline and Signal Processing Fundamentals of Computer Graphics : Chapter 10 - 12
+Surface shading and Texture Mapping Fundamentals of Computer Graphics : Illustrations Fundamentals of Computer Graphics : Chapter 12 - 13
+    
+    <p></p>
+    <a href="../../books/programming/fund-comp-graphics/">Read More →</a>
+    
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/notes-on-opengl/">Notes On Opengl</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-08-09">Aug 9, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/graphics">graphics</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/opengl">opengl</a>
+    
+</div>
+
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../categories/notes">notes</a>
+    
+</div>
+
+
+    </header>
+    Starter notes on OpenGL/Transformations
+Transformations Translation : (x, y, z)
+$$ \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; x \\
+0 &amp; 1 &amp; 0 &amp; y \\
+0 &amp; 0 &amp; 1 &amp; z \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} $$
+Scale : (x, y, z) $$ \begin{bmatrix}
+x &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; y &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; z &amp; 0 \\
+    
+    <p></p>
+    <a href="../../books/programming/notes-on-opengl/">Read More →</a>
+    
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/ele/">Elements Of Statistical Learning by Trevor Hastie, Robert Tibshirani, Jerome Friedman</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-08-08">Aug 8, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+
+        
+
+    </header>
+    
+    
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/head-first-design-patterns/">Head First Design Patterns</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-05-09">May 9, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/notes">notes</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/design">design</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../tags/programming">programming</a>
+    
+</div>
+
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../categories/books">books</a>
+    
+</div>
+
+
+    </header>
+    Strategy Pattern  Defines a family of algorithms, encapsulates each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.  Observer Pattern  Defines one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated.  Decorator Pattern  Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for existing functionality. Java IO classes  Factory Method Pattern  Defines an interface for creating an object, but lets subclasses decide which class to instantiate.
+    
+    <p></p>
+    <a href="../../books/programming/head-first-design-patterns/">Read More →</a>
+    
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/algorithms-dasgupta/">Algorithms by Das Gupta</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+
+        
+
+    </header>
+    
+    
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../books/programming/algorithms-design-manual/">Algorithms Design Manual</a>
+</h2>
+
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+        
+
+        
+
+    </header>
+    
+    
+</article>
+
+    
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

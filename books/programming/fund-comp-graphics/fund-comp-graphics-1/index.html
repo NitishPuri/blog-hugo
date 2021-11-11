@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 1" />
+<meta property="og:description" content="Chapter 1: Introduction Graphics Areas Core areas:
+ Modeling Rendering Animation  Other related ares:
+ User interaction Virtual reality Visualization Image processing 3D scanning Computational photography  Major Applications  Video Games Cartoons Visual Effects Animated Films CAD/CAM Simulation Medical Imaging Information visualization  Graphics API&rsquo;s Need to deal with at least two different API&rsquo;s : Graphics API and a User Interface API
+Graphics Pipeline A special software/hardware subsystem that efficiently draws 3D primitives in perspective." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-1/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 1"/>
+<meta name="twitter:description" content="Chapter 1: Introduction Graphics Areas Core areas:
+ Modeling Rendering Animation  Other related ares:
+ User interaction Virtual reality Visualization Image processing 3D scanning Computational photography  Major Applications  Video Games Cartoons Visual Effects Animated Films CAD/CAM Simulation Medical Imaging Information visualization  Graphics API&rsquo;s Need to deal with at least two different API&rsquo;s : Graphics API and a User Interface API
+Graphics Pipeline A special software/hardware subsystem that efficiently draws 3D primitives in perspective."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-1/">
+
+    <title>
+      
+        Fundamentals of Computer Graphics, Peter Shirley, Part 1 | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/">Fundamentals of Computer Graphics, Peter Shirley</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Fundamentals of Computer Graphics, Peter Shirley, Part 1</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-1/">Fundamentals of Computer Graphics, Peter Shirley, Part 1</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-08-17">Aug 17, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-1-introduction">Chapter 1: Introduction</a>
+      <ul>
+        <li><a href="#graphics-areas">Graphics Areas</a></li>
+        <li><a href="#major-applications">Major Applications</a></li>
+        <li><a href="#graphics-apis">Graphics API&rsquo;s</a></li>
+        <li><a href="#graphics-pipeline">Graphics Pipeline</a></li>
+        <li><a href="#numerical-issues">Numerical Issues</a></li>
+        <li><a href="#efficiency">Efficiency</a></li>
+        <li><a href="#designing-and-coding-graphics-programs">Designing and Coding Graphics programs</a></li>
+      </ul>
+    </li>
+    <li><a href="#chapter-2--miscellaneousmath">Chapter 2 : Miscellaneous Math</a>
+      <ul>
+        <li><a href="#sets-and-mappings">Sets and Mappings</a></li>
+        <li><a href="#quadratic-equations">Quadratic Equations</a></li>
+        <li><a href="#trigonometry">Trigonometry</a></li>
+        <li><a href="#vectors">Vectors</a></li>
+        <li><a href="#curves-and-surfaces">Curves and surfaces</a></li>
+        <li><a href="#linear-interpolation">Linear interpolation</a></li>
+        <li><a href="#triangles">Triangles</a></li>
+      </ul>
+    </li>
+    <li><a href="#chapter-3-raster-images">Chapter 3: Raster Images</a>
+      <ul>
+        <li><a href="#raster-devices">Raster Devices</a></li>
+        <li><a href="#images-pixels-and-geometry">Images, Pixels and Geometry</a></li>
+        <li><a href="#rgb-color">RGB Color</a></li>
+        <li><a href="#alpha-compositing">Alpha Compositing</a></li>
+      </ul>
+    </li>
+    <li><a href="#chapter-4--ray-tracing">Chapter 4 : Ray Tracing</a>
+      <ul>
+        <li><a href="#basic-ray-tracing-algorithm">Basic ray tracing algorithm</a></li>
+        <li><a href="#perspective">Perspective</a></li>
+        <li><a href="#computing-viewing-rays">Computing Viewing Rays</a></li>
+        <li><a href="#ray-object-intersection">Ray Object Intersection</a></li>
+        <li><a href="#shading">Shading</a></li>
+        <li><a href="#a-ray-tracing-program">A Ray tracing program</a></li>
+        <li><a href="#shadows">Shadows</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="chapter-1-introduction">Chapter 1: Introduction</h2>
+<h3 id="graphics-areas">Graphics Areas</h3>
+<p>Core areas:</p>
+<ul>
+<li>Modeling</li>
+<li>Rendering</li>
+<li>Animation</li>
+</ul>
+<p>Other related ares:</p>
+<ul>
+<li>User interaction</li>
+<li>Virtual reality</li>
+<li>Visualization</li>
+<li>Image processing</li>
+<li>3D scanning</li>
+<li>Computational photography</li>
+</ul>
+<h3 id="major-applications">Major Applications</h3>
+<ul>
+<li>Video Games</li>
+<li>Cartoons</li>
+<li>Visual Effects</li>
+<li>Animated Films</li>
+<li>CAD/CAM</li>
+<li>Simulation</li>
+<li>Medical Imaging</li>
+<li>Information visualization</li>
+</ul>
+<h3 id="graphics-apis">Graphics API&rsquo;s</h3>
+<p>Need to deal with at least two different API&rsquo;s : Graphics API and a User Interface API</p>
+<h3 id="graphics-pipeline">Graphics Pipeline</h3>
+<p>A special software/hardware subsystem that efficiently draws 3D primitives in perspective.
+Usually optimized for processing triangles with shared vertices.<br>
+Basic operations map 3D vertex locations to 2D screen positions and shade the triangles so that they both look realistic and appear in proper back to front order.</p>
+<p>Although drawing from back to front was once one of the most challenging research issues in <em>Computer Graphics</em>, now it is almost always solved by <em>z-buffer</em>.</p>
+<p>It turns out that the geometric manipulation used in the graphics pipeline can be accomplished almost entirely in a 4D coordinate space composed of three traditional geometric coordinates and a fourth <em>homogeneous coordinate</em> that helps with perspective viewing. These 4D vectors are manipulated using 4 X 4 matrices and 4-vectors. The pipeline, therefore consists of machinery for effectively processing and composing such matrices and vectors.<br>
+This 4D coordinate system is certainly the biggest intellectual hurdle to jump when first learning computer graphics.</p>
+<h3 id="numerical-issues">Numerical Issues</h3>
+<p>IEEE Floating point standards, allows programmer to make many convenient assumptions about numeric conditions to be handled.</p>
+<p>Three special values: infinity, -infinity and NaN</p>
+<h3 id="efficiency">Efficiency</h3>
+<p>There are no magic rules&hellip;</p>
+<ul>
+<li>Write the code in a straightforward way. Compute results on the fly.</li>
+<li>Compile in optimized code.</li>
+<li>Use profiling tools to find bottlenecks</li>
+<li>Examine data structures to look for ways to improve locality. If possible make data unit sizes match to cache/page size on the target architecture.</li>
+<li>If profiling reveals bottleneck in computations, examine the assembly code generated by the compiler. rewrite the source code to solve any problems.</li>
+</ul>
+<h3 id="designing-and-coding-graphics-programs">Designing and Coding Graphics programs</h3>
+<p><em>Class Design</em>, vector2, vector3, hvector, rgb, transform, image,</p>
+<p><em>Float vs Double</em>,</p>
+<p><em>Debugging Graphics Programs</em>,</p>
+<p><em>The Scientific method</em>, Look at the output, develop a  hypothesis, test it, fix it.<br>
+<em>Images as coded debugging output</em>,<br>
+<em>Data visualization for debugging</em></p>
+<h2 id="chapter-2--miscellaneousmath">Chapter 2 : Miscellaneous Math</h2>
+<p>The cleaner the math, The cleaner the code.</p>
+<h3 id="sets-and-mappings">Sets and Mappings</h3>
+<p><em>Mappings</em> as in Functions.</p>
+<p>Cartesian product, Common sets and notations such as real numbers, non-negative real numbers, ordered pairs in real 2D plane, points in n-dimensional Cartesian space, integers, the set of 3D points on the unit sphere.</p>
+<p>Inverse mappings and bisections.</p>
+<p>Intervals, open and closed,<br>
+set operations on intervals.</p>
+<p>Logarithms.</p>
+<h3 id="quadratic-equations">Quadratic Equations</h3>
+<h3 id="trigonometry">Trigonometry</h3>
+<p>Angles, Trigonometric functions, Pythagorean theorem, polar coordinates.<br>
+<em>Useful identities</em>, Shifting identities, Pythagorean identities, Addition and subtraction identities, half-angle identities, product indentions, Law of sines, cosines and tangents, area of triangle.</p>
+<h3 id="vectors">Vectors</h3>
+<p>A vector describes a length and a direction.</p>
+<p>Vector operations,  Cartesian coordinates.</p>
+<p>Dot product, cross product.</p>
+<p>Orthogonal bases and coordinate frames.</p>
+<h3 id="curves-and-surfaces">Curves and surfaces</h3>
+<p>2D Implicit curves, Gradient, derivatives.</p>
+<p>Implicit lines, curves,</p>
+<p>3D surfaces, surface normal, planes, 3D Quadric surfaces.</p>
+<p>2D Parametric curves, 3D parametric curves</p>
+<h3 id="linear-interpolation">Linear interpolation</h3>
+<h3 id="triangles">Triangles</h3>
+<p>Barycentric coordinates, 2D triangles, 3D triangles.</p>
+<h2 id="chapter-3-raster-images">Chapter 3: Raster Images</h2>
+<p>Pixel : Picture element</p>
+<p>Raster is just a 2D array of pixels.</p>
+<p>Images can also be in vector format. Such images are resolution independent and are used where precession is important and photographic images and complex shading is not needed.</p>
+<h3 id="raster-devices">Raster Devices</h3>
+<ul>
+<li>Output
+<ul>
+<li>Display
+<ul>
+<li>Transmissive: Liquid Crystal Display(LCD)</li>
+<li>Emissive : Light Emitting Diode (LED)</li>
+</ul>
+</li>
+<li>Hardcopy
+<ul>
+<li>Binary : Ink-jet</li>
+<li>Continuous tone : Dye sublimation printer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Input
+<ul>
+<li>2D array sensor : digital camera</li>
+<li>iD array sensor : flatbed scanner</li>
+</ul>
+</li>
+</ul>
+<p><strong>Displays</strong></p>
+<p><em>Emissive :</em> Use pixels that directly emit controllable amounts of light.<br>
+<em>Transmissive :</em> Requires a light source to illuminate them. Generally a backlight in case of LCD, or a lamp in case of a projector.</p>
+<p>Screen resolution.</p>
+<p><strong>Hardcopy Devices</strong></p>
+<p>Ink jet printer, thermal dye transfer, pixel density</p>
+<p><strong>Input Devices</strong></p>
+<p>Camera, Scanner</p>
+<h3 id="images-pixels-and-geometry">Images, Pixels and Geometry</h3>
+<p>Image as a function(mapping) from coordinate space to pixel value.</p>
+<p><strong>Pixel Values :</strong><br>
+Pixel value ranges and different image formats like</p>
+<ul>
+<li><em>1-bit grayscale :</em> text and other images where intermediate grays are not desired (high resolution required);</li>
+<li><em>8-bit RGB fixed-range color (24 bits total per pixel) :</em>  web and email applications, consumer photographs;</li>
+<li><em>8- or 10-bit fixed-range RGB (24–30 bits/pixel) :</em> digital interfaces to computer displays;</li>
+<li><em>12- to 14-bit fixed-range RGB (36–42 bits/pixel) :</em> raw camera images for professional photography;</li>
+<li><em>16-bit fixed-range RGB (48 bits/pixel) :</em> professional photography and printing; intermediate format for image processing of fixed-range images;</li>
+<li><em>16-bit fixed-range grayscale (16 bits/pixel) :</em> radiology and medical imaging;</li>
+<li><em>16-bit “half-precision” floating-point RGB :</em> HDR images; intermediate format for real-time rendering;</li>
+<li><em>32-bit floating-point RGB :</em> general-purpose intermediate format for software rendering and processing of HDR images.</li>
+</ul>
+<p><strong>Resulting artifacts</strong>,</p>
+<ul>
+<li><em>Clipping:</em> When pixels that would otherwise be brighter than the maximum value set are clipped too the maximum value.</li>
+<li>Quantization/Banding:* When formats with fixed precession are used, it causes visible jumps in intensity or color.</li>
+</ul>
+<p><strong>Monitor intensities and Gamma</strong></p>
+<p>displayed intensity = (maximum intensity)$\alpha_{\gamma}$,</p>
+<h3 id="rgb-color">RGB Color</h3>
+<p><img src="../../../../images/fundcg/3_color.png" alt="alt"> <br>
+<img src="../../../../images/fundcg/3_color2.png" alt="alt"></p>
+<h3 id="alpha-compositing">Alpha Compositing</h3>
+<p>Blending for partially covering pixels and transparent pixes.</p>
+<p><strong>Image Storage</strong></p>
+<p>lossless vs lossy formats.</p>
+<ul>
+<li><em>jpeg :</em> lossy, compresses based on thresholds in human visual system. Works well for natural images.</li>
+<li><em>tiff :</em> binary images, lossless compressed, 8 or 16 bit RGB</li>
+<li><em>ppm :</em> lossless, uncompressed, 8-bit RGB,</li>
+<li><em>png :</em> set of lossless formats, good set of open source management tools.</li>
+</ul>
+<h2 id="chapter-4--ray-tracing">Chapter 4 : Ray Tracing</h2>
+<p><strong>Rendering</strong><br>
+rendering is a process that takes as its input a set of objects and produces as its output an array of pixels.</p>
+<p>Image-order vs Object-order rendering.</p>
+<p>Ray tracing is an image-order algorithm.</p>
+<h3 id="basic-ray-tracing-algorithm">Basic ray tracing algorithm</h3>
+<p>A basic ray tracer has three parts:</p>
+<ol>
+<li><em>ray generation,</em> which computes the origin and direction of each pixel’s viewing ray based on the camera geometry;</li>
+<li><em>ray intersection,</em> which finds the closest object intersecting the viewing ray;</li>
+<li><em>shading,</em> which computes the pixel color based on the results of ray intersection.</li>
+</ol>
+<p>$$\bbox { \mbox{for each pixel:}\<br>
+\quad  \mbox{compute viewing ray} \<br>
+\quad   \mbox{find first object hit by ray and its surface normal n} \<br>
+\mbox{set pixel color to value computed from hit point, light, and n} }
+$$</p>
+<h3 id="perspective">Perspective</h3>
+<p><img src="../../../../images/fundcg/4_persp1.png" alt="alt"> <br>
+<img src="../../../../images/fundcg/4_persp2.png" alt="alt"> <br>
+<img src="../../../../images/fundcg/4_persp3.png" alt="alt"></p>
+<h3 id="computing-viewing-rays">Computing Viewing Rays</h3>
+<p>The Viewpoint and the image plane.<br>
+<img src="../../../../images/fundcg/4_persp4.png" alt="alt"></p>
+<h3 id="ray-object-intersection">Ray Object Intersection</h3>
+<p>Ray-Sphere intersection:<br>
+Ray-triangle intersections: Using barycentric coordinates.<br>
+<img src="../../../../images/fundcg/4_persp5.png" alt="alt"></p>
+<p>Ray-polygon intersection:<br>
+Ray-object intersection:</p>
+<h3 id="shading">Shading</h3>
+<p>A shading model.</p>
+<h4 id="lambertian-shading">Lambertian Shading</h4>
+<p><img src="../../../../images/fundcg/4_shading1.png" alt="alt"></p>
+<h4 id="blinn-phong-shading">Blinn-Phong shading</h4>
+<p>Lambertian shading is view independent. It does not have specular reflections that many surfaces have.</p>
+<p><img src="../../../../images/fundcg/4_shading2.jpg" alt="alt"> <br>
+<img src="../../../../images/fundcg/4_shading3.png" alt="alt"></p>
+<p>$$ \begin{array}1 \mathbf{h} &amp;=&amp;  \frac{\mathbf{v} + \mathbf{l}}{||\mathbf{v} + \mathbf{l}||}, \<br>
+L &amp;=&amp; k_dI\mbox{max}(0, \mathbf{n\cdot l}) + k_sI\mbox{max}(0, \mathbf{n\cdot h})^p\end{array},\ \text{where},  \ , \ \begin{array}2 h &amp;=&amp; \mbox{half vector.} \ k_d &amp;=&amp; \mbox{diffuse coefficient, surface color} \ k_s &amp;=&amp; \mbox{specular coefficient, or specular color} \ I &amp;=&amp; \mbox{light intensity} \ L &amp;=&amp; \mbox{pixel color} \ p &amp;=&amp; \mbox{Phong exponent, (typical values, 10-eggshell, 100 - mildly shiny, 1000 - really glossy, 10000-nearly mirror like)} \end{array}$$</p>
+<h4 id="ambient-shading">Ambient Shading</h4>
+<p>$$ L = k_aI_a + k_d I \mbox{max}(0, \mathbf{n \cdot l}) + k_s I \mbox{max}(0, \mathbf{n \cdot h})^p,\ \text{where}, \ 
+k_a = \mbox{Ambient coefficient of the surface, or &ldquo;ambient color&rdquo;} \ 
+I_a = \mbox{Ambient light intensity}$$</p>
+<h4 id="multiple-point-lights">Multiple Point Lights</h4>
+<p><em>Superposition</em> - the effect caused by more than one light source is simply the sum of the effects of the light sources individually.</p>
+<p>$$ L = k_aI_a + \sum_{i=1}^N[k_d I_i \mbox{max}(0, \mathbf{n \cdot l}_i) + k_s I_i \mbox{max}(0, \mathbf{n \cdot h}_i)^p ] $$</p>
+<h3 id="a-ray-tracing-program">A Ray tracing program</h3>
+<p>$$\bbox { \mbox{for each pixel:}\<br>
+\quad  \mbox{compute viewing ray} \<br>
+\quad   \mbox{if (ray hits an object with } t \in [0, \infty)) \text
+{ then} \<br>
+\quad \quad \mbox{ Compute}, \mathbf{n} \<br>
+\quad \quad \mbox{ Evaluate shading model and set pixel to that color } \<br>
+\quad  \mbox{else} \<br>
+\quad \quad \mbox{set pixel color to background color} }
+$$</p>
+<p><strong>Object oriented design for a Ray-tracing program</strong><br>
+Some discussion on Surface class, hit method, bounding box and Material class.</p>
+<h3 id="shadows">Shadows</h3>
+<p><img src="../../../../images/fundcg/4_shadows1.png" alt="alt">
+<img src="../../../../images/fundcg/4_shadows2.png" alt="alt"></p>
+<p>$$\bbox{ \mathbf{function} ;raycolor;(\text{ray } \mathbf{e} + t\mathbf{d}, \text{real }t_0, \text{real } t_1)\<br>
+\text{hit-record}; rec,,srec\ 
+\mathbf{if} (scene\rightarrow hit(\mathbf{e} + t\mathbf{d}, t_0, t_1, rec)) \mathbf{then} \<br>
+\quad  \mathbf{p} = \mathbf{e} + (rec.t)\mathbf{d}\<br>
+\quad \text{colot} c = rec.k_a\cdot I_a\<br>
+\quad \quad \mathbf{if} (not; scene\rightarrow hit(\mathbf{p} + s\mathbf{l}, \infty, srec)) \mathbf{then} \<br>
+\quad \quad  \text{vector3 } \mathbf{h} = normalized(normalized(\mathbf{l}) + normalized(\mathbf{-d})) \<br>
+\quad \quad  c = c + rec.k_d I \text{max}(0 , rec.\mathbf{n\cdot l}) + (rec.k_s)I(rec.\mathbf{n\cdot h})_{rec.p}\<br>
+\quad \mathbf{return } ; c\<br>
+\mathbf{else} \<br>
+\quad \mathbf{return }; \text{background-color} }
+$$</p>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-2/">Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-3/">Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-4/">Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-5/">Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-6/">Fundamentals of Computer Graphics, Peter Shirley, Part 6</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

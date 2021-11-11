@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Algorithms by DasGupta, Part1" />
+<meta property="og:description" content="Chapter 0: Prologue  Books and algorithms  Ideas that changed the world. Widespread use of decimal system.   Enter Fibonacci  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...., Also, $F_n = F_{n-1} &#43; F_{n-2}$ And, $F_n ≈ 2^{0.694n}$ A naive implementation , with no caching of values.., fib1  Runtime &ndash;&gt; $T(n) &gt;= F_n$, exponential in n   Can We Do Better,&hellip;.? A Polynomial algorithm&hellip;, fib2  A loop based algorithm that remembers previous values in an array." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms1/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-08-19T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Algorithms by DasGupta, Part1"/>
+<meta name="twitter:description" content="Chapter 0: Prologue  Books and algorithms  Ideas that changed the world. Widespread use of decimal system.   Enter Fibonacci  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...., Also, $F_n = F_{n-1} &#43; F_{n-2}$ And, $F_n ≈ 2^{0.694n}$ A naive implementation , with no caching of values.., fib1  Runtime &ndash;&gt; $T(n) &gt;= F_n$, exponential in n   Can We Do Better,&hellip;.? A Polynomial algorithm&hellip;, fib2  A loop based algorithm that remembers previous values in an array."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms1/">
+
+    <title>
+      
+        Algorithms by DasGupta, Part1 | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/">Algorithms by Das Gupta</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Algorithms by DasGupta, Part1</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-dasgupta/algorithms1/">Algorithms by DasGupta, Part1</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-08-19">Aug 19, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-0-prologue">Chapter 0: Prologue</a></li>
+    <li><a href="#chapter-1-algorithms-with-numbers">Chapter 1: Algorithms with Numbers</a>
+      <ul>
+        <li><a href="#basic-arithmetic">Basic Arithmetic</a></li>
+        <li><a href="#modular-arithmetic">Modular Arithmetic</a></li>
+        <li><a href="#cryptography">Cryptography</a></li>
+        <li><a href="#universal-hashing">Universal Hashing</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="chapter-0-prologue">Chapter 0: Prologue</h2>
+<ul>
+<li>Books and algorithms
+<ul>
+<li>Ideas that changed the world.</li>
+<li>Widespread use of decimal system.</li>
+</ul>
+</li>
+<li>Enter Fibonacci
+<ul>
+<li><code>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ....,</code></li>
+<li>Also, $F_n = F_{n-1} + F_{n-2}$</li>
+<li>And, $F_n ≈ 2^{0.694n}$</li>
+<li>A naive implementation , with no caching of values.., <code>fib1</code>
+<ul>
+<li>Runtime &ndash;&gt; $T(n) &gt;= F_n$, exponential in n</li>
+</ul>
+</li>
+<li>Can We Do Better,&hellip;.?</li>
+<li>A Polynomial algorithm&hellip;, <code>fib2</code>
+<ul>
+<li>A loop based algorithm that remembers previous values in an array.</li>
+<li>Polynomial running time.</li>
+</ul>
+</li>
+<li>More Careful Analysis
+<ul>
+<li>What about addition of numbers Fibonacci values for large n.</li>
+<li>Adding two n-bit integers take time ~ n.</li>
+<li>So, $fib1 ≈  n.Fn$</li>
+<li>And, $fib2 ≈ n^2$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Big-O</strong> notation
+<ul>
+<li>Right simplification of the analysis.</li>
+<li>Leave behind the lower order terms.</li>
+<li>General rules :
+<ul>
+<li>Multiplicative constants can be omitted.</li>
+<li>$n^a$ dominates $n^b, if a &gt; b$</li>
+<li>Any exponential dominates any polynomial. $a^n$ dominates  $n^b$</li>
+<li>Likewise, any polynomial dominates any logarithm. $n$ dominates $log(n)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Exercise 0.4<br>
+<img src="../../../../images/algdg/0_fib.png" alt="0_fib">
+<ul>
+<li>So now $F_n$ can be computed by calculating $X^n$ where $X$ is the square matrix.</li>
+<li>So, $Fn = O(log n)$</li>
+<li>But then, with careful analysis,
+<ul>
+<li>Multiplication of large n-bit numbers $≈ O(n^2)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="chapter-1-algorithms-with-numbers">Chapter 1: Algorithms with Numbers</h2>
+<p>Two ancient problems:<br>
+<strong>Factoring</strong> : Given a number N, express it as a product of its prime factors. <em>Hard</em><br>
+<strong>Primality</strong> : Given a number N, determine whether it is a prime. <em>Easy</em></p>
+<h3 id="basic-arithmetic">Basic Arithmetic</h3>
+<p><img src="../../../../images/algdg/1_base.png" alt="alt"></p>
+<ul>
+<li><em>Addition</em><br>
+The sum of any three single-digit numbers is at most two digits long.<br>
+Given two binary numbers x and y, how does our algorithm take to add them?<br>
+Depends on size of input, number of bits in x and y.<br>
+Running time $= O(n), n =$ number of bits in the numbers.<br>
+Is there anything faster? No..<br>
+About word length and large numbers</li>
+<li><strong>Multiplication and Division</strong><br>
+To multiply <code>x</code> and <code>y</code>, create an array of intermediate sums, each representing the product of <code>x</code> by a single digit if <code>y</code>. These values are appropriately left shifted and added up.
+<ul>
+<li>
+<p>Running time = Addition of n numbers of n-bits length
+= $(n-1).O(n)$
+= $O(n^2)$</p>
+</li>
+<li>
+<p>Another fascinating algorithm for multiplication:<br>
+<img src="../../../../images/algdg/1_mult.png" alt="alt">
+<img src="../../../../images/algdg/1_mult2.png" alt="alt"><br>
+However, running time = $O(n^2)$ , n = number of bits.<br>
+<img src="../../../../images/algdg/1_div.png" alt="alt"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="modular-arithmetic">Modular Arithmetic</h3>
+<p>$$x \equiv y \pmod N  \Leftrightarrow  N divides (x - y)$$</p>
+<ul>
+<li>
+<p>Modular arithmetic is a system for dealing with restricted ranges of integers.</p>
+</li>
+<li>
+<p>Another interpretation is that modular arithmetic deals with all the integers, but divides into N equivalence classes, each of the form ${i+kN:k\in \mathbb Z},  i \in [0, N-1]$.<br>
+<img src="../../../../images/algdg/1_subs.png" alt="alt"><br>
+<img src="../../../../images/algdg/1_comp.png" alt="alt"></p>
+</li>
+<li>
+<p><strong>Modular addition and multiplication</strong><br>
+To <code>add</code> two numbers <em>x</em> and <em>y</em> modulo <em>N</em>, we start with regular addition. Since <em>x</em> and <em>y</em> are both in the range <em>0</em> to <em>N - 1</em>, their sum is in the range <em>0</em> to <em>2(N-1)</em>. If the sum exceeds <em>N-1</em>, we merely need to subtract off <em>N</em> to bring it back to required range. So, running time $= O(n), n = log N$.</p>
+<p>To <code>multiply</code> two mod N numbers x and y, do regular multiplication, reduce the answer to modulo N. The product can be as large as $(N-1)^2$, at most 2n bits large. Need to compute the remainder using quadratic time division algorithm. Multiplication thus remains quadratic.</p>
+<p><code>Division</code>, however is tricky, whenever legal, it can be managed in quadratic time.</p>
+</li>
+<li>
+<p><strong>Modular exponentiation</strong><br>
+We want to compute $x^y \pmod N$.<br>
+<img src="../../../../images/algdg/1_modex.png" alt="alt"><br>
+Let <em>n</em> be the size(bits) of <em>x, y and N</em>. As with multiplication, the algorithm will halt after at most <em>n</em> recursive calls, and during each call it multiplies n-bit numbers, for a total running time of $O(n^3)$.</p>
+</li>
+<li>
+<p><strong>Euclid&rsquo;s algorithm for G.C.D</strong><br>
+<img src="../../../../images/algdg/1_gcd.png" alt="alt"><br>
+<strong>Eculid&rsquo;s rule :</strong> If x and y are positive integers with $x &gt;= y$ , then $gcd(x, y) = gcd(x \pmod y, y)$.<br>
+Also, if $a &gt; b$, then $a \pmod b &lt; a/2$.<br>
+This means after any two consecutive iterations, both arguments are at the very least reduced to half.If they are initially n-bit, base case will be reached in at most <em>2n</em> recursive calls. And each call involves a quadratic-time division. Running time $= O(n^3)$.</p>
+</li>
+<li>
+<p><strong>An extension to Euclid&rsquo;s algorithm</strong>
+A small extension to Euclid&rsquo;s algorithm is the key to dividing in the modular world. <br>
+<img src="../../../../images/algdg/1_gcd2.png" alt="alt"></p>
+</li>
+<li>
+<p><strong>Modular division</strong><br>
+<em>x</em> is the <em>multiplicative inverse</em> of <em>a modulo N</em>, if $ax == 1 \pmod N$   <br>
+If $gcd(a,N) &gt; 1 , \Rightarrow ax \neq 1 \pmod N  \forall x$, and therefor <em>a</em> cannot have a multiplicative inverse <em>modulo N</em>.<br>
+When $gcd(a, N) = 1$, we say <em>a</em> and <em>N</em> are <em>relatively prime</em>.<br>
+The extended Euclid&rsquo;s algorithm gives us integers <em>x</em> and <em>y</em> such that $ax + Ny = 1$, which means $ax \equiv 1 (mod N)$ . Thus x is a&rsquo;s sought <em>inverse</em>.</p>
+</li>
+</ul>
+<p><strong>Modular Division Theorem</strong> , <code>a</code> has multiplicative inverse modulo <code>N</code>, if and only if they are relatively prime, and it can be found by running extended Euclid theorem in time $O(n^3)$.<br>
+<img src="../../../../images/algdg/1_isprime.png" alt="alt"></p>
+<ul>
+<li><strong>Primality Testing</strong><br>
+<img src="../../../../images/algdg/1_fermat.png" alt="alt"><br>
+<img src="../../../../images/algdg/1_isprime2.png" alt="alt"><br>
+Here the theorem does not say anything about what happens if number is not prime.<br>
+In fact, for some composite numbers, <em>Pr(Algorithm returns yes when N is not prime) &lt;= 1/2</em>
+We can thus choose <em>k</em> different random integers to test for primality testing, reducing Pr to $1/2^k$.
+<ul>
+<li><strong>Generating random primes</strong><br>
+<img src="../../../../images/algdg/1_lgprime.png" alt="alt"><br>
+Due to such abundance of prime numbers, prime number generation is easy.
+<ul>
+<li>Generate a random n-bit number.</li>
+<li>Check for primality.</li>
+<li>If not prime, repeat the process.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="cryptography">Cryptography</h3>
+<p><em>Rivest-Shamir-Adelman(RSA)</em> : Blabber about private key and public key systems.</p>
+<ul>
+<li><em>Private-key schemes: one time pad and AES</em></li>
+<li><em>RSA</em><br>
+Public key cryptography<br>
+Based heavily upon number theory.<br>
+<img src="../../../../images/algdg/1_rsa1.png" alt="alt"><br>
+<img src="../../../../images/algdg/1_rsa3.png" alt="alt"><br>
+<img src="../../../../images/algdg/1_rsa2.png" alt="alt"></li>
+</ul>
+<h3 id="universal-hashing">Universal Hashing</h3>
+<ul>
+<li><strong>Hash Tables</strong>
+Give a <code>key</code> to any <code>value</code>.<br>
+<em>Hash function :</em> How to define the mapping between <code>key</code> and <code>value</code>.</li>
+<li><strong>Families of Hash Functions</strong><br>
+<img src="../../../../images/algdg/1_hash1.png" alt="alt"><br>
+<img src="../../../../images/algdg/1_hash2.png" alt="alt"><br>
+<img src="../../../../images/algdg/1_hash3.png" alt="alt"></li>
+</ul>
+<p>A family of hash functions with this property is called <em>universal</em> .</p>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-dasgupta/algorithms2/">Algorithms by DasGupta, Part 2</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

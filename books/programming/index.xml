@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on Blog - Nitish Puri</title>
+    <link>https://www.myproductionurl.com/books/programming/</link>
+    <description>Recent content in Programming on Blog - Nitish Puri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://www.myproductionurl.com/books/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Little Schemer</title>
+      <link>https://www.myproductionurl.com/books/programming/the-little-schemer/</link>
+      <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/the-little-schemer/</guid>
+      <description>The Little Schemer by Friedman, Felleisen
+1. Toys ; Is &amp;#39;x&amp;#39; an atom (define atom? (lambda(x) (and (not (pair? x)) (not (null? x))))) 2. Do It, Do It Again, and Again, and Again&amp;hellip; ; Is &amp;#39;l&amp;#39; a list of atoms (define lat? (lambda(l) (cond ((null? l) #t) ((atom? (car l)) (lat? (cdr l))) (else #f)))) ; Is &amp;#39;a&amp;#39; a member of &amp;#39;lat&amp;#39; (define member? (lambda (a lat) (cond ((null? lat) #f) (else (or (eq?</description>
+    </item>
+    
+    <item>
+      <title>Game Engine Architecture</title>
+      <link>https://www.myproductionurl.com/books/programming/game-engine-architecture/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/game-engine-architecture/</guid>
+      <description>Based on : Game Engine Architecture by Jason Gregory
+All the technology that goes in making a AAA game!!!!
+Foundations Introduction  Industry overview Structure of a Typical Game Team  Engineers Artists Game Designers Producers Other Staff Publishers and Studios   What is a Game??  Video Games as Soft Real-Time Simulations   What is a Game Engine??  Engine Differences across Genres  First-Person Shooter(Quake, Unreal Tournament, Half Life) Platformers and Other Third-Person Games(Gears of War, Dead Space, Red Dead Redemption, Uncharted) Fighting Games(Soul Calliber, Tekken, Fight Night) Racing Games(NFS, Gran Turismo, Mario kart) Real Time Strategy(Warcraft, Starcraft, Command and Conquer, Age of Empires) Massively Multiplayer Online Games(World of Warcraft, Destiny) Player Authored Content(Mods)(Minecraft) Other Games(sports, RPG, puzzle games, social sims, text based!</description>
+    </item>
+    
+    <item>
+      <title>Notes On Opengl</title>
+      <link>https://www.myproductionurl.com/books/programming/notes-on-opengl/</link>
+      <pubDate>Wed, 09 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/notes-on-opengl/</guid>
+      <description>Starter notes on OpenGL/Transformations
+Transformations Translation : (x, y, z)
+$$ \begin{bmatrix}
+1 &amp;amp; 0 &amp;amp; 0 &amp;amp; x \\
+0 &amp;amp; 1 &amp;amp; 0 &amp;amp; y \\
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; z \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1
+\end{bmatrix} $$
+Scale : (x, y, z) $$ \begin{bmatrix}
+x &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; y &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; z &amp;amp; 0 \\</description>
+    </item>
+    
+    <item>
+      <title>Head First Design Patterns</title>
+      <link>https://www.myproductionurl.com/books/programming/head-first-design-patterns/</link>
+      <pubDate>Tue, 09 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/head-first-design-patterns/</guid>
+      <description>Strategy Pattern  Defines a family of algorithms, encapsulates each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.  Observer Pattern  Defines one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated.  Decorator Pattern  Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for existing functionality. Java IO classes  Factory Method Pattern  Defines an interface for creating an object, but lets subclasses decide which class to instantiate.</description>
+    </item>
+    
+  </channel>
+</rss>

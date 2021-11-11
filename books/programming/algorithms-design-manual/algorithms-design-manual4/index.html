@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="The Algorithms Design Manual, Combinatorial Problems" />
+<meta property="og:description" content="Combinatorial Problems Check out Numerical Recipes
+Whats different?
+ Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written.  Sorting Input description: A set of $n$ items. Problem description: Arrange the items in increasing (or decreasing) order.
+ The most fundamental algorithmic problem in computer science." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-10-04T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="The Algorithms Design Manual, Combinatorial Problems"/>
+<meta name="twitter:description" content="Combinatorial Problems Check out Numerical Recipes
+Whats different?
+ Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge. Extensive Libraries of Code. There is no reason to not to use all thats already written.  Sorting Input description: A set of $n$ items. Problem description: Arrange the items in increasing (or decreasing) order.
+ The most fundamental algorithmic problem in computer science."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/">
+
+    <title>
+      
+        The Algorithms Design Manual, Combinatorial Problems | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/">Algorithms Design Manual</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  The Algorithms Design Manual, Combinatorial Problems</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual4/">The Algorithms Design Manual, Combinatorial Problems</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-10-04">Oct 4, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#combinatorial-problems">Combinatorial Problems</a>
+      <ul>
+        <li><a href="#sorting">Sorting</a></li>
+        <li><a href="#searching">Searching</a></li>
+        <li><a href="#median-and-selection">Median and Selection</a></li>
+        <li><a href="#generating-permutations">Generating Permutations</a></li>
+        <li><a href="#generating-subsets">Generating Subsets</a></li>
+        <li><a href="#generating-partitions">Generating Partitions</a></li>
+        <li><a href="#generating-graphs">Generating Graphs</a></li>
+        <li><a href="#calendrical-calculations">Calendrical Calculations</a></li>
+        <li><a href="#job-scheduling">Job Scheduling</a></li>
+        <li><a href="#satisfiability">Satisfiability</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="combinatorial-problems">Combinatorial Problems</h2>
+<p><em>Check out <a href="http://numerical.recipes/">Numerical Recipes</a></em></p>
+<p>Whats different?</p>
+<ul>
+<li>Issues of Precision and Error. Floating point issues. Use both single and double precision, and think hard when they diverge.</li>
+<li>Extensive Libraries of Code. There is no reason to not to use all thats already written.</li>
+</ul>
+<h3 id="sorting">Sorting</h3>
+<p><img src="../../../../images/algdm/14_sorting.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set of $n$ items. <br>
+<strong>Problem description:</strong> Arrange the items in increasing (or decreasing) order.</p>
+<ul>
+<li>The most fundamental algorithmic problem in computer science.</li>
+<li>First rule of algorithm design : <em>&ldquo;when in doubt, sort&rdquo;</em></li>
+<li>Questions to ask,
+<ul>
+<li>How many keys will you be sorting? Use simple routines.</li>
+<li>Will there be duplicate keys in the data? Do you need sort to be stable?</li>
+<li>What do you know about your data?
+<ul>
+<li>Has the data already been partially sorted? <em>Insertion sort</em> would perform much better.</li>
+<li>Do you know the distribution of the keys? A <em>bucket</em> or <em>distribution sort</em> would make sense.</li>
+<li>Are your keys very long or hard to compare? It might make sense to use prefixes, or maybe use <em>radix</em> sort.</li>
+<li>Is the range of possible keys very small? Use something like counting sort.</li>
+</ul>
+</li>
+<li>Do I have to worry about disk accesses? Use <em>external sorting</em>, or use <em>B-tree</em>.</li>
+<li>How much time do you have to write and debug your routine?</li>
+</ul>
+</li>
+<li>If you want to implement your own <em>quicksort</em>,
+<ul>
+<li>Use randomization,</li>
+<li>Median of three</li>
+<li>Leave small subarrays for insertion sort</li>
+<li>Do the smaller partition first. compiler optimizations using <em>tail recursion</em> might help.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : GNU sort, C++ STL <code>sort</code> and <code>stable_sort</code>, and many more.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/#dictionaries">Dictionaries</a>, <a href="#searching">searching</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#topological-sort">topological sorting</a></li>
+</ul>
+<h3 id="searching">Searching</h3>
+<p><img src="../../../../images/algdm/14_searching.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set of $n$ keys $S$, and a query key $q$.<br>
+<strong>Problem description:</strong> Where is $q$ in $S$?</p>
+<ul>
+<li>&ldquo;Searching&rdquo; is a word that means different things to different people.</li>
+<li>We consider the task of searching for a key in a list, array or a tree.</li>
+<li>Sequential search <em>vs.</em> Binary search.</li>
+<li>Questions to ask,
+<ul>
+<li>How much time can you spend programming? <em>Binary search</em> can be tricky to be made bug free.</li>
+<li>Are certain items accessed more often than other ones? Exploit there relative frequencies.</li>
+<li>Might access frequencies change over time? Use self-organizing structures like <em>splay trees</em>.</li>
+<li>Is the key close by? Use <em>sequential</em> search.</li>
+<li>Is my data structure sitting on external memory? Use <em>B-trees</em>.</li>
+<li>Can I guess where the key should be? <em>Interpolation search</em></li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : C++ STL <code>find</code> and <code>binary_search</code></li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/#dictionaries">Dictionaries</a>, <a href="#sorting">sorting</a></li>
+</ul>
+<h3 id="median-and-selection">Median and Selection</h3>
+<p><img src="../../../../images/algdm/14_median.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set of $n$ numbers or keys, and an integer $k$.<br>
+<strong>Problem description:</strong> Find the key smaller than exactly $k$ of the $n$ keys.</p>
+<ul>
+<li><em>Median</em> finding is an essential problem in statistics, more robust than <em>mean</em>.</li>
+<li>Special case of <em>selection</em> problem which arises in several applications,
+<ul>
+<li>Filtering outlying elements : Remove 10% largest and smallest values.</li>
+<li>Identifying the most promising candidates : Select top 25%.</li>
+<li>Deciles and related divisions.</li>
+<li>Order statistics</li>
+</ul>
+</li>
+<li>Issues in median finding(arbitrary selection),
+<ul>
+<li>How fast does it have to be? $O(n\log n)$ or $O(n)$ <em>expected</em>-time.</li>
+<li>What if you only get to see each element once? Define approximate deciles, or do random sampling, or mix both strategies.</li>
+<li>How fast can you find the mode?</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : C++ STL <code>nth_element</code></li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/#priority-queues">Priority queues</a>, <a href="#sorting">sorting</a></li>
+</ul>
+<h3 id="generating-permutations">Generating Permutations</h3>
+<p><img src="../../../../images/algdm/14_permute.png" alt="alt"></p>
+<p><strong>Input description:</strong> An integer $n$.<br>
+<strong>Problem description:</strong> Generate (1) all, or (2) a random, or (3) the next permutation of length $n$.</p>
+<ul>
+<li>Many algorithmic problems require seek the best way to order a set of objects, like <em>travelling salesman</em>, <em>bandwidth</em>, <em>graph isomorphism</em>.</li>
+<li>A fundamental notion of order is required.</li>
+<li>Two different paradigms : ranking/unranking and incremental change methods.</li>
+<li>Define functions Rank/Unrank such that,  $p = Unrank(Rank(p), n)$.
+<ul>
+<li>Sequencing permutations</li>
+<li>Generating random permutations</li>
+<li>Keep track of a set of permutations.</li>
+</ul>
+</li>
+<li>Incremental change algorithms can be tricky, but concise.</li>
+<li>We can also save time by avoiding identical permutations if there are duplicate elements.</li>
+<li><strong>Implementations</strong> : C++ STL <code>next_permutation</code> and <code>prev_permutation</code>.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/#random-number-generation">Random-number generation</a>, <a href="#generating-subsets">generating subsets</a>, <a href="#generating-partitions">generating partitions</a>.</li>
+</ul>
+<h3 id="generating-subsets">Generating Subsets</h3>
+<p><img src="../../../../images/algdm/14_subsets.png" alt="alt"></p>
+<p><strong>Input description:</strong> An integer $n$.<br>
+<strong>Problem description:</strong> Generate (1) all, or (2) a random, or (3) the next subset of the integers ${1, \cdots , n}$.</p>
+<ul>
+<li>Here, the order among the elements does not matter.</li>
+<li>Many algorithmic problems seek the best subset : <em>vertex cover</em>, <em>knapsack</em>, <em>set packing</em>.</li>
+<li>There are $2^n$ different subsets of an $n$-element set. This is much less than the $n!$ permutations.</li>
+<li>It is a good idea to keep elements in subset sorted in a <em>canonical</em> order so as to speed up identity testing.</li>
+<li>Options,
+<ul>
+<li>Lexicographic order : surprisingly difficult to generate.</li>
+<li>Gray Code : Adjacent subsets differ by insertion/deletion of only one element.</li>
+<li>Binary counting : Use a bit-vector.</li>
+</ul>
+</li>
+<li>Useful in,
+<ul>
+<li>K-subsets All subsets of length K.</li>
+<li>Strings</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#generating-permutations">Generating permutations</a>, <a href="#generating-partitions">generating partitions</a></li>
+</ul>
+<h3 id="generating-partitions">Generating Partitions</h3>
+<p><img src="../../../../images/algdm/14_partition.png" alt="alt"></p>
+<p><strong>Input description:</strong> An integer $n$.<br>
+<strong>Problem description:</strong> Generate (1) all, or (2) a random, or (3) the next integer or set partitions of length $n$.</p>
+<ul>
+<li><em>Integer partitions</em> are multisets of nonzero integers that add up exactly to $n$. Use in for eg. <em>nuclear fision</em>..</li>
+<li><em>Set partitions</em> divide the elements $1, \ldots, n$ into nonempty subsets. Use in for eg. <em>vertex/edge coloring</em> and <em>connected components</em>.</li>
+<li><em>Related</em> : <a href="#generating-permutations">Generating permutations</a>, <a href="#generating-subsets">generating subsets</a>.</li>
+</ul>
+<h3 id="generating-graphs">Generating Graphs</h3>
+<p><img src="../../../../images/algdm/14_graphs.png" alt="alt"></p>
+<p><strong>Input description:</strong> Parameters describing the desired graph, including the number of vertices $n$, and the number of edges $m$ or edge probability $p$.<br>
+<strong>Problem description:</strong> Generate (1) all, or (2) a random, or (3) the next graph satisfying the parameters.</p>
+<ul>
+<li>Useful for generating test data for programs.</li>
+<li>A different application arises in network design. Adding redundancy and tolerance to vertex failures.</li>
+<li>Questions to ask,
+<ul>
+<li>Do I want labeled or unlabeled graphs?</li>
+<li>Do I want directed or undirected graphs?</li>
+</ul>
+</li>
+<li>How do you want to model randomness?
+<ul>
+<li>Random edge generation</li>
+<li>Random edge selection</li>
+<li>Preferential attachment</li>
+</ul>
+</li>
+<li>Alternatively, we can generate <em>organic</em> graphs that can reflect relationships among real-world objects.</li>
+<li>Other interesting graphs,
+<ul>
+<li>Trees</li>
+<li>Fixed degree sequence graphs</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : Stanford GraphBase, Combinatorica, and more resources.</li>
+<li><em>Related</em> : <a href="#generating-permutations">Generating permutations</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#graph-isomorphism">graph isomorphism</a></li>
+</ul>
+<h3 id="calendrical-calculations">Calendrical Calculations</h3>
+<p><img src="../../../../images/algdm/14_calcal.png" alt="alt"></p>
+<p><strong>Input description:</strong> A particular calendar date $d$, specified by month, day, and year.<br>
+<strong>Problem description:</strong> Which day of the week did $d$ fall on according to the given calendar system?</p>
+<ul>
+<li>Important in business applications. More important for international applications dealing with different timezones and possibly different calender systems.</li>
+<li>Complications arise with irregularity in years duration(leap years).</li>
+<li>So it becomes pointless to implement them by hand.</li>
+<li><strong>Implementations</strong> : C++ Boost <code>datetime</code>.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/#arbitrary-precision-arithmetic">Arbitrary precision arithmetic</a>, <a href="#generating-permutations">generating permutations</a></li>
+</ul>
+<h3 id="job-scheduling">Job Scheduling</h3>
+<p><img src="../../../../images/algdm/14_jobschedule.png" alt="alt"></p>
+<p><strong>Input description:</strong> A directed acyclic graph $G = (V,E)$, where vertices represent jobs and edge $(u,v)$ implies that task $u$ must be completed before task $v$.<br>
+<strong>Problem description:</strong> What schedule of tasks completes the job using the minimum amount of time or processors?</p>
+<ul>
+<li>Devising a proper schedule to satisfy a set of constraints is fundamental to many applications.</li>
+<li>Mapping tasks to processors is a critical aspect of any parallel-processing system.</li>
+<li>Applications
+<ul>
+<li>Topological sorting : precedence constraints.</li>
+<li>Bipartite matching : skill matching</li>
+<li>Vertex and edge coloring : avoid interference.</li>
+<li>Travelling salesman</li>
+<li>Eulerian Cycle</li>
+</ul>
+</li>
+<li>Interesting problems,
+<ul>
+<li>Critical path</li>
+<li>Minimum completion time</li>
+<li>What is the tradeoff between the number of workers and completion time?</li>
+</ul>
+</li>
+<li>Can also be modeled using Integer-linear programming.</li>
+<li>More variations,
+<ul>
+<li>Assign jobs to identical machines to minimize the the total elapsed time.</li>
+<li>Tasks are provided with allowable start and required finish times.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : JOBSHOP (C), Tablix, LEKIN and more.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#topological-sort">Topological sorting</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#matching">matching</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#vertex-coloring">vertex coloring</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#edge-coloring">edge coloring</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual7/#bin-packing">bin packing</a></li>
+</ul>
+<h3 id="satisfiability">Satisfiability</h3>
+<p><img src="../../../../images/algdm/14_sat.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set of clauses in conjunctive normal form.<br>
+<strong>Problem description:</strong> Is there a truth assignment to the Boolean variables such that every clause is simultaneously satisfied?</p>
+<ul>
+<li>A primary application of testing hardware/software design on all the inputs.</li>
+<li><em>The</em> original NP-complete problem.</li>
+<li>Issues,
+<ul>
+<li>Is your formula the <code>AND</code> of <code>OR</code>s (CNF) or the <code>OR</code> of <code>AND</code>s (DNF)? DNF can be solved easily, while CNF is NP-complete. We can use <em>De Morgan&rsquo;s laws</em> to convert CNF into DNF. However the translation itself could take exponential time.</li>
+<li>How big are your clauses? 3-SAT and above are NP-complete.</li>
+<li>Does it suffice to satisfy most of the clauses? This can make the problem <em>easier</em>.</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/#constrained-and-unconstrained-optimization">Constrained optimization</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#travelling-salesman-problem">travelling salesman problem</a></li>
+</ul>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual1/">The Algorithms Design Manual</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

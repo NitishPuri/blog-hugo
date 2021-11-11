@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 6" />
+<meta property="og:description" content="Chapter 12 : Data Structures for Graphics Triangle Meshes Most real-world models are composed of complexes of triangles with shared vertices. These are usually known as triangular meshes, triangle meshes, or triangular irregular networks (TINs) and handling them efficiently is crucial to the performance of many graphics programs.
+The minimum information required for a triangle mesh is a set of triangles (triples of vertices) and the positions (in 3D space) of their vertices." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-6/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-08-17T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Fundamentals of Computer Graphics, Peter Shirley, Part 6"/>
+<meta name="twitter:description" content="Chapter 12 : Data Structures for Graphics Triangle Meshes Most real-world models are composed of complexes of triangles with shared vertices. These are usually known as triangular meshes, triangle meshes, or triangular irregular networks (TINs) and handling them efficiently is crucial to the performance of many graphics programs.
+The minimum information required for a triangle mesh is a set of triangles (triples of vertices) and the positions (in 3D space) of their vertices."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-6/">
+
+    <title>
+      
+        Fundamentals of Computer Graphics, Peter Shirley, Part 6 | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/fund-comp-graphics/">Fundamentals of Computer Graphics, Peter Shirley</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Fundamentals of Computer Graphics, Peter Shirley, Part 6</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-6/">Fundamentals of Computer Graphics, Peter Shirley, Part 6</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-08-17">Aug 17, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-12--data-structures-for-graphics">Chapter 12 : Data Structures for Graphics</a>
+      <ul>
+        <li><a href="#triangle-meshes">Triangle Meshes</a></li>
+        <li><a href="#scene-graphs">Scene Graphs</a></li>
+        <li><a href="#spatial-data-structures">Spatial Data Structures</a></li>
+        <li><a href="#bsp-trees-for-visibility">BSP Trees for Visibility</a></li>
+        <li><a href="#tiling-multidimensional-arrays">Tiling Multidimensional Arrays</a></li>
+      </ul>
+    </li>
+    <li><a href="#chapter-13--more-ray-tracing">Chapter 13 : More Ray Tracing</a>
+      <ul>
+        <li><a href="#transparency-and-refraction">Transparency and Refraction</a></li>
+        <li><a href="#instancing">Instancing</a></li>
+        <li><a href="#constructive-solid-geometry">Constructive Solid Geometry</a></li>
+        <li><a href="#distribution-ray-tracing">Distribution Ray Tracing</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="chapter-12--data-structures-for-graphics">Chapter 12 : Data Structures for Graphics</h2>
+<h3 id="triangle-meshes">Triangle Meshes</h3>
+<p>Most real-world models are composed of complexes of triangles with shared vertices. These are usually known as <em>triangular meshes</em>, <em>triangle meshes</em>, or <em>triangular irregular networks (TINs)</em> and handling them efficiently is crucial to the performance of many graphics programs.<br>
+The minimum information required for a triangle mesh is a set of triangles (triples of vertices) and the positions (in 3D space) of their vertices. But many, if not most, programs require the ability to store additional data at the vertices, edges, or faces to support texture mapping, shading, animation, and other operations. Vertex data is the most common: each vertex can have material parameters, texture coordinates, irradiances—any parameters whose values change across the surface. These parameters are then linearly interpolated across each triangle to define a continuous function over the whole surface of the mesh. However, it is also occasionally important to be able to store data per edge or per face.</p>
+<h4 id="mesh-topology"><strong>Mesh Topology</strong></h4>
+<ul>
+<li>Every edge is shared by exactly two triangles.</li>
+<li>Every vertex has a single, complete loop of triangles around it.</li>
+</ul>
+<p><img src="../../../../images/fundcg/12_mesh1.png" alt="alt"> 
+<img src="../../../../images/fundcg/12_mesh1_1.png" alt="alt">  <br>
+<img src="../../../../images/fundcg/12_mesh2_1.png" alt="alt"> 
+<img src="../../../../images/fundcg/12_mesh2.png" alt="alt">  <br>
+<img src="../../../../images/fundcg/12_mesh3.png" alt="alt"></p>
+<p><strong>Indexed Mesh Storage</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">Triangle <span style="color:#f92672">{</span>
+     vector3 vertexPosition<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><img src="../../../../images/fundcg/12_mesh4.png" alt="alt"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">Triangle <span style="color:#f92672">{</span>
+     Vertex v<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+Vertex <span style="color:#f92672">{</span>
+     vector3 position <span style="color:#75715e">// or other vertex data
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p><strong>Indexed triangle mesh</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">IndexedMesh <span style="color:#f92672">{</span>
+     <span style="color:#66d9ef">int</span> tInd<span style="color:#f92672">[</span>nt<span style="color:#f92672">][</span>3<span style="color:#f92672">]</span>
+     vector3 verts<span style="color:#f92672">[</span>nv<span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="triangle-strips-and-fans"><strong>Triangle Strips and Fans</strong></h4>
+<p><img src="../../../../images/fundcg/12_mesh5.png" alt="alt">  <br>
+<img src="../../../../images/fundcg/12_mesh6.png" alt="alt"></p>
+<h4 id="data-structures-for-mesh-connectivity"><strong>Data Structures for Mesh Connectivity</strong></h4>
+<p>Indexed meshes, strips, and fans are all good, compact representations for static meshes. However, they do not readily allow for meshes to be modified. In order to efficiently edit meshes, more complicated data structures are needed to efficiently answer queries such as:</p>
+<ul>
+<li>Given a triangle, what are the three adjacent triangles?</li>
+<li>Given an edge, which two triangles share it?</li>
+<li>Given a vertex, which faces share it?</li>
+<li>Given a vertex, which edges share it?</li>
+</ul>
+<p>The most straightforward, though bloated, implementation would be to have three types, <code>Vertex</code>, <code>Edge</code>, and <code>Triangle</code>, and to just store all the relationships directly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">Triangle <span style="color:#f92672">{</span>
+     Vertex v<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>
+     Edge e<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+Edge <span style="color:#f92672">{</span>
+     Vertex v<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>
+     Triangle t<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+Vertex <span style="color:#f92672">{</span>
+     Triangle t<span style="color:#f92672">[]</span>
+     Edge e<span style="color:#f92672">[]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>The fixed-size arrays in the Edge and Triangle classes suggest that it will be more efficient to store the connectivity information there. In fact, for polygon meshes, in which polygons have arbitrary numbers of edges and vertices, only edges have fixed-size connectivity information, which leads to many traditional mesh data structures being based on edges. But for triangle-only meshes, storing connectivity in the (less numerous) faces is appealing.</p>
+<h4 id="the-triangle-neighbor-structure"><strong>The Triangle-Neighbor Structure</strong></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">Triangle <span style="color:#f92672">{</span>
+     Triangle nbr<span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+     Vertex v<span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+<span style="color:#f92672">}</span>
+Vertex <span style="color:#f92672">{</span>
+     <span style="color:#75715e">// ... per-vertex data ...
+</span><span style="color:#75715e"></span>     Triangle t<span style="color:#f92672">;</span> <span style="color:#75715e">// any adjacent tri
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p><img src="../../../../images/fundcg/12_mesh8.png" alt="alt">  <br>
+<img src="../../../../images/fundcg/12_mesh9.png" alt="alt"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">Mesh <span style="color:#f92672">{</span>
+     <span style="color:#75715e">// ... per-vertex data ...
+</span><span style="color:#75715e"></span>     <span style="color:#66d9ef">int</span> tInd<span style="color:#f92672">[</span>nt<span style="color:#f92672">][</span>3<span style="color:#f92672">];</span> <span style="color:#75715e">// vertex indices
+</span><span style="color:#75715e"></span>     <span style="color:#66d9ef">int</span> tNbr<span style="color:#f92672">[</span>nt<span style="color:#f92672">][</span>3<span style="color:#f92672">];</span> <span style="color:#75715e">// indices of neighbor triangles
+</span><span style="color:#75715e"></span>     <span style="color:#66d9ef">int</span> vTri<span style="color:#f92672">[</span>nv<span style="color:#f92672">];</span> <span style="color:#75715e">// index of any adjacent triangle
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+TrianglesOfVertex<span style="color:#f92672">(</span>v<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+     t <span style="color:#f92672">=</span> v<span style="color:#f92672">.</span><span style="color:#a6e22e">t</span>
+     <span style="color:#66d9ef">do</span> <span style="color:#f92672">{</span>
+          find i such <span style="color:#a6e22e">that</span> <span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">v</span><span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> v<span style="color:#f92672">)</span>
+          t <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span><span style="color:#a6e22e">nbr</span><span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>
+     <span style="color:#f92672">}</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>t <span style="color:#f92672">!=</span> v<span style="color:#f92672">.</span><span style="color:#a6e22e">t</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="the-winged-edge-structure"><strong>The Winged-Edge structure</strong></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">Edge <span style="color:#f92672">{</span>
+     Edge lprev<span style="color:#f92672">,</span> lnext<span style="color:#f92672">,</span> rprev<span style="color:#f92672">,</span> rnext<span style="color:#f92672">;</span>
+     Vertex head<span style="color:#f92672">,</span> tail<span style="color:#f92672">;</span>
+     Face left<span style="color:#f92672">,</span> right<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+Face <span style="color:#f92672">{</span>
+     <span style="color:#75715e">// ... per-face data ...
+</span><span style="color:#75715e"></span>     Edge e<span style="color:#f92672">;</span> <span style="color:#75715e">// any adjacent edge
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+Vertex <span style="color:#f92672">{</span>
+     <span style="color:#75715e">// ... per-vertex data ...
+</span><span style="color:#75715e"></span>     Edge e<span style="color:#f92672">;</span> <span style="color:#75715e">// any incident edge
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p><strong>The Half-Edge Structure</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">HEdge <span style="color:#f92672">{</span>
+     HEdge pair<span style="color:#f92672">,</span> next<span style="color:#f92672">;</span>
+     Vertex v<span style="color:#f92672">;</span>
+     Face f<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+Face <span style="color:#f92672">{</span>
+     <span style="color:#75715e">// ... per-face data ...
+</span><span style="color:#75715e"></span>     HEdge h<span style="color:#f92672">;</span> <span style="color:#75715e">// any h-edge of this face
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+Vertex <span style="color:#f92672">{</span>
+     <span style="color:#75715e">// ... per-vertex data ...
+</span><span style="color:#75715e"></span>     HEdge h<span style="color:#f92672">;</span> <span style="color:#75715e">// any h-edge pointing toward this vertex
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><h3 id="scene-graphs">Scene Graphs</h3>
+<p><img src="../../../../images/fundcg/12_scene1.png" alt="alt">  <br>
+As with the pendulum, each object should be transformed by the product of the matrices in the path from the root to the object:</p>
+<ul>
+<li><strong>ferry</strong> transform using $M_0$</li>
+<li><strong>car body</strong> transform using $M_0M_1$</li>
+<li><strong>left wheel</strong> transform using $M_0M_1M_2$</li>
+<li><strong>left wheel</strong> transform using $M_0M_1M_3$</li>
+</ul>
+<p>An efficient implementation can be achieved using a <em>matrix stack</em>, a data structure supported by many APIs. A matrix stack is manipulated using <em>push</em> and <em>pop</em> operations that add and delete matrices from the right-hand side of a matrix product.<br>
+For example, calling:<br>
+$$
+push(\mathbf M_0)\<br>
+push(\mathbf M_1)\<br>
+push(\mathbf M_2)
+$$</p>
+<p>creates the active matrix $\mathbf M = \mathbf M_0 \mathbf M_1 \mathbf M_2$. A subsequent call to <em>pop()</em> strips the last matrix added so that the active matrix becomes $\mathbf M = \mathbf M_0 \mathbf M_1$. Combining the matrix stack with a recursive traversal of a scene graph gives us:</p>
+<p>$$
+\mathbf{function}; traverse(node)\<br>
+\quad push(\mathbf M_{local})\<br>
+\quad \text{draw object using composite matrix from stack} \<br>
+\quad traverse(left;child)\<br>
+\quad traverse(right;child)\<br>
+\quad pop()
+$$</p>
+<h3 id="spatial-data-structures">Spatial Data Structures</h3>
+<p><img src="../../../../images/fundcg/12_spatial1.png" alt="alt"></p>
+<h4 id="bounding-boxes"><strong>Bounding Boxes</strong></h4>
+<h4 id="hierarchical-bounding-boxes"><strong>Hierarchical Bounding Boxes</strong></h4>
+<p>$$
+\mathbf{if};\text{(ray hits root box)};\mathbf{then}\<br>
+\quad \mathbf{if};\text{(ray hits left subtree box)}; \mathbf{then}\<br>
+\quad \quad \text{check three triangles for intersection} \<br>
+\quad \mathbf{if}; \text{(ray intersects right subtree box)}; \mathbf{then}\<br>
+\quad \quad \text{check other three triangles for intersection}\<br>
+\quad \mathbf{if}; \text{(an intersections returned from each subtree)} \mathbf{then} \<br>
+\quad \quad \mathbf{return}; \text{the closest of the two hits} \<br>
+\quad \mathbf{else,if};\text{(a intersection is returned from exactly one subtree)};\mathbf{then}\<br>
+\quad \quad \mathbf{return}; \text{that intersection} \<br>
+\quad \mathbf{else}\<br>
+\quad \quad \mathbf{return}; false \<br>
+\mathbf{else} \<br>
+\quad \mathbf{return}; false
+$$</p>
+<p>There are many ways to build a tree for a bounding volume hierarchy. It is convenient to make the tree binary, roughly balanced, and to have the boxes of sibling subtrees not overlap too much. A heuristic to accomplish this is to sort the surfaces along an axis before dividing them into two sublists.</p>
+<p>The quality of the tree can be improved by carefully choosing AXIS each time. One way to do this is to choose the axis such that the sum of the volumes of the bounding boxes of the two subtrees is minimized. This change compared to rotating through the axes will make little difference for scenes composed of isotopically distributed small objects, but it may help significantly in less well-behaved scenes. This code can also be made more efficient by doing just a partition rather than a full sort.</p>
+<h4 id="uniform-spatial-subdivision"><strong>Uniform Spatial Subdivision</strong></h4>
+<ul>
+<li>In hierarchical bounding volumes, each object belongs to one of two sibling nodes, whereas a point in space may be inside both sibling nodes.</li>
+<li>In spatial subdivision, each point in space belongs to exactly one node, whereas objects may belong to many nodes.</li>
+</ul>
+<p>The grid itself should be a subclass of surface and should be implemented as a 3D array of pointers to surface. For empty cells these pointers are NULL. For cells with one object, the pointer points to that object. For cells with more than one object, the pointer can point to a list, another grid, or another data structure, such as a bounding volume hierarchy.</p>
+<p><img src="../../../../images/fundcg/12_spatial2.png" alt="alt"></p>
+<h4 id="axis-aligned-binary-space-partitioning"><strong>Axis-Aligned Binary Space Partitioning</strong></h4>
+<p>A node in this structure contains a single cutting plane and a left and right subtree. Each subtree contains all the objects on one side of the cutting plane. Objects that pass through the plane are stored in in both subtrees. If we assume the cutting plane is parallel to the $yz$ plane at $x = D$, then the node class is:</p>
+<pre><code>class bsp-node subclass of surface
+     virtual bool hit(ray e + td, real t0, real t1, hit-record rec)
+     virtual box bounding-box()
+     surface-pointer left
+     surface-pointer right
+     real D
+</code></pre><h3 id="bsp-trees-for-visibility">BSP Trees for Visibility</h3>
+<p>If we are making many images of a fixed scene composed of planar polygons, from different viewpoints—as is often the case for applications such as games— we can use a binary space partitioning scheme closely related to the method for ray intersection discussed in the previous section. The difference is that for visibility sorting we use non–axis-aligned splitting planes, so that the planes can be made coincident with the polygons. This leads to an elegant algorithm known as the BSP tree algorithm to order the surfaces from front to back. The key aspect of the BSP tree is that it uses a preprocess to create a data structure that is useful for any viewpoint. So, as the viewpoint changes, the same data structure is used without change.</p>
+<h4 id="overview-of-bsp-tree-algorithm"><strong>Overview of BSP Tree Algorithm</strong></h4>
+<p>The BSP tree algorithm is an example of a <strong>painter’s algorithm</strong>. A painter’s algorithm draws every object from back-to-front, with each new polygon potentially overdrawing previous polygons.</p>
+<h4 id="building-the-tree"><strong>Building the Tree</strong></h4>
+<p>$$
+\mathbf{function} ; add ( \text{triangle};T )\<br>
+\quad \mathbf{if},(f(\mathbf a) &lt; 0;and;f(\mathbf b) &lt; 0;and;f(\mathbf c) &lt; 0);\mathbf{then} \<br>
+\quad \quad \mathbf{if}, (\text{negative subtree is empty});\mathbf{then}\<br>
+\quad \quad \quad \text{negative-subtree} = node(T) \<br>
+\quad \quad \mathbf{else} \<br>
+\quad \quad \quad \text{negative-subtree}.add(T) \<br>
+\quad \mathbf{else,if}, (f(\mathbf a) &gt; 0 and f(\mathbf b) &gt; 0 and f(\mathbf c) &gt; 0); \mathbf{then}\<br>
+\quad \quad \mathbf{if}; \text{positive subtree is empty};\mathbf{then}\<br>
+\quad \quad \quad \text{positive-subtree} = node(T) \<br>
+\quad \quad \mathbf{else}\<br>
+\quad \quad \quad \text{positive-subtree}.add (T) \<br>
+\quad \mathbf{else} \<br>
+\quad \quad \text{we have assumed this case is impossible}
+$$</p>
+<p><img src="../../../../images/fundcg/12_bsp1.png" alt="alt"> 
+<img src="../../../../images/fundcg/12_bsp2.png" alt="alt"></p>
+<p>A precision problem that will plague a naive implementation occurs when a vertex is very near the splitting plane. For example, if we have two vertices on one side of the splitting plane and the other vertex is only an extremely small distance on the other side, we will create a new triangle almost the same as the old one, a triangle that is a sliver, and a triangle of almost zero size. It would be better to detect this as a special case and not split into three new triangles. One might expect this case to be rare, but because many models have tessellated planes and triangles with  shared vertices, it occurs frequently, and thus must be handled carefully. Some simple manipulations that accomplish this are:</p>
+<p>$$
+\mathbf {function};add( \text{triangle}; T ) \<br>
+\quad fa = f(\mathbf a)\<br>
+\quad fb = f(\mathbf b)\<br>
+\quad fc = f(\mathbf c)\<br>
+\quad \mathbf{if}; (abs(fa) &lt; \epsilon) \mathbf{then}\<br>
+\quad \quad fa = 0 \<br>
+\quad \mathbf{if}; (abs(fb) &lt; \epsilon) \mathbf{then}\<br>
+\quad \quad fb = 0 \<br>
+\quad \mathbf{if}; (abs(fc) &lt; \epsilon) \mathbf{then}\<br>
+\quad \quad fc = 0 \<br>
+\quad \mathbf{if}; (fa \leq 0;and;fb \leq 0;and;fc \leq 0) \mathbf{then} \<br>
+\quad \quad \mathbf{if}; \text{(negative subtree is empty)};\mathbf{then} \<br>
+\quad \quad \quad \text{negative-subtree} = node(T) \<br>
+\quad \quad \mathbf{else} \<br>
+\quad \quad \mathbf{negative-subtree}.add(T) \<br>
+\quad \mathbf{else,if};(fa \leq 0;and;fb \leq 0;and;fc \leq 0) \mathbf{then} \<br>
+\quad \quad \mathbf{if}; \text{(positive subtree is empty)};\mathbf{then}\<br>
+\quad \quad \quad \text{positive-subtree} = node(T) \<br>
+\quad \quad \mathbf{else} \<br>
+\quad \quad \quad \text{positive-subtree}.add(T)\<br>
+\quad \mathbf{else} \<br>
+\quad \quad \text{cut triangle into three triangles and add to each side} 
+$$</p>
+<h4 id="cutting-triangles"><strong>Cutting Triangles</strong></h4>
+<p>$$
+\mathbf{if}; (fa * fc \geq 0);\mathbf{then}\<br>
+\quad swap(fb, fc)\<br>
+\quad swap(\mathbf b, \mathbf c) \<br>
+\quad swap(fa, fb) \<br>
+\quad swap(\mathbf a, \mathbf b) \<br>
+\mathbf{else,if}; (fb ∗ fc \geq 0);\mathbf{then} \<br>
+\quad swap(fa, fc) \<br>
+\quad swap(\mathbf a, \mathbf c) \<br>
+\quad swap(fa, fb) \<br>
+\quad swap(\mathbf a, \mathbf b) \<br>
+compute;\mathbf A \<br>
+compute;\mathbf B \<br>
+T_1 = (\mathbf a, \mathbf b, \mathbf A) \<br>
+T_2 = (\mathbf b, \mathbf B, \mathbf A) \<br>
+T_3 = (\mathbf A, \mathbf B, \mathbf c) \<br>
+\mathbf{if}; (fc \geq 0);\mathbf{then} \<br>
+\quad \text{negative-subtree}.add(T1) \<br>
+\quad \text{negative-subtree}.add(T2) \<br>
+\quad \text{positive-subtree}.add(T3) \<br>
+\mathbf {else} \<br>
+\quad \text{positive-subtree}.add(T1) \<br>
+\quad \text{positive-subtree}.add(T2) \<br>
+\quad \text{negative-subtree}.add(T3) \<br>
+$$</p>
+<h4 id="optimizing-the-tree"><strong>Optimizing the Tree</strong></h4>
+<p>Mostly depends upon the order or triangle being added.</p>
+<h3 id="tiling-multidimensional-arrays">Tiling Multidimensional Arrays</h3>
+<p><img src="../../../../images/fundcg/12_tile1.png" alt="alt"> 
+<img src="../../../../images/fundcg/12_tile2.png" alt="alt"></p>
+<h4 id="one-level-tiling-for-2d-arrays"><strong>One-Level Tiling for 2D Arrays</strong></h4>
+<p><img src="../../../../images/fundcg/12_tile3.png" alt="alt"></p>
+<p>$$
+index = n^2(B_xb_y + b_x), \quad offset = y&rsquo;n+x'.
+$$</p>
+<p>Thus the full formula for finding the 1D  index element $(x, y)$ in an $N_x \times N_y$ array with $n \times n$
+tiles is,<br>
+$$\begin{align}
+index &amp; = n^2(B_xb_y + b_x) + y&rsquo;n + x' \<br>
+&amp; = n^2((N_x /n)(y/n) + x/n) + (y\mod n)n + (x \mod n).
+\end{align}$$</p>
+<p>This expression contains many integer multiplication, divide and modulus operations, which are costly on some processors. When $n$ is a power of two, these operations can be converted to <em>bitshifts</em> and <em>bitwise logical operations</em>. However, as noted above, the ideal size is not always a power of two.</p>
+<p>However, there is a simple solution; note that the index expression can be written as<br>
+$$index  = F_x(x) + F_y(y),$$<br>
+where,<br>
+$$\begin{align}
+F_x(x) &amp; = n^2(x/n) + (x \mod n)\<br>
+F_y(y) &amp; = n^2(N_x/n)(y/n) + (y \mod n)n
+\end{align}$$</p>
+<p>We tabulate $F_x$ and $F_y$, and use $x$ and $y$ to find the index into the data array. These tables will consist of $N_x$ and $N_y$ elements, respectively. The total size of the tables will fit in the primary data cache of the processor, even for very large data set sizes.</p>
+<h2 id="chapter-13--more-ray-tracing">Chapter 13 : More Ray Tracing</h2>
+<p><em>If you start with a bruteforce ray intersection loop, you’ll have ample time to implement an acceleration structure while you wait for images to render.</em></p>
+<h3 id="transparency-and-refraction">Transparency and Refraction</h3>
+<p><em>Snell&rsquo;s Law,</em></p>
+<p>$$n\sin\theta = n_t\sin\phi$$</p>
+<p><img src="../../../../images/fundcg/13_ray1.png" alt="alt"></p>
+<p>$$\begin{align}\mathbf t = \sin\phi \mathbf b - \cos\phi \mathbf n\end{align}$$</p>
+<p>Since we can describe $\mathbf d$ in the same basis, and $\mathbf d$ is known, we can 
+solve for $\mathbf b$:<br>
+$$\begin{align}
+\mathbf d &amp;= \sin\theta \mathbf b - \cos\theta\mathbf n \<br>
+\mathbf b &amp;= \frac{\mathbf d + \mathbf n\cos\theta }{\sin\theta } \<br>
+\end {align}$$</p>
+<p>This means we can solve for $\mathbf t$ with known variables,<br>
+$$\begin{align}
+\mathbf t &amp;= \frac{n(\mathbf d + \mathbf n\cos\theta) }{n_t} - \mathbf n\cos\phi \<br>
+&amp;=\frac{n(\mathbf d - \mathbf n(\mathbf d \cdot \mathbf n)) }{n_t} - \mathbf n \sqrt{1 - \frac{n^2(1-(\mathbf d \cdot \mathbf n)^2)}{n_t^2}}
+\end {align}$$</p>
+<p><img src="../../../../images/fundcg/13_ray2.png" alt="alt"></p>
+<p><strong>Shilck approximations for Fresnel equations,</strong></p>
+<p>$$\begin{align}
+R(\theta) = R_0 + (1+R_0)(1-\cos\theta)^5,
+\end {align}$$</p>
+<p>where $R_0$ is the reflactance at normal incidence:<br>
+$$\begin{align}
+R_0 = \left(\frac{n_t-1}{n_t+1}\right)^2
+\end {align}$$</p>
+<p><img src="../../../../images/fundcg/13_ray3.jpg" alt="alt"></p>
+<p>$$
+\mathbf{if}; (\mathbf p is on a dielectric);\mathbf{then}\<br>
+\quad \mathbf r = reflect(\mathbf d, \mathbf n ) \<br>
+\quad \mathbf {if}; (\mathbf d \cdot \mathbf n &lt; 0); \mathbf {then} \<br>
+\quad \quad refract(\mathbf d, \mathbf n, \mathcal n, \mathbf t) \<br>
+\quad \quad c = −\mathbf d \cdot \mathbf n \<br>
+\quad \quad k_r = k_g = k_b = 1 \<br>
+\mathbf else \<br>
+\quad k_r = exp(−a_rt) \<br>
+\quad k_g = exp(−a_gt) \<br>
+\quad k_b = exp(−a_bt) \<br>
+\quad \mathbf {if}; refract(\mathbf d, −\mathbf n, 1/\mathcal n, \mathbf t);\mathbf {then} \<br>
+\quad \quad c = \mathbf t \cdot \mathbf n \<br>
+\quad \mathbf {else} \<br>
+\quad \quad \mathbf {return}; k ∗ color(\mathbf p + t\mathbf r) \<br>
+R_0 = (\mathcal n − 1)^2/(\mathcal n + 1)^2
+R = R_0 + (1 − R_0)(1 − c)^5 \<br>
+\mathbf {return}; k(R,color(\mathbf p + t\mathbf r) + (1 − R) color(\mathbf p + t\mathbf t))
+$$</p>
+<h3 id="instancing">Instancing</h3>
+<p><img src="../../../../images/fundcg/13_ray4.png" alt="alt">  <br>
+<img src="../../../../images/fundcg/13_ray5.png" alt="alt"></p>
+<h3 id="constructive-solid-geometry">Constructive Solid Geometry</h3>
+<p><img src="../../../../images/fundcg/13_ray6.png" alt="alt"> 
+<img src="../../../../images/fundcg/13_ray7.png" alt="alt"></p>
+<h3 id="distribution-ray-tracing">Distribution Ray Tracing</h3>
+<h4 id="antialiasing"><strong>Antialiasing</strong></h4>
+<p>For a code hat samples $n \times n$ samples across each pixel:
+$$
+\mathbf{for,each};\text{pixel};(i,j);\mathbf{do} \<br>
+\quad c = 0 \<br>
+\quad \mathbf{for}; p = 0 \text{ to } n − 1 \mathbf{do} \<br>
+\quad \quad \mathbf {for} q = 0 \text{ to } n − 1 \mathbf{do} \<br>
+\quad \quad \quad c = c + \text{ray-color}(i + (p + 0.5)/n, j + (q + 0.5)/n)\<br>
+c_{ij} = c/n^2
+$$<br>
+This is called *regular sampling*.</p>
+<p>One potential problem with taking samples in a regular pattern within a pixel is that regular artifacts such as moir´e patterns can arise.</p>
+<p><img src="../../../../images/fundcg/13_ray8.png" alt="alt"></p>
+<h4 id="soft-shadows"><strong>Soft Shadows</strong></h4>
+<p><img src="../../../../images/fundcg/13_ray10.png" alt="alt"> 
+<img src="../../../../images/fundcg/13_ray9.png" alt="alt"></p>
+<p>$$
+\mathbf{for,each};  \text{pixel}(i, j);\mathbf{do} \<br>
+\quad c = 0 \<br>
+\quad \text{generate}, N = n^2 \text{jittered 2D points and store in array} r[ ] \<br>
+\quad \text{generate}, N = n^2 \text{jittered 2D points and store in array} s[ ] \<br>
+\quad \text{shuffle the points in array}, s[ ] \<br>
+\quad \mathbf{for} p = 0 \text{ to } N − 1;\mathbf{do} \<br>
+\quad \quad c = c + \text{ray-color}(i + r[p].x(), j + r[p].y(), s[p]) \<br>
+\quad c_ij = c/N
+$$</p>
+<p><strong>A Shuffle routine,</strong><br>
+$$
+\mathbf {for}; i = N − 1 \text{ downto } 1 ,\mathbf{do} \<br>
+\quad \text{choose random integer $j$ between $0$ and $i$ inclusive} \<br>
+\quad \text{swap array elements $i$ and $j$}
+$$</p>
+<h4 id="depth-of-field"><strong>Depth of Field</strong></h4>
+<p><img src="../../../../images/fundcg/13_ray11.png" alt="alt"> <br>
+<img src="../../../../images/fundcg/13_ray12.jpg" alt="alt"> <br>
+<img src="../../../../images/fundcg/13_ray13.png" alt="alt"></p>
+<h4 id="motion-blur"><strong>Motion Blur</strong></h4>
+<p><img src="../../../../images/fundcg/13_ray14.jpg" alt="alt"></p>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-1/">Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-2/">Fundamentals of Computer Graphics, Peter Shirley, Part 2</a></li>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-3/">Fundamentals of Computer Graphics, Peter Shirley, Part 3</a></li>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-4/">Fundamentals of Computer Graphics, Peter Shirley, Part 4</a></li>
+        
+            <li><a href="../../../../books/programming/fund-comp-graphics/fund-comp-graphics-5/">Fundamentals of Computer Graphics, Peter Shirley, Part 5</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

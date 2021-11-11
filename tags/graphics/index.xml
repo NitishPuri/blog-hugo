@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>graphics on Blog - Nitish Puri</title>
+    <link>https://www.myproductionurl.com/tags/graphics/</link>
+    <description>Recent content in graphics on Blog - Nitish Puri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.myproductionurl.com/tags/graphics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Game Engine Architecture</title>
+      <link>https://www.myproductionurl.com/books/programming/game-engine-architecture/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/game-engine-architecture/</guid>
+      <description>Based on : Game Engine Architecture by Jason Gregory
+All the technology that goes in making a AAA game!!!!
+Foundations Introduction  Industry overview Structure of a Typical Game Team  Engineers Artists Game Designers Producers Other Staff Publishers and Studios   What is a Game??  Video Games as Soft Real-Time Simulations   What is a Game Engine??  Engine Differences across Genres  First-Person Shooter(Quake, Unreal Tournament, Half Life) Platformers and Other Third-Person Games(Gears of War, Dead Space, Red Dead Redemption, Uncharted) Fighting Games(Soul Calliber, Tekken, Fight Night) Racing Games(NFS, Gran Turismo, Mario kart) Real Time Strategy(Warcraft, Starcraft, Command and Conquer, Age of Empires) Massively Multiplayer Online Games(World of Warcraft, Destiny) Player Authored Content(Mods)(Minecraft) Other Games(sports, RPG, puzzle games, social sims, text based!</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/</guid>
+      <description>Fundamentals of Computer Graphics : Chapter 1 - 4
+Introduction, Basic Maths, Raster Images and Introduction to Ray Tracing. Fundamentals of Computer Graphics : Chapter 5 - 7
+Linear Algebra, Transformation Matrices and View Transformations Fundamentals of Computer Graphics : Chapter 8 - 9
+The Graphics Pipeline and Signal Processing Fundamentals of Computer Graphics : Chapter 10 - 12
+Surface shading and Texture Mapping Fundamentals of Computer Graphics : Illustrations Fundamentals of Computer Graphics : Chapter 12 - 13</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 1</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-1/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-1/</guid>
+      <description>Chapter 1: Introduction Graphics Areas Core areas:
+ Modeling Rendering Animation  Other related ares:
+ User interaction Virtual reality Visualization Image processing 3D scanning Computational photography  Major Applications  Video Games Cartoons Visual Effects Animated Films CAD/CAM Simulation Medical Imaging Information visualization  Graphics API&amp;rsquo;s Need to deal with at least two different API&amp;rsquo;s : Graphics API and a User Interface API
+Graphics Pipeline A special software/hardware subsystem that efficiently draws 3D primitives in perspective.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 2</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-2/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-2/</guid>
+      <description>Chapter 5 : Linear Algebra Determinants Determinants as the area of a parallelogram and volume of a parallelepiped.
+We can see from Figure 5.6 that $|(b_c\mathbf{b}\mathbf{a})| = |c\mathbf{a}|$, because these parallelograms are just sheared versions of each other.
+Solving for bc yields $b_c =|\mathbf{ca}|/|\mathbf{ba}|$.
+An analogous argument yields $a_c =|\mathbf{bc}|/|\mathbf{ba}|$.
+This is the two-dimensional version of Cramer’s rule which we will revisit soon.
+Matrices A matrix is an array of numeric elements that follow certain arithmetic rules.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 3</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-3/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-3/</guid>
+      <description>Chapter 8 : The Graphics Pipeline The previous several chapters have established the mathematical scaffolding we need to look at the second major approach to rendering: Drawing objects one by one onto the screen, or object-order rendering. Unlike in ray tracing, where we consider each pixel in turn and find the objects that influence its color, we&amp;rsquo;ll now instead consider each geometric object in turn and find the pixels that it could have an effect on.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 4</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-4/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-4/</guid>
+      <description>Chapter 10 : Surface Shading Diffuse Shading Many objects in the world have a surface appearance loosely described as “matte,” indicating that the object is not at all shiny. Examples include paper, unfinished wood, and dry unpolished stones. To a large degree, such objects do not have a color change with a change in viewpoint. For example, if you stare at a particular point on a piece of paper and move while keeping your gaze fixed on that point, the color at that point will stay relatively constant.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 5</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-5/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-5/</guid>
+      <description>Illustrations RGB Color Cube Barycentric Interpolation Shading Models Total Internal Reflection Depth of Field and Caustics Complex Models using Blob Tree Vertex Shading Fragment Shading The Visible Spectrum HSV Colorspace What effect is this? Desaturation Color Transfer Atmospheric Effects A Comparison Motion Blur Ray Tracing Subsurface Scattering Photon Mapping Caustics using Photon Tracing Modelling </description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 6</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-6/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-6/</guid>
+      <description>Chapter 12 : Data Structures for Graphics Triangle Meshes Most real-world models are composed of complexes of triangles with shared vertices. These are usually known as triangular meshes, triangle meshes, or triangular irregular networks (TINs) and handling them efficiently is crucial to the performance of many graphics programs.
+The minimum information required for a triangle mesh is a set of triangles (triples of vertices) and the positions (in 3D space) of their vertices.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 7</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-7/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-7/</guid>
+      <description>Chapter 14 : Sampling Integration Although the words “integral” and “measure” often seem intimidating, they relate to some of the most intuitive concepts found in mathematics, and they should not be feared.
+For example, on the 2D real plane $R^2$, we have the area measure $A$ which assigns a value to a set of points in the plane. Note that $A$ is just a function that takes pieces of the plane and returns area.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 8</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-8/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-8/</guid>
+      <description>Chapter 18 : Using Graphics Hardware  What is Graphics Hardware,.? Describing Geometry for Hardware. Triangle Strips Indexed Drawing Indexed triangles, or some combination of vertex arrays and meshes Display lists and Vertex Buffer Objects Processing Geometry into Pixels Programming the pipeline Basic Execution Model Example of phong shading using a vertex shader and a then using a fragment shader General Purpose computing on GPU.  Chapter 19 : Building Interactive Graphics Applications  The Ball Shooting Program Programming Models  Control Driven Programming Event Driven Programming   GUI applications, The event driven ball shooting program The Modelview - Controller Architecture Examples:  Working with GUI APIs Working with Graphics APIs   Example implementations  OpenGL with FLTK Direct3D with MFC   Applying our results  Eg.</description>
+    </item>
+    
+    <item>
+      <title>Fundamentals of Computer Graphics, Peter Shirley, Part 9</title>
+      <link>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-9/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/fund-comp-graphics/fund-comp-graphics-9/</guid>
+      <description>Chapter 23 : Tone Reproduction  HDR : High Dynamic Range Classification Dynamic Range Color Image Formation Frequency-Based Operators Gradient-Domain operators Spatial Operators Division Sigmoids Other Approaches  Histogram Equalization   Night Tonemapping Discussion  Global illumination generally produces HDR images, Real-time rendering applications considerations: Sigmoid operators or Histogram equalization are good enough.    Chapter 24 : Global Illumination  Particle Tracing for Lambertian Scenes  Very randomized algorithm For each of n particles, calculate power, compute a random point on source, compute a random direction, while a random condition is satisfied, compute ray-intersection, add luminance to intersected surface, modify the power and ray, continue.</description>
+    </item>
+    
+    <item>
+      <title>Notes On Opengl</title>
+      <link>https://www.myproductionurl.com/books/programming/notes-on-opengl/</link>
+      <pubDate>Wed, 09 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.myproductionurl.com/books/programming/notes-on-opengl/</guid>
+      <description>Starter notes on OpenGL/Transformations
+Transformations Translation : (x, y, z)
+$$ \begin{bmatrix}
+1 &amp;amp; 0 &amp;amp; 0 &amp;amp; x \\
+0 &amp;amp; 1 &amp;amp; 0 &amp;amp; y \\
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; z \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1
+\end{bmatrix} $$
+Scale : (x, y, z) $$ \begin{bmatrix}
+x &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; y &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; z &amp;amp; 0 \\</description>
+    </item>
+    
+  </channel>
+</rss>

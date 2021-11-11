@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Neural Networks for Computer Vision" />
+<meta property="og:description" content="Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Image Recognition Very Deep Convolutional Networks For Large-Scale Image Recognition Karen Simonyan, Andrew Zisserman : Apr 2015
+Source
+Implementation
+ Introduces the VGG network that won ImageNet in 2014. Deeper ConvNets. Takes input as (224 X 224) RGB and mean image subtracted as preprocessing. Two final FC hidden layers, followed by one FC layer with 1000 outputs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/research/machine-intelligence/nn-for-cv-1/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="research" />
+
+<meta property="article:modified_time" content="2017-09-05T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Neural Networks for Computer Vision"/>
+<meta name="twitter:description" content="Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.
+Image Recognition Very Deep Convolutional Networks For Large-Scale Image Recognition Karen Simonyan, Andrew Zisserman : Apr 2015
+Source
+Implementation
+ Introduces the VGG network that won ImageNet in 2014. Deeper ConvNets. Takes input as (224 X 224) RGB and mean image subtracted as preprocessing. Two final FC hidden layers, followed by one FC layer with 1000 outputs."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/research/machine-intelligence/nn-for-cv-1/">
+
+    <title>
+      
+        Neural Networks for Computer Vision | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/">Researches</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/research/machine-intelligence/">Machine Intelligence</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Neural Networks for Computer Vision</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../research/machine-intelligence/nn-for-cv-1/">Neural Networks for Computer Vision</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-09-05">Sep 5, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
+    
+</div>
+
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
+    
+</div>
+
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#image-recognition">Image Recognition</a>
+      <ul>
+        <li><a href="#vgg1">Very Deep Convolutional Networks For Large-Scale Image Recognition</a></li>
+        <li><a href="#inception1">Going Deeper with Convolutions</a></li>
+        <li><a href="#resnet1">Deep Residual Learning for Image Recognition</a></li>
+        <li><a href="#inception2">Rethinking the Inception Architecture for Computer Vision</a></li>
+        <li><a href="#inception4">Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning</a></li>
+        <li><a href="#xception">Xception: Deep Learning with Depthwise Separable Convolutions</a></li>
+      </ul>
+    </li>
+    <li><a href="#deep-visualization">Deep Visualization</a>
+      <ul>
+        <li><a href="#vis1">Visualizing and Understanding Convolutional Networks</a></li>
+        <li><a href="#vis2">Multifaceted Feature Visualization: Uncovering the Different Types of Features Learned By Each Neuron in Deep Neural Networks</a></li>
+        <li><a href="#transfer1">How transferable are features in deep neural networks?</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <p>Very minimal notes on some papers or articles that I recently read. Mainly for logging purposes.</p>
+<h2 id="image-recognition">Image Recognition</h2>
+<h3 id="vgg1">Very Deep Convolutional Networks For Large-Scale Image Recognition</h3>
+<p><em>Karen Simonyan, Andrew Zisserman : Apr 2015</em><br>
+<a href="https://arxiv.org/abs/1409.1556"><em>Source</em></a><br>
+<a href="https://github.com/KaimingHe/resnet-1k-layers"><em>Implementation</em></a></p>
+<ul>
+<li>Introduces the <em><strong>VGG network</strong> that won ImageNet in 2014</em>.</li>
+<li>Deeper ConvNets. Takes input as (224 X 224) RGB and mean image subtracted as preprocessing. Two final FC hidden layers, followed by one FC layer with 1000 outputs. Number of total trainable parameters turn out to be 144 million for VGG-19.</li>
+<li>All the hidden layers use <em>ReLU</em> activations.</li>
+<li>Deeper networks with small filters result in more regularization and less parameters.</li>
+<li>Optimise multinomial logistic regression objective using mini-batch gradient descent with momentum.</li>
+<li>At the end introduces ensemble models by averaging softmax predictions from multiple models.</li>
+</ul>
+<h3 id="inception1">Going Deeper with Convolutions</h3>
+<p><em>Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir Anguelov, Dumitru Erhan, Vincent Vanhoucke, Andrew Rabinovich : Sep 2014</em><br>
+<em>Google DeepMind</em><br>
+<a href="https://arxiv.org/abs/1409.4842"><em>Source</em></a></p>
+<ul>
+<li>Introduces <strong>&ldquo;Inception&rdquo;</strong> with improved utilization of computing resources.</li>
+<li>&ldquo;We need to go deeper&rdquo; : But <em>deeper</em> networks come with a cost of large number of parameters, which makes the model prone to overfitting, and dramatically increased use of computational resources.</li>
+<li>Fundamental idea : sparsely connected architectures, even inside the convolutions.</li>
+<li>However, the computing infrastructure is very inefficient when it comes to numerical calculations on sparse data structures. And non-uniform sparse structures require careful engineering!</li>
+<li><strong>Architecture</strong>
+<img src="../../../images/papers/inception1.jpg" alt="alt"></li>
+<li><strong>GoogLeNet</strong></li>
+<li>22 trainable Layers(100 total layers), low memory footprint.</li>
+<li>Auxillary classifiers are used to allow for efficient gradient propagation. These are used only at training time.</li>
+</ul>
+<h3 id="resnet1">Deep Residual Learning for Image Recognition</h3>
+<p><em>Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun : Dec 2015</em><br>
+<em>Microsoft Research</em><br>
+<a href="https://arxiv.org/abs/1512.03385"><em>Source</em></a></p>
+<ul>
+<li>Presents residual learning framework(<strong>ResNet</strong>) to ease the training of networks that are substantially deeper(152 layers!) than those used previously. <em>How to win ImageNet in 2015.</em></li>
+<li>Problem with deeper networks : <em>Vanishing Gradients</em> : Addressed by intermediate normalization.</li>
+<li>Problem with deeper networks : <em>Degradation</em>, not caused by overfitting..
+<img src="../../../images/papers/resNet1.jpg" alt="alt"></li>
+<li>Introduces residual learning framework by using shortcut connections that can perform identity mapping.</li>
+<li>Using Identity mapping as precondition allows the network to easily learn the identity, if it is a desired mapping. This helps in <em>simplifying</em> networks.</li>
+<li><em>Plain Network</em> architecture, mainly based on VGG nets.</li>
+<li><em>Residual Network</em> architecture, insert shortcuts to the plain network.</li>
+<li>The model shows <em>no optimization difficulty</em> even with &gt; 1000 layers..!!</li>
+<li>Finally discusses improvements for detection and localization tasks.</li>
+</ul>
+<h3 id="inception2">Rethinking the Inception Architecture for Computer Vision</h3>
+<p><em>Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, Zbigniew Wojna : Dec 2015</em><br>
+<em>Google DeepMind</em><br>
+<a href="https://arxiv.org/abs/1512.00567"><em>Source</em></a></p>
+<ul>
+<li>Improving upon <strong>Inception</strong> module and GoogLeNet.</li>
+<li>General guiding principles
+<ul>
+<li>Avoid representational bottlenecks, especially early in the network.</li>
+<li>Higher dimensional representations are easier to process locally within a network.</li>
+<li>Spatial aggregation can be done over lower dimensional embeddings without much or any loss in representational power.</li>
+<li>Balance the width and depth of the network.</li>
+</ul>
+</li>
+<li>Factorizing Convolutions with Large Filter Size
+<ul>
+<li>Factorize into smaller convolutions.
+<ul>
+<li>This results in reduced parameter count.</li>
+<li>Does this replacement result in any loss of expressiveness?     <br>
+<img src="../../../images/papers/reInception1.jpg" alt="alt"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Spatial Factorization into Asymmetric Convolutions
+<img src="../../../images/papers/reInception2.jpg" alt="alt">
+<img src="../../../images/papers/reInception3.jpg" alt="alt"></li>
+</ul>
+<h3 id="inception4">Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning</h3>
+<p><em>Christian Szegedy, Sergey Ioffe, Vincent Vanhoucke, Alex Alemi : Aug 2016</em><br>
+<em>Google DeepMind</em><br>
+<a href="https://arxiv.org/abs/1602.07261"><em>Source</em></a></p>
+<ul>
+<li>Combining <strong>Residual networks with Inception architecture</strong>.</li>
+<li>Uniform Inception-v4 blocks are introduced for cleaner architecture.</li>
+</ul>
+<h3 id="xception">Xception: Deep Learning with Depthwise Separable Convolutions</h3>
+<p><em>François Chollet : Apr 2017</em><br>
+<a href="https://arxiv.org/abs/1610.02357"><em>Source</em></a><br>
+<em>Google Inc.</em></p>
+<ul>
+<li>Building on top of the <em>inception</em> modules.</li>
+<li>An attempt to make things efficient by decoupling operations for cross-channel correlations and spatial correlations.</li>
+<li>This introduces the <em>Depthwise separable convolutions</em>.</li>
+<li>The <em>Xception</em> architecture then takes these layers and builds a complete network for ImageNet task, with better reported performane than <em>Inception v3</em>.</li>
+</ul>
+<h2 id="deep-visualization">Deep Visualization</h2>
+<h3 id="vis1">Visualizing and Understanding Convolutional Networks</h3>
+<p><em>Matthew D Zeiler, Rob Fergus L : Nov 2013</em><br>
+<a href="https://arxiv.org/abs/1311.2901"><em>Source</em></a></p>
+<ul>
+<li>Understanding why CNNs perform well on Image Classification tasks.</li>
+<li>Visualizing with a Deconvnet
+<img src="../../../images/papers/visnet1.jpg" alt="alt"></li>
+<li>Feature Visualization
+<img src="../../../images/papers/visnet2.jpg" alt="alt">
+<img src="../../../images/papers/visnet3.jpg" alt="alt">
+<img src="../../../images/papers/visnet4.jpg" alt="alt">
+<img src="../../../images/papers/visnet5.jpg" alt="alt"></li>
+<li>Feature Evolution during training
+<img src="../../../images/papers/visnet6.jpg" alt="alt"></li>
+<li>Feature Invariance</li>
+<li>Occlusion Sensitivity
+<img src="../../../images/papers/visnet7.jpg" alt="alt">
+<img src="../../../images/papers/visnet8.jpg" alt="alt"></li>
+<li>Correspondence Analysis</li>
+</ul>
+<h3 id="vis2">Multifaceted Feature Visualization: Uncovering the Different Types of Features Learned By Each Neuron in Deep Neural Networks</h3>
+<p><em>Anh Nguyen, Jason Yosinski, Jeff Clune : May 2016</em> <br>
+<a href="https://arxiv.org/abs/1602.03616"><em>Source</em></a></p>
+<ul>
+<li>Researchers have been using <em>activation maximization</em> techniques until now. This assumes that each neuron detects only one type of feature.</li>
+<li>But, we know neurons can be <em>multifaceted</em>. Here <em>multifaceted feature visualization</em> (MFV) is introduced.
+<ul>
+<li>Systematically visualize all facets of a neuron.</li>
+<li>Improve image quality of synthesized images with natural and globally consistent colors.
+<img src="../../../images/papers/multiVis1.jpg" alt="alt"></li>
+</ul>
+</li>
+<li><em>Center biased regularization</em> is used so that the synthesized images dont have many repeated object fragments.
+<ul>
+<li>This is done by first producing a blurry image, then updating the center pixels more than the edge ones, producing a final image that is sharp and has a centrally-located object.</li>
+<li>This image would have far fewer duplicated fragments.
+<img src="../../../images/papers/multiVis2.jpg" alt="alt"></li>
+</ul>
+</li>
+<li>Visualizing the multifaceted nature of hidden neurons
+<img src="../../../images/papers/multiVis3.jpg" alt="alt">
+<img src="../../../images/papers/multiVis4.jpg" alt="alt"></li>
+<li>Discusses various optimization techniques to produce better images in detail : center biased regularization, mean image initialization.</li>
+</ul>
+<h3 id="transfer1">How transferable are features in deep neural networks?</h3>
+<p><em>Jason Yosinski, Jeff Clune, Yoshua Bengio, Hod Lipson : Nov 2014</em><br>
+<a href="https://arxiv.org/abs/1411.1792"><em>Source</em></a></p>
+<ul>
+<li>First-layer features always resembles either <em>Gabor filters</em> or color blobs.</li>
+<li>We also often use the initial layers of a network to initialize other networks(for a  different task) in <em>transfer learning</em>. This raises a few questions,
+*Can we quantify the degree to which a particular layer is general or specific?
+<ul>
+<li>Does the transition occur suddenly at a single layer, or is it spread out over several layers?</li>
+<li>Where does this transition take place: near the first, middle, or last layer of the network?<br>
+<img src="../../../images/papers/transfer1.jpg" alt="alt"><br>
+Figure 1: Overview of the experimental treatments and controls. <em>Top two rows</em>: The base networks
+are trained using standard supervised backprop on only half of the ImageNet dataset (first row: A
+half, second row: B half). The labeled rectangles (e.g. $W_{A1}$) represent the weight vector learned for that layer, with the color indicating which dataset the layer was originally trained on. The vertical, ellipsoidal bars between weight vectors represent the activations of the network at each layer. *Third row*: In the *selffer* network control, the first $n$ weight layers of the network (in this example, $n = 3$) are copied from a base network (e.g. one trained on dataset B), the upper $8 − n$ layers are randomly initialized, and then the entire network is trained on that same dataset (in this example, dataset B).
+The first n layers are either locked during training (“frozen” selffer treatment $B3B$) or allowed to learn (“fine-tuned” selffer treatment $B3B^+$). This treatment reveals the occurrence of *fragile coadaptation*, when neurons on neighboring layers co-adapt during training in such a way that cannot be rediscovered when one layer is frozen. *Fourth row*: The *transfer* network experimental treatment is the same as the selffer treatment, except that the first n layers are copied from a network trained on one dataset (e.g. A) and then the entire network is trained on the other dataset (e.g. B). This treatment tests the extent to which the features on layer n are general or specific.</li>
+</ul>
+</li>
+</ul>
+<p><img src="../../../images/papers/transfer2.jpg" alt="alt"><br>
+<img src="../../../images/papers/transfer3.jpg" alt="alt"><br>
+Figure 2: The results from this paper’s main experiment. <em>Top</em>: Each marker in the figure represents the average accuracy over the validation set for a trained network. The white circles 
+above $n = 0$ represent the accuracy of baseB. There are eight points, because we tested on four separate random A/B splits. Each dark blue dot represents a BnB network. Light blue points 
+represent BnB+ networks, or fine-tuned versions of BnB. Dark red diamonds are AnB networks, and 
+light red diamonds are the fine-tuned AnB+ versions. Points are shifted slightly left or right 
+for visual clarity. <em>Bottom</em>: Lines connecting the means of each treatment.</p>
+<ul>
+<li>Conclusively, <em>transfer</em> learning can be very effective for lower layers for general dissimilar objectives, and for higher layers as well in case of similar objectives.</li>
+</ul>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-4/">A visual proof that neural networks can compute any function, Micheal Nelson</a></li>
+        
+            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a></li>
+        
+            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-2/">How the backpropogation algorithm works, Micheal Nelson</a></li>
+        
+            <li><a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-3/">Improving the way neural networks learn, Micheal Nelson</a></li>
+        
+            <li><a href="../../../research/machine-intelligence/research-ml/">Research Notes:: Deep Learning</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

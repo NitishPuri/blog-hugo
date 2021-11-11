@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Algorithms by DasGupta, Part 5" />
+<meta property="og:description" content="Chapter 7: Linear Programming and reductions Linear programming describes a broad class of optimization tasks in which both the constraints and the optimization criterion are linear functions. It turns out an enormous number of problems can be expressed in this way.
+An introduction to linear programming Eample : Profit maximization
+We represent the situation be a linear program as follows,
+Objective function :
+$$max; x_1 &#43; 6x_2$$
+Constraints :
+$$x_1 \leq 200 \ x_2 \leq 300 \ x_1 &#43; x_2 \leq 400 \ x_1, x_2 \geq 0$$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms5/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-09-09T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Algorithms by DasGupta, Part 5"/>
+<meta name="twitter:description" content="Chapter 7: Linear Programming and reductions Linear programming describes a broad class of optimization tasks in which both the constraints and the optimization criterion are linear functions. It turns out an enormous number of problems can be expressed in this way.
+An introduction to linear programming Eample : Profit maximization
+We represent the situation be a linear program as follows,
+Objective function :
+$$max; x_1 &#43; 6x_2$$
+Constraints :
+$$x_1 \leq 200 \ x_2 \leq 300 \ x_1 &#43; x_2 \leq 400 \ x_1, x_2 \geq 0$$"/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms5/">
+
+    <title>
+      
+        Algorithms by DasGupta, Part 5 | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/">Algorithms by Das Gupta</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Algorithms by DasGupta, Part 5</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-dasgupta/algorithms5/">Algorithms by DasGupta, Part 5</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-09-09">Sep 9, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-7-linear-programming-and-reductions">Chapter 7: Linear Programming and reductions</a>
+      <ul>
+        <li><a href="#an-introduction-to-linear-programming">An introduction to linear programming</a></li>
+        <li><a href="#flows-in-networks">Flows in Networks</a></li>
+        <li><a href="#bipartite-matching">Bipartite Matching</a></li>
+        <li><a href="#duality">Duality</a></li>
+        <li><a href="#zero-sum-games">Zero Sum Games</a></li>
+        <li><a href="#the-simplex-algorithm">The simplex algorithm</a></li>
+        <li><a href="#postscript--circuit-evaluation">Postscript : circuit evaluation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="chapter-7-linear-programming-and-reductions">Chapter 7: Linear Programming and reductions</h2>
+<p><em>Linear programming</em> describes a broad class of optimization tasks in which both the constraints and the optimization criterion are <em>linear functions</em>. It turns out  an enormous number of problems can be expressed in this way.</p>
+<h3 id="an-introduction-to-linear-programming">An introduction to linear programming</h3>
+<p><strong>Eample : Profit maximization</strong></p>
+<p>We represent the situation be a linear program as follows,</p>
+<p><em>Objective function :</em><br>
+$$max; x_1 + 6x_2$$</p>
+<p><em>Constraints :</em><br>
+$$x_1 \leq 200 \ x_2 \leq 300 \ x_1 + x_2 \leq 400 \ x_1, x_2 \geq 0$$</p>
+<p>Solving linear problems,</p>
+<p><strong>Simplex Method :</strong> <em>Move from vertex to vertex(generally starting at origin), optimizing the objective function. Stop when no neighbor gives better results.</em></p>
+<p>Here is the updated linear program,<br>
+$$max; x_1 + 6x_2+13x_3 \ x_1 \leq 200 \ x_2 \leq 300 \ x_1 + x_2 + x_3 \leq 400 \ x_2 + 3x_3 \leq 600 \ x_1, x_2, x_3 \geq 0$$</p>
+<p><img src="../../../../images/algdg/7_duality.png" alt="alt"></p>
+<p><strong>Example : Production planning</strong><br>
+An example with large number of variables and constraints.</p>
+<p><em>Integer Linear Programming is hard</em></p>
+<p><strong>Example : Optimum bandwidth allocation</strong></p>
+<p><strong>Variants of Linear Programmin</strong></p>
+<p>A general linear programming problem has many degrees of freedom,</p>
+<ol>
+<li>It can be either a maximization or a minimization problem.</li>
+<li>Its constraints can be equations and/or inequalities.</li>
+<li>The variables are often restricted to be non-negative, but the can also be unrestricted in sign.</li>
+</ol>
+<p>All these variants can easily be reduced to one another vio simple transformations.</p>
+<ol>
+<li>To turn a maximization problem into a minimization(or vice-versa), just multiply the coefficients of the objective function by -1.</li>
+<li>To turn an inequality constraint like $\sum_{i=1}^na_ix_i \leq b$ into an equation, introduce a new variable $s$ and use<br>
+$$\sum_{i=1}^na_ix_i+s=b,\quad\quad s \geq 0$$<br>
+This is called a *slack variable* for the inequality. As justification, observe that a vector $(x_1&hellip;x_n)$ satisfies the original inequality constraint if and only if there is some $s \geq 0$ for which it satisfies the new equality constraint.</li>
+<li>To change an equality constraint into inequalities is easy : rewrite $ax=b$ as the equivalent pair of constraints $ax \leq b$ and $ax \geq b$ .</li>
+<li>Finally, to deal with a variable $x$ that is unrestricted in sign, do the following,
+<ul>
+<li>Introduce two non-negative variables, $x^+, x^- \geq 0$.</li>
+<li>Replace $x$, wherever it occurs in the constraints or the objective function, by $x^+-x^-$.<br>
+This way $x$ can take on any real value by appropriately adjusting the new variables. More precisely, any feasible solution to the original LP involving $x$ can be mapped to a feasible solution to the new LP involving $x^+, x^-$, and vice-versa.</li>
+</ul>
+</li>
+</ol>
+<h3 id="flows-in-networks">Flows in Networks</h3>
+<p><strong>Shipping Oil</strong></p>
+<p><img src="../../../../images/algdg/7_network1.png" alt="alt"></p>
+<p><strong>Maximizing flow</strong></p>
+<ol>
+<li>It doesn&rsquo;t violate edge capacities, $0 &lt; f_e &lt; c_e$ for all $e \in E$.</li>
+<li>For all nodes $u$ except $s$ and $t$, the amount of flow entering $u$ equals the amount leaving $u$:
+$$\sum_{(w,u)\in E}f_{wu} = \sum_{(u,z)\in E}f_{uz}$$</li>
+</ol>
+<p>In other words, flow is <em>conserved</em>.</p>
+<p><strong>A closer look at the algorithm,</strong> in each iteration, simplex looks for an $s-t$ path whose edges $(u,v)$ can be of two types,</p>
+<ol>
+<li>$(u,v)$ is in the original network, and is not yet at full capacity.</li>
+<li>The reverse edge $(u,v)$ is in the original network, and there is some flow along it.</li>
+</ol>
+<h3 id="bipartite-matching">Bipartite Matching</h3>
+<p><img src="../../../../images/algdg/7_bipartite1.png" alt="alt"><br>
+<img src="../../../../images/algdg/7_bipartite2.png" alt="alt"></p>
+<h3 id="duality">Duality</h3>
+<p>Turns out, every linear maximization problem has a <em>dual</em> minimization problem.<br>
+<img src="../../../../images/algdg/7_duality2.png" alt="alt"><br>
+<img src="../../../../images/algdg/7_duality3.png" alt="alt"></p>
+<p><strong>Duality theorem :</strong> <em>If a linear program has a bounded optimum, then so does its dual, and the two optimum values coincide.</em></p>
+<h3 id="zero-sum-games">Zero Sum Games</h3>
+<p>Various conflict situations in life can be represented by matrix games.<br>
+For ex. rock-paper-scissors can be specified by the payoff matrix .<br>
+<img src="../../../../images/algdg/7_zerogame1.png" alt="alt"></p>
+<p>Now, if they play repeatedly, they have to employ a <em>mixed strategy</em>, which can be specified by the vector $\mathbf x = (x_1, x_2, x_3)$ for first player and $\mathbf y = (y_1, y_2, y_3)$ for the two players.<br>
+Therefore, for any given round, the expected payoff is<br>
+$$\sum_{i,j}G_{ij}\cdot Prob[\text{Row plays } i, \text{Column plays } j] = \sum_{i,j}G_{ij}x_i, y_j$$</p>
+<p>Row wants to <em>maximize</em> this, while Column wants to <em>minimize</em> it.</p>
+<p>If both Row and Column force a <em>&ldquo;completely random strategy&rdquo;</em> , both of them will get an expected payoff of zero. This is in fact a consequence of linear programming duality.</p>
+<h3 id="the-simplex-algorithm">The simplex algorithm</h3>
+<pre><code>Let v be any vertex of the feasible region.   
+while there is a neighbor v' of v with better objective value:   
+    set v = v'   
+</code></pre><p>Any setting of the $x_i$&rsquo;s can be represented by an $n$-tuple of real numbers and plotted in $n$-dimensional space. A linear equation involving the $x_i$&rsquo;s defines a <em>hyperplane</em> in this same space $\mathbb R^n$ and the corresponding linear equality defines a <em>half-space</em>, all points that are either precisely on the hyperplane or lie on one particular side of it. Finally, the feasible region of the linear program is specified by a set of inequalities and is therefore the intersection of the corresponding half-spaces, a convex polyhedron.</p>
+<p><strong>Verices and neighbors in n-dimensional space</strong><br>
+Each vertex is the unique point at which some subset of hyperplanes meet.<br>
+Alternatively, <br>
+<em>Pick a subset of the inequalities If there is a unique point that satisfies them with equality, and this point happens to be feasible, then it is a <strong>vertex</strong>.</em><br>
+<em>Two vertices are <strong>neighbors</strong> if they have $n-1$ defining inequalities in common.</em></p>
+<p><strong>The algorithm</strong><br>
+On each iteration, simplex has two tasks:</p>
+<ol>
+<li>Check whether the current vertex is optimal(and is so, halt).</li>
+<li>Determine where to move next.
+<img src="../../../../images/algdg/7_simplex1.png" alt="alt"></li>
+</ol>
+<p><strong>Loose ends</strong><br>
+<em>The starting vertex</em>, turns out finding a starting vertex can be <em>reduced</em> to an LP and solved by <em>simplex</em>.<br>
+<em>Degeneracy</em>, geometrically, this means that the vertex is at the intersection of more than $n$ faces of polyhedron(say $n+1$). Algebraically, it means that if we choose any one of the $n+1$ sets of $n$ inequalities and solve the corresponding system of $n$ linear equations in $n$ unknowns, we&rsquo;ll get the same solution in all $n+1$ cases.<br>
+This is a serious problem: simplex may return a suboptimal degenerate vertex simply because all its neighbors are identical to it and thus offer no better objective. And if we modify simplex to detect degeneracy and continue to hop from vertex to vertex, despite the lack of any improvement in the cost, it may end up looping forever.<br>
+This can be solved by <em>perturbation</em>, jolt one of the planes a little so that the vertex splits up in two.
+<em>Unboundedness</em>, in some cases the objective function can be made arbitrarily large. If this is the case, simple will discover it, in exploring the neighbor of a vertex, it will notice that taking out an inequality and adding another leads to an undetermined system of equations that has infinite number of solutions. And in fact the space of solutions contains a whole line along which the objective can become larger and larger, all the way to <em>infinity</em>. In this case the simplex halts and complains.</p>
+<p><strong>The running time of simplex</strong></p>
+<p>Consider a generic LP, <br>
+max $c^Tx$ such that $Ax \leq 0$ and $x \geq 0$,</p>
+<p>where there are $n$ variables and $A$ contains $m$ inequality constraints.</p>
+<p>A naive implementation can give  an unappetizing time of $O(mn^4)$. How? Find out&hellip;!!!</p>
+<p>Fortunately, there is a much better way, where this can be reduced to $O(mn)$ .<br>
+By employing the strategy of transforming to <em>local view</em> of a vertex.</p>
+<p><strong>Linear programming in polynomial time</strong></p>
+<p>Simplex is exponential,but performs well in practice.It is considered a paradox, can be solved in practice, but not in theory.</p>
+<p><em>Ellipsoid Algorithm</em>, Confine the solution into smaller and smaller ellipsoids. however, this could not compete well with simplex in practice. <br>
+The paradox deepened: A problem with two algorithms, one that is efficient in theory, and one that is efficient in practice.</p>
+<p><em>Interior point method</em>, dashes to the optimum corner, not be hopping from corner to corner, but by cutting a clever path in the interior of the polyhedron. And it does perform well in practice.</p>
+<p>The fierce competition between the two approaches resulted in the development of very fast code for linear programming.</p>
+<h3 id="postscript--circuit-evaluation">Postscript : circuit evaluation</h3>
+<p>We are given a <em>Boolean circuit</em>, that is , a dag of gates of the following types,</p>
+<ul>
+<li><em>Input gates</em> have indegree zero, with value <code>true</code> or <code>false</code>.</li>
+<li><code>AND</code> gates and <code>OR</code> gates have indegree 2.</li>
+<li><code>NOT</code> gates have indegree 1.</li>
+</ul>
+<p>For example,</p>
+<p><img src="../../../../images/algdg/7_circuit1.png" alt="alt"></p>
+<p>This an be reduced to an LP by the following substitutions,<br>
+<img src="../../../../images/algdg/7_circuit2.png" alt="alt"></p>
+<p>And, $0 \geq x_g \geq 1$, for all the gates.</p>
+<p>We don,t need to maximize anything, we just need to find out $x_g$ corresponding to the output gate.</p>
+<p>This is the most general problem that can be solved in polynomial time. Hence, the fact that <code>CIRCUIT VALUE</code> reduces to LP means that all problems that can be solved in polynomial time!</p>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-dasgupta/algorithms2/">Algorithms by DasGupta, Part 2</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

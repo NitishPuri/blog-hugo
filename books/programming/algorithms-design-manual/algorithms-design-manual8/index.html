@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="The Algorithms Design Manual, Set and String Problems" />
+<meta property="og:description" content="Set and String Problems Set Cover Input description: A collection of subsets $S = {S_1, \ldots , S_m}$ of the universal set $U = {1, \ldots , n}$.
+Problem description: What is the smallest subset $T$ of $S$ whose union equals the universal set—i.e. , $ \cup_{i=1}^{|T|} T_i = U$?
+ Several variations of set problem,  Are you allowed to cover elements more than once? Distinction between set cover and set packing." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+<meta property="article:published_time" content="2017-10-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-11T14:55:23+05:30" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="The Algorithms Design Manual, Set and String Problems"/>
+<meta name="twitter:description" content="Set and String Problems Set Cover Input description: A collection of subsets $S = {S_1, \ldots , S_m}$ of the universal set $U = {1, \ldots , n}$.
+Problem description: What is the smallest subset $T$ of $S$ whose union equals the universal set—i.e. , $ \cup_{i=1}^{|T|} T_i = U$?
+ Several variations of set problem,  Are you allowed to cover elements more than once? Distinction between set cover and set packing."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual8/">
+
+    <title>
+      
+        The Algorithms Design Manual, Set and String Problems | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/">Algorithms Design Manual</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  The Algorithms Design Manual, Set and String Problems</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-10-08">Oct 8, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#set-and-string-problems">Set and String Problems</a>
+      <ul>
+        <li><a href="#set-cover">Set Cover</a></li>
+        <li><a href="#set-packing">Set Packing</a></li>
+        <li><a href="#string-matching">String Matching</a></li>
+        <li><a href="#approximate-string-matching">Approximate String Matching</a></li>
+        <li><a href="#text-compression">Text Compression</a></li>
+        <li><a href="#cryptography">Cryptography</a></li>
+        <li><a href="#finite-state-machine-minimization">Finite State Machine Minimization</a></li>
+        <li><a href="#longest-common-substringsubsequence">Longest Common Substring/Subsequence</a></li>
+        <li><a href="#shortest-common-superstring">Shortest Common Superstring</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="set-and-string-problems">Set and String Problems</h2>
+<h3 id="set-cover">Set Cover</h3>
+<p><img src="../../../../images/algdm/18_setcover.png" alt="alt"></p>
+<p><strong>Input description:</strong> A collection of subsets $S = {S_1, \ldots , S_m}$ of the universal set
+$U = {1, \ldots , n}$.<br>
+<strong>Problem description:</strong> What is the smallest subset $T$ of $S$ whose union equals
+the universal set—i.e. , $ \cup_{i=1}^{|T|} T_i = U$?</p>
+<ul>
+<li>Several variations of set problem,
+<ul>
+<li><em>Are you allowed to cover elements more than once?</em> Distinction between set cover and set packing.</li>
+<li><em>Are your sets derived from the edges or vertices of a graph?</em> Can be modeled as <em>vertex cover</em> instead.</li>
+<li><em>Do your subsets contain only two elements each?</em> You are in luck. Becomes NP-complete with three variables.</li>
+<li><em>Do you want to cover elements with sets, or sets with elements</em></li>
+</ul>
+</li>
+<li>Greedy is the most natural and effective heuristic for set cover.</li>
+<li>Simulated annealing is likely to produce somewhat better set covers.</li>
+<li>Backtracking can be used to guarantee an optimal solution, but is computationally very expensive.</li>
+<li>Alternative, integer programming formulation of set cover.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual5/#matching">Matching</a>, <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#vertex-cover">vertex cover</a>, <a href="#set-packing">set packing</a></li>
+</ul>
+<h3 id="set-packing">Set Packing</h3>
+<p><img src="../../../../images/algdm/18_setpacking.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set of subsets $S = {S_1, \ldots , S_m}$ of the universal set $U =
+{1, \ldots , n}$.  <br>
+<strong>Problem description:</strong> Select (an ideally small) collection of mutually disjoint subsets from $S$ whose union is the universal set.</p>
+<ul>
+<li><em>Must every element appear in exactly one selected subset?</em> This will be NP-complete is yes.</li>
+<li><em>Does each element have its own singleton set?</em></li>
+<li><em>What is the penalty for covering elements twice?</em></li>
+<li>The same heuristics as in set cover work here.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual6/#independent-set">Independent set</a>, <a href="#set-cover">set cover</a></li>
+</ul>
+<h3 id="string-matching">String Matching</h3>
+<p><img src="../../../../images/algdm/18_stringmatching.png" alt="alt"></p>
+<p><strong>Input description:</strong> A text string $t$ of length $n$. A pattern string $p$ of length $m$.  <br>
+<strong>Problem description:</strong> Find the first (or all) instances of pattern $p$ in the text.</p>
+<ul>
+<li>Arises in almost all text-processing applications.</li>
+<li>Issues to look for,
+<ul>
+<li><em>Are your search patterns and/or texts short?</em> Simple $O(mn)$ would suffice.</li>
+<li><em>What about longer texts and patterns?</em> Preprocessing the search pattern can help improve the <em>jumps</em> on finding a mismatch.</li>
+<li><em>Do I expect to find the pattern or not?</em> Check backwards and perform better jumps.</li>
+<li><em>Will you perform multiple queries on the same text?</em> Use suffix trees or suffix arrays.</li>
+<li><em>Will you search many texts using the same patterns?</em> Build finite automaton. Also useful when searching for regular expressions.</li>
+<li><em>What if our text or pattern contains a spelling error?</em> Use <em>Approximate string matching</em> algorithms.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : Strmat, grep and variants, Boost string algorithms.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/#suffix-trees-and-arrays">Suffix trees</a>, <a href="#approximate-string-matching">approximate string matching</a></li>
+</ul>
+<h3 id="approximate-string-matching">Approximate String Matching</h3>
+<p><img src="../../../../images/algdm/18_appmatch.png" alt="alt"></p>
+<p><strong>Input description:</strong> A text string $t$ and a pattern string $p$. <br>
+<strong>Problem description:</strong> What is the minimum-cost way to transform $t$ to $p$ using insertions, deletions, and substitutions?</p>
+<ul>
+<li>A fundamental problem because we live in an error-prone world.</li>
+<li>Dynamic programming provides the basic approach. $D[i,j]$ = cost of editing $i$ characters of string $p$ into first $j$ characters of text $t$. The recurrence selected the minimum of,
+<ul>
+<li>if $p_i = t_j$ then $D[i-1, j-1]$ else $D[i-1, j-1] +$ substitution cost.</li>
+<li>$D[i-1, j] +$ deletion cost of $p_j$.</li>
+<li>$D[i, j+1] +$ deletion cost of $t_j$.</li>
+</ul>
+</li>
+<li>Several issues remain however,
+<ul>
+<li><em>Do I match the pattern against the full text, or against a substring?</em></li>
+<li><em>How should I select the substitution and insertion/deletion costs?</em></li>
+<li><em>How do I find the actual alignment of the strings?</em></li>
+<li><em>What if the two strings are very similar to each other?</em></li>
+<li><em>Is your pattern short or long?</em> You can use bit-parallel algorithms, which can be many times faster than dynamic programming.</li>
+<li><em>How can I minimize the required storage?</em> Quadratic space required by dp table is only required if you need to reconstruct the actual sequence alignment.</li>
+<li><em>Should I score long runs of indels differently?</em></li>
+<li><em>Does similarity mean strings that sound alike?</em></li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : agrep, nrgrep, TRE</li>
+<li><em>Related</em> : <a href="#string-matching">String matching</a>, <a href="#longest-common-substringsubsequence">longest common substring</a></li>
+</ul>
+<h3 id="text-compression">Text Compression</h3>
+<p><img src="../../../../images/algdm/18_textcomp.png" alt="alt"></p>
+<p><strong>Input description:</strong> A text string $S$.<br>
+<strong>Problem description:</strong> Create a shorter text string $S'$ such that $S$ can be correctly reconstructed from $S'$.</p>
+<ul>
+<li>Decreasing secondary storage prices seem to have increased interest in data compression, because there is more data to compress.</li>
+<li>Several questions arise while selecting the right compression algorithm,
+<ul>
+<li><em>Must we recover the exact input text after compression?</em> Lossy vs Lossless encoding. Documents can&rsquo;t use lossy compression. Images/videos can.</li>
+<li><em>Can I simplify my data before I compress it?</em> Any information that can be removed would help in compression later.</li>
+<li><em>Does it matter whether the algorithm is patented?</em> Just something to look out for.</li>
+<li><em>How do I compress image data?</em> Use JPEG.</li>
+<li><em>Must compression run in real time?</em> Depends on the application.</li>
+</ul>
+</li>
+<li>Several dozen algorithms are available,
+<ul>
+<li><em>Huffman codes</em>, greedy variable length encoding based on frequency.</li>
+<li><em>Lempel-ziv algorithms</em> (LZV compression), just use this.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : <em>gzip</em>, <em>bzip2</em></li>
+<li><em>Related</em> : <a href="#shortest-common-superstring">Shortest common superstring</a>, <a href="#cryptography">cryptography</a></li>
+</ul>
+<h3 id="cryptography">Cryptography</h3>
+<p><img src="../../../../images/algdm/18_crypto.png" alt="alt"></p>
+<p><strong>Input description:</strong> A plaintext message $T$ or encrypted text $E$, and a key $k$. <br>
+<strong>Problem description:</strong> Encode $T$ (decode $E$) using $k$ giving $E$ ($T$).</p>
+<ul>
+<li>Foundation for the modern internet.</li>
+<li>Three classes of cryptosystems everyone should be aware of,
+<ul>
+<li><em>Ceaser shifts</em>, substitute on character for something else. Easy to break using statistical analysis.</li>
+<li><em>Block shuffle ciphers</em>, DES(now <em>crackable</em>), AES, Triple DES.</li>
+<li><em>Public key cryptography</em>, RSA</li>
+</ul>
+</li>
+<li><em>Never</em> try to roll out your own novel cryptosystem. It is <em>not</em> going to work.</li>
+<li>Certain problems related to cryptography,
+<ul>
+<li><em>How can I validate the integrity of data against random corruption?</em> use checksums, cyclic redundancy check.</li>
+<li><em>How can I validate the integrity of data against deliberate corruption?</em> MD5, SHA-256.</li>
+<li><em>How can I prove that a file has not been changed?</em> Digital signatures.</li>
+<li><em>How can I restrict access to copyrighted material?</em> Stream ciphers are used, but are needed to be protected by the law.</li>
+</ul>
+</li>
+<li><strong>Implementations</strong> : Nettle, Crypto++</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual3/#factoring-and-primality-testing">Factoring and primality testing</a>, <a href="#text-compression">text compression</a></li>
+</ul>
+<h3 id="finite-state-machine-minimization">Finite State Machine Minimization</h3>
+<p><img src="../../../../images/algdm/18_fsm.png" alt="alt"></p>
+<p><strong>Input description:</strong> A deterministic finite automaton $M$. <br>
+<strong>Problem description:</strong> Create the smallest deterministic finite automaton $M'$ such that $M'$ behaves identically to $M$.</p>
+<ul>
+<li>Useful in control systems, compilers, software and hardware design.</li>
+<li>Minimizing the state machine can reduce both storage and execution costs.</li>
+<li>Consider three different problems,
+<ul>
+<li><em>Minimizing deterministic finite state machine</em>, be removing redundancy.</li>
+<li><em>Constructing deterministic machines from nondeterministic machines</em>, this can however be worse than NP-complete, as the number of states blow up exponentially.</li>
+<li><em>Constructing machines from regular expressions</em>, can construct either NFA or DFA.</li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual4/#satisfiability">Satisfiability</a>, <a href="#string-matching">string matching</a></li>
+</ul>
+<h3 id="longest-common-substringsubsequence">Longest Common Substring/Subsequence</h3>
+<p><img src="../../../../images/algdm/18_lcsm.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set $S$ of strings $S_1, \ldots , Sn$.  <br>
+<strong>Problem description:</strong> What is the longest string $S'$ such that all the characters
+of $S'$ appear as a substring or subsequence of each $S_i, 1 \le i \le n$?</p>
+<ul>
+<li>Arises when finding similarity among multiple sequences.</li>
+<li>Issues arising include,
+<ul>
+<li><em>Are you looking for a common substring?</em></li>
+<li><em>Are you looking for a common scattered subsequence?</em></li>
+<li><em>What if there are relatively few sets of matching characters?</em></li>
+<li><em>What if the strings are permutations?</em></li>
+<li><em>What if we have more than two strings to align?</em></li>
+</ul>
+</li>
+<li><em>Related</em> : <a href="#approximate-string-matching">Approximate string matching</a>, <a href="#shortest-common-superstring">shortest common superstring</a></li>
+</ul>
+<h3 id="shortest-common-superstring">Shortest Common Superstring</h3>
+<p><img src="../../../../images/algdm/18_scs.png" alt="alt"></p>
+<p><strong>Input description:</strong> A set of strings $S = {S_1, \ldots , S_m}$. <br>
+<strong>Problem description:</strong> Find the shortest string $S'$ that contains each string $S_i$ as
+a substring of $S'$.</p>
+<ul>
+<li>This can be useful in data compression, DNA sequence assembly.</li>
+<li>Finding a super-sequence is not a problem, but finding the <em>shortest</em> super-sequence is NP-complete.</li>
+<li>Easily reducible to asymmetric TSP problem.</li>
+<li>A greedy heuristic: find the substrings with maximum overlap and merge them, repeat.</li>
+<li><em>Related</em> : <a href="https://www.myproductionurl.com/books/programming/algorithms-design-manual/algorithms-design-manual2/#suffix-trees-and-arrays">Suffix trees</a>, <a href="#text-compression">text compression</a></li>
+</ul>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual1/">The Algorithms Design Manual</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual4/">The Algorithms Design Manual, Combinatorial Problems</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

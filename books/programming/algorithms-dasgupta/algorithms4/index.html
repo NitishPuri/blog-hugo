@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Algorithms by DasGupta, Part 4" />
+<meta property="og:description" content="Chapter 5: Greedy Algorithms !Thinking Ahead.
+Minimum spanning trees Property 1 Removing a cycle edge cannot disconnect a graph.
+The tree with minimum total weight is then known as minimum spanning tree.
+Formally,
+Input : An undirected graph $G = (V, E)$; edge weights $w_e$.
+Output : *A tree $T = (V, E&#39;)$, with $E&#39; \subseteq E$, that minimizes $weight(T) = \sum_{e \in E&#39;}w_e$.*
+A greedy approach Kruskal&rsquo;s algorithm
+Repeatedly add the next lightest edge that doesn&rsquo;t produce a cycle." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms4/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2017-08-29T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="Algorithms by DasGupta, Part 4"/>
+<meta name="twitter:description" content="Chapter 5: Greedy Algorithms !Thinking Ahead.
+Minimum spanning trees Property 1 Removing a cycle edge cannot disconnect a graph.
+The tree with minimum total weight is then known as minimum spanning tree.
+Formally,
+Input : An undirected graph $G = (V, E)$; edge weights $w_e$.
+Output : *A tree $T = (V, E&#39;)$, with $E&#39; \subseteq E$, that minimizes $weight(T) = \sum_{e \in E&#39;}w_e$.*
+A greedy approach Kruskal&rsquo;s algorithm
+Repeatedly add the next lightest edge that doesn&rsquo;t produce a cycle."/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/algorithms4/">
+
+    <title>
+      
+        Algorithms by DasGupta, Part 4 | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    <script>
+MathJax = {
+    tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$','$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+    },
+    options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+};
+
+window.addEventListener('load', (event) => {
+    document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/algorithms-dasgupta/">Algorithms by Das Gupta</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  Algorithms by DasGupta, Part 4</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../../books/programming/algorithms-dasgupta/algorithms4/">Algorithms by DasGupta, Part 4</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2017-08-29">Aug 29, 2017</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+    
+</div>
+
+
+    
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-5-greedy-algorithms">Chapter 5: Greedy Algorithms</a>
+      <ul>
+        <li><a href="#minimum-spanning-trees">Minimum spanning trees</a></li>
+        <li><a href="#huffman-coding">Huffman coding</a></li>
+        <li><a href="#horn-formulas">Horn formulas</a></li>
+        <li><a href="#set-cover">Set Cover</a></li>
+      </ul>
+    </li>
+    <li><a href="#chapter-6-dynamic-programming">Chapter 6: Dynamic Programming</a>
+      <ul>
+        <li><a href="#shortest-paths-in-dags-revisited">Shortest paths in dags, revisited</a></li>
+        <li><a href="#longest-increasing-subsequence">Longest increasing subsequence</a></li>
+        <li><a href="#edit-distance">Edit distance</a></li>
+        <li><a href="#knapsack">Knapsack</a></li>
+        <li><a href="#chain-matrix-multiplication">Chain Matrix Multiplication</a></li>
+        <li><a href="#shortest-paths">Shortest Paths</a></li>
+        <li><a href="#independent-sets-in-trees">Independent Sets in trees</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <h2 id="chapter-5-greedy-algorithms">Chapter 5: Greedy Algorithms</h2>
+<p><em><strong>!Thinking Ahead.</strong></em></p>
+<h3 id="minimum-spanning-trees">Minimum spanning trees</h3>
+<p><strong>Property 1</strong> <em>Removing a cycle edge cannot disconnect a graph.</em><br>
+The tree with minimum total weight is then known as <em>minimum spanning tree</em>.</p>
+<p>Formally,<br>
+<strong>Input :</strong> <em>An undirected graph $G = (V, E)$; edge weights $w_e$</em>.<br>
+<strong>Output :</strong> *A tree $T = (V, E')$, with $E' \subseteq E$, that minimizes $weight(T) = \sum_{e \in E'}w_e$.*</p>
+<h4 id="a-greedy-approach">A greedy approach</h4>
+<p><em>Kruskal&rsquo;s algorithm</em><br>
+Repeatedly add the next lightest edge that doesn&rsquo;t produce a cycle.<br>
+<img src="../../../../images/algdg/5_kruskal.png" alt="alt"></p>
+<h4 id="the-cut-property">The cut property</h4>
+<p><strong>Cut Property</strong> <em>Suppose edges $X$ are part of a minimum spanning tree of $G = (V, E)$. Pick any subset of nodes S for which $X$ does not cross between $S$ and $V-S$, and let $e$ be the lightest edge across this partition. Then $X \cup {e}$ is part of some $MST$.</em></p>
+<h4 id="kruskals-algorithm">Kruskal&rsquo;s algorithm</h4>
+<p>We need to use a data structure for representing disjoint sets, supporting the following operations,</p>
+<p><code>makeset(x)</code>: create a singelton set containing just <code>x</code>.<br>
+<code>find(x)</code> : to which set does <code>x</code> belong.<br>
+<code>union(x,y)</code> : merge the sets containing <code>x</code> and <code>y</code>.</p>
+<p><img src="../../../../images/algdg/5_kruskal2.png" alt="alt"></p>
+<h4 id="a-data-structure-for-disjoint-sets">A data structure for disjoint sets</h4>
+<p><strong>Union by rank</strong><br>
+<img src="../../../../images/algdg/5_union.png" alt="alt"><br>
+$$\underline{procedure, makeset(x)}\<br>
+\pi(x) = x \<br>
+rank(x) = 0 \<br>
+, \<br>
+\underline{function, find(x)} \<br>
+while\quad x \neq \pi(x): x = \pi(x) \<br>
+return; x \<br>
+, \<br>
+\underline{procedure, union(x,y)} \<br>
+r_x = find(x) \<br>
+r_y = find(y) \<br>
+if\quad r_x = r_y:, return \<br>
+if\quad rank(r_x) &gt; rank(r_y) : \<br>
+\quad \pi(r_y) = r_x \<br>
+else: \<br>
+\quad \pi(r_x) = r_y \<br>
+\quad if\quad rank(r_x) = rank(r_y): rank(r_y) = rank(r_y) + 1
+$$</p>
+<p>The given structure has the following properties. 
+<strong>Property 1</strong> For any $x, rank(x) &lt; rank(\pi(x))$.</p>
+<p><strong>Property 2</strong> Any root node of rank $k$ has at least $2^k$ nodes in its tree.</p>
+<p><strong>Property 3</strong> If there are $n$ elements overall, there can be at most $n/2^k$ nodes of rank $k$.</p>
+<h4 id="path-compression">Path compression</h4>
+<p>$$ \<br>
+\underline{function, find(x)} \<br>
+if\quad x \neq \pi(x): \pi(x) = find(\pi(x)) \<br>
+return; \pi(x) \<br>
+$$<br>
+During each <em>find</em>, when  a series  of parent pointers are followed up to the root, we will change all these pointers so that they point directly to the root.</p>
+<p>This simple alteration results in doing slightly more work per <em>find</em> operation. However, the <em>amortized</em> cost of each operation turns out to be just barely more than $O(1)$.</p>
+<h4 id="prims-algorithm">Prim&rsquo;s algorithm</h4>
+<p>In most general terms, any algorithm working on the following general schema is guaranteed to work.<br>
+$$X = {,}\text{ edges picked so far} \<br>
+repeat; until\quad |X| = |V|-1 :\<br>
+\quad \text{pick a set} S \subset V \text{ for which X has no edges between S and V - S} \ 
+\quad let; e \in E \text{ be the minimum-weight edge between S and V - S} \<br>
+X = X \cup {e}
+$$<br>
+Alternative to Kruskal&rsquo;s algorithmfor finding Minimum Spanning Trees. 
+<img src="../../../../images/algdg/5_prim.png" alt="alt"><br>
+This is very similar to Dijkstra, only that the priorities are decided differently.</p>
+<h3 id="huffman-coding">Huffman coding</h3>
+<p>Variable length encoding of symbols, depending on frequency of the particular symbol.<br>
+Should be <em>prefix-free</em>, i.e. no codeword can be a prefix of another codeword.</p>
+<p>Any <em>prefix-free</em> encoding can be represented by a full binary tree.</p>
+<p>The two symbols with the smallest frequencies must be the bottom of the optimal tree.<br>
+$$\underline{procedure; \text{Huffman}(f)} \<br>
+Input:\quad \text{An array $f[1&hellip;n]$ of frequencies} \<br>
+Output:\quad \text{An encoding tree with n leaves} \<br>
+, \ 
+\text{let H be a priority queue of integers, ordered by } f \<br>
+for; i = 1, to, n:; insert(H, i) \<br>
+for; k=n+1, to, 2n-1: \<br>
+\quad i = deletemin(H), j = deletemin(H) \<br>
+\quad \text{create a node numbered k with children i,j} \<br>
+\quad f[k] = f[i] + f[j] \<br>
+\quad insert(H,k) \<br>
+$$</p>
+<h3 id="horn-formulas">Horn formulas</h3>
+<p>Horn formulas are a framework for performing logical reasoning, expressing logical facts and deriving conclusions.</p>
+<p>Knowledge about variables is represented by two kinds of clauses:</p>
+<ol>
+<li><em>Implications,</em> whose left-hand side is an <code>AND</code> of any number of positive literals and whose right-hand side is a single positive literal. These express statements of the form &ldquo;if the conditions on the left hold, then the one on the right must also be true.&rdquo;. For instance, $(z\land w)\implies u$ might mean &ldquo;if the colonel was asleep at 8 pm and the murder took place at 8 pm then the colonel is innocent.&rdquo; A degenerate type of implication is the <em>singleton</em> &ldquo;$\implies x$,&rdquo; meaning simply that x is <code>true</code>: &ldquo;the murder definitely occurred in the kitchen&rdquo;.</li>
+<li>Pure <em>negative clauses</em>, consisting of an <code>OR</code> of any number of negative literals, as in $(\bar u\lor \bar v \lor \bar y)$</li>
+</ol>
+<p>Given a set of clauses, we need to assign true/false values to the variables that satisfies all the clauses. The is called a <em>satisfying assignment</em>.</p>
+<p>So we have this given formula for finding a satisfying assignment.<br>
+$$ \<br>
+Input:\quad \text{a Horn formula} \<br>
+Output:\quad \text{a satisfying assignment, if one exists} \<br>
+, \<br>
+\text{set all variables to false} \<br>
+, \<br>
+\text{while there is an implication that is not satisfied:} \<br>
+\quad \text{set the right-hand variable of the implication to true} \<br>
+, \<br>
+\text{if all pure negative clauses are satisfied:   return the assignment} \<br>
+\text{else:   return &ldquo;formula is not satisfiable&rdquo;} \<br>
+$$</p>
+<h3 id="set-cover">Set Cover</h3>
+<p>$$ \text{SET COVER} \<br>
+Input: \text{A set of elements $B$; sets } S_1,&hellip;S_m \subseteq B. \<br>
+Output: \text{A selection of the $S_i$ whose union is $B$} \<br>
+Cost: \text{Number of sets picked.} \ 
+$$</p>
+<p>The greedy algorithm will not be optimal, but it  will be pretty close to it.<br>
+<strong>Claim ,</strong> <em>Supppose $B$ contains $n$ elements and that the optimal cover consists of $k$ sets. Then the greedy algorithm will use at most $k\ln n$ sets.</em></p>
+<p>The ratio between the greedy algorithm&rsquo;s solution and the optimal solution varies from input to input but is always less than $\ln n$. There are certain inputs for which the ratio is very close to $\ln n$.</p>
+<p>We call this maximum ratio the <em>approximation factor</em> of the greedy algorithm.</p>
+<h2 id="chapter-6-dynamic-programming">Chapter 6: Dynamic Programming</h2>
+<p>The <em>sledgehammers</em> of the algorithms class: Dynamic Programming and Linear Programming</p>
+<h3 id="shortest-paths-in-dags-revisited">Shortest paths in dags, revisited</h3>
+<p>The following routine can be used to calculate the shortest path in DAG.<br>
+$$ \<br>
+\text{initialize all $dist(.)$ values to $\inf$} \<br>
+dist(s) = 0 \<br>
+\text{for each}\quad v \in V\setminus{s}, \text{in linearized order}: \<br>
+\quad dist(v) = min{(u,v)\in E}{dist(u) + l(u,v)}
+$$</p>
+<p><em>Dynamic programming</em> is a very powerful algorithmic paradigm in which a problem is solved 
+by identifying a collection of subproblems and tackling them one by one, smallest first, using the
+answers to subproblems to figure out larger ones, until the whole lot of them is solved. In dynamic
+programming we are not given a dag, it is <em>implicit</em>. Its nodes are the subproblems we define, and its
+edges are the dependencies between the subproblems.</p>
+<h3 id="longest-increasing-subsequence">Longest increasing subsequence</h3>
+<p><img src="../../../../images/algdg/6_subseq1.png" alt="alt"></p>
+<p>The problem can be represented as a DAG, containing all possible transitions; establish a node $i$ 
+for each element $a_i$, and add directed edges $(i,j)$ whenever it is possible for $a_i$ and
+$a_j$ to be consecutive elements in an increasing subsequence, that is, whenever $i &lt; j$ and $a_i &lt; a_j$.</p>
+<p>So, for finding the longest subsequence, our goal is simply to find the longest path in the dag.<br>
+$$\<br>
+for\quad j = 1, 2,&hellip; n: \<br>
+\quad L(j) = 1 + max{L(i): (i, j) \in E} \<br>
+return; max_jL(j) \<br>
+$$<br>
+, where $L(j)$ is the length of the longest path(the longest increasing subsequence) ending in $j$.<br>
+The actual subsequence of nodes can also be determined by some bookkeeping(ex. note down $prev(j)$),
+the next-to-last node on the longest path to j.)</p>
+<h3 id="edit-distance">Edit distance</h3>
+<p>The minimum number of edits required to convert a string to another string.</p>
+<h4 id="a-dynamic-programming-solution">A dynamic programming solution</h4>
+<p>$E(i,j)$ represents the subproblems of finding match between string $x[1&hellip;i]$ and $y[1&hellip;j]$. Our
+final objective is to compute $E(m,n)$.<br>
+For that we need to express $E(i,j)$ in terms of smaller subproblems.</p>
+<p>Now,<br>
+$E(i,j) = min{1 + E(i-1, j), 1 + E(i, j-1), diff(i,j) + E(i-1, j-1)}$<br>
+where, $diff(i,j)$ is 0 if $x[i] = y[i]$, and $1$ otherwise.</p>
+<p>The above relation forms a table, which can easily be computed in time $O(mn)$.<br>
+<img src="../../../../images/algdg/6_subprob.png" alt="alt"></p>
+<h3 id="knapsack">Knapsack</h3>
+<p>A burglar wants to find out which items to carry, considering the weight and cost where he can carry up to a fixed amount of weight, maximizing the cost of items.</p>
+<h4 id="knapsack-with-repetition">Knapsack with repetition</h4>
+<p>$K(w) =$ maximum value achievable with a knapsack of capacity $w$.<br>
+$K(w) = max_{i:w_i \leq w}{K(w - w_i)+v_i}$,</p>
+<p>Algorithm:<br>
+$$\<br>
+K(0) = 0 \<br>
+for\quad w = 1 to; W : \<br>
+\quad K(w) = max{K(w-w_i) + v_i : w_i &lt; w} \<br>
+return; K(W) \<br>
+$$</p>
+<h4 id="knapsack-without-repetition">Knapsack without repetition</h4>
+<p>$K(w,j) =$ maximum value achievable using knapsack of capacity $w$ and items $1&hellip;j$.<br>
+$K(w,j) = max{K(w-w_j,j-1) + v_j, K(w, j-1)}$<br>
+$$\<br>
+\text{initialize all } K(0,j) = 0 \text{ and all } K(w,0) = 0 \<br>
+for\quad j=1; to; n: \<br>
+\quad for\quad w=1; to; W : \<br>
+\quad \quad if; w_j &gt; w: K(w,j) = K(w,j-1) \<br>
+\quad \quad else: K(w,j) = max{K(w,j-1), K(w-w_j,j-1)+v_j} \<br>
+return; K(W,n) \<br>
+$$</p>
+<h3 id="chain-matrix-multiplication">Chain Matrix Multiplication</h3>
+<p>Matrix multiplication is not commutative, but is associative.<br>
+Which means, $A \times (B \times C) = (A \times B) \times C$.</p>
+<p>Thus, we can compute product of four different matrices in many different ways, Some of the ways are much better(computationally) than others.<br>
+<img src="../../../../images/algdg/6_mat1.png" alt="alt"></p>
+<h3 id="shortest-paths">Shortest Paths</h3>
+<h4 id="shortest-reliable-paths">Shortest reliable paths</h4>
+<p>Suppose we want the shortest path from $s$ to $t$ that uses at most $k$ edges.</p>
+<p>Is there a quick way to adapt Dijkstra&rsquo;s algorithm to this new task? Not quite; since the algorithm focuses on the length of each shortest path without remembering the number of hops in the path, which is now a crucial information.<br>
+In dynamic programming, we can  now define,<br>
+for each vertex $v$ and each integer $i &lt; k, dist(v,i)$ to be the <em>length of the shortest path from $s$ to $v$ that uses $i$ edges.</em><br>
+$dist(v,i) = min_(u,v)\in E{dist(u, i-1) + l(u,v)}$.</p>
+<h4 id="all-pairs-shortest-paths">All pairs shortest paths</h4>
+<p><strong>Floyd-Warshall algorithm :</strong><br>
+We want to find the shortest paths between all pairs of vertices.<br>
+Is there a good subproblem for solving this problem. Yes.<br>
+We can start with just two starting nodes, and gradually expand the set of possible intermediate nodes.<br>
+More concretely, number the vertices in $V$ as ${1&hellip;n}$ and let, $dist(1,j,k)$ denote the length of
+shortest path from $i$ to $j$ in which only nodes ${1,2&hellip;k}$ can be used as intermediates.</p>
+<p>Initially, $dist(1,j,0)$ is the length of the direct edges between $i$ and $j$ if one exists, and is $\inf$ otherwise.</p>
+<p><img src="../../../../images/algdg/6_allpair.png" alt="alt"></p>
+<p>This, using $k$ gives us a shorter path from $i$ to $j$ if and only if<br>
+$dist(i,k,k-1) + dist(k,j,k-1) &lt; dist(i,j,k-1)$,</p>
+<p>in which case $dist(i,j,k)$ should be updated accordingly.<br>
+Here is the Floyd-Warshall algorithm &ndash; and it takes $O|V|^3$ time.<br>
+$$\<br>
+for \quad i=1 to n:\<br>
+\quad for \quad j=1 to n:\<br>
+\quad \quad dist(i,j,0) = \infty\<br>
+for;all \quad (i,j) \in E:\<br>
+\quad dist(i,j,0) = l(i,j)\<br>
+for\quad k=1;to;n:\<br>
+\quad for\quad i=1;to;n:\<br>
+\quad \quad for\quad j=1;to;n:\<br>
+\quad \quad \quad  dist(i,j,k)=min{dist(i,k,k-1)+dist(k,j,k-1), dist(i,j,k-1)};to;n:\<br>
+$$</p>
+<h4 id="the-travelling-salesman-problem">The travelling salesman problem</h4>
+<p>What sgould be the appropriate subproblem?<br>
+For a subset of cities $S \subseteq {1,2,&hellip;.n}$ that includes $l$, and $j \in S$, let $C(S,j)$ be the length of the shortest path visiting each node in $S$ exactly once, starting at $l$ and ending at $j$.</p>
+<p>When $|S| &gt; 1$, we define $C(S,1) = \infty$ since the path cannot both start and end at $1$.</p>
+<p>Now, let&rsquo;s express $C(S,j)$ in terms of smaller subproblems. We need to start at $1$ and end at $j$; what should we pick as the second-to-last city? It has to be some $i \in S$, so the overall path length is the distance from $1$ to $i$, namely $C(S-{j}, i) + \text{the length of the final edge,}d_{ij}$. We must pick the best such $i$:<br>
+$$C(S,j) = min_{i\in S:i\neq j} C(S-{j}, i) + d_{ij}$$</p>
+<p>The subproblems are ordered by $|S|$. here&rsquo;s the code.<br>
+$$C({1}, 1) = 0\<br>
+for \quad s=2; to ; n:
+\quad for; all; subsets; S \subseteq {1,2,&hellip;n}\text{ of size } s \text{ and containing } 1:\<br>
+\quad \quad C(s,j) = \infty\<br>
+\quad \quad for; all; j \in S,; j \neq 1:\<br>
+\quad \quad \quad C(S,j) = min{C(S-{j},i)+d_{ij}:i\in S,, i \neq j}\<br>
+return \quad min_jC({1,&hellip;n},j)+d_{j1}
+$$</p>
+<p>There are at most $2^m.n$ subproblems, and each one takes linear time to solve. The total running time is therefore $O(n^22^m).</p>
+<h3 id="independent-sets-in-trees">Independent Sets in trees</h3>
+<p>We need to find the largest independent set from a tree.</p>
+<p>Here is our algorithm,<br>
+Start by rooting the tree at any node $r$. Now, each node defines a subtree - the one hanging from it. This immediately suggests subproblems,<br>
+$ I(u) =$ size of largest independent set of subtree hanging from $u$.</p>
+<p>Our final goal is $I(r)$.</p>
+<p>So, $I(u)$ turns out to be,<br>
+$$I(u) = max \bigl{1 + \sum_{\text{grandchildren},w,\text{of},u}I(w), \sum_{\text{children},w,\text{of},u}I(w)\bigr}$$</p>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+        
+            <li><a href="../../../../books/programming/algorithms-dasgupta/algorithms2/">Algorithms by DasGupta, Part 2</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

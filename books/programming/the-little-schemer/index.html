@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="The Little Schemer" />
+<meta property="og:description" content="The Little Schemer by Friedman, Felleisen
+1. Toys ; Is &#39;x&#39; an atom (define atom? (lambda(x) (and (not (pair? x)) (not (null? x))))) 2. Do It, Do It Again, and Again, and Again&hellip; ; Is &#39;l&#39; a list of atoms (define lat? (lambda(l) (cond ((null? l) #t) ((atom? (car l)) (lat? (cdr l))) (else #f)))) ; Is &#39;a&#39; a member of &#39;lat&#39; (define member? (lambda (a lat) (cond ((null? lat) #f) (else (or (eq?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.myproductionurl.com/books/programming/the-little-schemer/" /><meta property="og:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/><meta property="article:section" content="books" />
+
+<meta property="article:modified_time" content="2018-05-05T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myproductionurl.com/images/site-feature-image.jpg"/>
+
+<meta name="twitter:title" content="The Little Schemer"/>
+<meta name="twitter:description" content="The Little Schemer by Friedman, Felleisen
+1. Toys ; Is &#39;x&#39; an atom (define atom? (lambda(x) (and (not (pair? x)) (not (null? x))))) 2. Do It, Do It Again, and Again, and Again&hellip; ; Is &#39;l&#39; a list of atoms (define lat? (lambda(l) (cond ((null? l) #t) ((atom? (car l)) (lat? (cdr l))) (else #f)))) ; Is &#39;a&#39; a member of &#39;lat&#39; (define member? (lambda (a lat) (cond ((null? lat) #f) (else (or (eq?"/>
+
+
+
+    <link rel="canonical" href="https://www.myproductionurl.com/books/programming/the-little-schemer/">
+
+    <title>
+      
+        The Little Schemer | Blog - Nitish Puri
+      
+    </title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='../../../css/style.css' rel="stylesheet">
+
+    
+
+        
+    
+
+    
+
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../../">
+                <img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Blog - Nitish Puri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../books/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../research/"></a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                            
+                            <a class="nav-link " href="../../../about/">About</a>
+                        
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main"><nav class="breadcrumb container" aria-label="breadcrumb"  >
+    <ol class="breadcrumb">
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/">Home</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/">Books</a> </li>
+    
+    
+        <li class="breadcrumb-item"> <a href="https://www.myproductionurl.com/books/programming/">Programming</a> </li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">  The Little Schemer</li>
+    
+    
+</ol>
+</nav>
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark text-decoration-none" href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2018-05-05">May 5, 2018</time>
+    
+    
+        by <span rel="author">Nitish Puri</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
+    
+</div>
+
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
+    
+</div>
+
+
+    <hr>
+</header>
+<article class="blog-post">
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-toys">1. Toys</a></li>
+    <li><a href="#2-do-it-do-it-again-and-again-and-again">2. Do It, Do It Again, and Again, and Again&hellip;</a>
+      <ul>
+        <li><a href="#the-first-commandment">The First Commandment</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-cons-the-magnificent">3. Cons the Magnificent</a>
+      <ul>
+        <li><a href="#the-second-commandment">The Second Commandment</a></li>
+        <li><a href="#the-third-commandment">The Third Commandment</a></li>
+        <li><a href="#the-fourth-commandment">The Fourth Commandment</a></li>
+      </ul>
+    </li>
+    <li><a href="#numbers-games">Numbers Games</a>
+      <ul>
+        <li><a href="#the-first-commandment-1">The First Commandment</a></li>
+        <li><a href="#the-fourth-commandment-1">The Fourth Commandment</a></li>
+        <li><a href="#the-fifth-commandment">The Fifth Commandment</a></li>
+      </ul>
+    </li>
+    <li><a href="#oh-my-gawd-its-full-of-stars"><em>Oh My Gawd</em>: It&rsquo;s Full of Stars</a>
+      <ul>
+        <li><a href="#the-first-commandment-2">The First Commandment</a></li>
+        <li><a href="#the-fourth-commandment-2">The Fourth Commandment</a></li>
+        <li><a href="#the-sixth-commandment">The Sixth Commandment</a></li>
+        <li><a href="#the-seventh-commandment">The Seventh Commandment</a></li>
+        <li><a href="#the-eighth-commandment">The Eighth Commandment</a></li>
+        <li><a href="#the-tenth-commandment">The Tenth Commandment</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+    <p><strong>The Little Schemer by Friedman, Felleisen</strong></p>
+<h2 id="1-toys">1. Toys</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Is &#39;x&#39; an atom</span>
+(<span style="color:#66d9ef">define </span>atom?
+  (<span style="color:#a6e22e">lambda</span>(<span style="color:#a6e22e">x</span>)
+    (<span style="color:#66d9ef">and </span>(not (pair? x)) (not (null? x)))))
+</code></pre></div><h2 id="2-do-it-do-it-again-and-again-and-again">2. Do It, Do It Again, and Again, and Again&hellip;</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Is &#39;l&#39; a list of atoms</span>
+(<span style="color:#66d9ef">define </span>lat?
+  (<span style="color:#a6e22e">lambda</span>(<span style="color:#a6e22e">l</span>)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? l) <span style="color:#66d9ef">#t</span>)
+      ((<span style="color:#a6e22e">atom?</span> (car l)) (<span style="color:#a6e22e">lat?</span> (cdr l)))
+      (<span style="color:#66d9ef">else </span><span style="color:#66d9ef">#f</span>))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Is &#39;a&#39; a member of &#39;lat&#39;</span>
+(<span style="color:#66d9ef">define </span>member?
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) <span style="color:#66d9ef">#f</span>)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#66d9ef">or </span>(eq? (car lat) a)
+                (<span style="color:#a6e22e">member?</span> a (cdr lat)))))))
+</code></pre></div><hr>
+<h3 id="the-first-commandment">The First Commandment</h3>
+<p><em>(preliminary)</em><br>
+<strong>Always ask <code>null?</code> as the first question in expressing any function.</strong></p>
+<hr>
+<h2 id="3-cons-the-magnificent">3. Cons the Magnificent</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Remove &#39;a&#39; from &#39;lat&#39;</span>
+<span style="color:#75715e">; But not quite right.</span>
+(<span style="color:#66d9ef">define </span>rember
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) (<span style="color:#a6e22e">quote</span>()))
+      (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">cond</span>
+              ((eq? (car lat) a) (cdr lat))
+              (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">rember</span> a (cdr lat))))))))
+</code></pre></div><hr>
+<h3 id="the-second-commandment">The Second Commandment</h3>
+<p><em>(preliminary)</em><br>
+<strong>Use <code>cons</code> to build lists.</strong></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Fixed by consing the first part of the list</span>
+(<span style="color:#66d9ef">define </span>rember
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) (<span style="color:#a6e22e">quote</span>()))
+      (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">cond</span>
+              ((eq? (car lat) a) (cdr lat))
+              (<span style="color:#66d9ef">else </span>(cons (car lat)
+                          (<span style="color:#a6e22e">rember</span> a
+                                  (cdr lat)))))))))
+
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Simplified.</span>
+(<span style="color:#66d9ef">define </span>rember
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) (<span style="color:#a6e22e">quote</span>()))
+      ((eq? (car lat) a) (cdr lat))
+      (<span style="color:#66d9ef">else </span>(cons (car lat)
+                (<span style="color:#a6e22e">rember</span> a (cdr lat)))))))
+</code></pre></div><hr>
+<h3 id="the-third-commandment">The Third Commandment</h3>
+<p><em>(preliminary)</em><br>
+<strong>When building a list, describe the first typical element, and then <code>cons</code> it onto the natural recursion.</strong></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Take all the firsts elements of all the list-elements of &#39;l&#39;</span>
+(<span style="color:#66d9ef">define </span>firsts
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">l</span>)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? l) (<span style="color:#a6e22e">quote</span>()))
+      (<span style="color:#66d9ef">else </span>(cons (car (car l))
+              (<span style="color:#a6e22e">firsts</span> (cdr l)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Insert &#39;new&#39; to the right of &#39;old&#39; in list of atoms &#39;lat&#39;</span>
+(<span style="color:#66d9ef">define </span>insertR
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span> old lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) (<span style="color:#a6e22e">quote</span>()))
+      ((eq? (car lat) old)
+       (cons old (cons new (cdr lat))))
+      (<span style="color:#66d9ef">else </span>(cons (car lat)
+                  (<span style="color:#a6e22e">insertR</span> new old
+                          (cdr lat)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Insert &#39;new&#39; to the left of &#39;old&#39; in list of atoms &#39;lat&#39;</span>
+(<span style="color:#66d9ef">define </span>insertL
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span> old lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) (<span style="color:#a6e22e">quote</span>()))
+      ((eq? (car lat) old)
+       (cons new lat))
+      (<span style="color:#66d9ef">else </span>(cons (car lat)
+                  (<span style="color:#a6e22e">insertR</span> new old
+                          (cdr lat)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Substitute the first occurence of &#39;new&#39; with &#39;old&#39; in list of atoms &#39;lat&#39;</span>
+(<span style="color:#66d9ef">define </span>subst
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span> old lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) (<span style="color:#a6e22e">quote</span>()))
+      ((eq? (car lat) old)
+       (cons new (cdr lat)))
+      (<span style="color:#66d9ef">else </span>(cons (car lat)
+                  (<span style="color:#a6e22e">insertR</span> new old
+                          (cdr lat)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Remove all occurences of &#39;a&#39; from &#39;lat&#39;</span>
+(<span style="color:#66d9ef">define </span>multirember
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) (<span style="color:#a6e22e">quote</span>()))
+      ((eq? (car lat) a) (<span style="color:#a6e22e">multirember</span> a (cdr lat)))
+      (<span style="color:#66d9ef">else </span>(cons (car lat)
+                  (<span style="color:#a6e22e">multirember</span> a
+                          (cdr lat)))))))
+</code></pre></div><hr>
+<h3 id="the-fourth-commandment">The Fourth Commandment</h3>
+<p><em>(preliminary)</em><br>
+<strong>Always change at least one argument while recurring. It must be changed to be closer to termination. The changing argument must be tested in the termination condition: when using <code>cdr</code>, test termination with <code>null?</code>.</strong></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Substitute &#39;new&#39; with &#39;old&#39; in list of atoms &#39;lat&#39;</span>
+(<span style="color:#66d9ef">define </span>multisubst
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span> old lat)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) (<span style="color:#a6e22e">quote</span>()))
+      ((eq? (car lat) old)
+       (cons new (<span style="color:#a6e22e">multisubst</span> new old (cdr lat))))
+      (<span style="color:#66d9ef">else </span>(cons (car lat)
+                  (<span style="color:#a6e22e">multisubst</span> new old
+                          (cdr lat)))))))
+</code></pre></div><h2 id="numbers-games">Numbers Games</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>add1
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+    (+ n <span style="color:#ae81ff">1</span>)))
+
+(<span style="color:#66d9ef">define </span>sub1
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+    (- n <span style="color:#ae81ff">1</span>)))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">;Addition using primitives</span>
+(<span style="color:#66d9ef">define </span>o+
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span> m)
+    (<span style="color:#a6e22e">cond</span>
+      ((zero? m) n)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">add1</span> (<span style="color:#a6e22e">o+</span> n (<span style="color:#a6e22e">sub1</span> m)))))))
+
+<span style="color:#75715e">;Subtraction using primitives</span>
+(<span style="color:#66d9ef">define </span>o-
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span> m)
+    (<span style="color:#a6e22e">cond</span>
+      ((zero? m) n)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">sub1</span> (<span style="color:#a6e22e">o-</span> n (<span style="color:#a6e22e">sub1</span> m)))))))
+</code></pre></div><hr>
+<h3 id="the-first-commandment-1">The First Commandment</h3>
+<p><em>(first revision)</em><br>
+<strong>When recurring on a list of atoms, <code>lat</code>, ask two questions about it: (<code>null? lat</code>) and <code>else</code>.</strong><br>
+<strong>When recurring on a number, <code>n</code>, ask two questions about it: (<code>zero? n</code>) and <code>else</code>.</strong></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Add numbers in a tuple</span>
+(<span style="color:#66d9ef">define </span>addtup
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">tup</span>)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? tup) <span style="color:#ae81ff">0</span>)
+      (<span style="color:#66d9ef">else </span>(+ (car tup) (<span style="color:#a6e22e">addtup</span> (cdr tup)))))))
+</code></pre></div><hr>
+<h3 id="the-fourth-commandment-1">The Fourth Commandment</h3>
+<p><em>(first revision)</em><br>
+<strong>Always change at least one argument while recurring. It must be changed to be closer to termination.</strong> 
+<strong>The changing argument must be tested in the termination condition: when using <code>cdr</code>, test termination with <code>null?</code> and when using <code>sub1</code>, test termination with <code>zero?</code>.</strong></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Multiplication using primitives</span>
+(<span style="color:#66d9ef">define </span>o*
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span> m)
+    (<span style="color:#a6e22e">cond</span>
+      ((zero? m) <span style="color:#ae81ff">0</span>)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">o+</span> n (<span style="color:#a6e22e">o*</span> n (<span style="color:#a6e22e">sub1</span> m)))))))
+</code></pre></div><hr>
+<h3 id="the-fifth-commandment">The Fifth Commandment</h3>
+<p><strong>When building a value with <code>o+</code>, always use <code>0</code> for the value of the terminating line, for adding <code>0</code> does not change the value of an addition.</strong>
+<strong>When building a value with <code>o*</code>, always use <code>1</code> for the value of the terminating line, for multiplying by <code>1</code> does not change the value of a multiplication.</strong>
+<strong>When building a value with <code>cons</code>, always consider <code>()</code> for the value of the terminating line.</strong></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Addition of two tuples</span>
+(<span style="color:#66d9ef">define </span>tup+
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">tup1</span> tup2)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? tup1) tup2)
+      ((null? tup2) tup1)
+      (<span style="color:#66d9ef">else </span>
+        (cons (<span style="color:#a6e22e">o+</span> (car tup1) (car tup2)) 
+          (<span style="color:#a6e22e">tup+</span> (cdr tup1) (cdr tup2)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Greater than</span>
+(<span style="color:#66d9ef">define </span>&gt;
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span> m)
+    (<span style="color:#a6e22e">cond</span>
+      ((zero? n) <span style="color:#66d9ef">#f</span>)
+      ((zero? m) <span style="color:#66d9ef">#t</span>)
+      (<span style="color:#66d9ef">else </span>(&gt; (<span style="color:#a6e22e">sub1</span> n) (<span style="color:#a6e22e">sub1</span> m))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Is Equal to (using &gt; and &lt;)</span>
+(<span style="color:#66d9ef">define </span>=
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span> m)
+    (<span style="color:#a6e22e">cond</span>
+      ((&gt; n m) <span style="color:#66d9ef">#f</span>)
+      ((&lt; n m) <span style="color:#66d9ef">#f</span>)
+      (<span style="color:#66d9ef">else </span><span style="color:#66d9ef">#t</span>))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; exponential</span>
+(<span style="color:#66d9ef">define </span>expt
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span> m)
+    (<span style="color:#a6e22e">cond</span>
+      ((zero? m) <span style="color:#ae81ff">1</span>)
+      (<span style="color:#66d9ef">else </span>(* n (<span style="color:#a6e22e">sub1</span> m))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Division</span>
+(<span style="color:#66d9ef">define </span>quotient
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span> m)
+    (<span style="color:#a6e22e">cond</span>
+      ((&lt; n m) <span style="color:#ae81ff">0</span>)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">add1</span> (quotient (- n m) m))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Length</span>
+(<span style="color:#66d9ef">define </span>length
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">lat</span>)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? lat) <span style="color:#ae81ff">0</span>)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">add1</span> (length (cdr lat)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Equal number or atom</span>
+(<span style="color:#66d9ef">define </span>eqan
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a1</span> a2)
+    (<span style="color:#a6e22e">cond</span>
+      ((<span style="color:#66d9ef">and </span>(number? a1) (number? a2)) 
+        (= a1 a2))
+      ((<span style="color:#66d9ef">or </span>(number? a1) (number? a2)) <span style="color:#66d9ef">#f</span>)  
+      (<span style="color:#66d9ef">else </span>(eq? a1 a2)))))
+</code></pre></div><h2 id="oh-my-gawd-its-full-of-stars"><em>Oh My Gawd</em>: It&rsquo;s Full of Stars</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; remove member recursively</span>
+(<span style="color:#66d9ef">define </span>rember*
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> l)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? l) (<span style="color:#a6e22e">quote</span>()))
+      ((<span style="color:#a6e22e">atom?</span> (car l))
+        (<span style="color:#66d9ef">cond </span>
+          ((eq? (car l) a)
+            (<span style="color:#a6e22e">rember*</span> a (<span style="color:#a6e22e">cd</span> l)))
+          (<span style="color:#66d9ef">else </span>(cons (car l)
+                  (<span style="color:#a6e22e">rember*</span> a (cdr l))))))
+      (<span style="color:#66d9ef">else </span>(cons (<span style="color:#a6e22e">rember*</span> a (car l)) 
+              (<span style="color:#a6e22e">rember*</span> a (cdr l)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Insert atom `new` to the right of `old` recursively</span>
+(<span style="color:#66d9ef">define </span>insertR*
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span> old l)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? l) (<span style="color:#a6e22e">quote</span>()))
+      ((<span style="color:#a6e22e">atom?</span> (car l))
+        (<span style="color:#66d9ef">cond </span>
+          ((eq? (car l) old)
+            (cons old
+              (cons new 
+                (<span style="color:#a6e22e">insertR*</span> new old (cdr l)))))
+          (<span style="color:#66d9ef">else </span>(cons (car l)
+                  (<span style="color:#a6e22e">insertR*</span> new old (cdr l))))))
+      (<span style="color:#66d9ef">else </span>(cons (<span style="color:#a6e22e">insertR*</span> new old (car l)) 
+              (<span style="color:#a6e22e">insertR*</span> new old (cdr l)))))))
+</code></pre></div><hr>
+<h3 id="the-first-commandment-2">The First Commandment</h3>
+<p><em>(final version)</em><br>
+<strong>When recurring on a list of atoms, <code>lat</code>, ask two questions about it: <code>(null? lat)</code> and <code>else</code>.</strong><br>
+<strong>When recurring on a number, <code>n</code>, ask two questions about it: <code>(zero? n)</code> and <code>else</code>.</strong><br>
+<strong>When recurring on a list of S-expressions, <code>l</code>, ask three questions about it: <code>(null? l)</code>, <code>(atom? (car l))</code>and <code>else</code>.</strong></p>
+<hr>
+<h3 id="the-fourth-commandment-2">The Fourth Commandment</h3>
+<p><em>(final version)</em><br>
+<strong>Always change at least one argument while recurring.</strong><br>
+<strong>When recurring on a list of atoms, <code>lat</code>, use <code>(cdr lat)</code>.</strong><br>
+<strong>When recurring on a number, <code>n</code>, use <code>(sub1 n)</code>.</strong><br>
+<strong>And when recurring on a list of S-expressions, <code>l</code>, use <code>(car l)</code> and <code>(cdr l)</code> if neither <code>(null? l)</code> or <code>(atom? l)</code> are true.</strong></p>
+<p><strong>It must be changed to be closer to termination.</strong>
+<strong>The changing argument must be tested in the termination condition:</strong></p>
+<p><strong>when using <code>cdr</code>, test termination with <code>null?</code> and</strong><br>
+<strong>when using <code>sub1</code>, test termination with <code>zero?</code>.</strong></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Occurence</span>
+(<span style="color:#66d9ef">define </span>occur*
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> l)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? l) <span style="color:#ae81ff">0</span>)
+      ((<span style="color:#a6e22e">atom?</span> (car l))
+        (<span style="color:#66d9ef">cond </span>
+          ((eq? (car l) a)
+            (<span style="color:#a6e22e">add1</span> (<span style="color:#a6e22e">occur*</span> a (cdr l))))
+          (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">occur*</span> a (cdr l)))))
+      (<span style="color:#66d9ef">else </span>(+ (<span style="color:#a6e22e">occur*</span> a (car l)) 
+              (<span style="color:#a6e22e">occur*</span> a (cdr l)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Is a member?</span>
+(<span style="color:#66d9ef">define </span>occur*
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> l)
+    (<span style="color:#a6e22e">cond</span>
+      ((null? l) <span style="color:#66d9ef">#f</span>)
+      ((<span style="color:#a6e22e">atom?</span> (car l))
+        (<span style="color:#66d9ef">or </span>
+          (eq? (car l) a)
+          (<span style="color:#a6e22e">member*</span> a (cdr l))))
+      (<span style="color:#66d9ef">else </span>(<span style="color:#66d9ef">or </span>(<span style="color:#a6e22e">member*</span> a (car l)) 
+              (<span style="color:#a6e22e">member*</span> a (cdr l)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Are the two lists equal?</span>
+(<span style="color:#66d9ef">define </span>eqlist*
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">l1</span> l2)
+    (<span style="color:#a6e22e">cond</span>
+      ((<span style="color:#66d9ef">and </span>(null? l1) (null? l2)) <span style="color:#66d9ef">#t</span>)
+      ((<span style="color:#66d9ef">or </span>(null? l1) (null? l2)) <span style="color:#66d9ef">#f</span>)
+      ((<span style="color:#66d9ef">and </span>(<span style="color:#a6e22e">atom?</span> (car l1)) 
+          (<span style="color:#a6e22e">atom?</span> (car l2)))
+          (<span style="color:#66d9ef">and </span>(<span style="color:#a6e22e">eqan?</span> (car l1) (car l2)) 
+            (<span style="color:#a6e22e">eqan?</span> (cdr l1) (cdr l2))))
+      ((<span style="color:#66d9ef">or </span>(<span style="color:#a6e22e">atom?</span> (car l1)) 
+        (<span style="color:#a6e22e">atom?</span> (car l2))) <span style="color:#66d9ef">#f</span>)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#66d9ef">and </span>(<span style="color:#a6e22e">eqlist*</span> (car l1) (car l2)) 
+              (<span style="color:#a6e22e">eqlist*</span> (cdr l1) (cdr l2)))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Are the S-expressions equal?</span>
+(<span style="color:#66d9ef">define </span>equal*
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s1</span> s2)
+    (<span style="color:#a6e22e">cond</span>
+      ((<span style="color:#66d9ef">and </span>(<span style="color:#a6e22e">atom?</span> ls1) (<span style="color:#a6e22e">atom?</span> s2))
+        (<span style="color:#a6e22e">eqan?</span> s1 s2))
+      ((<span style="color:#66d9ef">or </span>(<span style="color:#a6e22e">atom?</span> s1) (<span style="color:#a6e22e">atom?</span> s2)) <span style="color:#66d9ef">#f</span>)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">eqlist?</span> s1 s2)))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; using equal?</span>
+(<span style="color:#66d9ef">define </span>eqlist*
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">l1</span> l2)
+    (<span style="color:#a6e22e">cond</span>
+      ((<span style="color:#66d9ef">and </span>(null? l1) (null? l2)) <span style="color:#66d9ef">#t</span>)
+      ((<span style="color:#66d9ef">or </span>(null? l1) (null? l2)) <span style="color:#66d9ef">#f</span>)
+      (<span style="color:#66d9ef">else </span>(<span style="color:#66d9ef">and </span>(<span style="color:#a6e22e">eqlist*</span> (car l1) (car l2)) 
+              (<span style="color:#a6e22e">eqlist*</span> (cdr l1) (cdr l2)))))))
+</code></pre></div><hr>
+<h3 id="the-sixth-commandment">The Sixth Commandment</h3>
+<p><strong>Simplify only after the function is correct.</strong></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Is the input an arithmetic expression?</span>
+(<span style="color:#66d9ef">define </span>numbered?
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">aexp</span>)
+    (<span style="color:#a6e22e">cond</span>
+      ((<span style="color:#a6e22e">atom?</span> aexp) (number? aexp))
+      (<span style="color:#66d9ef">else </span>
+        (<span style="color:#66d9ef">and </span>(<span style="color:#a6e22e">numbered?</span> (car aexp)) 
+          (<span style="color:#a6e22e">numbered?</span> (car (cdr (cdr aexp)))))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Value of the given expression</span>
+(<span style="color:#66d9ef">define </span>value
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">nexp</span>)
+    (<span style="color:#a6e22e">cond</span>
+      ((<span style="color:#a6e22e">atom?</span> nexp) <span style="color:#f92672">...</span>)
+      ((eq? (car (cdr nexp)) (<span style="color:#66d9ef">quote </span>+)) 
+        <span style="color:#f92672">...</span>)
+      ((eq? (car (cdr nexp)) (<span style="color:#66d9ef">quote </span>x)) 
+        <span style="color:#f92672">...</span>)
+      (<span style="color:#66d9ef">else </span>
+        <span style="color:#f92672">...</span>))))
+</code></pre></div><hr>
+<h3 id="the-seventh-commandment">The Seventh Commandment</h3>
+<p><strong>Recur on the <em>subparts</em> that are of the same nature:</strong></p>
+<ul>
+<li><strong>On the sublists of a list.</strong></li>
+<li><strong>On the subexpressions of an arithematic expression.</strong></li>
+</ul>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Value of the given expression</span>
+(<span style="color:#66d9ef">define </span>value
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">nexp</span>)
+    (<span style="color:#a6e22e">cond</span>
+      ((<span style="color:#a6e22e">atom?</span> nexp) nexp)
+      ((eq? (car (cdr nexp)) (<span style="color:#66d9ef">quote </span>+)) 
+        (+ (<span style="color:#a6e22e">value</span> (car nexp))
+          (<span style="color:#a6e22e">value</span> (car (cdr (cdr nexp))))))
+      ((eq? (car (cdr nexp)) (<span style="color:#66d9ef">quote </span>x)) 
+        (<span style="color:#a6e22e">x</span> (<span style="color:#a6e22e">value</span> (car nexp))
+          (<span style="color:#a6e22e">value</span> (car (cdr (cdr nexp))))))
+      (<span style="color:#66d9ef">else </span>
+        (<span style="color:#a6e22e">**</span> (<span style="color:#a6e22e">value</span> (car nexp))
+          (<span style="color:#a6e22e">value</span> (car (cdr (cdr nexp)))))))))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#75715e">; Some Abstraction</span>
+(<span style="color:#66d9ef">define </span><span style="color:#ae81ff">1</span>st-sub-exp
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">aexp</span>) 
+    (car (cdr aexp))))
+(<span style="color:#66d9ef">define </span><span style="color:#ae81ff">2</span>nd-sub-exp
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">aexp</span>) 
+    (car (cdr (cdr aexp)))))
+(<span style="color:#66d9ef">define </span>operator
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">aexp</span>) 
+    (car aexp)))
+
+(<span style="color:#66d9ef">define </span>value
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">nexp</span>)
+    (<span style="color:#a6e22e">cond</span>
+      ((<span style="color:#a6e22e">atom?</span> nexp) nexp)
+      ((eq? (<span style="color:#a6e22e">operator</span> nexp) (<span style="color:#66d9ef">quote </span>+)) 
+        (+ (<span style="color:#ae81ff">1</span>st-sub-exp nexp)
+          (<span style="color:#ae81ff">2</span>nd-sub-exp nexp)))
+      ((eq? (<span style="color:#a6e22e">operator</span> nexp) (<span style="color:#66d9ef">quote </span>x)) 
+        (<span style="color:#a6e22e">x</span> (<span style="color:#ae81ff">1</span>st-sub-exp nexp)
+          (<span style="color:#ae81ff">2</span>nd-sub-exp nexp)))
+      (<span style="color:#66d9ef">else </span>
+        (<span style="color:#a6e22e">**</span> (<span style="color:#a6e22e">value</span> (<span style="color:#ae81ff">1</span>st-sub-exp nexp))
+          (<span style="color:#a6e22e">value</span> (<span style="color:#ae81ff">2</span>nd-sub-exp nexp)))))))
+</code></pre></div><hr>
+<h3 id="the-eighth-commandment">The Eighth Commandment</h3>
+<p><strong>Use help functions to abstract from representations.</strong></p>
+<hr>
+<hr>
+<h3 id="the-tenth-commandment">The Tenth Commandment</h3>
+<p><strong>Build functions to collect more than one value at a time.</strong></p>
+<hr>
+
+
+    
+
+    <footer>
+
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="../../../books/programming/algorithms-design-manual/algorithms-design-manual8/">The Algorithms Design Manual, Set and String Problems</a></li>
+        
+            <li><a href="../../../books/programming/algorithms-design-manual/algorithms-design-manual7/">The Algorithms Design Manual, Computational Geometry</a></li>
+        
+            <li><a href="../../../books/programming/algorithms-design-manual/algorithms-design-manual6/">The Algorithms Design Manual, Graph Problems(Hard Problems)</a></li>
+        
+            <li><a href="../../../books/programming/algorithms-design-manual/algorithms-design-manual5/">The Algorithms Design Manual, Graph Problems(Polynomial-Time)</a></li>
+        
+            <li><a href="../../../books/programming/fund-comp-graphics/fund-comp-graphics-1/">Fundamentals of Computer Graphics, Peter Shirley, Part 1</a></li>
+        
+    </ul>
+
+</footer>
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="../../../books/programming/the-little-schemer/">The Little Schemer</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/game-engine-architecture/">Game Engine Architecture</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-7/">Is there a simple algorithm for intelligence?, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-6/">Deep Learning, Micheal Nelson</a>
+        </li>
+        
+        <li>
+            <a href="../../../books/programming/neuralnets/neural-networks-and-deep-learning-5/">Why are deep neural networks hard to train?, Micheal Nelson</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/books">books</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/courses">courses</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../categories/notes">notes</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/algorithms">algorithms</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/architecture">architecture</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/biorobots">biorobots</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/book">book</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/data-science">data-science</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/deep-learning">deep-learning</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/design">design</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/game-engine">game-engine</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/graphics">graphics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/image-segmentation">image-segmentation</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/kuka">kuka</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/lisp">lisp</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/machine-intelligence">machine-intelligence</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/notes">notes</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/opengl">opengl</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/philosophy">philosophy</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/programming">programming</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/projects">projects</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/robotics">robotics</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/scheme">scheme</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/style-transfer">style-transfer</a>
+            
+            <a class="btn btn-primary btn-small badge" href="../../../tags/udacity">udacity</a>
+            
+        </p>
+        
+    
+        
+    
+</section>
+
+    
+
+    
+
+</aside>
+
+
+      </div>
+    </div>
+    
+
+    
+      
+    
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>
